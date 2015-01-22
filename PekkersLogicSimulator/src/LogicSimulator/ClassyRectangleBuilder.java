@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package LogicSimulator;
 
 import javafx.event.EventHandler;
@@ -14,10 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-/**
- *
- * @author PEKKA
- */
 public class ClassyRectangleBuilder {
     
     final Main main;
