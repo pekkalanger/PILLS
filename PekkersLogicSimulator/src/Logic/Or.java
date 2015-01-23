@@ -8,6 +8,25 @@ public class Or implements Gate {
         
 	public Or(){
 	}
+        public void setPinA(InputPin p){
+            a = p;
+        }
+        public void setPinB(InputPin p){
+            b = p;
+        }
+        public void setPinQ(OutputPin p){
+            q = p;
+        }
+        
+        public InputPin getPinA(){
+            return a;
+        }
+        public InputPin getPinB(){
+            return b;
+        }
+        public OutputPin getPinQ(){
+            return q;
+        }
         
 	@Override
 	public boolean update() {

@@ -1,6 +1,8 @@
 package LogicSimulator;
 
 import Logic.And;
+import Logic.InputPin;
+import Logic.Not;
 import Logic.Or;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -35,9 +37,9 @@ public class GateBuilder {
         // this should be added to a and list which will be updated all the fucknig time
         // and also assigned the pins
         
-        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 2, "A");//new Rectangle(8, 8);
-        final Rectangle pinBRectangle = pinBuilder.createInputPin(0, 22, "B");
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, "Q");
+        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 2, and.getPinA(), "A");//new Rectangle(8, 8);
+        final Rectangle pinBRectangle = pinBuilder.createInputPin(0, 22, and.getPinB(),  "B");
+        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, and.getPinQ(), "Q");
         
         final Rectangle andGateRectangle = new Rectangle(32, 32);
         andGateRectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true)); /* should create a Gate (square with texture and boolean logic linked to pins)*/
@@ -127,9 +129,9 @@ public class GateBuilder {
         
         Or or = new Or();
         
-        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 2, "A");//new Rectangle(8, 8);
-        final Rectangle pinBRectangle = pinBuilder.createInputPin(0, 22, "B");
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, "Q");
+        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 2, or.getPinA(), "A");//new Rectangle(8, 8);
+        final Rectangle pinBRectangle = pinBuilder.createInputPin(0, 22, or.getPinB(), "B");
+        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, or.getPinQ(), "Q");
         
         final Rectangle orGateRectangle = new Rectangle(32, 32);
         orGateRectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true)); /* should create a Gate (square with texture and boolean logic linked to pins)*/
@@ -210,7 +212,7 @@ public class GateBuilder {
         
         return gg;
     }
-    
+
     public Group createNotGate() {
             /*      movable group   */
         
@@ -218,10 +220,10 @@ public class GateBuilder {
         Image texture = new Image("file:res/notgate.png");
         final String name = "notgate";
         
-        And and = new And();
+        Not not = new Not();
         
-        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 12, "A");//new Rectangle(8, 8);
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, "Q");
+        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 12, not.getPinA(), "A");//new Rectangle(8, 8);
+        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, not.getPinQ(), "Q");
         
         final Rectangle notGateRectangle = new Rectangle(32, 32);
         notGateRectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true)); /* should create a Gate (square with texture and boolean logic linked to pins)*/

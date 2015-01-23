@@ -13,10 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-/**
- *
- * @author PEKKA
- */
 public class SexyLineBuilder {
     final Main main;
     public SexyLineBuilder(final Main main) {

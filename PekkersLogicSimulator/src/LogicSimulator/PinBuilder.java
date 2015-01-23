@@ -5,7 +5,9 @@
  */
 package LogicSimulator;
 
+import Logic.InputPin;
 import Logic.Line;
+import Logic.OutputPin;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
@@ -27,7 +29,7 @@ public class PinBuilder {
         this.main = main;
     }
     
-    public Rectangle createInputPin(int x , int y, String n) {
+    public Rectangle createInputPin(int x , int y, InputPin inputPin, String n) {
         Image texture = new Image("file:res/inputpin.png");          // hardcoded inputpin texture
         final Rectangle rectangle = new Rectangle(8, 8);
         rectangle.setTranslateX(x);
@@ -99,7 +101,7 @@ public class PinBuilder {
         return rectangle;
     }
     
-     public Rectangle createOutputPin(int x , int y, String n) {
+     public Rectangle createOutputPin(int x , int y, OutputPin outputPin, String n) {
         Image texture = new Image("file:res/outputpin.png");          // hardcoded outputpin texture
         final Rectangle rectangle = new Rectangle(8, 8);
         rectangle.setTranslateX(x);

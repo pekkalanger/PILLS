@@ -2,7 +2,6 @@ package LogicSimulator;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -12,17 +11,11 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 
-/**
- *
- * @author PEKKA
- */
 public class ClassySideBarBuilder {
     
     final Main main;
@@ -34,12 +27,12 @@ public class ClassySideBarBuilder {
     public ClassySideBarBuilder (final Main main) {
         this.main = main;
     }
-            
+    
     public VBox buildSideBarWithButtons(){
         
         VBox sideBar = new VBox();
         sideBar.setSpacing(2f);
-        GateBuilder gateBuilder = new GateBuilder(main);
+        final GateBuilder gateBuilder = new GateBuilder(main);
         final Button butt1 = new Button("add and gayt");
         butt1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -54,7 +47,6 @@ public class ClassySideBarBuilder {
                 main.circleGroup.getChildren().add(andGate);
                 */
                 
-                GateBuilder gateBuilder = new GateBuilder(main);
                 Group gg = gateBuilder.createAndGate();
                 main.circleGroup.getChildren().add(gg);
         
@@ -67,7 +59,6 @@ public class ClassySideBarBuilder {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Or gate");
-                GateBuilder gateBuilder = new GateBuilder(main);
                 Group gg = gateBuilder.createOrGate();
                 main.circleGroup.getChildren().add(gg);
         
@@ -80,7 +71,6 @@ public class ClassySideBarBuilder {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new not gate");
-                GateBuilder gateBuilder = new GateBuilder(main);
                 Group gg = gateBuilder.createNotGate();
                 main.circleGroup.getChildren().add(gg);
         

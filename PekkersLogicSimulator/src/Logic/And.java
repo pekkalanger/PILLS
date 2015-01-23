@@ -22,6 +22,16 @@ public class And implements Gate {
             q = p;
         }
         
+        public InputPin getPinA(){
+            return a;
+        }
+        public InputPin getPinB(){
+            return b;
+        }
+        public OutputPin getPinQ(){
+            return q;
+        }
+        
 	@Override
 	public boolean update() {
             if(a != null && b != null && q != null){
