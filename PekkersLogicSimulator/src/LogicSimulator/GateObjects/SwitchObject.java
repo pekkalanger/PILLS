@@ -97,7 +97,7 @@ public class SwitchObject extends GateObject{
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     toggled = true;
                     switch0.toggle();
-                    update(true);
+                    //update(true);
                     me.consume();
                 } else if (me.getButton() == MouseButton.MIDDLE) {
                     Globals.main.showOnConsole("Removed specified orangeCircle");
@@ -121,9 +121,9 @@ public class SwitchObject extends GateObject{
 
     
     @Override
-    public void update(boolean clock) {
+    public void update(long deltaTime) {
         //here we will take the data from line and render leds new status (via println())
-        switch0.update();
+        if(switch0 != null)switch0.update(deltaTime);
         System.out.println(" switch state= " + switch0.getDataObject().getData());
         if(toggled){
             if(switch0.getDataObject().getData()){

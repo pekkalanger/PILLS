@@ -11,6 +11,7 @@ import Logic.InputPin;
 import Logic.OutputPin;
 import Logic.Pin;
 import javafx.scene.Group;
+import javafx.scene.shape.Line;
 
 /**
  *
@@ -18,6 +19,7 @@ import javafx.scene.Group;
  */
 public class DragBoard {
     private static GateObject gateObject;
+    public static Line line;
     private static String name;
     private static Object object;
     private static Group group;
@@ -42,6 +44,12 @@ public class DragBoard {
     }
     public static void setGroup(Group g){
         group = g;
+    }
+    public static Line getLine(){
+        return line;
+    }
+    public static void setLine(Line l){
+        line = l;
     }
     public static String getName(){
         return name;
@@ -89,6 +97,7 @@ public class DragBoard {
     }
     public static void clearDragBoard(){
         gateObject = null;
+        line = null;
         name = null;
         object = null;
         group = null;

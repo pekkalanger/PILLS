@@ -1,11 +1,13 @@
 package Logic;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class Switch implements Gate{
         
         DataObject dataObject;
         private String name = "Switch";
 	private OutputPin outputPin = null;
-        
 	public Switch(boolean d){
             this.dataObject = new DataObject(d);
             outputPin = new OutputPin();
@@ -31,7 +33,8 @@ public class Switch implements Gate{
         }
 
 	@Override
-	public boolean update() {
+	public boolean update(long deltaTime) {
+            
             if( outputPin != null ){
                 System.out.println("Switchouput: " + outputPin.getDataObject().getData() );
 		outputPin.setDataObject(dataObject);

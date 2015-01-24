@@ -29,7 +29,8 @@ public class GateObject {
     protected double initY;
     protected Point2D dragAnchor;
     
-    public void update(boolean clock){
+    public void update(long deltaTime){
+        if(gate != null) gate.update(deltaTime);
     }
     
     public void initGroup(final Line lineA, final Line lineB, final Line lineQ){
@@ -74,6 +75,7 @@ public class GateObject {
                     gate=null ;
                     //for (int i = 0; i < 3; i++) {
                         if(Globals.main.circleGroup.getChildren().contains(lineA)) {
+                           //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
                             Globals.main.circleGroup.getChildren().remove(lineA);
                             
                         }

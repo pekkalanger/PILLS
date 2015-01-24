@@ -2,7 +2,7 @@ package Logic;
 
 
 public interface Gate {
-	public boolean update();
+	public boolean update(long deltaTime);
 	//public void render();
         @Override
 	public String toString();

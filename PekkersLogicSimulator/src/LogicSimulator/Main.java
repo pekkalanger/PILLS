@@ -36,6 +36,9 @@ import javafx.util.Duration;
 
 public class Main extends Application {
     
+    
+    long previousTime = System.nanoTime();
+    
     LinkedList<Circle> circleList = null;
     int mainWidth = 1024;
     int mainHeight = 768;
@@ -185,17 +188,26 @@ public class Main extends Application {
             new EventHandler() {
                 @Override
                 public void handle(Event event) {
+                    Long delta = 0L;
+                    long currentTime = System.nanoTime();
+                    long elapsedNanos = currentTime - previousTime;
+                    double deltaTime = elapsedNanos / 1000000000.0; /* to seconds */
+                    System.out.println(deltaTime *1000 + " ms?");
+                    
                     for (Iterator<GateObject> iterator = gateObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         GateObject next = iterator.next();
-                        next.update(true);   
+                        next.update(delta);   
                     }
                     for (Iterator<LogicLine> iterator = logicLines.iterator(); iterator.hasNext(); /*nop*/ ) {
                         LogicLine next = iterator.next();
-                        next.update();   
+                        next.update(delta);   
                     }
                     //showOnConsole("kuket");
                     // update actors
                     //updateSprites();
+                    
+                    previousTime = currentTime;
+                    
                 }
         }); // oneFrame
 

@@ -26,7 +26,7 @@ public class Led implements Gate{
     }
     
     @Override
-    public boolean update() {
+    public boolean update(long deltaTime) {
         if( inputPins[0] != null ){
             dataObject = inputPins[0].getDataObject();
             System.out.print("Led status: ");

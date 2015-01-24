@@ -72,10 +72,10 @@ public class NotObject extends GateObject{
 
     
     @Override
-    public void update(boolean clock) {
+    public void update(long deltaTime) {
         //here will the andGate gate drawing of lines be updated 
         
-        gate.update();
+        if(gate != null) gate.update(deltaTime);
         //lines will get updated coordinates based upon gates coords, render
         
     }

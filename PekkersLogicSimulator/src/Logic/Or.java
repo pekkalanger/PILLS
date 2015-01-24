@@ -13,7 +13,7 @@ public class Or implements Gate {
 	}
         
 	@Override
-	public boolean update() {
+	public boolean update(long deltaTime) {
             
             if(inputPins[0] != null && inputPins[1] != null && outputPins[0] != null){
 		if(inputPins[0].getDataObject().getData() == true || inputPins[1].getDataObject().getData() == true) {

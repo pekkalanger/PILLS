@@ -100,7 +100,7 @@ public class LedObject extends GateObject{
                     
                     //last = true;
                     led.getDataObject().setData(!led.getDataObject().getData());
-                    update(true);
+                    //update(delt);
                     
                     //the event will be passed only to the circle which is on front
                     me.consume();
@@ -126,9 +126,9 @@ public class LedObject extends GateObject{
 
     
     @Override
-    public void update(boolean clock) {
+    public void update(long deltaTime) {
         //here we will take the data from line and render leds new status (via println())
-        led.update();
+        if(led != null)led.update(deltaTime);
         
         
         if(last != led.getDataObject().getData()){

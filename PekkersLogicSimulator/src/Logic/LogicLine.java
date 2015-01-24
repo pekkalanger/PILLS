@@ -32,7 +32,7 @@ public class LogicLine implements Gate{
     */
     
     @Override
-    public boolean update() {
+    public boolean update(long deltaTime) {
         if(pinA != null && pinB != null){
             if(pinA instanceof InputPin){
                 System.out.println(pinA.type + " kuk " + pinB.type); 

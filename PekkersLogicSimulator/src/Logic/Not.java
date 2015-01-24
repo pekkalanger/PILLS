@@ -12,7 +12,7 @@ public class Not implements Gate {
 	}
         
 	@Override
-	public boolean update() {
+	public boolean update(long deltaTime) {
             if(inputPins[0] != null && outputPins[0] != null){
                 outputPins[0].setDataObject(inputPins[0].getDataObject().notted()); // this is not tested fyi
 		return false;

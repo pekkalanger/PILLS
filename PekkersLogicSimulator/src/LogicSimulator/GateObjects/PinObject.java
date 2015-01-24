@@ -106,6 +106,7 @@ public class PinObject {
                         } else {
                             DragBoard.setOutputPin(outputPin);
                         }
+                        DragBoard.setLine(line);
                         DragBoard.setGroup(g);
                         DragBoard.setName(name);
                         DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
@@ -149,7 +150,7 @@ public class PinObject {
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, inputPin);
                         logicLine.setOutputPin(0, DragBoard.getOutputPin());
-
+                        DragBoard.setLine(line);  // lineobject
                         createLine(line, logicLine);
                         line.setStartX(DragBoard.getX() + width/2 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
                         line.setStartY(DragBoard.getY() + height/2 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
