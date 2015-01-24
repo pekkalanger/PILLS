@@ -3,29 +3,18 @@ package Logic;
 public class Not implements Gate {
 
 	String name = "Not";
-        InputPin a = new InputPin();
-        OutputPin q = new OutputPin();
+        InputPin[] inputPins = new InputPin[1];
+        OutputPin[] outputPins = new OutputPin[1];
 
 	public Not() {
+            inputPins[0] = new InputPin();
+            outputPins[0] = new OutputPin();
 	}
-        public void setPinA(InputPin p){
-            a = p;
-        }
-        public void setPinQ(OutputPin p){
-            q = p;
-        }
-        
-        public InputPin getPinA(){
-            return a;
-        }
-        public OutputPin getPinQ(){
-            return q;
-        }
         
 	@Override
 	public boolean update() {
-            if(a != null && q != null){
-                q.setDataObject(a.getDataObject().notted()); // this is not tested fyi
+            if(inputPins[0] != null && outputPins[0] != null){
+                outputPins[0].setDataObject(inputPins[0].getDataObject().notted()); // this is not tested fyi
 		return false;
             }
             return true;
@@ -38,22 +27,22 @@ public class Not implements Gate {
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         inputPins[pos] = ip;
     }
 
     @Override
     public InputPin getInputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return inputPins[pos];
     }
 
     @Override
     public void setOutputPin(int pos, OutputPin op) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        outputPins[pos] = op;
     }
 
     @Override
     public OutputPin getOutputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return outputPins[pos];
     }
     
 	

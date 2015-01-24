@@ -1,8 +1,11 @@
 package LogicSimulator;
 
 import Logic.LogicLine;
+import LogicSimulator.GateObjects.GateObject;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,6 +29,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -39,7 +43,9 @@ public class Main extends Application {
     int schematicHeigth = 500;
     int consoleWidth = 700;
     int consoleHeight = 200;
-
+    public List<GateObject> gateObjects;
+    public List<Line> lines;
+    public List<LogicLine> logicLines;
     
     //create a console for logging mouse events
     final ListView<String> console = new ListView<String>();
@@ -61,7 +67,6 @@ public class Main extends Application {
     public Point2D dragAnchor;
     public MenuBar menuBar;
     public Group schematicGroup;
-    public LinkedList<LogicLine> logicLines;
     public Group circleGroup;  // "the scetch"
     public VBox rootGroup;
     public VBox rootVBox;
@@ -72,6 +77,9 @@ public class Main extends Application {
     
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        
+        gateObjects = new ArrayList();
+        lines = new ArrayList();
         primaryStage.setTitle("Pekkers Boolean Logic Simulator 2015"); 
         primaryStage.setResizable(false); // this aint working so far
         
@@ -87,7 +95,7 @@ public class Main extends Application {
         
         circleList = new LinkedList<Circle>();
         logicLines = new LinkedList<LogicLine>();
-
+        lines = new LinkedList<Line>();
         
        // PinBuilder pinBuilder = new PinBuilder(this);
        // Text text0 = pinBuilder.createText(333, 111, "pwenusasd");
@@ -177,6 +185,10 @@ public class Main extends Application {
             new EventHandler() {
                 @Override
                 public void handle(Event event) {
+                    for (Iterator<GateObject> iterator = gateObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
+                        GateObject next = iterator.next();
+                        next.update(true);   
+                    }
                     for (Iterator<LogicLine> iterator = logicLines.iterator(); iterator.hasNext(); /*nop*/ ) {
                         LogicLine next = iterator.next();
                         next.update();   

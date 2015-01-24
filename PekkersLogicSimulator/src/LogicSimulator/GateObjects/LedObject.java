@@ -20,7 +20,7 @@ import javafx.scene.shape.Rectangle;
 
 public class LedObject extends GateObject{
     
-    boolean toggled = false;
+    boolean last = false;
     Led led;
     InputPinObject inputPinObject;
     
@@ -35,13 +35,13 @@ public class LedObject extends GateObject{
         
         final Line lineA = new Line();
         
-        // this should be added to a led list which will be updated all the fucknig time
+        // this should be added to InputPin led list which will be updated all the fucknig time
         // led also assigned the pins
 
         inputPinObject = new InputPinObject(lineA, group, 0, 12, led.getInputPin(0), name + " PinA");
         
         rectangle = new Rectangle(32, 32);
-        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate led boolean logic linked to pins)*/
+        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate led boolean logic linked to pins)*/
         rectangle.setTranslateX(8);
         rectangle.setTranslateY(0);
         
@@ -98,7 +98,7 @@ public class LedObject extends GateObject{
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     
-                    toggled = true;
+                    //last = true;
                     led.getDataObject().setData(!led.getDataObject().getData());
                     update(true);
                     
@@ -128,14 +128,19 @@ public class LedObject extends GateObject{
     @Override
     public void update(boolean clock) {
         //here we will take the data from line and render leds new status (via println())
-        if(toggled){
-            if(led.getDataObject().getData()){
-             rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate led boolean logic linked to pins)*/   
+        led.update();
+        
+        
+        if(last != led.getDataObject().getData()){
+            if(led.getDataObject().getData() == true){
+             rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate led boolean logic linked to pins)*/   
             } else {
                 rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
             }
-            toggled=false;
+            last=false;
         }
+        last = led.getDataObject().getData();
     }
+    
     
 }

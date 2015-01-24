@@ -2,11 +2,12 @@ package LogicSimulator;
 
 import LogicSimulator.GateObjects.AndObject;
 import LogicSimulator.GateObjects.LedObject;
+import LogicSimulator.GateObjects.NotObject;
+import LogicSimulator.GateObjects.OrObject;
 import LogicSimulator.GateObjects.SwitchObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -35,7 +36,7 @@ public class ClassySideBarBuilder {
         
         VBox sideBar = new VBox();
         sideBar.setSpacing(2f);
-        final GateBuilder gateBuilder = new GateBuilder();
+        //final GateBuilder gateBuilder = new GateBuilder();
         final Button butt1 = new Button("add and gayt");
         butt1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -51,6 +52,7 @@ public class ClassySideBarBuilder {
                 */
                 
                 AndObject andObject = new AndObject();
+                main.gateObjects.add(andObject);
                 
                 event.consume();
             }
@@ -61,9 +63,8 @@ public class ClassySideBarBuilder {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Or gate");
-                Group gg = gateBuilder.createOrGate();
-                main.circleGroup.getChildren().add(gg);
-        
+                OrObject orObject = new OrObject();
+                main.gateObjects.add(orObject);
                 event.consume();
             }
          });
@@ -73,8 +74,8 @@ public class ClassySideBarBuilder {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new not gate");
-                Group gg = gateBuilder.createNotGate();
-                main.circleGroup.getChildren().add(gg);
+                NotObject notObject = new NotObject();
+                main.gateObjects.add(notObject);
         
                 event.consume();
             }
@@ -135,6 +136,7 @@ public class ClassySideBarBuilder {
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Switch");
                 SwitchObject switchObject = new SwitchObject();
+                main.gateObjects.add(switchObject);
                 
                 event.consume();
             }
@@ -145,6 +147,7 @@ public class ClassySideBarBuilder {
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new LED");
                 LedObject ledObject = new LedObject();
+                main.gateObjects.add(ledObject);
                 
                 event.consume();
             }

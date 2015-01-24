@@ -2,26 +2,19 @@ package Logic;
 
 public class Led implements Gate{
     String name = "Led";
-    public InputPin inputPin = null;
+    public InputPin[] inputPins = new InputPin[1];
     DataObject dataObject;
     
     public Led(){
         dataObject = new DataObject(false);
-    }
-    
-    public Led(boolean data){
-        dataObject.setData(data);
-    }
-    
-    public Led(InputPin inputPin){
-        this.inputPin = inputPin;
+        inputPins[0] = new InputPin();
     }
 
     public void setLine(LogicLine l){
        // this.inputPin = l.getOutputPin();
     }
     public void removeLine(){
-        this.inputPin = null;
+        this.inputPins[0] = null;
     }
     
     public void setDataObject(DataObject dataObject) {
@@ -34,9 +27,10 @@ public class Led implements Gate{
     
     @Override
     public boolean update() {
-        if( inputPin != null ){
-            dataObject = inputPin.getDataObject();
-            System.out.println("Led status:" + dataObject.getData());
+        if( inputPins[0] != null ){
+            dataObject = inputPins[0].getDataObject();
+            System.out.print("Led status: ");
+            System.out.println(dataObject.getData());
             return false;
         } else return true;
     }
@@ -47,12 +41,12 @@ public class Led implements Gate{
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-        this.inputPin = inputPin;
+        this.inputPins[pos] = ip;
     }
 
     @Override
     public InputPin getInputPin(int pos) {
-        return inputPin;
+        return inputPins[pos];
     }
 
     @Override

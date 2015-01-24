@@ -3,51 +3,25 @@ package Logic;
 
 public class And implements Gate {
         String name = "And";
-        InputPin[] inputPins;
-        OutputPin[] outputPins;
-	//InputPin a = null, b = null;
-        //OutputPin q = null;  // a,b = IN && q = OUT
+        InputPin[] inputPins = new InputPin[2];
+        OutputPin[] outputPins = new OutputPin[1];
+	//InputPin InputPin = null, b = null;
+        //OutputPin q = null;  // InputPin,b = IN && q = OUT
 	//InputPin[] inputs;
         
 	public And() {
-            inputPins = new InputPin[2];
-            outputPins = new OutputPin[1];
+            inputPins[0] = new InputPin();
+            inputPins[1] = new InputPin();
+            outputPins[0] = new OutputPin();
 	}
-        
-        /**
-        * will set pinA = p. 
-        * The p argument must specify an absolute {@link InputPin}. 
-        * this will set a to p
-        */
-        /*
-        public void setPinA(InputPin p){
-            a = p;
-        }
-        public void setPinB(InputPin p){
-            b = p;
-        }
-        public void setPinQ(OutputPin p){
-            q = p;
-        }
-        
-        public InputPin getPinA(){
-            return a;
-        }
-        public InputPin getPinB(){
-            return b;
-        }
-        public OutputPin getPinQ(){
-            return q;
-        }
-        */
         
 	@Override
 	public boolean update() {
-        /*    if(a != null && b != null && q != null){
-                if(a.getDataObject().getData() == true && b.getDataObject().getData() == true) {
-                        q.getDataObject().setData(true);
+           if(inputPins[0] != null && inputPins[1] != null && outputPins[0] != null){
+                if(inputPins[0].getDataObject().getData() == true && inputPins[1].getDataObject().getData() == true) {
+                        outputPins[0].getDataObject().setData(true);
                 } else {
-                        q.getDataObject().setData(false);
+                        outputPins[0].getDataObject().setData(false);
                 }
                 return false;
             } else return true;
@@ -56,7 +30,6 @@ public class And implements Gate {
         @Override
 	public String toString(){
 		return name;
-                */ return false;
 	}
 
     @Override

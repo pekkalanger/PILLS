@@ -3,14 +3,15 @@ package Logic;
     draw line from PinA.pos to PinB.pos
 */
 public class LogicLine implements Gate{
-    private String name = "Line";
-    private Pin pinA ;
-    private Pin pinB ;
+    private final String name = "Line";
+    private InputPin pinA ;
+    private OutputPin pinB ;
     
     public LogicLine(){
-
+        pinA = new  InputPin();
+        pinB = new OutputPin();
     }
-    
+    /*
     public LogicLine(Pin pinA, Pin pinB){
         this.pinA = pinA;
         this.pinB = pinB;
@@ -28,43 +29,54 @@ public class LogicLine implements Gate{
     public Pin getPinB(){
         return pinB;
     }
+    */
     
     @Override
     public boolean update() {
-        if(pinA != null && pinB != null && pinA.getDataObject() != pinB.getDataObject()){
+        if(pinA != null && pinB != null){
             if(pinA instanceof InputPin){
-                pinB.setDataObject(pinA.getDataObject());
-            } else if(pinB instanceof InputPin){
+                System.out.println(pinA.type + " kuk " + pinB.type); 
                 pinA.setDataObject(pinB.getDataObject());
-            }
-            System.out.println("Line bit: " + pinA.getDataObject().getData());
+            }/* else if(pinB instanceof InputPin){
+                pinA.setDataObject(pinB.getDataObject());
+            }*/
+            System.out.println("Line data A: " + pinA.getDataObject().getData());
+            System.out.println("Line data B" + pinB.getDataObject().getData());
             return false;
-        } else return true;
+        } else {
+            
+            if(pinA != null)System.out.println("Line bit: A" );
+            if(pinB != null)System.out.println("Line bit: B" );
+            return true;
+        
+        }
         
     }
+    
 
+    @Override
     public String toString(){
-            return name;
+        return name;
     }
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         pinA = ip;
     }
 
     @Override
     public InputPin getInputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pinA;
     }
 
     @Override
     public void setOutputPin(int pos, OutputPin op) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        pinB = op;
     }
 
     @Override
     public OutputPin getOutputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return pinB;
     }
 
 }

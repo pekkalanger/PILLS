@@ -7,6 +7,8 @@ package LogicSimulator;
 
 import LogicSimulator.GateObjects.GateObject;
 import Logic.Gate;
+import Logic.InputPin;
+import Logic.OutputPin;
 import Logic.Pin;
 import javafx.scene.Group;
 
@@ -20,7 +22,8 @@ public class DragBoard {
     private static Object object;
     private static Group group;
     private static Gate gate;
-    private static Pin pin;
+    private static OutputPin outputPin;
+    private static InputPin inputPin;
     private static double x = -1;
     private static double y = -1;
 
@@ -46,11 +49,17 @@ public class DragBoard {
     public static void setName(String n){
         name = n;
     }
-    public static Pin getPin(){
-        return pin;
+    public static InputPin getInputPin(){
+        return inputPin;
     }
-    public static void setPin(Pin newPin){
-        pin = newPin;
+    public static void setPin(InputPin ip){
+        inputPin = ip;
+    }
+        public static OutputPin getOutputPin(){
+        return outputPin;
+    }
+    public static void setOutputPin(OutputPin op ){
+        outputPin = op;
     }
 
     public static double getX(){
@@ -72,7 +81,8 @@ public class DragBoard {
            System.out.println(object);
             System.out.println(group);
              System.out.println(gate);
-              System.out.println(pin);
+              System.out.println(inputPin);
+              System.out.println(outputPin);
                System.out.println(x);
                 System.out.println(y);
                 System.out.println("============End=================");
@@ -83,7 +93,8 @@ public class DragBoard {
         object = null;
         group = null;
         gate = null;
-        pin = null;
+        inputPin = null;
+        outputPin = null;
         x = -1;
         y = -1;
     }

@@ -8,6 +8,7 @@ public class Switch implements Gate{
         
 	public Switch(boolean d){
             this.dataObject = new DataObject(d);
+            outputPin = new OutputPin();
 	}
 	
 	public void setLine(LogicLine l){
@@ -32,9 +33,13 @@ public class Switch implements Gate{
 	@Override
 	public boolean update() {
             if( outputPin != null ){
+                System.out.println("Switchouput: " + outputPin.getDataObject().getData() );
 		outputPin.setDataObject(dataObject);
 		return false;
-            } else return true;
+            } else {
+                System.out.println("Switchouput: null");
+                return true;
+            }
 	}
 	
 	public String toString(){

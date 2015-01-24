@@ -96,7 +96,7 @@ public class SwitchObject extends GateObject{
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     toggled = true;
-                    switch0.getDataObject().setData(!switch0.getDataObject().getData());
+                    switch0.toggle();
                     update(true);
                     me.consume();
                 } else if (me.getButton() == MouseButton.MIDDLE) {
@@ -123,8 +123,11 @@ public class SwitchObject extends GateObject{
     @Override
     public void update(boolean clock) {
         //here we will take the data from line and render leds new status (via println())
+        switch0.update();
+        System.out.println(" switch state= " + switch0.getDataObject().getData());
         if(toggled){
             if(switch0.getDataObject().getData()){
+                
              rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate led boolean logic linked to pins)*/   
             } else {
                 rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));

@@ -14,8 +14,12 @@ package Logic;
 //}
 
 public abstract class Pin { 
-        private DataObject dataObject = null;
+        //public String type="undefined";
+        private DataObject dataObject;
 
+        public Pin(){
+        dataObject = new DataObject(false);
+        }
         public void setDataObject(DataObject dataObject){
             this.dataObject = dataObject;
         }
