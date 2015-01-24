@@ -19,6 +19,9 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class LedObject extends GateObject{
+    
+    boolean toggled = false;
+    Led led;
     InputPinObject inputPinObject;
     
      public LedObject() {
@@ -27,18 +30,18 @@ public class LedObject extends GateObject{
         group = new Group();
         name = "Led";
         
-        gate = new Led();
-        gate.setInputPin(0, new InputPin());
+        led = new Led();
+        led.setInputPin(0, new InputPin());
         
         final Line lineA = new Line();
         
-        // this should be added to a gate list which will be updated all the fucknig time
-        // gate also assigned the pins
+        // this should be added to a led list which will be updated all the fucknig time
+        // led also assigned the pins
 
-        inputPinObject = new InputPinObject(lineA, group, 0, 12, gate.getInputPin(0), name + " PinA");
+        inputPinObject = new InputPinObject(lineA, group, 0, 12, led.getInputPin(0), name + " PinA");
         
         rectangle = new Rectangle(32, 32);
-        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate gate boolean logic linked to pins)*/
+        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate led boolean logic linked to pins)*/
         rectangle.setTranslateX(8);
         rectangle.setTranslateY(0);
         
@@ -89,17 +92,21 @@ public class LedObject extends GateObject{
                 group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate gate boolean logic linked to pins)*/
+                    
                     //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate gate boolean logic linked to pins)*/
+                    
+                    toggled = true;
+                    led.getDataObject().setData(!led.getDataObject().getData());
+                    update(true);
+                    
                     //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.MIDDLE) {
                     Globals.main.showOnConsole("Removed specified orangeCircle");
-                    //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
+                    //Globals.main.circleList.remove(gg); // remove the led from the list led all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
                     
                     //for (int i = 0; i < 3; i++) {
@@ -121,8 +128,14 @@ public class LedObject extends GateObject{
     @Override
     public void update(boolean clock) {
         //here we will take the data from line and render leds new status (via println())
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(toggled){
+            if(led.getDataObject().getData()){
+             rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate led boolean logic linked to pins)*/   
+            } else {
+                rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
+            }
+            toggled=false;
+        }
     }
     
 }

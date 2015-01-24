@@ -41,9 +41,9 @@ public class AndObject extends GateObject{
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
         
-        final Line lineA = new Line();
-        final Line lineB = new Line();
-        final Line lineQ = new Line();
+        final Line lineA = new Line();  // should be replaced by ConnectionLineObject
+        final Line lineB = new Line();  // should be replaced by ConnectionLineObject
+        final Line lineQ = new Line();  // should be replaced by ConnectionLineObject
         
         // this should be added to a gate list which will be updated all the fucknig time
         // gate also assigned the pins
@@ -54,7 +54,7 @@ public class AndObject extends GateObject{
         
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(Textures.andGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate gate boolean logic linked to pins)*/
-        rectangle.setTranslateX(8);
+        rectangle.setTranslateX(8);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(0);
         
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {

@@ -23,7 +23,15 @@ public class Led implements Gate{
     public void removeLine(){
         this.inputPin = null;
     }
+    
+    public void setDataObject(DataObject dataObject) {
+        this.dataObject = dataObject;
+    }
 
+    public DataObject getDataObject() {
+        return dataObject;
+    }
+    
     @Override
     public boolean update() {
         if( inputPin != null ){
@@ -56,4 +64,5 @@ public class Led implements Gate{
     public OutputPin getOutputPin(int pos) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }

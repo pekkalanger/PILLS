@@ -20,6 +20,14 @@ public class Switch implements Gate{
 	public boolean toggle(){
             return dataObject.toggle();
 	}
+    
+        public void setDataObject(DataObject dataObject) {
+            this.dataObject = dataObject;
+        }
+
+        public DataObject getDataObject() {
+            return dataObject;
+        }
 
 	@Override
 	public boolean update() {

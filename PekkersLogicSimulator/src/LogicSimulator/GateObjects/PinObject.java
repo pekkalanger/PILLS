@@ -94,6 +94,7 @@ public class PinObject {
                         DragBoard.setPin(pin);
                         DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pin.setGroup.getTranslateX()
                         DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pin.setGroup.getTranslateY()
+                        DragBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
                     } else if(DragBoard.getPin() != null){
                         System.out.println("dragboardpin contains " + DragBoard.getPin().getClass());
@@ -116,23 +117,19 @@ public class PinObject {
                                     Globals.main.circleGroup.getChildren().add(line);
                                     System.out.println("line did not exist in schematic");
                                 }
-                                DragBoard.setGroup(null);
-                                DragBoard.setPin(null);
-                                DragBoard.setX(-1);    //Dragboard.pin = -1 
-                                DragBoard.setY(-1);
+                                DragBoard.clearDragBoard();
                                 
                         } else if(DragBoard.getPin() == pin) {
                             System.out.println("clicked on the same pin, dragboard cleared");
-                            DragBoard.setGroup(null);
-                                DragBoard.setPin(null);
-                                DragBoard.setX(-1);    //Dragboard.pin = -1 
-                                DragBoard.setY(-1);
+                            DragBoard.clearDragBoard();
+                            DragBoard.printDragBoard();
                         } else {
                             System.out.println("sorry bro, you cant link an" + DragBoard.getPin().getClass() + " to an " + pin.getClass());
                             DragBoard.setPin(pin);
                             DragBoard.setGroup(g);
                             DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pin.setGroup.getTranslateX()
                             DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pin.setGroup.getTranslateY()
+                            DragBoard.printDragBoard();
                         }                        
                         
                     }

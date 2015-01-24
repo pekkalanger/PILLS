@@ -52,6 +52,7 @@ public class DragBoard {
     public static void setPin(Pin newPin){
         pin = newPin;
     }
+
     public static double getX(){
         return x;
     }
@@ -64,15 +65,28 @@ public class DragBoard {
     public static void setY(double newY){
         y = newY;
     }
+    public static void printDragBoard(){
+        System.out.println("===========Start================");
+         System.out.println(gateObject);
+          System.out.println(name);
+           System.out.println(object);
+            System.out.println(group);
+             System.out.println(gate);
+              System.out.println(pin);
+               System.out.println(x);
+                System.out.println(y);
+                System.out.println("============End=================");
+    }
     public static void clearDragBoard(){
-    name = null;
-    object = null;
-    group = null;
-    gate = null;
-    pin = null;
-    x = -1;
-    y = -1;
-}
-    
+        gateObject = null;
+        name = null;
+        object = null;
+        group = null;
+        gate = null;
+        pin = null;
+        x = -1;
+        y = -1;
+    }
+
     
 }
