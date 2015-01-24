@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogicSimulator;
+package LogicSimulator.GateObjects;
 
 import Logic.InputPin;
 import Logic.LogicLine;
 import Logic.OutputPin;
 import Logic.Pin;
+import LogicSimulator.DragBoard;
+import LogicSimulator.Globals;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
@@ -32,58 +34,17 @@ public class PinObject {
     int y;
     int width = 8;
     int height = 8;
-    Rectangle rectangle;
-    /*
-      public PinObject(final Main main, final Line line, Group g, int x , int y, InputPin pin, String n) {
-        rectangle = new Rectangle(width, height);
-        this.x = x;
-        this.y = y;
-        rectangle.setTranslateX(x);
-        rectangle.setTranslateY(y);
-        name = n; 
-        rectangle.setFill(new ImagePattern(Textures.inputPin, 0, 0, 1, 1, true));
-        rectangle = createPinRectangle(main, line, g, rectangle, pin, name);
-    } 
-    public PinObject(final Main main, final Line line, Group g, int x , int y, OutputPin pin, String n) {
-        rectangle = new Rectangle(width, height);
-        this.x = x;
-        this.y = y;
-        rectangle.setTranslateX(x);
-        rectangle.setTranslateY(y);
-        name = n; 
-        rectangle.setFill(new ImagePattern(Textures.inputPin, 0, 0, 1, 1, true));
-        rectangle = createPinRectangle(main, line, g, rectangle, pin, name);
-        //g.getChildren().add(rectangle);
-       
+    protected Rectangle rectangle;
+
+    public void setRectangle(Rectangle r){
+        rectangle = r;
     }
-*/
     
-    public Rectangle createInputPin(final Main main, final Line line, Group g, int x , int y, InputPin inputPin, String n) {
-        rectangle = new Rectangle(width, height);
-        this.x = x;
-        this.y = y;
-        rectangle.setTranslateX(x);
-        rectangle.setTranslateY(y);
-        rectangle.setFill(new ImagePattern(Textures.inputPin, 0, 0, 1, 1, true));
-        final String name = "InputPin " + n; 
-        rectangle = createPinRectangle(main, line, g, rectangle, inputPin, name);
-       
+    public Rectangle getRectangle(){
         return rectangle;
     }
-        
-     public Rectangle createOutputPin(final Main main, final Line line, Group g, int x , int y, final OutputPin outputPin, String n) {
-        Rectangle rectangle = new Rectangle(width, height);
-        rectangle.setTranslateX(x);
-        rectangle.setTranslateY(y);
-        rectangle.setFill(new ImagePattern(Textures.outputPin, 0, 0, 1, 1, true));
-        final String name = "OutputPin " + n; 
-        rectangle = createPinRectangle(main, line, g, rectangle, outputPin, name);
-        
-        return rectangle;
-    }
-     
-     
-    public Line createLine(final Main main, final Line line, final LogicLine logicLine) {
+    
+    public Line createLine(final Line line, final LogicLine logicLine) {
         //create a circle with desired name,  color and radius
         Color color = Color.DODGERBLUE;
         final String name = "Blue circle"; 
@@ -98,10 +59,10 @@ public class PinObject {
         line.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.MIDDLE) {
-                    main.showOnConsole("Removed specified line");
+                    Globals.main.showOnConsole("Removed specified line");
                     //mouseEvents.circleList.remove(circle);
-                    main.circleGroup.getChildren().remove(line);
-                    main.logicLines.remove(logicLine);
+                    Globals.main.circleGroup.getChildren().remove(line);
+                    Globals.main.logicLines.remove(logicLine);
                     me.consume();
                 } 
                  
@@ -112,19 +73,19 @@ public class PinObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse entered " + name);
             }
         });
         line.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                main.showOnConsole("Mouse exited " + name);
+                Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
         return line;
     }
     
       
-    public Rectangle createPinRectangle(final Main main, final Line line, final Group g, final Rectangle rectangle, final Pin pin, final String name) {
+    public Rectangle createPinRectangle(final Line line, final Group g, final Rectangle rectangle, final Pin pin, final String name) {
         rectangle.setCursor(Cursor.HAND);
         //add a mouse listeners
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -144,7 +105,7 @@ public class PinObject {
                             System.out.println("pin contains " + pin.getClass());
                             System.out.println("connection made from " + DragBoard.getName() + " to " + name);
                                 LogicLine logicLine = new LogicLine(DragBoard.getPin(), pin);
-                                createLine(main, line, logicLine);
+                                createLine(line, logicLine);
                                 //g.getChildren().
                                 line.setStartX(DragBoard.getX() + width/2 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pin.setGroup.getTranslateX()
                                 line.setStartY(DragBoard.getY() + height/2 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pin.setGroup.getTranslateY()
@@ -154,8 +115,8 @@ public class PinObject {
                                 logicLine.setPinB(pin);
                                 //create new Graphic LogicLine with line functionality
                                 //add to lines array and schematic
-                                if(!main.circleGroup.getChildren().contains(line)){
-                                    main.circleGroup.getChildren().add(line);
+                                if(!Globals.main.circleGroup.getChildren().contains(line)){
+                                    Globals.main.circleGroup.getChildren().add(line);
                                     System.out.println("line did not exist in schematic");
                                 }
                                 DragBoard.setGroup(null);
@@ -179,12 +140,12 @@ public class PinObject {
                         
                     }
                     
-                    main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
+                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
                 } else if (me.getButton() == MouseButton.PRIMARY) {
                     //remove line from this to target
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    main.showOnConsole("Removed specified Rectangle");
+                    Globals.main.showOnConsole("Removed specified Rectangle");
                 }
                  me.consume(); 
             }
@@ -192,7 +153,7 @@ public class PinObject {
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.PRIMARY) {
-                main.showOnConsole("you are dragging a line from " + name);
+                Globals.main.showOnConsole("you are dragging a line from " + name);
                 me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                 }
@@ -203,13 +164,13 @@ public class PinObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
         });
         rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                main.showOnConsole("Mouse exited " + name);
+                Globals.main.showOnConsole("Mouse exited " + name);
                 me.consume();
             }
         });
@@ -217,16 +178,16 @@ public class PinObject {
             public void handle(MouseEvent me) {
                 rectangle.toFront();
                  //when mouse is pressed, store initial position
-                main.initX = rectangle.getTranslateX();
-                main.initY = rectangle.getTranslateY();
-                main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-                main.showOnConsole("Mouse pressed above " + name);
+                Globals.main.initX = rectangle.getTranslateX();
+                Globals.main.initY = rectangle.getTranslateY();
+                Globals.main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
+                Globals.main.showOnConsole("Mouse pressed above " + name);
                 me.consume();
             }
         });
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                //main.showOnConsole("Mouse released above " + name);
+                //Globals.main.showOnConsole("Mouse released above " + name);
                 /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
                     rectangle.setTranslateX(150);
                     rectangle.setTranslateY(150);

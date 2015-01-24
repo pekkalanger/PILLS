@@ -1,5 +1,7 @@
 package LogicSimulator;
 
+import LogicSimulator.GateObjects.OutputPinObject;
+import LogicSimulator.GateObjects.InputPinObject;
 import Logic.And;
 import Logic.InputPin;
 import Logic.Not;
@@ -7,7 +9,6 @@ import Logic.Or;
 import Logic.OutputPin;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -17,25 +18,24 @@ import javafx.scene.shape.Rectangle;
 
 public class GateBuilder {
         
-    final Main main;
-    
-    public GateBuilder (final Main main) {
-        this.main = main;
+    public GateBuilder () {
+        
     }
+    
     public double initX;
     public double initY;
     public Point2D dragAnchor;
 
+    @Deprecated
     public Group createAndGate() {
             /*      movable group   */
         final Group group = new Group();
-        PinBuilder pinBuilder = new PinBuilder(main);
         final String name = "And Gate";
         
         And and = new And();
-        and.setPinA(new InputPin());
-        and.setPinB(new InputPin());
-        and.setPinQ(new OutputPin());
+        and.setInputPin(0, new InputPin());
+        and.setInputPin(1, new InputPin());
+        and.setOutputPin(0, new OutputPin());
         
         final Line lineA = new Line();
         final Line lineB = new Line();
@@ -49,9 +49,9 @@ public class GateBuilder {
         //final Rectangle pinBRectangle = pinBuilder.createInputPin(lineB, group, 0, 22, and.getPinB(),  "B");
         //final Rectangle pinQRectangle = pinBuilder.createOutputPin(lineQ, group, 40, 12, and.getPinQ(), "Q");
         
-        InputPinObject inputPinObjectA = new InputPinObject(main, lineA, group, 0, 2, and.getPinA(), name + " PinA");
-        InputPinObject inputPinObjectB = new InputPinObject(main, lineB, group, 0, 22, and.getPinB(), name + " PinB");
-        OutputPinObject outputPinObjectQ = new OutputPinObject(main, lineQ, group, 40, 12, and.getPinQ(), name + " PinQ");
+        InputPinObject inputPinObjectA = new InputPinObject(lineA, group, 0, 2, and.getInputPin(0), name + " PinA");
+        InputPinObject inputPinObjectB = new InputPinObject(lineB, group, 0, 22, and.getInputPin(1), name + " PinB");
+        OutputPinObject outputPinObjectQ = new OutputPinObject(lineQ, group, 40, 12, and.getOutputPin(0), name + " PinQ");
         
         
         final Rectangle andGateRectangle = new Rectangle(32, 32);
@@ -63,20 +63,20 @@ public class GateBuilder {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
         });
         andGateRectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
-                main.showOnConsole("Mouse exited " + name);
+                Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
         
         
         
-        group.getChildren().addAll(inputPinObjectA.rectangle, inputPinObjectB.rectangle, outputPinObjectQ.rectangle, andGateRectangle);
+        group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), andGateRectangle);
         
 
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -107,32 +107,32 @@ public class GateBuilder {
             public void handle(MouseEvent me) {
                 group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
-                    main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
+                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
-                 /*   main.showOnConsole("Created new blueCircle");
+                 /*   Globals.main.showOnConsole("Created new blueCircle");
                     final Circle c = createBlueCircle(false);
                     c.setTranslateX(300);
                     c.setTranslateY(50);
                     c.toFront();
-                    main.circleGroup.getChildren().add(c);
-                    main.circleList.add(c);
+                    Globals.main.circleGroup.getChildren().add(c);
+                    Globals.main.circleList.add(c);
                     */
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    main.showOnConsole("Removed specified orangeCircle");
-                    //main.circleList.remove(gg); // remove the gate from the list and all the lines attached to it
-                    main.circleGroup.getChildren().remove(group);
+                    Globals.main.showOnConsole("Removed specified orangeCircle");
+                    //Globals.main.circleList.remove(gg); // remove the gate from the list and all the lines attached to it
+                    Globals.main.circleGroup.getChildren().remove(group);
                     
                     //for (int i = 0; i < 3; i++) {
-                        if(main.circleGroup.getChildren().contains(lineA)) {
-                            main.circleGroup.getChildren().remove(lineA);
+                        if(Globals.main.circleGroup.getChildren().contains(lineA)) {
+                            Globals.main.circleGroup.getChildren().remove(lineA);
                         }
-                        if(main.circleGroup.getChildren().contains(lineB)) {
-                            main.circleGroup.getChildren().remove(lineB);
+                        if(Globals.main.circleGroup.getChildren().contains(lineB)) {
+                            Globals.main.circleGroup.getChildren().remove(lineB);
                         }
-                        if(main.circleGroup.getChildren().contains(lineQ)) {
-                            main.circleGroup.getChildren().remove(lineQ);
+                        if(Globals.main.circleGroup.getChildren().contains(lineQ)) {
+                            Globals.main.circleGroup.getChildren().remove(lineQ);
                         }
                     //}
                     
@@ -150,7 +150,6 @@ public class GateBuilder {
     public Group createOrGate() {
             /*      movable group   */
         final Group group = new Group();
-        PinBuilder pinBuilder = new PinBuilder(main);
         //Image texture = new Image("file:res/orgate.png");
         final String name = "orgate";
         
@@ -164,9 +163,9 @@ public class GateBuilder {
         final Line lineQ = new Line();
         
         
-        InputPinObject inputPinObjectA = new InputPinObject(main, lineA, group, 0, 2, or.getPinA(), name + " PinA");
-        InputPinObject inputPinObjectB = new InputPinObject(main, lineB, group, 0, 22, or.getPinB(), name + " PinB");
-        OutputPinObject outputPinObjectQ = new OutputPinObject(main, lineQ, group, 40, 12, or.getPinQ(), name + " PinQ");
+        InputPinObject inputPinObjectA = new InputPinObject(lineA, group, 0, 2, or.getPinA(), name + " PinA");
+        InputPinObject inputPinObjectB = new InputPinObject(lineB, group, 0, 22, or.getPinB(), name + " PinB");
+        OutputPinObject outputPinObjectQ = new OutputPinObject(lineQ, group, 40, 12, or.getPinQ(), name + " PinQ");
         final Rectangle orGateRectangle = new Rectangle(32, 32);
         orGateRectangle.setFill(new ImagePattern(Textures.orGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
         orGateRectangle.setTranslateX(8);
@@ -177,20 +176,20 @@ public class GateBuilder {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
         });
         orGateRectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
-                main.showOnConsole("Mouse exited " + name);
+                Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
         
         
         
-        group.getChildren().addAll(inputPinObjectA.rectangle, inputPinObjectB.rectangle, outputPinObjectQ.rectangle, orGateRectangle);
+        group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), orGateRectangle);
         
 
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -221,31 +220,31 @@ public class GateBuilder {
             public void handle(MouseEvent me) {
                 group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
-                    main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
+                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
-                 /*   main.showOnConsole("Created new blueCircle");
+                 /*   Globals.main.showOnConsole("Created new blueCircle");
                     final Circle c = createBlueCircle(false);
                     c.setTranslateX(300);
                     c.setTranslateY(50);
                     c.toFront();
-                    main.circleGroup.getChildren().add(c);
-                    main.circleList.add(c);
+                    Globals.main.circleGroup.getChildren().add(c);
+                    Globals.main.circleList.add(c);
                     */
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    main.showOnConsole("Removed specified orangeCircle");
-                    //main.circleList.remove(gg);
-                    main.circleGroup.getChildren().remove(group);
+                    Globals.main.showOnConsole("Removed specified orangeCircle");
+                    //Globals.main.circleList.remove(gg);
+                    Globals.main.circleGroup.getChildren().remove(group);
                     //for (int i = 0; i < 3; i++) {
-                        if(main.circleGroup.getChildren().contains(lineA)) {
-                            main.circleGroup.getChildren().remove(lineA);
+                        if(Globals.main.circleGroup.getChildren().contains(lineA)) {
+                            Globals.main.circleGroup.getChildren().remove(lineA);
                         }
-                        if(main.circleGroup.getChildren().contains(lineB)) {
-                            main.circleGroup.getChildren().remove(lineB);
+                        if(Globals.main.circleGroup.getChildren().contains(lineB)) {
+                            Globals.main.circleGroup.getChildren().remove(lineB);
                         }
-                        if(main.circleGroup.getChildren().contains(lineQ)) {
-                            main.circleGroup.getChildren().remove(lineQ);
+                        if(Globals.main.circleGroup.getChildren().contains(lineQ)) {
+                            Globals.main.circleGroup.getChildren().remove(lineQ);
                         }
                     //}
                     me.consume();
@@ -261,7 +260,6 @@ public class GateBuilder {
     public Group createNotGate() {
             /*      movable group   */
         final Group group = new Group();
-        PinBuilder pinBuilder = new PinBuilder(main);
         //Image texture = new Image("file:res/notgate.png");
         final String name = "notgate";
         
@@ -271,8 +269,8 @@ public class GateBuilder {
         final Line lineA = new Line();
         final Line lineQ = new Line();
         
-        InputPinObject inputPinObjectA = new InputPinObject(main, lineA, group, 0, 12, not.getPinA(), name + " PinA");
-        OutputPinObject outputPinObjectQ = new OutputPinObject(main, lineQ, group, 40, 12, not.getPinQ(), name + " PinQ");
+        InputPinObject inputPinObjectA = new InputPinObject(lineA, group, 0, 12, not.getPinA(), name + " PinA");
+        OutputPinObject outputPinObjectQ = new OutputPinObject(lineQ, group, 40, 12, not.getPinQ(), name + " PinQ");
         
         final Rectangle notGateRectangle = new Rectangle(32, 32);
         notGateRectangle.setFill(new ImagePattern(Textures.notGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
@@ -286,23 +284,19 @@ public class GateBuilder {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
         });
         notGateRectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
-                main.showOnConsole("Mouse exited " + name);
+                Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
         
+        group.getChildren().addAll(inputPinObjectA.getRectangle(), outputPinObjectQ.getRectangle(), notGateRectangle);
         
-        
-        
-        group.getChildren().addAll(inputPinObjectA.rectangle, outputPinObjectQ.rectangle, notGateRectangle);
-        
-
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
@@ -331,29 +325,29 @@ public class GateBuilder {
             public void handle(MouseEvent me) {
                 group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
-                    main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
+                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
-                 /*   main.showOnConsole("Created new blueCircle");
+                 /*   Globals.main.showOnConsole("Created new blueCircle");
                     final Circle c = createBlueCircle(false);
                     c.setTranslateX(300);
                     c.setTranslateY(50);
                     c.toFront();
-                    main.circleGroup.getChildren().add(c);
-                    main.circleList.add(c);
+                    Globals.main.circleGroup.getChildren().add(c);
+                    Globals.main.circleList.add(c);
                     */
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    main.showOnConsole("Removed specified orangeCircle");
-                    //main.circleList.remove(gg);
-                    main.circleGroup.getChildren().remove(group);
+                    Globals.main.showOnConsole("Removed specified orangeCircle");
+                    //Globals.main.circleList.remove(gg);
+                    Globals.main.circleGroup.getChildren().remove(group);
                     
                     //for (int i = 0; i < 3; i++) {
-                        if(main.circleGroup.getChildren().contains(lineA)) {
-                            main.circleGroup.getChildren().remove(lineA);
+                        if(Globals.main.circleGroup.getChildren().contains(lineA)) {
+                            Globals.main.circleGroup.getChildren().remove(lineA);
                         }
-                        if(main.circleGroup.getChildren().contains(lineQ)) {
-                            main.circleGroup.getChildren().remove(lineQ);
+                        if(Globals.main.circleGroup.getChildren().contains(lineQ)) {
+                            Globals.main.circleGroup.getChildren().remove(lineQ);
                         }
                     //}
                         
@@ -365,94 +359,6 @@ public class GateBuilder {
         group.setOpacity(0.8f);
         return group;
     }
-    
-      public Group createAndGate345345435() {
-        //Image texture = new Image("file:res/andgate.png");
-        Group andGateGroup = new Group(); // will contain pins and the gate
-        
-        final Rectangle rectangle = new Rectangle(32, 32);
-        rectangle.setLayoutX(10);
-        rectangle.setLayoutY(10);
-        //rectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true));
-        
-        final String name = "a rectangul"; 
 
-        rectangle.setCursor(Cursor.HAND);
-        //add a mouse listeners
-        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                if (me.getButton() == MouseButton.PRIMARY) {
-                    main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    //the event will be passed only to the circle which is on front
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                    
-                } else if (me.getButton() == MouseButton.MIDDLE) {
-                    main.showOnConsole("Removed specified Gate");
-                    main.circleList.remove(rectangle);
-                    main.circleGroup.getChildren().remove(rectangle);
-                }
-                 me.consume(); 
-            }
-        });
-        rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                 if (me.getButton() == MouseButton.PRIMARY) {
-                    double dragX = me.getSceneX() - main.dragAnchor.getX();
-                    double dragY = me.getSceneY() - main.dragAnchor.getY();
-                    //calculate new position of the circle
-                    double newXPosition = main.initX + dragX;
-                    double newYPosition = main.initY + dragY;
-                    //if new position do not exceeds borders of the rectangle, translate to this position
-                    //if ((newXPosition>=circle.getRadius()) && (newXPosition<=main.schematicWidth-circle.getRadius())) {
-                        rectangle.setTranslateX(newXPosition);
-                    //}
-                    //if ((newYPosition>=circle.getRadius()) && (newYPosition<=main.schematicHeigth-circle.getRadius())){
-                        rectangle.setTranslateY(newYPosition);
-                    //}
-                    main.showOnConsole(name + " was dragged (x:" + dragX + ", y:" + dragY +")");
-                    
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                }
-            }
-        });
-        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                //change the z-coordinate of the circle
-                //circle.toFront();
-                main.showOnConsole("Mouse entered " + name);
-                me.consume();
-            }
-        });
-        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                main.showOnConsole("Mouse exited " + name);
-            }
-        });
-        rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                rectangle.toFront();
-                 //when mouse is pressed, store initial position
-                main.initX = rectangle.getTranslateX();
-                main.initY = rectangle.getTranslateY();
-                main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-                main.showOnConsole("Mouse pressed above " + name);
-            }
-        });
-        rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                main.showOnConsole("Mouse released above " + name);
-                /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
-                    rectangle.setTranslateX(150);
-                    rectangle.setTranslateY(150);
-                }
-                */
-            }
-        });
-        
-        //andGateGroup.getChildren().addAll(andGate, pinA, pinB, pinQ);
-        return andGateGroup;
-    }
 }
 

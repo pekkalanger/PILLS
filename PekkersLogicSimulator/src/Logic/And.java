@@ -3,12 +3,15 @@ package Logic;
 
 public class And implements Gate {
         String name = "And";
-	InputPin a = null, b = null;
-        OutputPin q = null;  // a,b = IN && q = OUT
+        InputPin[] inputPins;
+        OutputPin[] outputPins;
+	//InputPin a = null, b = null;
+        //OutputPin q = null;  // a,b = IN && q = OUT
 	//InputPin[] inputs;
         
 	public And() {
-            //inputs = new InputPin[2];
+            inputPins = new InputPin[2];
+            outputPins = new OutputPin[1];
 	}
         
         /**
@@ -16,7 +19,7 @@ public class And implements Gate {
         * The p argument must specify an absolute {@link InputPin}. 
         * this will set a to p
         */
-
+        /*
         public void setPinA(InputPin p){
             a = p;
         }
@@ -36,10 +39,11 @@ public class And implements Gate {
         public OutputPin getPinQ(){
             return q;
         }
+        */
         
 	@Override
 	public boolean update() {
-            if(a != null && b != null && q != null){
+        /*    if(a != null && b != null && q != null){
                 if(a.getDataObject().getData() == true && b.getDataObject().getData() == true) {
                         q.getDataObject().setData(true);
                 } else {
@@ -52,6 +56,27 @@ public class And implements Gate {
         @Override
 	public String toString(){
 		return name;
+                */ return false;
 	}
+
+    @Override
+    public void setInputPin(int pos, InputPin ip) {
+         inputPins[pos] = ip;
+    }
+
+    @Override
+    public InputPin getInputPin(int pos) {
+        return inputPins[pos];
+    }
+
+    @Override
+    public void setOutputPin(int pos, OutputPin op) {
+        outputPins[pos] = op;
+    }
+
+    @Override
+    public OutputPin getOutputPin(int pos) {
+        return outputPins[pos];
+    }
 	
 }

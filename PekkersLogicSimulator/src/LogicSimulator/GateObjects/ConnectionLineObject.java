@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LogicSimulator;
+package LogicSimulator.GateObjects;
 
 /**
  *
  * @author PEKKA
  */
-public interface GateObject {
+public class ConnectionLineObject {
     
-    public void create(String name); // instead of creating via constructor, yes?
-    public void update(boolean clock);
+    //  "line"
     
 }

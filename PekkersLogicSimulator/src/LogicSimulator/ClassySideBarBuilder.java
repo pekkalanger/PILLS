@@ -1,5 +1,6 @@
 package LogicSimulator;
 
+import LogicSimulator.GateObjects.AndObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -32,7 +33,7 @@ public class ClassySideBarBuilder {
         
         VBox sideBar = new VBox();
         sideBar.setSpacing(2f);
-        final GateBuilder gateBuilder = new GateBuilder(main);
+        final GateBuilder gateBuilder = new GateBuilder();
         final Button butt1 = new Button("add and gayt");
         butt1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -47,9 +48,8 @@ public class ClassySideBarBuilder {
                 main.circleGroup.getChildren().add(andGate);
                 */
                 
-                Group gg = gateBuilder.createAndGate();
-                main.circleGroup.getChildren().add(gg);
-        
+                AndObject andObject = new AndObject();
+                
                 event.consume();
             }
          });

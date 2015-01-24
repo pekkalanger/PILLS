@@ -9,8 +9,7 @@ package LogicSimulator;
  *
  * @author PEKKA
  */
-public class ConnectionLineObject {
-    
-    //  "line"
+public class Globals {
+    public static Main main;
     
 }
