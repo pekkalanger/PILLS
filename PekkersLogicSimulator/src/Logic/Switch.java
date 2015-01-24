@@ -10,7 +10,7 @@ public class Switch implements Gate{
             this.dataObject = new DataObject(d);
 	}
 	
-	public void setLine(Line l){
+	public void setLine(LogicLine l){
            // this.outputPin=l.getInputPin();
 	}
         public void removeLine(){

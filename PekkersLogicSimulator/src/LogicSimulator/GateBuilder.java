@@ -4,6 +4,7 @@ import Logic.And;
 import Logic.InputPin;
 import Logic.Not;
 import Logic.Or;
+import Logic.OutputPin;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
@@ -28,21 +29,23 @@ public class GateBuilder {
 
     public Group createAndGate() {
             /*      movable group   */
-        
+        final Group group = new Group();
         PinBuilder pinBuilder = new PinBuilder(main);
-        Image texture = new Image("file:res/andgate.png");
         final String name = "andgate";
         
         And and = new And();
+        and.setPinA(new InputPin());
+        and.setPinB(new InputPin());
+        and.setPinQ(new OutputPin());
         // this should be added to a and list which will be updated all the fucknig time
         // and also assigned the pins
         
-        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 2, and.getPinA(), "A");//new Rectangle(8, 8);
-        final Rectangle pinBRectangle = pinBuilder.createInputPin(0, 22, and.getPinB(),  "B");
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, and.getPinQ(), "Q");
+        final Rectangle pinARectangle = pinBuilder.createInputPin(group, 0, 2, and.getPinA(), "A");//new Rectangle(8, 8);
+        final Rectangle pinBRectangle = pinBuilder.createInputPin(group, 0, 22, and.getPinB(),  "B");
+        final Rectangle pinQRectangle = pinBuilder.createOutputPin(group, 40, 12, and.getPinQ(), "Q");
         
         final Rectangle andGateRectangle = new Rectangle(32, 32);
-        andGateRectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true)); /* should create a Gate (square with texture and boolean logic linked to pins)*/
+        andGateRectangle.setFill(new ImagePattern(Textures.andGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
         andGateRectangle.setTranslateX(8);
         andGateRectangle.setTranslateY(0);
         andGateRectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -62,21 +65,21 @@ public class GateBuilder {
         });
         
         
-        final Group gg = new Group();
-        gg.getChildren().addAll(pinARectangle, pinBRectangle, pinQRectangle, andGateRectangle);
+        
+        group.getChildren().addAll(pinARectangle, pinBRectangle, pinQRectangle, andGateRectangle);
         
 
-        gg.setOnMousePressed(new EventHandler<MouseEvent>() {
+        group.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
                  //when mouse is pressed, store initial position
-                initX = gg.getTranslateX();
-                initY = gg.getTranslateY();
+                initX = group.getTranslateX();
+                initY = group.getTranslateY();
                 dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
                 //showOnConsole("Mouse pressed above " + name);
             }
         });
-        gg.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        group.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
                  if (me.getButton() == MouseButton.PRIMARY) {
@@ -84,15 +87,15 @@ public class GateBuilder {
                     double dragY = me.getSceneY() - dragAnchor.getY();
                     double newXPosition = initX + dragX;
                     double newYPosition = initY + dragY;
-                    gg.setTranslateX(newXPosition);
-                    gg.setTranslateY(newYPosition);
+                    group.setTranslateX(newXPosition);
+                    group.setTranslateY(newYPosition);
                     me.consume();
                 }
             }
         });
-        gg.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        group.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                gg.toFront();
+                group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
                     main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
@@ -109,32 +112,35 @@ public class GateBuilder {
                 } else if (me.getButton() == MouseButton.MIDDLE) {
                     main.showOnConsole("Removed specified orangeCircle");
                     //main.circleList.remove(gg); // remove the gate from the list and all the lines attached to it
-                    main.circleGroup.getChildren().remove(gg);
+                    main.circleGroup.getChildren().remove(group);
                     me.consume();
                 }
                   
             }
         });
         
-        return gg;
+        group.setOpacity(0.8f);
+        return group;
     }
     
     
     public Group createOrGate() {
             /*      movable group   */
-        
+        final Group group = new Group();
         PinBuilder pinBuilder = new PinBuilder(main);
-        Image texture = new Image("file:res/orgate.png");
+        //Image texture = new Image("file:res/orgate.png");
         final String name = "orgate";
         
         Or or = new Or();
-        
-        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 2, or.getPinA(), "A");//new Rectangle(8, 8);
-        final Rectangle pinBRectangle = pinBuilder.createInputPin(0, 22, or.getPinB(), "B");
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, or.getPinQ(), "Q");
+        or.setPinA(new InputPin());
+        or.setPinB(new InputPin());
+        or.setPinQ(new OutputPin());
+        final Rectangle pinARectangle = pinBuilder.createInputPin(group ,0, 2, or.getPinA(), "A");//new Rectangle(8, 8);
+        final Rectangle pinBRectangle = pinBuilder.createInputPin(group, 0, 22, or.getPinB(), "B");
+        final Rectangle pinQRectangle = pinBuilder.createOutputPin(group, 40, 12, or.getPinQ(), "Q");
         
         final Rectangle orGateRectangle = new Rectangle(32, 32);
-        orGateRectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true)); /* should create a Gate (square with texture and boolean logic linked to pins)*/
+        orGateRectangle.setFill(new ImagePattern(Textures.orGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
         orGateRectangle.setTranslateX(8);
         orGateRectangle.setTranslateY(0);
         
@@ -155,21 +161,21 @@ public class GateBuilder {
         });
         
         
-        final Group gg = new Group();
-        gg.getChildren().addAll(pinARectangle, pinBRectangle, pinQRectangle, orGateRectangle);
+        
+        group.getChildren().addAll(pinARectangle, pinBRectangle, pinQRectangle, orGateRectangle);
         
 
-        gg.setOnMousePressed(new EventHandler<MouseEvent>() {
+        group.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
                  //when mouse is pressed, store initial position
-                initX = gg.getTranslateX();
-                initY = gg.getTranslateY();
+                initX = group.getTranslateX();
+                initY = group.getTranslateY();
                 dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
                 //showOnConsole("Mouse pressed above " + name);
             }
         });
-        gg.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        group.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
                  if (me.getButton() == MouseButton.PRIMARY) {
@@ -177,15 +183,15 @@ public class GateBuilder {
                     double dragY = me.getSceneY() - dragAnchor.getY();
                     double newXPosition = initX + dragX;
                     double newYPosition = initY + dragY;
-                    gg.setTranslateX(newXPosition);
-                    gg.setTranslateY(newYPosition);
+                    group.setTranslateX(newXPosition);
+                    group.setTranslateY(newYPosition);
                     me.consume();
                 }
             }
         });
-        gg.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        group.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                gg.toFront();
+                group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
                     main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
@@ -202,33 +208,38 @@ public class GateBuilder {
                 } else if (me.getButton() == MouseButton.MIDDLE) {
                     main.showOnConsole("Removed specified orangeCircle");
                     //main.circleList.remove(gg);
-                    main.circleGroup.getChildren().remove(gg);
+                    main.circleGroup.getChildren().remove(group);
                     me.consume();
                 }
                   
             }
         });
         
-        
-        return gg;
+        group.setOpacity(0.8f);
+        return group;
     }
 
     public Group createNotGate() {
             /*      movable group   */
-        
+        final Group group = new Group();
         PinBuilder pinBuilder = new PinBuilder(main);
-        Image texture = new Image("file:res/notgate.png");
+        //Image texture = new Image("file:res/notgate.png");
         final String name = "notgate";
         
         Not not = new Not();
+        not.setPinA(new InputPin());
+        not.setPinQ(new OutputPin());
         
-        final Rectangle pinARectangle = pinBuilder.createInputPin(0, 12, not.getPinA(), "A");//new Rectangle(8, 8);
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(40, 12, not.getPinQ(), "Q");
+        final Rectangle pinARectangle = pinBuilder.createInputPin(group, 0, 12, not.getPinA(), "A");//new Rectangle(8, 8);
+        final Rectangle pinQRectangle = pinBuilder.createOutputPin(group, 40, 12, not.getPinQ(), "Q");
         
         final Rectangle notGateRectangle = new Rectangle(32, 32);
-        notGateRectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true)); /* should create a Gate (square with texture and boolean logic linked to pins)*/
+        notGateRectangle.setFill(new ImagePattern(Textures.notGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
         notGateRectangle.setTranslateX(8);
         notGateRectangle.setTranslateY(0);
+        
+        //notGateRectangle.setOpacity(0.5f);
+        
         notGateRectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
@@ -246,21 +257,22 @@ public class GateBuilder {
         });
         
         
-        final Group gg = new Group();
-        gg.getChildren().addAll(pinARectangle, pinQRectangle, notGateRectangle);
+        
+        
+        group.getChildren().addAll(pinARectangle, pinQRectangle, notGateRectangle);
         
 
-        gg.setOnMousePressed(new EventHandler<MouseEvent>() {
+        group.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
                  //when mouse is pressed, store initial position
-                initX = gg.getTranslateX();
-                initY = gg.getTranslateY();
+                initX = group.getTranslateX();
+                initY = group.getTranslateY();
                 dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
                 //showOnConsole("Mouse pressed above " + name);
             }
         });
-        gg.setOnMouseDragged(new EventHandler<MouseEvent>() {
+        group.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
                  if (me.getButton() == MouseButton.PRIMARY) {
@@ -268,15 +280,15 @@ public class GateBuilder {
                     double dragY = me.getSceneY() - dragAnchor.getY();
                     double newXPosition = initX + dragX;
                     double newYPosition = initY + dragY;
-                    gg.setTranslateX(newXPosition);
-                    gg.setTranslateY(newYPosition);
+                    group.setTranslateX(newXPosition);
+                    group.setTranslateY(newYPosition);
                     me.consume();
                 }
             }
         });
-        gg.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        group.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                gg.toFront();
+                group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
                     main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
@@ -293,24 +305,24 @@ public class GateBuilder {
                 } else if (me.getButton() == MouseButton.MIDDLE) {
                     main.showOnConsole("Removed specified orangeCircle");
                     //main.circleList.remove(gg);
-                    main.circleGroup.getChildren().remove(gg);
+                    main.circleGroup.getChildren().remove(group);
                     me.consume();
                 }
                   
             }
         });
-        
-        return gg;
+        group.setOpacity(0.8f);
+        return group;
     }
     
       public Group createAndGate345345435() {
-        Image texture = new Image("file:res/andgate.png");
+        //Image texture = new Image("file:res/andgate.png");
         Group andGateGroup = new Group(); // will contain pins and the gate
         
         final Rectangle rectangle = new Rectangle(32, 32);
         rectangle.setLayoutX(10);
         rectangle.setLayoutY(10);
-        rectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true));
+        //rectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true));
         
         final String name = "a rectangul"; 
 

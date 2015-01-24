@@ -2,13 +2,18 @@ package Logic;
  /*
     draw line from PinA.pos to PinB.pos
 */
-public class Line implements Gate{
+public class LogicLine implements Gate{
     private String name = "Line";
     private Pin pinA ;
     private Pin pinB ;
     
-    public Line(){
+    public LogicLine(){
 
+    }
+    
+    public LogicLine(Pin pinA, Pin pinB){
+        this.pinA = pinA;
+        this.pinB = pinB;
     }
 
     public void setPinA(Pin p){

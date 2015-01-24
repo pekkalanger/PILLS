@@ -17,7 +17,7 @@ public class Led implements Gate{
         this.inputPin = inputPin;
     }
 
-    public void setLine(Line l){
+    public void setLine(LogicLine l){
        // this.inputPin = l.getOutputPin();
     }
     public void removeLine(){

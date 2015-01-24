@@ -137,7 +137,7 @@ public class ClassyMenuBarBuilder {
                 event.consume();
             }
         });
-        fileExit.setGraphic(new ImageView(new Image("file:res/exiticon.png", true)));
+        fileExit.setGraphic(new ImageView(Textures.exitIcon));
         
         fileMenu.getItems().addAll(fileNew, fileOpen, fileSave, fileSaveAs, new SeparatorMenuItem(), fileExit);
 

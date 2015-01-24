@@ -33,7 +33,7 @@ public class SexyCircleBuilder {
         int radius = 10;
         final String name = "Blue circle"; 
         final Circle circle = new Circle(radius, new RadialGradient(0, 0, 0.2, 0.3, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-            new Stop(0, Color.rgb(250,250,255)),
+            new Stop(0, Color.rgb(250,250,255,0.5f)),
             new Stop(1, color)
         }));
         //add a shadow effect

@@ -1,5 +1,7 @@
 package LogicSimulator;
 
+import Logic.LogicLine;
+import java.util.Iterator;
 import java.util.LinkedList;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -25,6 +27,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -59,6 +62,7 @@ public class Main extends Application {
     public Point2D dragAnchor;
     public MenuBar menuBar;
     public Group schematicGroup;
+    public LinkedList<LogicLine> logicLines;
     public Group circleGroup;  // "the scetch"
     public VBox rootGroup;
     public VBox rootVBox;
@@ -83,7 +87,15 @@ public class Main extends Application {
         circleGroup = new Group();      // gateGroup (atm circleGroup)
         
         circleList = new LinkedList<Circle>();
+        logicLines = new LinkedList<LogicLine>();
 
+        
+       // PinBuilder pinBuilder = new PinBuilder(this);
+       // Text text0 = pinBuilder.createText(333, 111, "pwenusasd");
+        //circleGroup.getChildren().add(text0);
+       // Text text1 = pinBuilder.createText(133, 111, "pwenusasd");
+        //circleGroup.getChildren().add(text1);
+        
         
         ClassyMenuBarBuilder classyMenuBar = new ClassyMenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
@@ -166,6 +178,10 @@ public class Main extends Application {
             new EventHandler() {
                 @Override
                 public void handle(Event event) {
+                    for (Iterator<LogicLine> iterator = logicLines.iterator(); iterator.hasNext(); /*nop*/ ) {
+                        LogicLine next = iterator.next();
+                        next.update();   
+                    }
                     //showOnConsole("kuket");
                     // update actors
                     //updateSprites();

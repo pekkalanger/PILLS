@@ -6,15 +6,18 @@
 package LogicSimulator;
 
 import Logic.InputPin;
-import Logic.Line;
+import Logic.LogicLine;
 import Logic.OutputPin;
+import Logic.Pin;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
-import javafx.scene.image.Image;
+import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 /**
@@ -29,95 +32,123 @@ public class PinBuilder {
         this.main = main;
     }
     
-    public Rectangle createInputPin(int x , int y, InputPin inputPin, String n) {
-        Image texture = new Image("file:res/inputpin.png");          // hardcoded inputpin texture
-        final Rectangle rectangle = new Rectangle(8, 8);
+    public Rectangle createInputPin(Group g, int x , int y, InputPin inputPin, String n) {
+        Rectangle rectangle = new Rectangle(8, 8);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
-        rectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true));
-        
-        //Line line = new Line();
+        rectangle.setFill(new ImagePattern(Textures.inputPin, 0, 0, 1, 1, true));
         final String name = "InputPin " + n; 
+        rectangle = createPinRectangle(g, rectangle, inputPin, name);
+       
+        return rectangle;
+    }
+        
+     public Rectangle createOutputPin(Group g, int x , int y, final OutputPin outputPin, String n) {
+        Rectangle rectangle = new Rectangle(8, 8);
+        rectangle.setTranslateX(x);
+        rectangle.setTranslateY(y);
+        rectangle.setFill(new ImagePattern(Textures.outputPin, 0, 0, 1, 1, true));
+        final String name = "OutputPin " + n; 
+        rectangle = createPinRectangle(g, rectangle, outputPin, name);
+        
+        return rectangle;
+    }
+     
+     
+    public Line createLine(final LogicLine logicLine) {
+        //create a circle with desired name,  color and radius
+        Color color = Color.DODGERBLUE;
+        final String name = "Blue circle"; 
 
-        rectangle.setCursor(Cursor.HAND);
+        final Line line = new Line();
+        
+        line.setStroke(Color.RED);
+        line.setStrokeWidth(2);
+        //add a shadow effect
+        line.setCursor(Cursor.HAND);
         //add a mouse listeners
-        rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        line.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                if (me.getButton() == MouseButton.PRIMARY) {
-                    main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    //the event will be passed only to the circle which is on front
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                } else if (me.getButton() == MouseButton.MIDDLE) {
-                    main.showOnConsole("Removed specified Rectangle");
-                }
-                 me.consume(); 
+                if (me.getButton() == MouseButton.MIDDLE) {
+                    main.showOnConsole("Removed specified line");
+                    //mouseEvents.circleList.remove(circle);
+                    main.circleGroup.getChildren().remove(line);
+                    main.logicLines.remove(logicLine);
+                    me.consume();
+                } 
+                 
             }
         });
-        rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                if (me.getButton() == MouseButton.PRIMARY) {
-                main.showOnConsole("you are dragging a line from " + name);
-                me.consume();
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                }
-                
-            }
-        });
-        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+        
+        line.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
                 main.showOnConsole("Mouse entered " + name);
-                me.consume();
             }
         });
-        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
+        line.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 main.showOnConsole("Mouse exited " + name);
-                me.consume();
             }
         });
-        rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                rectangle.toFront();
-                 //when mouse is pressed, store initial position
-                main.initX = rectangle.getTranslateX();
-                main.initY = rectangle.getTranslateY();
-                main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-                main.showOnConsole("Mouse pressed above " + name);
-                me.consume();
-            }
-        });
-        rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                //main.showOnConsole("Mouse released above " + name);
-                /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
-                    rectangle.setTranslateX(150);
-                    rectangle.setTranslateY(150);
-                }
-                */
-            }
-        });
-        return rectangle;
+        return line;
     }
     
-     public Rectangle createOutputPin(int x , int y, OutputPin outputPin, String n) {
-        Image texture = new Image("file:res/outputpin.png");          // hardcoded outputpin texture
-        final Rectangle rectangle = new Rectangle(8, 8);
-        rectangle.setTranslateX(x);
-        rectangle.setTranslateY(y);
-        rectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true));
-        
-        final String name = "OutputPin " + n; 
-
+      
+    public Rectangle createPinRectangle(final Group g, final Rectangle rectangle, final Pin pin, final String name) {
         rectangle.setCursor(Cursor.HAND);
         //add a mouse listeners
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                if (me.getButton() == MouseButton.PRIMARY) {
+                if (me.getButton() == MouseButton.SECONDARY) {
+                    if(DragBoard.getPin() == null){
+                        DragBoard.setGroup(g);
+                        DragBoard.setPin(pin);
+                         DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pin.setGroup.getTranslateX()
+                         DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pin.setGroup.getTranslateY()
+                        System.out.println("copied pin to dragboard");
+                    } else if(DragBoard.getPin() != null){
+                        System.out.println("dragboardpin contains " + DragBoard.getPin().getClass());
+                        
+                        if(DragBoard.getPin().getClass() != pin.getClass()) { // make sure theyt arent of the same type
+                            System.out.println("pin contains " + pin.getClass());
+                            System.out.println("connection made from " + name + " to ???");
+                                LogicLine logicLine = new LogicLine(DragBoard.getPin(), pin);
+                                Line line = createLine(logicLine);
+                                line.setStartX(DragBoard.getX() + 4 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pin.setGroup.getTranslateX()
+                                line.setStartY(DragBoard.getY() + 4 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pin.setGroup.getTranslateY()
+                                line.setEndX(rectangle.getTranslateX() + 4 + g.getTranslateX());    // + pin.setGroup.getTranslateX()
+                                line.setEndY(rectangle.getTranslateY() + 4 + g.getTranslateY());  // + pin.setGroup.getTranslateY()
+                                logicLine.setPinA((Pin)DragBoard.getPin());
+                                logicLine.setPinB(pin);
+                                //create new Graphic LogicLine with line functionality
+                                //add to lines array and schematic
+                                main.circleGroup.getChildren().add(line);
+                                DragBoard.setGroup(null);
+                                DragBoard.setPin(null);
+                                DragBoard.setX(-1);    //Dragboard.pin = -1 
+                                DragBoard.setY(-1);
+                                
+                        } else if(DragBoard.getPin() == pin) {
+                            System.out.println("clicked on the same pin, dragboard cleared");
+                            DragBoard.setGroup(null);
+                                DragBoard.setPin(null);
+                                DragBoard.setX(-1);    //Dragboard.pin = -1 
+                                DragBoard.setY(-1);
+                        } else {
+                            System.out.println("sorry bro, you cant link an" + DragBoard.getPin().getClass() + " to an " + pin.getClass());
+                            DragBoard.setPin(pin);
+                            DragBoard.setGroup(g);
+                            DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pin.setGroup.getTranslateX()
+                            DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pin.setGroup.getTranslateY()
+                        }                        
+                        
+                    }
+                    
                     main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
-                } else if (me.getButton() == MouseButton.SECONDARY) {
+                } else if (me.getButton() == MouseButton.PRIMARY) {
                     //remove line from this to target
                 } else if (me.getButton() == MouseButton.MIDDLE) {
                     main.showOnConsole("Removed specified Rectangle");
@@ -172,4 +203,5 @@ public class PinBuilder {
         });
         return rectangle;
     }
+    
 }
