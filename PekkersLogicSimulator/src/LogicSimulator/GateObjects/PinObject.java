@@ -97,8 +97,8 @@ public class PinObject {
                         DragBoard.setGroup(g);
                         DragBoard.setName(name);
                         DragBoard.setPin(pin);
-                        DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pin.setGroup.getTranslateX()
-                        DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pin.setGroup.getTranslateY()
+                        DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
+                        DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                         DragBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
                     } else if(DragBoard.getPin() != null){
@@ -110,10 +110,10 @@ public class PinObject {
                                 LogicLine logicLine = new LogicLine(DragBoard.getPin(), pin);
                                 createLine(line, logicLine);
                                 //g.getChildren().
-                                line.setStartX(DragBoard.getX() + width/2 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pin.setGroup.getTranslateX()
-                                line.setStartY(DragBoard.getY() + height/2 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pin.setGroup.getTranslateY()
-                                line.setEndX(rectangle.getTranslateX() + width/2 + g.getTranslateX());    // + pin.setGroup.getTranslateX()
-                                line.setEndY(rectangle.getTranslateY() + height/2 + g.getTranslateY());  // + pin.setGroup.getTranslateY()
+                                line.setStartX(DragBoard.getX() + width/2 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
+                                line.setStartY(DragBoard.getY() + height/2 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
+                                line.setEndX(rectangle.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
+                                line.setEndY(rectangle.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
                                 logicLine.setPinA((Pin)DragBoard.getPin());
                                 logicLine.setPinB(pin);
                                 //create new Graphic LogicLine with line functionality
@@ -132,8 +132,8 @@ public class PinObject {
                             System.out.println("sorry bro, you cant link an" + DragBoard.getPin().getClass() + " to an " + pin.getClass());
                             DragBoard.setPin(pin);
                             DragBoard.setGroup(g);
-                            DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pin.setGroup.getTranslateX()
-                            DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pin.setGroup.getTranslateY()
+                            DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
+                            DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                             DragBoard.printDragBoard();
                         }                        
                         
@@ -163,7 +163,7 @@ public class PinObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                rectangle.setFill(new ImagePattern(Textures.pin, 0, 0, 1, 1, true));
+                rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
                 Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
@@ -189,7 +189,7 @@ public class PinObject {
         });
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                 rectangle.setFill(new ImagePattern(Textures.pin, 0, 0, 1, 1, true));
+                 rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
                 //Globals.main.showOnConsole("Mouse released above " + name);
                 /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
                     rectangle.setTranslateX(150);
