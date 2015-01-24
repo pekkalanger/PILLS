@@ -7,7 +7,6 @@ package LogicSimulator.GateObjects;
 
 import Logic.InputPin;
 import Logic.LogicLine;
-import Logic.OutputPin;
 import Logic.Pin;
 import LogicSimulator.DragBoard;
 import LogicSimulator.Globals;
@@ -18,7 +17,6 @@ import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -29,7 +27,6 @@ import javafx.scene.shape.Rectangle;
 public class PinObject {
     
     String name;
-    InputPin inputPin;
     int x; // rectangle translate
     int y;
     int width = 8;

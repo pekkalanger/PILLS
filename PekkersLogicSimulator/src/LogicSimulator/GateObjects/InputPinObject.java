@@ -6,7 +6,6 @@
 package LogicSimulator.GateObjects;
 
 import Logic.InputPin;
-import Logic.Pin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 import javafx.scene.paint.ImagePattern;

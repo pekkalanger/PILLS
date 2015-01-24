@@ -5,7 +5,6 @@
  */
 package LogicSimulator.GateObjects;
 
-import Logic.And;
 import Logic.Gate;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;

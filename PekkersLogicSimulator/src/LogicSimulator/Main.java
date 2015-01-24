@@ -1,6 +1,5 @@
 package LogicSimulator;
 
-import Logic.And;
 import Logic.LogicLine;
 import java.util.Iterator;
 import java.util.LinkedList;
