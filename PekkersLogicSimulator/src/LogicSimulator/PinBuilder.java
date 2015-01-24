@@ -24,46 +24,48 @@ import javafx.scene.shape.Rectangle;
  *
  * @author PEKKA
  */
+@Deprecated
 public class PinBuilder {
         
     final Main main;
     
+    @Deprecated
     public PinBuilder (final Main main) {
         this.main = main;
     }
-    
-    public Rectangle createInputPin(Group g, int x , int y, InputPin inputPin, String n) {
+    @Deprecated
+    public Rectangle createInputPin(final Line line, Group g, int x , int y, InputPin inputPin, String n) {
         Rectangle rectangle = new Rectangle(8, 8);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
         rectangle.setFill(new ImagePattern(Textures.inputPin, 0, 0, 1, 1, true));
         final String name = "InputPin " + n; 
-        rectangle = createPinRectangle(g, rectangle, inputPin, name);
+        rectangle = createPinRectangle(line, g, rectangle, inputPin, name);
        
         return rectangle;
     }
         
-     public Rectangle createOutputPin(Group g, int x , int y, final OutputPin outputPin, String n) {
+     public Rectangle createOutputPin(final Line line, Group g, int x , int y, final OutputPin outputPin, String n) {
         Rectangle rectangle = new Rectangle(8, 8);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
         rectangle.setFill(new ImagePattern(Textures.outputPin, 0, 0, 1, 1, true));
         final String name = "OutputPin " + n; 
-        rectangle = createPinRectangle(g, rectangle, outputPin, name);
+        rectangle = createPinRectangle(line, g, rectangle, outputPin, name);
         
         return rectangle;
     }
      
      
-    public Line createLine(final LogicLine logicLine) {
+    public Line createLine(final Line line, final LogicLine logicLine) {
         //create a circle with desired name,  color and radius
         Color color = Color.DODGERBLUE;
         final String name = "Blue circle"; 
 
-        final Line line = new Line();
+        //final Line line = new Line();
         
         line.setStroke(Color.RED);
-        line.setStrokeWidth(2);
+        line.setStrokeWidth(1);
         //add a shadow effect
         line.setCursor(Cursor.HAND);
         //add a mouse listeners
@@ -96,7 +98,7 @@ public class PinBuilder {
     }
     
       
-    public Rectangle createPinRectangle(final Group g, final Rectangle rectangle, final Pin pin, final String name) {
+    public Rectangle createPinRectangle(final Line line, final Group g, final Rectangle rectangle, final Pin pin, final String name) {
         rectangle.setCursor(Cursor.HAND);
         //add a mouse listeners
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -104,6 +106,7 @@ public class PinBuilder {
                 if (me.getButton() == MouseButton.SECONDARY) {
                     if(DragBoard.getPin() == null){
                         DragBoard.setGroup(g);
+                        DragBoard.setName(name);
                         DragBoard.setPin(pin);
                          DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pin.setGroup.getTranslateX()
                          DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pin.setGroup.getTranslateY()
@@ -113,9 +116,10 @@ public class PinBuilder {
                         
                         if(DragBoard.getPin().getClass() != pin.getClass()) { // make sure theyt arent of the same type
                             System.out.println("pin contains " + pin.getClass());
-                            System.out.println("connection made from " + name + " to ???");
+                            System.out.println("connection made from " + DragBoard.getName() + " to " + name);
                                 LogicLine logicLine = new LogicLine(DragBoard.getPin(), pin);
-                                Line line = createLine(logicLine);
+                                createLine(line, logicLine);
+                                //g.getChildren().
                                 line.setStartX(DragBoard.getX() + 4 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pin.setGroup.getTranslateX()
                                 line.setStartY(DragBoard.getY() + 4 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pin.setGroup.getTranslateY()
                                 line.setEndX(rectangle.getTranslateX() + 4 + g.getTranslateX());    // + pin.setGroup.getTranslateX()
@@ -124,7 +128,10 @@ public class PinBuilder {
                                 logicLine.setPinB(pin);
                                 //create new Graphic LogicLine with line functionality
                                 //add to lines array and schematic
-                                main.circleGroup.getChildren().add(line);
+                                if(!main.circleGroup.getChildren().contains(line)){
+                                    main.circleGroup.getChildren().add(line);
+                                    System.out.println("line did not exist in schematic");
+                                }
                                 DragBoard.setGroup(null);
                                 DragBoard.setPin(null);
                                 DragBoard.setX(-1);    //Dragboard.pin = -1 

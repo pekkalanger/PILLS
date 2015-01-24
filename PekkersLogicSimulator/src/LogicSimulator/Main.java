@@ -1,5 +1,6 @@
 package LogicSimulator;
 
+import Logic.And;
 import Logic.LogicLine;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -27,7 +28,6 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 

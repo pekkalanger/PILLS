@@ -1,6 +1,6 @@
 package Logic;
 
-//public class And extends Gate {
+
 public class And implements Gate {
         String name = "And";
 	InputPin a = null, b = null;
@@ -11,7 +11,12 @@ public class And implements Gate {
             //inputs = new InputPin[2];
 	}
         
-        
+        /**
+        * will set pinA = p. 
+        * The p argument must specify an absolute {@link InputPin}. 
+        * this will set a to p
+        */
+
         public void setPinA(InputPin p){
             a = p;
         }

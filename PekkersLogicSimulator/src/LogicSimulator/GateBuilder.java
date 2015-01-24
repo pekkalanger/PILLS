@@ -9,11 +9,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class GateBuilder {
@@ -31,18 +30,29 @@ public class GateBuilder {
             /*      movable group   */
         final Group group = new Group();
         PinBuilder pinBuilder = new PinBuilder(main);
-        final String name = "andgate";
+        final String name = "And Gate";
         
         And and = new And();
         and.setPinA(new InputPin());
         and.setPinB(new InputPin());
         and.setPinQ(new OutputPin());
+        
+        final Line lineA = new Line();
+        final Line lineB = new Line();
+        final Line lineQ = new Line();
+        
         // this should be added to a and list which will be updated all the fucknig time
         // and also assigned the pins
         
-        final Rectangle pinARectangle = pinBuilder.createInputPin(group, 0, 2, and.getPinA(), "A");//new Rectangle(8, 8);
-        final Rectangle pinBRectangle = pinBuilder.createInputPin(group, 0, 22, and.getPinB(),  "B");
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(group, 40, 12, and.getPinQ(), "Q");
+        
+        //final Rectangle pinARectangle = pinBuilder.createInputPin(lineA, group, 0, 2, and.getPinA(), "A");//new Rectangle(8, 8);
+        //final Rectangle pinBRectangle = pinBuilder.createInputPin(lineB, group, 0, 22, and.getPinB(),  "B");
+        //final Rectangle pinQRectangle = pinBuilder.createOutputPin(lineQ, group, 40, 12, and.getPinQ(), "Q");
+        
+        InputPinObject inputPinObjectA = new InputPinObject(main, lineA, group, 0, 2, and.getPinA(), name + " PinA");
+        InputPinObject inputPinObjectB = new InputPinObject(main, lineB, group, 0, 22, and.getPinB(), name + " PinB");
+        OutputPinObject outputPinObjectQ = new OutputPinObject(main, lineQ, group, 40, 12, and.getPinQ(), name + " PinQ");
+        
         
         final Rectangle andGateRectangle = new Rectangle(32, 32);
         andGateRectangle.setFill(new ImagePattern(Textures.andGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
@@ -66,7 +76,7 @@ public class GateBuilder {
         
         
         
-        group.getChildren().addAll(pinARectangle, pinBRectangle, pinQRectangle, andGateRectangle);
+        group.getChildren().addAll(inputPinObjectA.rectangle, inputPinObjectB.rectangle, outputPinObjectQ.rectangle, andGateRectangle);
         
 
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -113,6 +123,19 @@ public class GateBuilder {
                     main.showOnConsole("Removed specified orangeCircle");
                     //main.circleList.remove(gg); // remove the gate from the list and all the lines attached to it
                     main.circleGroup.getChildren().remove(group);
+                    
+                    //for (int i = 0; i < 3; i++) {
+                        if(main.circleGroup.getChildren().contains(lineA)) {
+                            main.circleGroup.getChildren().remove(lineA);
+                        }
+                        if(main.circleGroup.getChildren().contains(lineB)) {
+                            main.circleGroup.getChildren().remove(lineB);
+                        }
+                        if(main.circleGroup.getChildren().contains(lineQ)) {
+                            main.circleGroup.getChildren().remove(lineQ);
+                        }
+                    //}
+                    
                     me.consume();
                 }
                   
@@ -135,10 +158,15 @@ public class GateBuilder {
         or.setPinA(new InputPin());
         or.setPinB(new InputPin());
         or.setPinQ(new OutputPin());
-        final Rectangle pinARectangle = pinBuilder.createInputPin(group ,0, 2, or.getPinA(), "A");//new Rectangle(8, 8);
-        final Rectangle pinBRectangle = pinBuilder.createInputPin(group, 0, 22, or.getPinB(), "B");
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(group, 40, 12, or.getPinQ(), "Q");
         
+        final Line lineA = new Line();
+        final Line lineB = new Line();
+        final Line lineQ = new Line();
+        
+        
+        InputPinObject inputPinObjectA = new InputPinObject(main, lineA, group, 0, 2, or.getPinA(), name + " PinA");
+        InputPinObject inputPinObjectB = new InputPinObject(main, lineB, group, 0, 22, or.getPinB(), name + " PinB");
+        OutputPinObject outputPinObjectQ = new OutputPinObject(main, lineQ, group, 40, 12, or.getPinQ(), name + " PinQ");
         final Rectangle orGateRectangle = new Rectangle(32, 32);
         orGateRectangle.setFill(new ImagePattern(Textures.orGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
         orGateRectangle.setTranslateX(8);
@@ -162,7 +190,7 @@ public class GateBuilder {
         
         
         
-        group.getChildren().addAll(pinARectangle, pinBRectangle, pinQRectangle, orGateRectangle);
+        group.getChildren().addAll(inputPinObjectA.rectangle, inputPinObjectB.rectangle, outputPinObjectQ.rectangle, orGateRectangle);
         
 
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -209,6 +237,17 @@ public class GateBuilder {
                     main.showOnConsole("Removed specified orangeCircle");
                     //main.circleList.remove(gg);
                     main.circleGroup.getChildren().remove(group);
+                    //for (int i = 0; i < 3; i++) {
+                        if(main.circleGroup.getChildren().contains(lineA)) {
+                            main.circleGroup.getChildren().remove(lineA);
+                        }
+                        if(main.circleGroup.getChildren().contains(lineB)) {
+                            main.circleGroup.getChildren().remove(lineB);
+                        }
+                        if(main.circleGroup.getChildren().contains(lineQ)) {
+                            main.circleGroup.getChildren().remove(lineQ);
+                        }
+                    //}
                     me.consume();
                 }
                   
@@ -229,9 +268,11 @@ public class GateBuilder {
         Not not = new Not();
         not.setPinA(new InputPin());
         not.setPinQ(new OutputPin());
+        final Line lineA = new Line();
+        final Line lineQ = new Line();
         
-        final Rectangle pinARectangle = pinBuilder.createInputPin(group, 0, 12, not.getPinA(), "A");//new Rectangle(8, 8);
-        final Rectangle pinQRectangle = pinBuilder.createOutputPin(group, 40, 12, not.getPinQ(), "Q");
+        InputPinObject inputPinObjectA = new InputPinObject(main, lineA, group, 0, 12, not.getPinA(), name + " PinA");
+        OutputPinObject outputPinObjectQ = new OutputPinObject(main, lineQ, group, 40, 12, not.getPinQ(), name + " PinQ");
         
         final Rectangle notGateRectangle = new Rectangle(32, 32);
         notGateRectangle.setFill(new ImagePattern(Textures.notGate, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate and boolean logic linked to pins)*/
@@ -259,7 +300,7 @@ public class GateBuilder {
         
         
         
-        group.getChildren().addAll(pinARectangle, pinQRectangle, notGateRectangle);
+        group.getChildren().addAll(inputPinObjectA.rectangle, outputPinObjectQ.rectangle, notGateRectangle);
         
 
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
@@ -306,6 +347,16 @@ public class GateBuilder {
                     main.showOnConsole("Removed specified orangeCircle");
                     //main.circleList.remove(gg);
                     main.circleGroup.getChildren().remove(group);
+                    
+                    //for (int i = 0; i < 3; i++) {
+                        if(main.circleGroup.getChildren().contains(lineA)) {
+                            main.circleGroup.getChildren().remove(lineA);
+                        }
+                        if(main.circleGroup.getChildren().contains(lineQ)) {
+                            main.circleGroup.getChildren().remove(lineQ);
+                        }
+                    //}
+                        
                     me.consume();
                 }
                   
