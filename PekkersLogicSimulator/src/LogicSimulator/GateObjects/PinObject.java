@@ -163,7 +163,7 @@ public class PinObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                 rectangle.setFill(new ImagePattern(Textures.pin, 0, 0, 1, 1, true));
+                rectangle.setFill(new ImagePattern(Textures.pin, 0, 0, 1, 1, true));
                 Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
@@ -177,6 +177,7 @@ public class PinObject {
         });
         rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
+                rectangle.setFill(new ImagePattern(Textures.pinPressed, 0, 0, 1, 1, true));
                 rectangle.toFront();
                  //when mouse is pressed, store initial position
                 Globals.main.initX = rectangle.getTranslateX();
@@ -188,6 +189,7 @@ public class PinObject {
         });
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
+                 rectangle.setFill(new ImagePattern(Textures.pin, 0, 0, 1, 1, true));
                 //Globals.main.showOnConsole("Mouse released above " + name);
                 /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
                     rectangle.setTranslateX(150);
