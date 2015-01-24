@@ -71,10 +71,11 @@ public class GateObject {
                     Globals.main.showOnConsole("Removed specified orangeCircle");
                     //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
-                    
+                    gate=null ;
                     //for (int i = 0; i < 3; i++) {
                         if(Globals.main.circleGroup.getChildren().contains(lineA)) {
                             Globals.main.circleGroup.getChildren().remove(lineA);
+                            
                         }
                         if(Globals.main.circleGroup.getChildren().contains(lineB)) {
                             Globals.main.circleGroup.getChildren().remove(lineB);

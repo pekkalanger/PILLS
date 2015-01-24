@@ -63,7 +63,11 @@ public class PinObject {
                     Globals.main.showOnConsole("Removed specified line");
                     //mouseEvents.circleList.remove(circle);
                     Globals.main.circleGroup.getChildren().remove(line);
+                    
+                    logicLine.setInputPin(0, null);
+                    logicLine.setOutputPin(0, null);
                     Globals.main.logicLines.remove(logicLine);
+                    //Globals.main.logicLines.remove(logicLine);
                     me.consume();
                 } 
                  

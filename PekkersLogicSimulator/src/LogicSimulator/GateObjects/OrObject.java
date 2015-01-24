@@ -78,7 +78,7 @@ public class OrObject extends GateObject{
     public void update(boolean clock) {
         //here will the andGate gate drawing of lines be updated 
         
-        gate.update();
+        if (gate != null )gate.update();
         //lines will get updated coordinates based upon gates coords, render
         
     }
