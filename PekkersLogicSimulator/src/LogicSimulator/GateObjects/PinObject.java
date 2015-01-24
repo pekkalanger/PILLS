@@ -10,13 +10,16 @@ import Logic.LogicLine;
 import Logic.Pin;
 import LogicSimulator.DragBoard;
 import LogicSimulator.Globals;
+import LogicSimulator.Textures;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -82,7 +85,9 @@ public class PinObject {
     }
     
       
-    public Rectangle createPinRectangle(final Line line, final Group g, final Rectangle rectangle, final Pin pin, final String name) {
+    public Rectangle createPinRectangle(final Image i, final Line line, final Group g, final Rectangle rectangle, final Pin pin, final String name) {
+        
+    rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
         rectangle.setCursor(Cursor.HAND);
         //add a mouse listeners
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -158,12 +163,14 @@ public class PinObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
+                 rectangle.setFill(new ImagePattern(Textures.pin, 0, 0, 1, 1, true));
                 Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
         });
         rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
+                rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
                 Globals.main.showOnConsole("Mouse exited " + name);
                 me.consume();
             }

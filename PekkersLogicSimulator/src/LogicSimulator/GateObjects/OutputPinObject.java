@@ -27,8 +27,7 @@ public class OutputPinObject extends PinObject{
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
-        rectangle.setFill(new ImagePattern(Textures.outputPin, 0, 0, 1, 1, true));
-        rectangle = createPinRectangle(line, g, rectangle, outputPin, name);
+        rectangle = createPinRectangle(Textures.outputPin, line, g, rectangle, outputPin, name);
 
     }
     

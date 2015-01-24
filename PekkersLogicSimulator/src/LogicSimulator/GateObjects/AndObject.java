@@ -10,9 +10,7 @@ import Logic.OutputPin;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
@@ -30,12 +28,8 @@ public class AndObject extends GateObject{
     OutputPinObject outputPinObjectQ;
     
     public AndObject() {
-                
-        
-            /*      movable group   */
         group = new Group();
         name = "And Gate";
-        
         gate = new And();
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
@@ -73,64 +67,9 @@ public class AndObject extends GateObject{
             }
         });
         
-        group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
-        
-        group.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                 //when mouse is pressed, store initial position
-                initX = group.getTranslateX();
-                initY = group.getTranslateY();
-                dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-                //showOnConsole("Mouse pressed above " + name);
-            }
-        });
-        group.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                 if (me.getButton() == MouseButton.PRIMARY) {
-                    double dragX = me.getSceneX() - dragAnchor.getX();
-                    double dragY = me.getSceneY() - dragAnchor.getY();
-                    double newXPosition = initX + dragX;
-                    double newYPosition = initY + dragY;
-                    group.setTranslateX(newXPosition);
-                    group.setTranslateY(newYPosition);
-                    me.consume();
-                }
-            }
-        });
-        group.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                group.toFront();
-                if (me.getButton() == MouseButton.PRIMARY) {
-                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    //the event will be passed only to the circle which is on front
-                    me.consume();
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                } else if (me.getButton() == MouseButton.MIDDLE) {
-                    Globals.main.showOnConsole("Removed specified orangeCircle");
-                    //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
-                    Globals.main.circleGroup.getChildren().remove(group);
-                    
-                    //for (int i = 0; i < 3; i++) {
-                        if(Globals.main.circleGroup.getChildren().contains(lineA)) {
-                            Globals.main.circleGroup.getChildren().remove(lineA);
-                        }
-                        if(Globals.main.circleGroup.getChildren().contains(lineB)) {
-                            Globals.main.circleGroup.getChildren().remove(lineB);
-                        }
-                        if(Globals.main.circleGroup.getChildren().contains(lineQ)) {
-                            Globals.main.circleGroup.getChildren().remove(lineQ);
-                        }
-                    //}
-                    
-                    me.consume();
-                }
-                  
-            }
-        });
-        group.setOpacity(0.8f);
-        Globals.main.circleGroup.getChildren().add(group);
+       group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+       
+       initGroup(lineA, lineB, lineQ);
     }
 
     
