@@ -39,12 +39,12 @@ public class Led implements Gate{
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.inputPin = inputPin;
     }
 
     @Override
     public InputPin getInputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return inputPin;
     }
 
     @Override

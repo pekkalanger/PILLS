@@ -88,6 +88,7 @@ public class ClassyRectangleBuilder {
             }
         });
         rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
             public void handle(MouseEvent me) {
                 rectangle.toFront();
                  //when mouse is pressed, store initial position

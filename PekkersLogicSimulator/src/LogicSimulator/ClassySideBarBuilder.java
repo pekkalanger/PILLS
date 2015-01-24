@@ -1,6 +1,8 @@
 package LogicSimulator;
 
 import LogicSimulator.GateObjects.AndObject;
+import LogicSimulator.GateObjects.LedObject;
+import LogicSimulator.GateObjects.SwitchObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -127,8 +129,29 @@ public class ClassySideBarBuilder {
             }
          });
         
-        final Button butt7 = new Button("add Label");
+        final Button butt7 = new Button("add Switch");
         butt7.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                main.showOnConsole("Created new Switch");
+                SwitchObject switchObject = new SwitchObject();
+                
+                event.consume();
+            }
+         });
+        final Button butt8 = new Button("add LED");
+        butt8.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                main.showOnConsole("Created new LED");
+                LedObject ledObject = new LedObject();
+                
+                event.consume();
+            }
+         });
+        
+        final Button butt99 = new Button("add Label");
+        butt99.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Label");
@@ -242,7 +265,7 @@ public class ClassySideBarBuilder {
         
         
         
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt99);
         
         return sideBar;
     }

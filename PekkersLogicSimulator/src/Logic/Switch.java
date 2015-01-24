@@ -45,11 +45,11 @@ public class Switch implements Gate{
 
     @Override
     public void setOutputPin(int pos, OutputPin op) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       outputPin = op;
     }
 
     @Override
     public OutputPin getOutputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return outputPin;
     }
 }
