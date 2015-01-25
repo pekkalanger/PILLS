@@ -5,12 +5,14 @@
  */
 package LogicSimulator;
 
+import LogicSimulator.GateObjects.ConnectionLineObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -54,9 +56,16 @@ public class ClassyMenuBarBuilder {
         fileNew.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                
+            /*       null all the lists!!!       */
             main.schematicGroup.getChildren().remove(main.circleGroup);
             main.circleGroup = new Group();
             main.schematicGroup.getChildren().add(main.circleGroup);
+          
+            main.gateObjects = new ArrayList();
+            main.lines = new ArrayList();
+            main.connectionLineObjects = new ArrayList<ConnectionLineObject>();
+        
             event.consume();
             }
         });
@@ -166,7 +175,7 @@ public class ClassyMenuBarBuilder {
                 dialogStage.initStyle(StageStyle.UTILITY);//UNDECORATED);//
                 dialogStage.setResizable(false);
                 dialogStage.setTitle("About");
-                Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo ");
+                Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo \nleft for move and add lines\nmiddle for removal\nright for toggling switches");
                 aboutLabel.setAlignment(Pos.BASELINE_CENTER);
                 Button okButt = new Button("Ok");
                 okButt.setCancelButton(true);
