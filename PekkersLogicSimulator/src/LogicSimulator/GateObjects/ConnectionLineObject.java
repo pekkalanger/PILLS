@@ -79,12 +79,6 @@ public class ConnectionLineObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 line.toFront();
-                if(logicLine.getOutputPin(0).getDataObject().getData() == true){
-                    line.setStroke(Color.GREEN);
-                }
-                if(logicLine.getOutputPin(0).getDataObject().getData() == false){
-                    line.setStroke(Color.RED);
-                }
                 //Globals.main.showOnConsole("Mouse over " + name);
             }
         });
