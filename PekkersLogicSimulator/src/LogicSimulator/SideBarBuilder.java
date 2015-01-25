@@ -24,7 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
-public class ClassySideBarBuilder {
+public class SideBarBuilder {
     
     final Main main;
     
@@ -32,7 +32,7 @@ public class ClassySideBarBuilder {
     public double initY;
     public Point2D dragAnchor;
     
-    public ClassySideBarBuilder (final Main main) {
+    public SideBarBuilder (final Main main) {
         this.main = main;
     }
     

@@ -107,11 +107,11 @@ public class Main extends Application {
         lines = new LinkedList<Line>();
 
         
-        ClassyMenuBarBuilder classyMenuBar = new ClassyMenuBarBuilder(this);
+        MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
         rootGroup.getChildren().add(menuBar);
         
-        ClassySideBarBuilder classySideBarBuilder = new ClassySideBarBuilder(this);
+        SideBarBuilder classySideBarBuilder = new SideBarBuilder(this);
         sideBar = classySideBarBuilder.buildSideBarWithButtons();
         rootHBox.getChildren().add(sideBar);
         

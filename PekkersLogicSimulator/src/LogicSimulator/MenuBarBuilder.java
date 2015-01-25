@@ -41,9 +41,9 @@ import javafx.stage.StageStyle;
  *
  * @author PEKKA
  */
-public class ClassyMenuBarBuilder {
+public class MenuBarBuilder {
     final Main main;
-    public ClassyMenuBarBuilder(final Main main) {
+    public MenuBarBuilder(final Main main) {
         this.main = main;
     }
             
