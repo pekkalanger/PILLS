@@ -9,7 +9,6 @@ import LogicSimulator.GateObjects.GateObject;
 import Logic.Gate;
 import Logic.InputPin;
 import Logic.OutputPin;
-import Logic.Pin;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
 

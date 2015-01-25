@@ -7,7 +7,6 @@ package LogicSimulator.GateObjects;
 import Logic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 

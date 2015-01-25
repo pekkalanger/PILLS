@@ -7,10 +7,10 @@ public class Textures {
     static public Image defaultCursorImage;
     static public Image lineCursor;
     static public Image buttonCursor;
-   // static public Image buttonCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
-    static public  Image andGate;
+    // static public Image buttonCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
+    static public Image andGate;
     static public Image orGate;
-    static public  Image notGate;
+    static public Image notGate;
     static public Image ledOff;
     static public Image ledOn;
     static public Image switchOff;

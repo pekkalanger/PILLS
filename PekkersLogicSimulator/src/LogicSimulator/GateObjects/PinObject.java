@@ -8,7 +8,6 @@ package LogicSimulator.GateObjects;
 import Logic.InputPin;
 import Logic.LogicLine;
 import Logic.OutputPin;
-import Logic.Pin;
 import LogicSimulator.DragBoard;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
