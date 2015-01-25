@@ -21,6 +21,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class GateObject {
         
+    double x;
+    double y;
     String name;
     Group group;
     Gate gate;

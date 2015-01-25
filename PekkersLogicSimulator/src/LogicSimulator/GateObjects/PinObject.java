@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -53,9 +54,12 @@ public class PinObject {
         //final Line line = new Line();
         
         line.setStroke(Color.RED);
-        line.setStrokeWidth(1);
+        line.setStrokeWidth(2);
         //add InputPin shadow effect
-        line.setCursor(Cursor.HAND);
+        Image exitIcon = Textures.pinPressed;
+        ImageCursor imageCursor = new ImageCursor(exitIcon, -exitIcon.getWidth(), -exitIcon.getHeight());
+         line.setCursor(imageCursor);
+        
         //add InputPin mouse listeners
         line.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -64,10 +68,11 @@ public class PinObject {
                     //mouseEvents.circleList.remove(circle);
                     Globals.main.circleGroup.getChildren().remove(line);
                     
-                    logicLine.setInputPin(0, null);
-                    logicLine.setOutputPin(0, null);
-                    Globals.main.logicLines.remove(logicLine);
-                    //Globals.main.logicLines.remove(logicLine);
+                    if(Globals.main.logicLines.contains(logicLine)){
+                        logicLine.setInputPin(0, null);
+                        logicLine.setOutputPin(0, null);
+                        Globals.main.logicLines.remove(logicLine);
+                    }
                     me.consume();
                 } 
                  
@@ -77,7 +82,13 @@ public class PinObject {
         line.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
-                //circle.toFront();
+                line.toFront();
+                if(logicLine.getOutputPin(0).getDataObject().getData() == true){
+                    line.setStroke(Color.GREEN);
+                }
+                if(logicLine.getOutputPin(0).getDataObject().getData() == false){
+                    line.setStroke(Color.RED);
+                }
                 Globals.main.showOnConsole("Mouse entered " + name);
             }
         });
@@ -128,6 +139,13 @@ public class PinObject {
                         line.setEndX(rectangle.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
                         line.setEndY(rectangle.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
                         
+                        if(Globals.main.circleGroup.getChildren().contains(DragBoard.getLine())){
+                            Globals.main.circleGroup.getChildren().remove(DragBoard.getLine());
+                            
+                            //Globals.main.logicLines.add(logicLine);
+                           
+                            System.out.println("line did exist in schematic");
+                        }
                         if(!Globals.main.circleGroup.getChildren().contains(line)){
                             Globals.main.circleGroup.getChildren().add(line);
                             Globals.main.logicLines.add(logicLine);

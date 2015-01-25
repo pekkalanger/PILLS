@@ -68,7 +68,8 @@ public class AndObject extends GateObject{
         });
         
        group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
-       
+       x = group.getTranslateX();
+       y = group.getTranslateY();
        initGroup(lineA, lineB, lineQ);
     }
 
@@ -76,7 +77,9 @@ public class AndObject extends GateObject{
     @Override
     public void update(long deltaTime) {
         //here will the andGate gate drawing of lines be updated 
-        
+        x = group.getTranslateX();
+        y = group.getTranslateY();
+        System.out.println(x + " " +y);
         if(gate != null) gate.update(deltaTime);
         //lines will get updated coordinates based upon gates coords, render
         
