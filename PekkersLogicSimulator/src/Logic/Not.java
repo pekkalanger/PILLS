@@ -18,11 +18,12 @@ public class Not implements Gate {
        if(inputPins[0] != null && outputPins[0] != null){
             if(inputPins[0].getDataObject() != null){
                 if(inputPins[0].getDataObject().getData() == true) {
+                    if(outputPins[0].getDataObject() != null){
                     if(outputPins[0].getDataObject().getData() == true){
                         Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
                     }
                     outputPins[0].getDataObject().setData(false);
-
+                }
                 } else if(inputPins[0].getDataObject().getData() == false) {
                     if(outputPins[0].getDataObject().getData() == false){
                         Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());

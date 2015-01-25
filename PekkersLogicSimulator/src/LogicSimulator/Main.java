@@ -205,14 +205,16 @@ public class Main extends Application {
                         GateObject next = iterator.next();
                         next.update(delta);   
                     }
-                    for (Iterator<LogicLine> iterator = logicLines.iterator(); iterator.hasNext(); /*nop*/ ) {
+                    /*
+                    for (Iterator<LogicLine> iterator = logicLines.iterator(); iterator.hasNext();) {
                         LogicLine next = iterator.next();
                         next.update(delta);   
                     }
+                    */
                     for (Iterator<ConnectionLineObject> iterator = connectionLineObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         ConnectionLineObject next = iterator.next();
                         if(next != null && next.logicLine != null ){
-                            next.logicLine.update(delta);   
+                            next.update(delta);   
                         }
                             if(next.logicLine != null && next.logicLine.getOutputPin(0) != null){
                                 if(next.logicLine.getOutputPin(0).getDataObject().getData() == true){

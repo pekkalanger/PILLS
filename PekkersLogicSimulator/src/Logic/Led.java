@@ -38,7 +38,9 @@ public class Led implements Gate{
                 Globals.main.showOnConsole("LED = " + getDataObject().getData()); 
             }
             dataObject = inputPins[0].getDataObject();
-            last = getDataObject().getData();
+            if(getDataObject() == null){
+                last = getDataObject().getData();
+            }
             System.out.print("Led status: ");
             System.out.println(dataObject.getData());
             return false;

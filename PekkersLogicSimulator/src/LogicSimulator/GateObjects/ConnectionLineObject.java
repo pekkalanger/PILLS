@@ -29,6 +29,11 @@ public class ConnectionLineObject {
         line = new Line();
         logicLine = new LogicLine();
     }
+    
+    public void update(Long deltaTime){
+         logicLine.update(deltaTime);
+    }
+    
     public Line createOutLine(final OutputPin op, final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
         
         
