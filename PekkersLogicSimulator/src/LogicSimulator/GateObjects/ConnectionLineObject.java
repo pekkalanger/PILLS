@@ -29,9 +29,7 @@ public class ConnectionLineObject {
     line.setStrokeWidth(2);
     //add InputPin shadow effect
     //line.setCursor(Cursor.HAND);
-    line.setCursor(new ImageCursor(Textures.exitIcon,
-                                Textures.exitIcon.getWidth() / 2,
-                                Textures.exitIcon.getHeight() /2));
+    line.setCursor(new ImageCursor(Textures.exitIcon, Textures.exitIcon.getWidth() / 2, Textures.exitIcon.getHeight() /2));
  
     //  "line"
     

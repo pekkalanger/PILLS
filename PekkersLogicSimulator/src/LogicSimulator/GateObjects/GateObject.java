@@ -94,17 +94,17 @@ public class GateObject {
                     System.out.println("gate should be null now");
                     Globals.main.showOnConsole("gate should be null now");
                     //for (int i = 0; i < 3; i++) {
-                        if(Globals.main.circleGroup.getChildren().contains(lineA)) {
-                           //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
-                            Globals.main.circleGroup.getChildren().remove(lineA);
-                            
-                        }
-                        if(Globals.main.circleGroup.getChildren().contains(lineB)) {
-                            Globals.main.circleGroup.getChildren().remove(lineB);
-                        }
-                        if(Globals.main.circleGroup.getChildren().contains(lineQ)) {
-                            Globals.main.circleGroup.getChildren().remove(lineQ);
-                        }
+                    if(Globals.main.circleGroup.getChildren().contains(lineA)) {
+                       //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
+                        Globals.main.circleGroup.getChildren().remove(lineA);
+
+                    }
+                    if(Globals.main.circleGroup.getChildren().contains(lineB)) {
+                        Globals.main.circleGroup.getChildren().remove(lineB);
+                    }
+                    if(Globals.main.circleGroup.getChildren().contains(lineQ)) {
+                        Globals.main.circleGroup.getChildren().remove(lineQ);
+                    }
                     //}
                     
                     me.consume();

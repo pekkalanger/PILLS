@@ -9,11 +9,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class ClassyRectangleBuilder {
+public class SexyRectangleBuilder {
     
     final Main main;
     
-    public ClassyRectangleBuilder (final Main main) {
+    public SexyRectangleBuilder (final Main main) {
         this.main = main;
     }
     

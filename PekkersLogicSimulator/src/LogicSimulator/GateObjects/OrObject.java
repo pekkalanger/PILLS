@@ -8,14 +8,9 @@ package LogicSimulator.GateObjects;
 import Logic.InputPin;
 import Logic.Or;
 import Logic.OutputPin;
-import LogicSimulator.Globals;
 import LogicSimulator.Textures;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -50,9 +45,9 @@ public class OrObject extends GateObject{
         rectangle = initRectangle(Textures.orGate);
       
         
-       group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+        group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
        
-       initGroup(lineA, lineB, lineQ);
+        initGroup(lineA, lineB, lineQ);
     }
 
     

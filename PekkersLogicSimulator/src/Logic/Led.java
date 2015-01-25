@@ -34,7 +34,7 @@ public class Led implements Gate{
     public boolean update(long deltaTime) {
         if( inputPins[0] != null ){
               
-             if(last != getDataObject().getData()){
+            if(last != getDataObject().getData()){
                 Globals.main.showOnConsole("LED = " + getDataObject().getData()); 
             }
             dataObject = inputPins[0].getDataObject();

@@ -8,14 +8,9 @@ package LogicSimulator.GateObjects;
 import Logic.InputPin;
 import Logic.Not;
 import Logic.OutputPin;
-import LogicSimulator.Globals;
 import LogicSimulator.Textures;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -47,9 +42,9 @@ public class NotObject extends GateObject{
         rectangle = initRectangle(Textures.notGate);
 
         
-       group.getChildren().addAll(inputPinObjectA.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+        group.getChildren().addAll(inputPinObjectA.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
        
-       initGroup(lineA, null, lineQ);
+        initGroup(lineA, null, lineQ);
     }
 
     

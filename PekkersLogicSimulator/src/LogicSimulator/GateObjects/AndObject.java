@@ -1,7 +1,3 @@
-// should contain InputPin group with InputPin gate gate its pins
-// the pins should contain InputPin line which will be updated on move
-// should contain all data for easy usage
-
 package LogicSimulator.GateObjects;
 
 import Logic.And;
@@ -11,13 +7,8 @@ import LogicSimulator.Textures;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
 
-/**
- *
- * @author PEKKA
- */
 public class AndObject extends GateObject{
     
-    //And gate;
     InputPinObject inputPinObjectA; // maybe use as array gate move all code to GateObject gate extend it
     InputPinObject inputPinObjectB;
     OutputPinObject outputPinObjectQ;
@@ -43,10 +34,10 @@ public class AndObject extends GateObject{
         
         rectangle = initRectangle(Textures.andGate);
         
-       group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
-       x = group.getTranslateX();
-       y = group.getTranslateY();
-       initGroup(lineA, lineB, lineQ);
+        group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+        x = group.getTranslateX();
+        y = group.getTranslateY();
+        initGroup(lineA, lineB, lineQ);
     }
 
     

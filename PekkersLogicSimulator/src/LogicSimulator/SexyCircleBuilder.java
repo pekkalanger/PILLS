@@ -22,7 +22,9 @@ import javafx.scene.shape.Circle;
  * @author PEKKA
  */
 public class SexyCircleBuilder {
+    
     final Main main;
+    
     public SexyCircleBuilder(final Main main) {
         this.main = main;
     }

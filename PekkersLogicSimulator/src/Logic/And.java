@@ -6,44 +6,44 @@ import java.util.logging.Logger;
 
 public class And implements Gate {
     boolean last = false;
-        String name = "And";
-        InputPin[] inputPins = new InputPin[2];
-        OutputPin[] outputPins = new OutputPin[1];
-	//InputPin InputPin = null, b = null;
-        //OutputPin q = null;  // InputPin,b = IN && q = OUT
-	//InputPin[] inputs;
-        
-	public And() {
-            inputPins[0] = new InputPin();
-            inputPins[1] = new InputPin();
-            outputPins[0] = new OutputPin();
-	}
-        
-	@Override
-	public boolean update(long deltaTime) {
-           if(inputPins[0] != null && inputPins[1] != null && outputPins[0] != null){
-                if(inputPins[0].getDataObject().getData() == true && inputPins[1].getDataObject().getData() == true) {
-                    if(outputPins[0].getDataObject().getData() == false){
-                        Globals.main.showOnConsole("And = " + !outputPins[0].getDataObject().getData());
-                    }
-                    outputPins[0].getDataObject().setData(true);
-                } else {
-                    if(outputPins[0].getDataObject().getData() == true){
-                        Globals.main.showOnConsole("And = " + !outputPins[0].getDataObject().getData());
-                    }
-                    outputPins[0].getDataObject().setData(false);
-                        
+    String name = "And";
+    InputPin[] inputPins = new InputPin[2];
+    OutputPin[] outputPins = new OutputPin[1];
+    //InputPin InputPin = null, b = null;
+    //OutputPin q = null;  // InputPin,b = IN && q = OUT
+    //InputPin[] inputs;
+
+    public And() {
+        inputPins[0] = new InputPin();
+        inputPins[1] = new InputPin();
+        outputPins[0] = new OutputPin();
+    }
+
+    @Override
+    public boolean update(long deltaTime) {
+       if(inputPins[0] != null && inputPins[1] != null && outputPins[0] != null){
+            if(inputPins[0].getDataObject().getData() == true && inputPins[1].getDataObject().getData() == true) {
+                if(outputPins[0].getDataObject().getData() == false){
+                    Globals.main.showOnConsole("And = " + !outputPins[0].getDataObject().getData());
                 }
-                //System.out.println("===============END================");
-                System.out.println("And out: " + outputPins[0].getDataObject().getData());
-                return false;
-            } else return true;
-	}
-	
-        @Override
-	public String toString(){
-		return name;
-	}
+                outputPins[0].getDataObject().setData(true);
+            } else {
+                if(outputPins[0].getDataObject().getData() == true){
+                    Globals.main.showOnConsole("And = " + !outputPins[0].getDataObject().getData());
+                }
+                outputPins[0].getDataObject().setData(false);
+
+            }
+            //System.out.println("===============END================");
+            System.out.println("And out: " + outputPins[0].getDataObject().getData());
+            return false;
+        } else return true;
+    }
+
+    @Override
+    public String toString(){
+            return name;
+    }
 
     @Override
     public void setInputPin(int pos, InputPin ip) {

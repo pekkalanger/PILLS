@@ -18,7 +18,7 @@ public abstract class Pin {
         private DataObject dataObject;
 
         public Pin(){
-        dataObject = new DataObject(false);
+            dataObject = new DataObject(false);
         }
         public void setDataObject(DataObject dataObject){
             this.dataObject = dataObject;

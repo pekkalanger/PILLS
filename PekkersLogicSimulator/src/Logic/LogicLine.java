@@ -11,25 +11,6 @@ public class LogicLine implements Gate{
         pinA = new  InputPin();
         pinB = new OutputPin();
     }
-    /*
-    public LogicLine(Pin pinA, Pin pinB){
-        this.pinA = pinA;
-        this.pinB = pinB;
-    }
-
-    public void setPinA(Pin p){
-        this.pinA = p;
-    }
-    public Pin getPinA(){
-        return pinA;
-    }
-    public void setPinB(Pin p){
-        this.pinB = p;
-    }
-    public Pin getPinB(){
-        return pinB;
-    }
-    */
     
     @Override
     public boolean update(long deltaTime) {

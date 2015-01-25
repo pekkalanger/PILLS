@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package LogicSimulator.GateObjects;
 
 import Logic.InputPin;
@@ -214,7 +209,7 @@ public class PinObject {
                     
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
-                //} else if (me.getButton() == MouseButton.PRIMARY) {
+                    //} else if (me.getButton() == MouseButton.PRIMARY) {
                     //System.out.println(" " + pin.type + "  " + pin.getDataObject().getData());
                     //remove line from this to target
                     
@@ -223,7 +218,6 @@ public class PinObject {
                     Globals.main.showOnConsole("Nothing happened");
                     me.consume();
                 }
-                  
             }
         });
         
