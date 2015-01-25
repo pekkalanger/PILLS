@@ -53,6 +53,7 @@ public class SwitchObject extends GateObject{
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
+                
                 //change the z-coordinate of the circle
                 //circle.toFront();
                 //Globals.main.showOnConsole("Mouse entered " + name);

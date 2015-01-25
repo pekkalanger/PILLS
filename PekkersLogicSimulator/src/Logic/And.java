@@ -34,7 +34,7 @@ public class And implements Gate {
                     outputPins[0].getDataObject().setData(false);
                         
                 }
-                System.out.println("===============END================");
+                //System.out.println("===============END================");
                 System.out.println("And out: " + outputPins[0].getDataObject().getData());
                 return false;
             } else return true;

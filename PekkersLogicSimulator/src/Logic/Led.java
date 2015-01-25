@@ -1,6 +1,9 @@
 package Logic;
 
+import LogicSimulator.Globals;
+
 public class Led implements Gate{
+    boolean last=false;
     String name = "Led";
     public InputPin[] inputPins = new InputPin[1];
     DataObject dataObject;
@@ -30,13 +33,20 @@ public class Led implements Gate{
     @Override
     public boolean update(long deltaTime) {
         if( inputPins[0] != null ){
+              
+             if(last != getDataObject().getData()){
+                Globals.main.showOnConsole("LED = " + getDataObject().getData()); 
+            }
             dataObject = inputPins[0].getDataObject();
+            last = getDataObject().getData();
             System.out.print("Led status: ");
             System.out.println(dataObject.getData());
             return false;
+            
         } else return true;
     }
 
+    
     @Override
     public String toString(){
         return name;

@@ -7,14 +7,9 @@ package LogicSimulator.GateObjects;
 import Logic.And;
 import Logic.InputPin;
 import Logic.OutputPin;
-import LogicSimulator.Globals;
 import LogicSimulator.Textures;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 
 /**
  *

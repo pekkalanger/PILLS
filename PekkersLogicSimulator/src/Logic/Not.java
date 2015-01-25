@@ -1,5 +1,7 @@
 package Logic;
 
+import LogicSimulator.Globals;
+
 public class Not implements Gate {
 
 	String name = "Not";
@@ -11,15 +13,26 @@ public class Not implements Gate {
             outputPins[0] = new OutputPin();
 	}
         
-	@Override
-	public boolean update(long deltaTime) {
-            if(inputPins[0] != null && outputPins[0] != null){
-                outputPins[0].setDataObject(inputPins[0].getDataObject().notted()); // this is not tested fyi
-		System.out.println("Not out: " + outputPins[0].getDataObject().getData());
-                return false;
+    @Override
+    public boolean update(long deltaTime) {
+       if(inputPins[0] != null && outputPins[0] != null){
+            if(inputPins[0].getDataObject().getData() == true) {
+                if(outputPins[0].getDataObject().getData() == false){
+                    Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
+                }
+                outputPins[0].getDataObject().setData(true);
+            } else if(inputPins[0].getDataObject().getData() == false) {
+                if(outputPins[0].getDataObject().getData() == true){
+                    Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
+                }
+                outputPins[0].getDataObject().setData(false);
+
             }
-            return true;
-        }
+            //System.out.println("===============END================");
+            System.out.println("Not out: " + outputPins[0].getDataObject().getData());
+            return false;
+        } else return true;
+    }
 	
         @Override
 	public String toString(){

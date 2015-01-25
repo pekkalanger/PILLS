@@ -131,9 +131,11 @@ public class LedObject extends GateObject{
     public void update(long deltaTime) {
         //here we will take the data from line and render leds new status (via println())
         if(gate != null){ 
+            //System.out.println("wefwef");
             gate.update(deltaTime);
             if(last != gate.getDataObject().getData()){
                 if(gate.getDataObject().getData() == true){
+                 
                  rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/   
                 } else {
                     rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));

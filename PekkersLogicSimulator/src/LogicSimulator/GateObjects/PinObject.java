@@ -94,6 +94,7 @@ public class PinObject {
         });
         line.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
+                
                 //Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
