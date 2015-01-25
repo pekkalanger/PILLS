@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
  * @author PEKKA
  */
 public class Textures {
-    static public Image defaultCursorImage = new Image("file:res/defaultcursor.png");
+    static public Image defaultCursorImage = new Image("file:res/defaultcursorr.png");
     static public Image lineCursor = new Image("file:res/linecursor.png");
     static public Image buttonCursor = new Image("file:res/buttoncursor.png");
    // static public Image buttonCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
