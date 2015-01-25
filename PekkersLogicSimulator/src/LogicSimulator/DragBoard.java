@@ -59,7 +59,7 @@ public class DragBoard {
     public static InputPin getInputPin(){
         return inputPin;
     }
-    public static void setPin(InputPin ip){
+    public static void setInputPin(InputPin ip){
         inputPin = ip;
     }
         public static OutputPin getOutputPin(){

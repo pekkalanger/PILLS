@@ -182,7 +182,7 @@ public class Main extends Application {
         Scene scene = new Scene(rootGroup, mainWidth,mainHeight);
         primaryStage.setScene(scene);
         
-        Image defaultCursorImage = Textures.defaultCursorImage;
+        Image defaultCursorImage = Textures.defaultCursor;
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
         

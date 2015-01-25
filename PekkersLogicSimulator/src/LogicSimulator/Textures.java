@@ -4,7 +4,8 @@ import javafx.scene.image.Image;
 
 public class Textures {
     
-    static public Image defaultCursorImage;
+    static public Image defaultCursor;
+     static public Image defaultCursorActive;
     static public Image lineCursor;
     static public Image buttonCursor;
     // static public Image buttonCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
@@ -24,7 +25,8 @@ public class Textures {
     
     public static void init() {
     /*      uses file: when testing, and as fallback later     */
-    defaultCursorImage = new Image("file:res/defaultcursorr.png");
+    defaultCursor = new Image("file:res/defaultcursorr.png");
+    defaultCursorActive = new Image("file:res/defaultcursorractive.png");
     lineCursor = new Image("file:res/linecursor.png");
     buttonCursor = new Image("file:res/buttoncursor.png");
     // static public Image buttonCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
