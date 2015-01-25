@@ -228,6 +228,7 @@ public class Main extends Application {
     }
       
     @Override public void start(Stage primaryStage) throws Exception {
+        Textures.init();
         Globals.main = this;
         init(primaryStage);
         primaryStage.show();
