@@ -45,7 +45,7 @@ public class Main extends Application {
     LinkedList<Circle> circleList = null;
     int mainWidth = 1024;
     int mainHeight = 768;
-    int schematicWidth = mainWidth-100;
+    int schematicWidth = mainWidth-50;
     int schematicHeigth = 500;
     int consoleWidth = 700;
     int consoleHeight = 200;
