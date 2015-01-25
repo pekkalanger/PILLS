@@ -222,18 +222,19 @@ public class PinObject {
                  me.consume(); 
             }
         });
-        /*
+        
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.PRIMARY) {
-                Globals.main.showOnConsole("you are dragging a line from " + name);
+               // Globals.main.showOnConsole("you are dragging a line from " + name);
                 me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
+                     
                 }
                 
             }
         });
-        */
+        
         
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
@@ -271,7 +272,9 @@ public class PinObject {
         
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                 rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
+                // rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
+                 rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
+                     me.consume();
                 //Globals.main.showOnConsole("Mouse released above " + name);
                 /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
                     rectangle.setTranslateX(150);
