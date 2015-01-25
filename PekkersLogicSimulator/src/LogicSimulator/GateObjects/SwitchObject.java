@@ -12,6 +12,8 @@ import LogicSimulator.Textures;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
@@ -28,6 +30,9 @@ public class SwitchObject extends GateObject{
         group = new Group();
         name = "Switch";
         
+        Image exitIcon = Textures.buttonCursor;
+        ImageCursor imageCursor = new ImageCursor(exitIcon, -exitIcon.getWidth(), -exitIcon.getHeight());
+        group.setCursor(imageCursor);
         switch0 = new Switch(false);
         switch0.setOutputPin(0, new OutputPin());
         
