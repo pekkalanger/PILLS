@@ -44,26 +44,8 @@ public class NotObject extends GateObject{
         inputPinObjectA = new InputPinObject(lineA, group, 0, 12, gate.getInputPin(0), name + " PinA");
         outputPinObjectQ = new OutputPinObject(lineQ, group, 40, 12, gate.getOutputPin(0), name + " PinQ");
         
-        rectangle = new Rectangle(32, 32);
-        rectangle.setFill(new ImagePattern(Textures.notGate, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/
-        rectangle.setTranslateX(8);  // move 8 to the left because of inputpins on the left
-        rectangle.setTranslateY(0);
-        
-        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                //change the z-coordinate of the circle
-                //circle.toFront();
-                Globals.main.showOnConsole("Mouse entered " + name);
-                me.consume();
-            }
-        });
-        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                Globals.main.showOnConsole("Mouse exited " + name);
-            }
-        });
+        rectangle = initRectangle(Textures.notGate);
+
         
        group.getChildren().addAll(inputPinObjectA.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
        

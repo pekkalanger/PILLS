@@ -5,8 +5,10 @@ import LogicSimulator.Globals;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
@@ -25,10 +27,32 @@ public class GateObject {
     public void update(long deltaTime){
         if(gate != null) gate.update(deltaTime);
     }
+    public Rectangle initRectangle(Image image){
+        rectangle = new Rectangle(32, 32);
+        rectangle.setFill(new ImagePattern(image, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/
+        rectangle.setTranslateX(8);  // move 8 to the left because of inputpins on the left
+        rectangle.setTranslateY(0);
+
+        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                //change the z-coordinate of the circle
+                //circle.toFront();
+                Globals.main.showOnConsole("Mouse entered " + name);
+                me.consume();
+            }
+        });
+        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                Globals.main.showOnConsole("Mouse exited " + name);
+            }
+        });
+        return rectangle;
+    }
     
     public void initGroup(final Line lineA, final Line lineB, final Line lineQ){
            
-        
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
