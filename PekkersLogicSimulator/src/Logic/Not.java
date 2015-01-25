@@ -16,23 +16,26 @@ public class Not implements Gate {
     @Override
     public boolean update(long deltaTime) {
        if(inputPins[0] != null && outputPins[0] != null){
-            if(inputPins[0].getDataObject().getData() == true) {
-                if(outputPins[0].getDataObject().getData() == true){
-                    Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
-                }
-                outputPins[0].getDataObject().setData(false);
-                
-            } else if(inputPins[0].getDataObject().getData() == false) {
-                if(outputPins[0].getDataObject().getData() == false){
-                    Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
-                }
-                outputPins[0].getDataObject().setData(true);
+            if(inputPins[0].getDataObject() != null){
+                if(inputPins[0].getDataObject().getData() == true) {
+                    if(outputPins[0].getDataObject().getData() == true){
+                        Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
+                    }
+                    outputPins[0].getDataObject().setData(false);
 
+                } else if(inputPins[0].getDataObject().getData() == false) {
+                    if(outputPins[0].getDataObject().getData() == false){
+                        Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
+                    }
+                    outputPins[0].getDataObject().setData(true);
+
+                }
+                //System.out.println("===============END================");
+                System.out.println("Not out: " + outputPins[0].getDataObject().getData());
+                
             }
-            //System.out.println("===============END================");
-            System.out.println("Not out: " + outputPins[0].getDataObject().getData());
             return false;
-        } else return true;
+       } else return true;
     }
 
     @Override

@@ -15,10 +15,9 @@ public class LogicLine implements Gate{
     @Override
     public boolean update(long deltaTime) {
         if(pinA != null && pinB != null){
-            if(pinA instanceof InputPin){
                 //System.out.println(pinA.type + " kuk " + pinB.type); 
                 pinA.setDataObject(pinB.getDataObject());
-            }/* else if(pinB instanceof InputPin){
+            /* else if(pinB instanceof InputPin){
                 pinA.setDataObject(pinB.getDataObject());
             }*/
            // System.out.println("Line data A: " + pinA.getDataObject().getData());
@@ -31,10 +30,8 @@ public class LogicLine implements Gate{
             return true;
         
         }
-        
     }
     
-
     @Override
     public String toString(){
         return name;

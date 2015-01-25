@@ -104,6 +104,7 @@ public class GateObject {
                            //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
                             Globals.main.circleGroup.getChildren().remove(inputPinObjectA.connectionLineObject.line);
                         }
+                        inputPinObjectA.connectionLineObject.logicLine = null;
                         inputPinObjectA.connectionLineObject = null;
                         inputPinObjectA.connectionLineObject2 = null;
                     }
@@ -111,6 +112,7 @@ public class GateObject {
                         if(Globals.main.circleGroup.getChildren().contains(inputPinObjectB.connectionLineObject.line)) {
                             Globals.main.circleGroup.getChildren().remove(inputPinObjectB.connectionLineObject.line);
                         }
+                        inputPinObjectB.connectionLineObject.logicLine = null;
                         inputPinObjectB.connectionLineObject = null;
                         inputPinObjectB.connectionLineObject2 = null;
                     }
@@ -118,6 +120,7 @@ public class GateObject {
                         if(Globals.main.circleGroup.getChildren().contains(outputPinObjectQ.connectionLineObject.line)) {
                             Globals.main.circleGroup.getChildren().remove(outputPinObjectQ.connectionLineObject.line);
                         }
+                        outputPinObjectQ.connectionLineObject.logicLine = null;
                         outputPinObjectQ.connectionLineObject = null;
                         outputPinObjectQ.connectionLineObject2 = null;
                     }

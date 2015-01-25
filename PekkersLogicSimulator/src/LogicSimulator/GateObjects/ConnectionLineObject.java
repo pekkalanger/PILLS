@@ -129,20 +129,37 @@ public class ConnectionLineObject {
                     Globals.main.circleGroup.getChildren().remove(line);
                     //ip.setDataObject(null);
                     if(Globals.main.logicLines.contains(logicLine)){  // -> connectionlineobject
+                        logicLine.getInputPin(0).setDataObject(null);
+                        logicLine.getOutputPin(0).setDataObject(null);
                         logicLine.setInputPin(0, null);
                         logicLine.setOutputPin(0, null);
-                        Globals.main.logicLines.remove(logicLine);
+                       // logicLine.setDataObject(null);
+                        logicLine=null;
                         
+                        Globals.main.showOnConsole("nully");
+                        Globals.main.logicLines.remove(logicLine);
                     }
                     if(Globals.main.connectionLineObjects.contains(this)){  // -> connectionlineobject
-                        logicLine.setDataObject(null);
-                        logicLine=null;
+                        //logicLine.setDataObject(null);
+                        //logicLine=null;
+                        Globals.main.showOnConsole("nully this");
                         Globals.main.connectionLineObjects.remove(this);
                     }
-                    if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
-                        clo.logicLine.setDataObject(null);
+                    
+                    if(clo != null){
+                    clo.logicLine.getInputPin(0).setDataObject(null);
+                        clo.logicLine.getOutputPin(0).setDataObject(null);
+                        clo.logicLine.setInputPin(0, null);
+                        clo.logicLine.setOutputPin(0, null);
+                        //clo.logicLine.setDataObject(null);
                         clo.logicLine=null;
+                    }
+                    if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
+                        
+                        
+                        Globals.main.showOnConsole("nully that");
                         Globals.main.connectionLineObjects.remove(clo);
+                        Globals.main.logicLines.remove(clo.logicLine);
                     }
                     me.consume();
                 } 

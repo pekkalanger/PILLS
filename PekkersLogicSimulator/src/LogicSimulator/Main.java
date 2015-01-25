@@ -211,15 +211,18 @@ public class Main extends Application {
                     }
                     for (Iterator<ConnectionLineObject> iterator = connectionLineObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         ConnectionLineObject next = iterator.next();
-                        next.logicLine.update(delta);   
-                        if(next.logicLine != null && next.logicLine.getOutputPin(0) != null){
-                            if(next.logicLine.getOutputPin(0).getDataObject().getData() == true){
-                                next.line.setStroke(Color.GREEN);
-                            }
-                            if(next.logicLine.getOutputPin(0).getDataObject().getData() == false){
-                                next.line.setStroke(Color.RED);
-                            }
+                        if(next != null && next.logicLine != null ){
+                            next.logicLine.update(delta);   
                         }
+                            if(next.logicLine != null && next.logicLine.getOutputPin(0) != null){
+                                if(next.logicLine.getOutputPin(0).getDataObject().getData() == true){
+                                    next.line.setStroke(Color.GREEN);
+                                }
+                                if(next.logicLine.getOutputPin(0).getDataObject().getData() == false){
+                                    next.line.setStroke(Color.RED);
+                                }
+                            }
+                        
                     }
                     //showOnConsole("kuket");
                     // update actors

@@ -34,7 +34,8 @@ public class Switch implements Gate{
     public boolean update(long deltaTime) {
         //toggle(); used as a generator/clock
         if( outputPin != null ){
-            System.out.println("Switch status: " + outputPin.getDataObject().getData() );
+            if(outputPin.getDataObject() != null)
+                System.out.println("Switch status: " + outputPin.getDataObject().getData() );
             outputPin.setDataObject(dataObject);
             return false;
         } else {
