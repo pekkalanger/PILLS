@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
@@ -37,7 +38,8 @@ public class ClassySideBarBuilder {
         VBox sideBar = new VBox();
         sideBar.setSpacing(2f);
         //final GateBuilder gateBuilder = new GateBuilder();
-        final Button butt1 = new Button("add and gayt");
+        final Button butt1 = new Button();//"add and gayt");
+        butt1.setGraphic(new ImageView(Textures.andGate));
         butt1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -58,7 +60,8 @@ public class ClassySideBarBuilder {
             }
          });
         
-        final Button butt2 = new Button("add or gayt");
+        final Button butt2 = new Button();//"add or gayt");
+        butt2.setGraphic(new ImageView(Textures.orGate));
         butt2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -69,7 +72,8 @@ public class ClassySideBarBuilder {
             }
          });
                 
-        final Button butt3 = new Button("add not gayt");
+        final Button butt3 = new Button();//
+        butt3.setGraphic(new ImageView(Textures.notGate));
         butt3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -82,39 +86,33 @@ public class ClassySideBarBuilder {
          });
               
         /*      Create Button4                  */
-        final Button butt4 = new Button("add blu circul");
+        final Button butt4 = new Button();//"add Switch");
+        butt4.setGraphic(new ImageView(Textures.switchOn));
         butt4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                main.showOnConsole("Created new blueCircle");
-                SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
-                final Circle c = sexyCircleBuilder.createBlueCircle(false);
-                c.setTranslateX(300);
-                c.setTranslateY(50);
-                c.toFront();
-                main.circleGroup.getChildren().add(c);
-                main.circleList.add(c);
-                event.consume();
-            }
-        });
-        /*      Create Button5                  */
-        final Button butt5 = new Button("add orank circul");
-        butt5.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                main.showOnConsole("Created new orangeCircle");
-                SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
-                final Circle c = sexyCircleBuilder.createOrangeCircle(false);
-                c.setTranslateX(300);
-                c.setTranslateY(150);
-                c.toFront();
-                main.circleGroup.getChildren().add(c);
-                main.circleList.add(c);
+                main.showOnConsole("Created new Switch");
+                SwitchObject switchObject = new SwitchObject();
+                main.gateObjects.add(switchObject);
+                
                 event.consume();
             }
          });
+        final Button butt5 = new Button();//"add LED");
+        butt5.setGraphic(new ImageView(Textures.ledOn));
+        butt5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                main.showOnConsole("Created new LED");
+                LedObject ledObject = new LedObject();
+                main.gateObjects.add(ledObject);
+                
+                event.consume();
+            }
+         });
+       
                 /*      Create Button5                  */
-        final Button butt6 = new Button("add skvaer");
+        final Button butt6 = new Button("skvaer");
         butt6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -130,30 +128,39 @@ public class ClassySideBarBuilder {
             }
          });
         
-        final Button butt7 = new Button("add Switch");
+        final Button butt7 = new Button("blu c");
         butt7.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                main.showOnConsole("Created new Switch");
-                SwitchObject switchObject = new SwitchObject();
-                main.gateObjects.add(switchObject);
-                
+                main.showOnConsole("Created new blueCircle");
+                SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
+                final Circle c = sexyCircleBuilder.createBlueCircle(false);
+                c.setTranslateX(300);
+                c.setTranslateY(50);
+                c.toFront();
+                main.circleGroup.getChildren().add(c);
+                main.circleList.add(c);
                 event.consume();
             }
-         });
-        final Button butt8 = new Button("add LED");
+        });
+        /*      Create Button8                  */
+        final Button butt8 = new Button("ora c");
         butt8.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                main.showOnConsole("Created new LED");
-                LedObject ledObject = new LedObject();
-                main.gateObjects.add(ledObject);
-                
+                main.showOnConsole("Created new orangeCircle");
+                SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
+                final Circle c = sexyCircleBuilder.createOrangeCircle(false);
+                c.setTranslateX(300);
+                c.setTranslateY(150);
+                c.toFront();
+                main.circleGroup.getChildren().add(c);
+                main.circleList.add(c);
                 event.consume();
             }
          });
         
-        final Button butt99 = new Button("add Label");
+        final Button butt99 = new Button("Lab");
         butt99.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
