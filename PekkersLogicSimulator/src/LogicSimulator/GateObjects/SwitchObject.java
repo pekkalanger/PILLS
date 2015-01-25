@@ -55,14 +55,14 @@ public class SwitchObject extends GateObject{
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                Globals.main.showOnConsole("Mouse entered " + name);
+                //Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
         });
         rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
-                Globals.main.showOnConsole("Mouse exited " + name);
+                //Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
         
@@ -96,12 +96,12 @@ public class SwitchObject extends GateObject{
             public void handle(MouseEvent me) {
                 group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
-                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
+                    //Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     
                     //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
-                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
+                    //Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     toggled = true;
                     gate.toggle();
                     //update(true);

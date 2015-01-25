@@ -195,6 +195,7 @@ public class Main extends Application {
             new EventHandler() {
                 @Override
                 public void handle(Event event) {
+                    System.out.println("==============START===============");
                     Long delta = 0L;
                     long currentTime = System.nanoTime();
                     long elapsedNanos = currentTime - previousTime;

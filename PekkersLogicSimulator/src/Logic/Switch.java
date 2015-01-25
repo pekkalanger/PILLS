@@ -1,5 +1,7 @@
 package Logic;
 
+import LogicSimulator.Globals;
+
 public class Switch implements Gate{
         
     DataObject dataObject;
@@ -67,6 +69,7 @@ public class Switch implements Gate{
 
     @Override
     public void toggle(){
+        Globals.main.showOnConsole("Switch status: " + !outputPin.getDataObject().getData() );
         dataObject.toggle();
     }
     

@@ -89,7 +89,7 @@ public class PinObject {
                 if(logicLine.getOutputPin(0).getDataObject().getData() == false){
                     line.setStroke(Color.RED);
                 }
-                Globals.main.showOnConsole("Mouse over " + name);
+                //Globals.main.showOnConsole("Mouse over " + name);
             }
         });
         line.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -216,10 +216,13 @@ public class PinObject {
                 //} else if (me.getButton() == MouseButton.PRIMARY) {
                     //System.out.println(" " + pin.type + "  " + pin.getDataObject().getData());
                     //remove line from this to target
+                    
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    Globals.main.showOnConsole("Removed specified Rectangle");
+                    
+                    Globals.main.showOnConsole("Nothing happened");
+                    me.consume();
                 }
-                 me.consume(); 
+                  
             }
         });
         
@@ -241,7 +244,7 @@ public class PinObject {
                 //change the z-coordinate of the circle
                 //circle.toFront();
                 rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
-                Globals.main.showOnConsole("Mouse over " + name);
+                //Globals.main.showOnConsole("Mouse over " + name);
                 me.consume();
             }
         });

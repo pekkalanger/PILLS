@@ -38,7 +38,7 @@ public class GateObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                Globals.main.showOnConsole("Mouse over " + name);
+                //Globals.main.showOnConsole("Mouse over " + name);
                 me.consume();
             }
         });
