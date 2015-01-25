@@ -1,6 +1,7 @@
 package LogicSimulator;
 
 import Logic.LogicLine;
+import LogicSimulator.GateObjects.ConnectionLineObject;
 import LogicSimulator.GateObjects.GateObject;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,6 +52,7 @@ public class Main extends Application {
     public List<GateObject> gateObjects;
     public List<Line> lines;
     public List<LogicLine> logicLines;
+    public List<ConnectionLineObject> connectionLineObjects;
     
     //create a console for logging mouse events
     final ListView<String> console = new ListView<String>();
@@ -85,7 +87,10 @@ public class Main extends Application {
         
         gateObjects = new ArrayList();
         lines = new ArrayList();
-        primaryStage.setTitle("Pekkers Boolean Logic Simulator 2015"); 
+        connectionLineObjects = new ArrayList<ConnectionLineObject>();
+        
+        
+        primaryStage.setTitle("PekkersLogicSimulator 2015"); 
         primaryStage.setResizable(false); // this aint working so far
         
         rootGroup = new VBox(2);        // contains menuBar and rootHBox
@@ -191,8 +196,9 @@ public class Main extends Application {
          consoleObservableList.add(text);
     }
 
-    protected final void buildAndSetLoop() {
-        final int fps = 100;
+    protected final void buildAndSetLoop() {        // this vill update everything 100 times per second / once every 1.666 seconds
+        final int fps = 100; //  if toggle then 100on + 100off = 200/2 hertz
+        int i;
         final Duration oneFrameAmt = Duration.millis(1000/fps);  // "100 fps" should be enough.. for nao
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt,
             new EventHandler() {
@@ -203,7 +209,6 @@ public class Main extends Application {
                     long elapsedNanos = currentTime - previousTime;
                     double deltaTime = elapsedNanos / 1000000000.0; /* to seconds */
                     System.out.println(deltaTime *1000 + " ms?");
-                    
                     for (Iterator<GateObject> iterator = gateObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         GateObject next = iterator.next();
                         next.update(delta);   
