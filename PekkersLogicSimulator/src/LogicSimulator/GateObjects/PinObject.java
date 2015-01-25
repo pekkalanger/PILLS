@@ -46,6 +46,7 @@ public class PinObject {
         return rectangle;
     }
     
+    @Deprecated
     public Line createLine(final Line line, final LogicLine logicLine) {
         //create InputPin circle with desired name,  color and radius
         Color color = Color.DODGERBLUE;
