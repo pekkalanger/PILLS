@@ -56,9 +56,9 @@ public class PinObject {
         line.setStroke(Color.RED);
         line.setStrokeWidth(2);
         //add InputPin shadow effect
-        Image exitIcon = Textures.pinPressed;
+        Image exitIcon = Textures.buttonCursor;
         ImageCursor imageCursor = new ImageCursor(exitIcon, -exitIcon.getWidth(), -exitIcon.getHeight());
-         line.setCursor(imageCursor);
+        line.setCursor(imageCursor);
         
         //add InputPin mouse listeners
         line.setOnMouseClicked(new EventHandler<MouseEvent>() {
