@@ -17,6 +17,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -98,6 +100,7 @@ public class ClassySideBarBuilder {
                 event.consume();
             }
          });
+        
         final Button butt5 = new Button();//"add LED");
         butt5.setGraphic(new ImageView(Textures.ledOn));
         butt5.setOnAction(new EventHandler<ActionEvent>() {
@@ -110,7 +113,7 @@ public class ClassySideBarBuilder {
                 event.consume();
             }
          });
-       
+        
                 /*      Create Button5                  */
         final Button butt6 = new Button("skvaer");
         butt6.setOnAction(new EventHandler<ActionEvent>() {
@@ -274,8 +277,13 @@ public class ClassySideBarBuilder {
         });
         
         
-        
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt99);
+        Region spacer1 = new Region();
+        VBox.setVgrow(spacer1, Priority.ALWAYS);     
+        spacer1.setMaxHeight(20);
+        Region spacer2 = new Region();
+        VBox.setVgrow(spacer2, Priority.ALWAYS);     
+        spacer2.setMaxHeight(20);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, spacer1, butt99, spacer2, butt6, butt7, butt8);
         
         return sideBar;
     }
