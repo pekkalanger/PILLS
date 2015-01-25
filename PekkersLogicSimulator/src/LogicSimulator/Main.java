@@ -90,7 +90,7 @@ public class Main extends Application {
         connectionLineObjects = new ArrayList<ConnectionLineObject>();
         
         
-        primaryStage.setTitle("PekkersLogicSimulator 2015"); 
+        primaryStage.setTitle("P.I.L.L.S pekkers incredibly logical logic simulator"); 
         primaryStage.setResizable(false); // this aint working so far
         
         rootGroup = new VBox(2);        // contains menuBar and rootHBox
