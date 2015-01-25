@@ -33,12 +33,13 @@ public class LedObject extends GateObject{
         gate = new Led();
         gate.setInputPin(0, new InputPin());
         
-        final Line lineA = new Line();
+        inputPinObject = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
+        final Line lineA = inputPinObject.connectionLineObject.line;
         
         // this should be added to InputPin gate list which will be updated all the fucknig time
         // gate also assigned the pins
 
-        inputPinObject = new InputPinObject(lineA, group, 0, 12, gate.getInputPin(0), name + " PinA");
+        //inputPinObject = new InputPinObject(lineA, group, 0, 12, gate.getInputPin(0), name + " PinA");
         
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/

@@ -209,6 +209,10 @@ public class Main extends Application {
                         LogicLine next = iterator.next();
                         next.update(delta);   
                     }
+                    for (Iterator<ConnectionLineObject> iterator = connectionLineObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
+                        ConnectionLineObject next = iterator.next();
+                        next.logicLine.update(delta);   
+                    }
                     //showOnConsole("kuket");
                     // update actors
                     //updateSprites();

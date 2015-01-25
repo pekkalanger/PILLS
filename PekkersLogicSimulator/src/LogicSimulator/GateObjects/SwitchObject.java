@@ -38,12 +38,13 @@ public class SwitchObject extends GateObject{
         gate = new Switch(false);
         gate.setOutputPin(0, new OutputPin());
         
-        final Line lineA = new Line();
+        outputPinObject = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
+        final Line lineA = outputPinObject.connectionLineObject.line;
         
         // this should be added to a gate list which will be updated all the fucknig time
         // gate also assigned the pins
 
-        outputPinObject = new OutputPinObject(lineA, group, 32, 12, gate.getOutputPin(0), name + " PinA");
+       
         
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate gate boolean logic linked to pins)*/

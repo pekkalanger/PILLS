@@ -9,6 +9,7 @@ import LogicSimulator.GateObjects.GateObject;
 import Logic.Gate;
 import Logic.InputPin;
 import Logic.OutputPin;
+import LogicSimulator.GateObjects.ConnectionLineObject;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
 
@@ -18,6 +19,7 @@ import javafx.scene.shape.Line;
  */
 public class DragBoard {
     private static GateObject gateObject;
+    public static ConnectionLineObject connectionLineObject;
     public static Line line;
     private static String name;
     private static Object object;
@@ -31,11 +33,19 @@ public class DragBoard {
     public DragBoard() {
         
     }
+    
     public static void setGateObject(GateObject go){
         gateObject = go;
     }
         public static GateObject getGateObject(){
         return gateObject;
+    }
+        
+    public static void setConnectionLineObject(ConnectionLineObject clo){
+        connectionLineObject = clo;
+    }
+    public static ConnectionLineObject getConnectionLineObject(){
+        return connectionLineObject;
     }
     
     public static Group getGroup(){
@@ -84,6 +94,7 @@ public class DragBoard {
     public static void printDragBoard(){
         System.out.println("===========Start================");
          System.out.println(gateObject);
+                 System.out.println(connectionLineObject);
           System.out.println(name);
            System.out.println(object);
             System.out.println(group);
@@ -96,6 +107,7 @@ public class DragBoard {
     }
     public static void clearDragBoard(){
         gateObject = null;
+        connectionLineObject = null;
         line = null;
         name = null;
         object = null;

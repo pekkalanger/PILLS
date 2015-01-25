@@ -12,7 +12,8 @@ import javafx.scene.shape.Rectangle;
 public class OutputPinObject extends PinObject{
     
     OutputPin outputPin;
-    public OutputPinObject(final Line line, Group g, int x , int y, OutputPin op, String n) {
+    public OutputPinObject(Group g, int x , int y, OutputPin op, String n) {
+        super();
         this.x = x;
         this.y = y;
         name = n; 
@@ -21,7 +22,8 @@ public class OutputPinObject extends PinObject{
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
-        rectangle = createPinRectangle(Textures.outputPin, line, g, rectangle, outputPin, null, name);
+        rectangle = createPinRectangle(Textures.outputPin, g, rectangle, outputPin, null, name);
+        
 
     }
     

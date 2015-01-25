@@ -31,7 +31,15 @@ public class PinObject {
     int width = 8;
     int height = 8;
     protected Rectangle rectangle;
+    
+    ConnectionLineObject connectionLineObject;
 
+    public PinObject() {
+        connectionLineObject = new ConnectionLineObject();
+    }
+
+    
+    
     public void setRectangle(Rectangle r){
         rectangle = r;
     }
@@ -39,7 +47,7 @@ public class PinObject {
     public Rectangle getRectangle(){
         return rectangle;
     }
-    
+    /*
     @Deprecated
     public Line createLine(final Line line, final LogicLine logicLine) {
         //create InputPin circle with desired name,  color and radius
@@ -47,6 +55,7 @@ public class PinObject {
         final String name = "A Line"; 
 
         //final Line line = new Line();
+        
         
         line.setStroke(Color.RED);
         line.setStrokeWidth(2);
@@ -95,14 +104,17 @@ public class PinObject {
         });
         return line;
     }
-    
+    */
       
-    public Rectangle createPinRectangle(final Image i, final Line line, final Group g, final Rectangle rectangle, final OutputPin outputPin, final InputPin inputPin, final String name) {
+    public Rectangle createPinRectangle(final Image i, final Group g, final Rectangle rectangle, final OutputPin outputPin, final InputPin inputPin, final String name) {
+        
+        
+        connectionLineObject = new ConnectionLineObject();
         Image cursorImage = Textures.defaultCursorActive;
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);
         
-    rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
+        rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
         //rectangle.setCursor(Cursor.HAND);
         //add InputPin mouse listeners
         rectangle.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -118,7 +130,9 @@ public class PinObject {
                         } else {
                             DragBoard.setOutputPin(outputPin);
                         }
-                        DragBoard.setLine(line);
+                        DragBoard.setLine(connectionLineObject.line);
+                        DragBoard.setConnectionLineObject(connectionLineObject);
+                        
                         DragBoard.setGroup(g);
                         DragBoard.setName(name);
                         DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
@@ -126,20 +140,36 @@ public class PinObject {
                         DragBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
                     } else if(DragBoard.getInputPin() != null && inputPin == null){
-                        
-                        System.out.println("dragboardpin contains " + DragBoard.getInputPin().getClass());
-                        //System.out.println("pin contains " + inputPin.getClass());
-                        System.out.println("connection made from " + DragBoard.getName() + " to " + name);
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, DragBoard.getInputPin());
                         logicLine.setOutputPin(0, outputPin);
-
-                        createLine(line, logicLine);
-                        line.setStartX(DragBoard.getX() + width/2 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
-                        line.setStartY(DragBoard.getY() + height/2 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
-                        line.setEndX(rectangle.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
-                        line.setEndY(rectangle.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
+                        connectionLineObject.logicLine = logicLine;
+                        //createLine(line, logicLine);
+                        Line line = connectionLineObject.createLine(g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                        //createLine(line, logicLine);
                         
+                        if(!Globals.main.circleGroup.getChildren().contains(line)){
+                            Globals.main.circleGroup.getChildren().add(line);
+                            Globals.main.logicLines.add(logicLine);
+                            System.out.println("line did not exist in schematic");
+                        }
+                        if(!Globals.main.connectionLineObjects.contains(connectionLineObject)){
+                            Globals.main.connectionLineObjects.add(connectionLineObject);
+                            System.out.println("line did not exist in schematic");
+                        }
+                        DragBoard.clearDragBoard();
+                        
+                        /*
+                        System.out.println("dragboardpin contains " + DragBoard.getInputPin().getClass());
+                        //System.out.println("pin contains " + inputPin.getClass());
+                        System.out.println("connection made from " + DragBoard.getName() + " to " + name);
+                        
+                        LogicLine logicLine = new LogicLine();
+                        logicLine.setInputPin(0, DragBoard.getInputPin());
+                        logicLine.setOutputPin(0, outputPin);
+                        connectionLineObject.logicLine = logicLine;
+                        //createLine(line, logicLine);
+                        Line line = connectionLineObject.createLine(g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                         if(Globals.main.circleGroup.getChildren().contains(DragBoard.getLine())){
                             Globals.main.circleGroup.getChildren().remove(DragBoard.getLine());
                             
@@ -153,24 +183,25 @@ public class PinObject {
                             System.out.println("line did not exist in schematic");
                         }
                         DragBoard.clearDragBoard();
-                        
+                        */
                       
                         
                     } else if(DragBoard.getOutputPin() != null && outputPin == null){
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, inputPin);
                         logicLine.setOutputPin(0, DragBoard.getOutputPin());
-                        DragBoard.setLine(line);  // lineobject
-                        createLine(line, logicLine);
-                        line.setStartX(DragBoard.getX() + width/2 + DragBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
-                        line.setStartY(DragBoard.getY() + height/2 + DragBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
-                        line.setEndX(rectangle.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
-                        line.setEndY(rectangle.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
+                        connectionLineObject.logicLine = logicLine;
+                        //createLine(line, logicLine);
+                        Line line = connectionLineObject.createLine(g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                        //createLine(line, logicLine);
                         
                         if(!Globals.main.circleGroup.getChildren().contains(line)){
                             Globals.main.circleGroup.getChildren().add(line);
                             Globals.main.logicLines.add(logicLine);
-
+                            System.out.println("line did not exist in schematic");
+                        }
+                        if(!Globals.main.connectionLineObjects.contains(connectionLineObject)){
+                            Globals.main.connectionLineObjects.add(connectionLineObject);
                             System.out.println("line did not exist in schematic");
                         }
                         DragBoard.clearDragBoard();
@@ -184,7 +215,7 @@ public class PinObject {
                         
                             DragBoard.clearDragBoard();
                             DragBoard.setInputPin(inputPin);
-                            DragBoard.setLine(line);
+                            DragBoard.setLine(connectionLineObject.line);
                             DragBoard.setGroup(g);
                             DragBoard.setName(name);
                             DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
@@ -195,8 +226,7 @@ public class PinObject {
                         
                             DragBoard.clearDragBoard();
                             DragBoard.setOutputPin(outputPin);
-                            DragBoard.setOutputPin(outputPin);
-                            DragBoard.setLine(line);
+                            DragBoard.setLine(connectionLineObject.line);
                             DragBoard.setGroup(g);
                             DragBoard.setName(name);
                             DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
