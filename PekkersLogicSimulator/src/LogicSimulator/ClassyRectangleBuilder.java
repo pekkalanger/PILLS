@@ -17,12 +17,11 @@ public class ClassyRectangleBuilder {
         this.main = main;
     }
     
-     public Rectangle createRectangle(final String textureURL) {
-        Image texture = new Image(textureURL);
+     public Rectangle createRectangle(final Image i) {
         final Rectangle rectangle = new Rectangle(100, 100);
         rectangle.setLayoutX(100);
         rectangle.setLayoutY(10);
-        rectangle.setFill(new ImagePattern(texture, 0, 0, 1, 1, true));
+        rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
         
         final String name = "a rectangul"; 
 
@@ -35,7 +34,7 @@ public class ClassyRectangleBuilder {
                     //the event will be passed only to the circle which is on front
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                     main.showOnConsole("Created new rectangle");
-                    final Rectangle rectangle = createRectangle(textureURL);
+                    final Rectangle rectangle = createRectangle(i);
                     rectangle.setTranslateX(300);
                     rectangle.setTranslateY(50);
                     rectangle.toFront();
