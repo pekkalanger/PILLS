@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -42,6 +43,7 @@ public class ClassySideBarBuilder {
         //final GateBuilder gateBuilder = new GateBuilder();
         final Button butt1 = new Button();//"add and gayt");
         butt1.setGraphic(new ImageView(Textures.andGate));
+        butt1.setTooltip(new Tooltip("And Gate"));
         butt1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -64,6 +66,7 @@ public class ClassySideBarBuilder {
         
         final Button butt2 = new Button();//"add or gayt");
         butt2.setGraphic(new ImageView(Textures.orGate));
+        butt2.setTooltip(new Tooltip("Or Gate"));
         butt2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -76,6 +79,7 @@ public class ClassySideBarBuilder {
                 
         final Button butt3 = new Button();//
         butt3.setGraphic(new ImageView(Textures.notGate));
+        butt3.setTooltip(new Tooltip("Not Gate"));
         butt3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -90,6 +94,7 @@ public class ClassySideBarBuilder {
         /*      Create Button4                  */
         final Button butt4 = new Button();//"add Switch");
         butt4.setGraphic(new ImageView(Textures.switchOn));
+        butt4.setTooltip(new Tooltip("Switch"));
         butt4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -103,6 +108,7 @@ public class ClassySideBarBuilder {
         
         final Button butt5 = new Button();//"add LED");
         butt5.setGraphic(new ImageView(Textures.ledOn));
+        butt5.setTooltip(new Tooltip("LED"));
         butt5.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -115,7 +121,8 @@ public class ClassySideBarBuilder {
          });
         
                 /*      Create Button5                  */
-        final Button butt6 = new Button("skvaer");
+        final Button butt6 = new Button();//"skvaer");
+        butt6.setGraphic(new ImageView(Textures.pinOver));
         butt6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

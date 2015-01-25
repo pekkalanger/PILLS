@@ -150,7 +150,7 @@ public class ClassyMenuBarBuilder {
         fileMenu.getItems().addAll(fileNew, fileOpen, fileSave, fileSaveAs, new SeparatorMenuItem(), fileExit);
 
         // Prepare 'Examples' drop-down menu
-        final javafx.scene.control.Menu examplesMenu = new javafx.scene.control.Menu("FagSex 3.0");
+        final javafx.scene.control.Menu examplesMenu = new javafx.scene.control.Menu("Extras");
         
         examplesMenu.getItems().add(new MenuItem("001"));
         examplesMenu.getItems().add(new MenuItem("002"));
