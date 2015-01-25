@@ -15,7 +15,8 @@ public class Not implements Gate {
 	public boolean update(long deltaTime) {
             if(inputPins[0] != null && outputPins[0] != null){
                 outputPins[0].setDataObject(inputPins[0].getDataObject().notted()); // this is not tested fyi
-		return false;
+		System.out.println("Not out: " + outputPins[0].getDataObject().getData());
+                return false;
             }
             return true;
         }
@@ -43,6 +44,21 @@ public class Not implements Gate {
     @Override
     public OutputPin getOutputPin(int pos) {
         return outputPins[pos];
+    }
+
+    @Override
+    public void setDataObject(DataObject dataObject) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public DataObject getDataObject() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void toggle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 	

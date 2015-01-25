@@ -17,10 +17,12 @@ public class Led implements Gate{
         this.inputPins[0] = null;
     }
     
+    @Override
     public void setDataObject(DataObject dataObject) {
         this.dataObject = dataObject;
     }
 
+    @Override
     public DataObject getDataObject() {
         return dataObject;
     }
@@ -35,6 +37,7 @@ public class Led implements Gate{
         } else return true;
     }
 
+    @Override
     public String toString(){
         return name;
     }
@@ -56,6 +59,11 @@ public class Led implements Gate{
 
     @Override
     public OutputPin getOutputPin(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void toggle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -79,7 +79,7 @@ public class AndObject extends GateObject{
         //here will the andGate gate drawing of lines be updated 
         x = group.getTranslateX();
         y = group.getTranslateY();
-        System.out.println(x + " " +y);
+        //System.out.println(x + " " +y);
         if(gate != null) gate.update(deltaTime);
         //lines will get updated coordinates based upon gates coords, render
         

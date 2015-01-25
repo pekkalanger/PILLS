@@ -66,6 +66,9 @@ public class GateObject {
                     //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
                     gate=null ;
+                    //Globals.main.gateObjects.remove(gate);
+                    System.out.println("gate should be null now");
+                    Globals.main.showOnConsole("gate should be null now");
                     //for (int i = 0; i < 3; i++) {
                         if(Globals.main.circleGroup.getChildren().contains(lineA)) {
                            //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));

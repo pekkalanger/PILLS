@@ -208,7 +208,7 @@ public class Main extends Application {
                     long currentTime = System.nanoTime();
                     long elapsedNanos = currentTime - previousTime;
                     double deltaTime = elapsedNanos / 1000000000.0; /* to seconds */
-                    System.out.println(deltaTime *1000 + " ms?");
+                    //System.out.println(deltaTime *1000 + " ms?");
                     for (Iterator<GateObject> iterator = gateObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         GateObject next = iterator.next();
                         next.update(delta);   

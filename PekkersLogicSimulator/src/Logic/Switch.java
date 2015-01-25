@@ -1,53 +1,49 @@
 package Logic;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class Switch implements Gate{
         
-        DataObject dataObject;
-        private String name = "Switch";
-	private OutputPin outputPin = null;
-	public Switch(boolean d){
-            this.dataObject = new DataObject(d);
-            outputPin = new OutputPin();
-	}
-	
-	public void setLine(LogicLine l){
-           // this.outputPin=l.getInputPin();
-	}
-        public void removeLine(){
-            this.outputPin=null;
-	}
-	
-	public boolean toggle(){
-            return dataObject.toggle();
-	}
-    
-        public void setDataObject(DataObject dataObject) {
-            this.dataObject = dataObject;
-        }
+    DataObject dataObject;
+    String name = "Switch";
+    private OutputPin outputPin = null;
+    public Switch(boolean d){
+        this.dataObject = new DataObject(d);
+        outputPin = new OutputPin();
+    }
 
-        public DataObject getDataObject() {
-            return dataObject;
-        }
+    public void setLine(LogicLine l){
+       // this.outputPin=l.getInputPin();
+    }
+    public void removeLine(){
+        this.outputPin=null;
+    }
 
-	@Override
-	public boolean update(long deltaTime) {
-            //toggle(); used as a generator/clock
-            if( outputPin != null ){
-                System.out.println("Switchouput: " + outputPin.getDataObject().getData() );
-		outputPin.setDataObject(dataObject);
-		return false;
-            } else {
-                System.out.println("Switchouput: null");
-                return true;
-            }
-	}
-	
-	public String toString(){
-            return name;
-	}
+    @Override
+    public void setDataObject(DataObject dataObject) {
+        this.dataObject = dataObject;
+    }
+
+    @Override
+    public DataObject getDataObject() {
+        return dataObject;
+    }
+
+    @Override
+    public boolean update(long deltaTime) {
+        //toggle(); used as a generator/clock
+        if( outputPin != null ){
+            System.out.println("Switch status: " + outputPin.getDataObject().getData() );
+            outputPin.setDataObject(dataObject);
+            return false;
+        } else {
+            System.out.println("Switch status: null");
+            return true;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
@@ -68,4 +64,10 @@ public class Switch implements Gate{
     public OutputPin getOutputPin(int pos) {
         return outputPin;
     }
+
+    @Override
+    public void toggle(){
+        dataObject.toggle();
+    }
+    
 }

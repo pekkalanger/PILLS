@@ -21,9 +21,11 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class SwitchObject extends GateObject{
+    
     OutputPinObject outputPinObject;
     boolean toggled=false;
-    Switch switch0;
+    //Switch gate;
+    
      public SwitchObject() {
                 
         /*      movable group   */
@@ -33,18 +35,18 @@ public class SwitchObject extends GateObject{
         Image exitIcon = Textures.buttonCursor;
         ImageCursor imageCursor = new ImageCursor(exitIcon, -exitIcon.getWidth(), -exitIcon.getHeight());
         group.setCursor(imageCursor);
-        switch0 = new Switch(false);
-        switch0.setOutputPin(0, new OutputPin());
+        gate = new Switch(false);
+        gate.setOutputPin(0, new OutputPin());
         
         final Line lineA = new Line();
         
-        // this should be added to a switch0 list which will be updated all the fucknig time
-        // switch0 also assigned the pins
+        // this should be added to a gate list which will be updated all the fucknig time
+        // gate also assigned the pins
 
-        outputPinObject = new OutputPinObject(lineA, group, 32, 12, switch0.getOutputPin(0), name + " PinA");
+        outputPinObject = new OutputPinObject(lineA, group, 32, 12, gate.getOutputPin(0), name + " PinA");
         
         rectangle = new Rectangle(32, 32);
-        rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate switch0 boolean logic linked to pins)*/
+        rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate gate boolean logic linked to pins)*/
         rectangle.setTranslateX(0);
         rectangle.setTranslateY(0);
         
@@ -101,20 +103,22 @@ public class SwitchObject extends GateObject{
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     toggled = true;
-                    switch0.toggle();
+                    gate.toggle();
                     //update(true);
                     me.consume();
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    Globals.main.showOnConsole("Removed specified orangeCircle");
-                    //Globals.main.circleList.remove(gg); // remove the switch0 from the list switch0 all the lines attached to it
+                    Globals.main.showOnConsole("Removed specified Switch");
+                    //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
-                    
-                    //for (int i = 0; i < 3; i++) {
-                        if(Globals.main.circleGroup.getChildren().contains(lineA)) {
-                            Globals.main.circleGroup.getChildren().remove(lineA);
-                        }
-                    //}
-                    
+
+                    if(Globals.main.circleGroup.getChildren().contains(lineA)) {
+                        Globals.main.circleGroup.getChildren().remove(lineA);
+                    }
+                    gate=null ;
+                    //Globals.main.gateObjects.remove(this);
+                    System.out.println("Switch gate should be null now");
+                        
+                        
                     me.consume();
                 }
                   
@@ -128,16 +132,18 @@ public class SwitchObject extends GateObject{
     @Override
     public void update(long deltaTime) {
         //here we will take the data from line and render leds new status (via println())
-        if(switch0 != null)switch0.update(deltaTime);
-        System.out.println(" switch state= " + switch0.getDataObject().getData());
-        if(toggled){
-            if(switch0.getDataObject().getData()){
-                
-             rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate led boolean logic linked to pins)*/   
-            } else {
-                rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));
+        if(gate != null){
+            gate.update(deltaTime);
+            //System.out.println(" switch state= " + gate.getDataObject().getData());
+            if(toggled){
+                if(gate.getDataObject().getData()){
+
+                 rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate led boolean logic linked to pins)*/   
+                } else {
+                    rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));
+                }
+                toggled=false;
             }
-            toggled=false;
         }
     }
     

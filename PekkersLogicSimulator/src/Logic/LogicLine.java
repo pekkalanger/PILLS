@@ -35,13 +35,13 @@ public class LogicLine implements Gate{
     public boolean update(long deltaTime) {
         if(pinA != null && pinB != null){
             if(pinA instanceof InputPin){
-                System.out.println(pinA.type + " kuk " + pinB.type); 
+                //System.out.println(pinA.type + " kuk " + pinB.type); 
                 pinA.setDataObject(pinB.getDataObject());
             }/* else if(pinB instanceof InputPin){
                 pinA.setDataObject(pinB.getDataObject());
             }*/
-            System.out.println("Line data A: " + pinA.getDataObject().getData());
-            System.out.println("Line data B" + pinB.getDataObject().getData());
+           // System.out.println("Line data A: " + pinA.getDataObject().getData());
+           // System.out.println("Line data B" + pinB.getDataObject().getData());
             return false;
         } else {
             
@@ -77,6 +77,21 @@ public class LogicLine implements Gate{
     @Override
     public OutputPin getOutputPin(int pos) {
         return pinB;
+    }
+
+    @Override
+    public void setDataObject(DataObject dataObject) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public DataObject getDataObject() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void toggle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

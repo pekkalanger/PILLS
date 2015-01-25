@@ -21,7 +21,7 @@ import javafx.scene.shape.Rectangle;
 public class LedObject extends GateObject{
     
     boolean last = false;
-    Led led;
+    //Led gate;
     InputPinObject inputPinObject;
     
      public LedObject() {
@@ -30,18 +30,18 @@ public class LedObject extends GateObject{
         group = new Group();
         name = "Led";
         
-        led = new Led();
-        led.setInputPin(0, new InputPin());
+        gate = new Led();
+        gate.setInputPin(0, new InputPin());
         
         final Line lineA = new Line();
         
-        // this should be added to InputPin led list which will be updated all the fucknig time
-        // led also assigned the pins
+        // this should be added to InputPin gate list which will be updated all the fucknig time
+        // gate also assigned the pins
 
-        inputPinObject = new InputPinObject(lineA, group, 0, 12, led.getInputPin(0), name + " PinA");
+        inputPinObject = new InputPinObject(lineA, group, 0, 12, gate.getInputPin(0), name + " PinA");
         
         rectangle = new Rectangle(32, 32);
-        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate led boolean logic linked to pins)*/
+        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/
         rectangle.setTranslateX(8);
         rectangle.setTranslateY(0);
         
@@ -99,22 +99,24 @@ public class LedObject extends GateObject{
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     
                     //last = true;
-                    led.getDataObject().setData(!led.getDataObject().getData());
+                    //gate.getDataObject().setData(!gate.getDataObject().getData());
                     //update(delt);
                     
                     //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    Globals.main.showOnConsole("Removed specified orangeCircle");
-                    //Globals.main.circleList.remove(gg); // remove the led from the list led all the lines attached to it
+                    Globals.main.showOnConsole("Removed specified Led");
+                    //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
-                    
-                    //for (int i = 0; i < 3; i++) {
-                        if(Globals.main.circleGroup.getChildren().contains(lineA)) {
-                            Globals.main.circleGroup.getChildren().remove(lineA);
-                        }
-                    //}
-                    
+
+                    if(Globals.main.circleGroup.getChildren().contains(lineA)) {
+                        Globals.main.circleGroup.getChildren().remove(lineA);
+                    }
+                    gate=null ;
+                    //Globals.main.gateObjects.remove(this);
+                    System.out.println("Led gate should be null now");
+                        
+                        
                     me.consume();
                 }
                   
@@ -128,18 +130,18 @@ public class LedObject extends GateObject{
     @Override
     public void update(long deltaTime) {
         //here we will take the data from line and render leds new status (via println())
-        if(led != null)led.update(deltaTime);
-        
-        
-        if(last != led.getDataObject().getData()){
-            if(led.getDataObject().getData() == true){
-             rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate led boolean logic linked to pins)*/   
-            } else {
-                rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
+        if(gate != null){ 
+            gate.update(deltaTime);
+            if(last != gate.getDataObject().getData()){
+                if(gate.getDataObject().getData() == true){
+                 rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/   
+                } else {
+                    rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
+                }
+                last=false;
             }
-            last=false;
+            last = gate.getDataObject().getData();
         }
-        last = led.getDataObject().getData();
     }
     
     
