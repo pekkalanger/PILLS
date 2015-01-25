@@ -120,7 +120,7 @@ public class ClassySideBarBuilder {
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new skaver");
                 ClassyRectangleBuilder classyGateBuilderAlpha = new ClassyRectangleBuilder(main);
-                final Rectangle rectangle = classyGateBuilderAlpha.createRectangle(Textures.texture0);
+                final Rectangle rectangle = classyGateBuilderAlpha.createRectangle(Textures.texture);
                 rectangle.setTranslateX(400);
                 rectangle.setTranslateY(300);
                 rectangle.toFront();
