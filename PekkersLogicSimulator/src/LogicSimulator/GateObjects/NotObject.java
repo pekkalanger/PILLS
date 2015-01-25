@@ -33,9 +33,6 @@ public class NotObject extends GateObject{
         inputPinObjectA = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
         outputPinObjectQ = new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ");
         
-        final Line lineA = inputPinObjectA.connectionLineObject.line;
-        final Line lineQ = outputPinObjectQ.connectionLineObject.line;
-        
         // this should be added to InputPin gate list which will be updated all the fucknig time
         // gate also assigned the pins
 
@@ -45,7 +42,7 @@ public class NotObject extends GateObject{
         
         group.getChildren().addAll(inputPinObjectA.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
        
-        initGroup(lineA, null, lineQ);
+        initGroup(inputPinObjectA, null, outputPinObjectQ);
     }
 
     

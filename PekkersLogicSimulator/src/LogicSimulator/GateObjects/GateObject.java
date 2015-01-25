@@ -51,7 +51,8 @@ public class GateObject {
         return rectangle;
     }
     
-    public void initGroup(final Line lineA, final Line lineB, final Line lineQ){
+    public void initGroup(final InputPinObject inputPinObjectA, final InputPinObject inputPinObjectB, final OutputPinObject outputPinObjectQ){
+
            
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -90,20 +91,35 @@ public class GateObject {
                     //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
                     gate=null ;
+                    
                     //Globals.main.gateObjects.remove(gate);
                     System.out.println("gate should be null now");
                     Globals.main.showOnConsole("gate should be null now");
+                    
+                    
                     //for (int i = 0; i < 3; i++) {
-                    if(Globals.main.circleGroup.getChildren().contains(lineA)) {
-                       //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
-                        Globals.main.circleGroup.getChildren().remove(lineA);
-
+                    
+                    if(null != inputPinObjectA){
+                        if(Globals.main.circleGroup.getChildren().contains(inputPinObjectA.connectionLineObject.line)) {
+                           //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
+                            Globals.main.circleGroup.getChildren().remove(inputPinObjectA.connectionLineObject.line);
+                        }
+                        inputPinObjectA.connectionLineObject = null;
+                        inputPinObjectA.connectionLineObject2 = null;
                     }
-                    if(Globals.main.circleGroup.getChildren().contains(lineB)) {
-                        Globals.main.circleGroup.getChildren().remove(lineB);
+                    if(null != inputPinObjectB){
+                        if(Globals.main.circleGroup.getChildren().contains(inputPinObjectB.connectionLineObject.line)) {
+                            Globals.main.circleGroup.getChildren().remove(inputPinObjectB.connectionLineObject.line);
+                        }
+                        inputPinObjectB.connectionLineObject = null;
+                        inputPinObjectB.connectionLineObject2 = null;
                     }
-                    if(Globals.main.circleGroup.getChildren().contains(lineQ)) {
-                        Globals.main.circleGroup.getChildren().remove(lineQ);
+                    if(null != outputPinObjectQ){
+                        if(Globals.main.circleGroup.getChildren().contains(outputPinObjectQ.connectionLineObject.line)) {
+                            Globals.main.circleGroup.getChildren().remove(outputPinObjectQ.connectionLineObject.line);
+                        }
+                        outputPinObjectQ.connectionLineObject = null;
+                        outputPinObjectQ.connectionLineObject2 = null;
                     }
                     //}
                     

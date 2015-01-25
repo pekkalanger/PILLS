@@ -25,21 +25,15 @@ public class AndObject extends GateObject{
         inputPinObjectB = new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB");
         outputPinObjectQ = new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ");
         
-        final Line lineA = inputPinObjectA.connectionLineObject.line;
-        final Line lineB = inputPinObjectB.connectionLineObject.line;
-        final Line lineQ = outputPinObjectQ.connectionLineObject.line;
-        
         // this should be added to InputPin gate list which will be updated all the fucknig time
         // gate also assigned the pins
 
-
-        
         rectangle = initRectangle(Textures.andGate);
         
         group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
         y = group.getTranslateY();
-        initGroup(lineA, lineB, lineQ);
+        initGroup(inputPinObjectA, inputPinObjectB, outputPinObjectQ);
     }
 
     
