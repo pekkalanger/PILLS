@@ -214,9 +214,8 @@ public class Main extends Application {
                     for (Iterator<ConnectionLineObject> iterator = connectionLineObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         ConnectionLineObject next = iterator.next();
                         if(next != null && next.logicLine != null ){
-                            next.update(delta);   
-                        }
-                            if(next.logicLine != null && next.logicLine.getOutputPin(0) != null){
+                            next.update(delta);  
+                            if(next.logicLine != null && next.logicLine.getOutputPin(0) != null && next.logicLine.getOutputPin(0).getDataObject() != null){
                                 if(next.logicLine.getOutputPin(0).getDataObject().getData() == true){
                                     next.line.setStroke(Color.GREEN);
                                 }
@@ -224,7 +223,7 @@ public class Main extends Application {
                                     next.line.setStroke(Color.RED);
                                 }
                             }
-                        
+                        }
                     }
                     //showOnConsole("kuket");
                     // update actors

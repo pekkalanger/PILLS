@@ -33,16 +33,16 @@ public class Led implements Gate{
     @Override
     public boolean update(long deltaTime) {
         if( inputPins[0] != null ){
-              
-            if(last != getDataObject().getData()){
-                Globals.main.showOnConsole("LED = " + getDataObject().getData()); 
-            }
-            dataObject = inputPins[0].getDataObject();
-            if(getDataObject() == null){
+            if(getDataObject() != null){
+                if(last != getDataObject().getData()){
+                    Globals.main.showOnConsole("LED = " + getDataObject().getData()); 
+                }
+                dataObject = inputPins[0].getDataObject();
+                if(getDataObject() != null)
                 last = getDataObject().getData();
             }
             System.out.print("Led status: ");
-            System.out.println(dataObject.getData());
+            //System.out.println(dataObject.getData());
             return false;
             
         } else return true;

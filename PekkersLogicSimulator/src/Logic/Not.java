@@ -16,7 +16,7 @@ public class Not implements Gate {
     @Override
     public boolean update(long deltaTime) {
        if(inputPins[0] != null && outputPins[0] != null){
-            if(inputPins[0].getDataObject() != null){
+            if(inputPins[0].getDataObject() != null && outputPins[0].getDataObject() != null){
                 if(inputPins[0].getDataObject().getData() == true) {
                     if(outputPins[0].getDataObject() != null){
                     if(outputPins[0].getDataObject().getData() == true){
@@ -32,7 +32,7 @@ public class Not implements Gate {
 
                 }
                 //System.out.println("===============END================");
-                System.out.println("Not out: " + outputPins[0].getDataObject().getData());
+                //System.out.println("Not out: " + outputPins[0].getDataObject().getData());
                 
             }
             return false;

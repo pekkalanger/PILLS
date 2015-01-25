@@ -77,8 +77,20 @@ public class ConnectionLineObject {
                         Globals.main.connectionLineObjects.remove(this);
                     }
                     if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
-                        clo.logicLine.setDataObject(null);
-                        clo.logicLine=null;
+                        
+                        if(clo != null){
+                            if(clo.logicLine != null){
+                                if(clo.logicLine.getInputPin(0) != null){
+                                    clo.logicLine.getInputPin(0).setDataObject(null);
+                                    clo.logicLine.setInputPin(0, null);
+                                } else if(clo.logicLine.getOutputPin(0) != null){
+                                    clo.logicLine.getOutputPin(0).setDataObject(null);
+                                    clo.logicLine.setOutputPin(0, null);
+                                }
+                            }
+                            //clo.logicLine.setDataObject(null);
+                            clo.logicLine=null;
+                        }
                         Globals.main.connectionLineObjects.remove(clo);
                     }
                     me.consume();
@@ -126,6 +138,7 @@ public class ConnectionLineObject {
         line.setEndX(r.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
         line.setEndY(r.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
         //add InputPin mouse listeners
+        
         line.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.MIDDLE) {
@@ -152,10 +165,15 @@ public class ConnectionLineObject {
                     }
                     
                     if(clo != null){
-                    clo.logicLine.getInputPin(0).setDataObject(null);
-                        clo.logicLine.getOutputPin(0).setDataObject(null);
-                        clo.logicLine.setInputPin(0, null);
-                        clo.logicLine.setOutputPin(0, null);
+                        if(clo.logicLine != null){
+                            if(clo.logicLine.getInputPin(0) != null){
+                                clo.logicLine.getInputPin(0).setDataObject(null);
+                                clo.logicLine.setInputPin(0, null);
+                            } else if(clo.logicLine.getOutputPin(0) != null){
+                                clo.logicLine.getOutputPin(0).setDataObject(null);
+                                clo.logicLine.setOutputPin(0, null);
+                            }
+                        }
                         //clo.logicLine.setDataObject(null);
                         clo.logicLine=null;
                     }
