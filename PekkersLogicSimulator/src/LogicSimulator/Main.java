@@ -17,9 +17,11 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
@@ -100,6 +102,8 @@ public class Main extends Application {
         logicLines = new LinkedList<LogicLine>();
         lines = new LinkedList<Line>();
         
+        
+        
        // PinBuilder pinBuilder = new PinBuilder(this);
        // Text text0 = pinBuilder.createText(333, 111, "pwenusasd");
         //circleGroup.getChildren().add(text0);
@@ -169,8 +173,14 @@ public class Main extends Application {
         
         rootHBox.getChildren().add(rootVBox);
         rootGroup.getChildren().add(rootHBox);
-
-        primaryStage.setScene(new Scene(rootGroup, mainWidth,mainHeight));
+        
+        Scene scene = new Scene(rootGroup, mainWidth,mainHeight);
+        primaryStage.setScene(scene);
+        
+        Image defaultCursorImage = Textures.defaultCursorImage;
+        ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
+        scene.setCursor(imageCursor);
+        
     }
     
     public void showOnConsole(String text) {
