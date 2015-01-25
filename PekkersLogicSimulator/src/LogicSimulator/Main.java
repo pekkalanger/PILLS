@@ -39,10 +39,8 @@ import javafx.util.Duration;
 
 public class Main extends Application {
     
-    
     long previousTime = System.nanoTime();
     
-    LinkedList<Circle> circleList = null;
     int mainWidth = 1024;
     int mainHeight = 768;
     int schematicWidth = mainWidth-50;
@@ -53,18 +51,11 @@ public class Main extends Application {
     public List<Line> lines;
     public List<LogicLine> logicLines;
     public List<ConnectionLineObject> connectionLineObjects;
+    public LinkedList<Circle> circleList = null;
     
     //create a console for logging mouse events
     final ListView<String> console = new ListView<String>();
     
-    //create a observableArrayList of logged events that will be listed in console
-    final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();{
-        //set up the console
-        console.setItems(consoleObservableList);
-        //console.setLayoutY(55);
-        console.setPrefSize(consoleWidth, consoleHeight);
-    }
- 
     //create a rectangle - (XXXpx X XXXpx) in which our circles can move
     Rectangle rectangle;
     
@@ -81,6 +72,14 @@ public class Main extends Application {
     public HBox rootHBox;
     public Stage primaryStage;
     Timeline timeline;
+    
+        //create a observableArrayList of logged events that will be listed in console
+    final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();{
+        //set up the console
+        console.setItems(consoleObservableList);
+        //console.setLayoutY(55);
+        console.setPrefSize(consoleWidth, consoleHeight);
+    }
     
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -106,15 +105,7 @@ public class Main extends Application {
         circleList = new LinkedList<Circle>();
         logicLines = new LinkedList<LogicLine>();
         lines = new LinkedList<Line>();
-        
-        
-        
-       // PinBuilder pinBuilder = new PinBuilder(this);
-       // Text text0 = pinBuilder.createText(333, 111, "pwenusasd");
-        //circleGroup.getChildren().add(text0);
-       // Text text1 = pinBuilder.createText(133, 111, "pwenusasd");
-        //circleGroup.getChildren().add(text1);
-        
+
         
         ClassyMenuBarBuilder classyMenuBar = new ClassyMenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
@@ -134,7 +125,7 @@ public class Main extends Application {
         rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 //log mouse move to console, method listed below
-                showOnConsole("Mouse moved, x: " + me.getX() + ", y: " + me.getY() );
+                //showOnConsole("Mouse moved, x: " + me.getX() + ", y: " + me.getY() );
             }
         });
 
@@ -190,7 +181,7 @@ public class Main extends Application {
     
     public void showOnConsole(String text) {
          //if there is 8 items in list, delete first log message, shift other logs and  add a new one to end position
-         if (consoleObservableList.size()==11){
+         if (consoleObservableList.size()==8){
             consoleObservableList.remove(0);
          }
          consoleObservableList.add(text);
@@ -222,7 +213,7 @@ public class Main extends Application {
                     //updateSprites();
                     
                     previousTime = currentTime;
-                    
+                    System.out.println("===============END================");
                 }
         }); // oneFrame
 

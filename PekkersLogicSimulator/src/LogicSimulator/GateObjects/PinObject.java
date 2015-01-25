@@ -49,7 +49,7 @@ public class PinObject {
     public Line createLine(final Line line, final LogicLine logicLine) {
         //create InputPin circle with desired name,  color and radius
         Color color = Color.DODGERBLUE;
-        final String name = "Blue circle"; 
+        final String name = "A Line"; 
 
         //final Line line = new Line();
         
@@ -89,12 +89,12 @@ public class PinObject {
                 if(logicLine.getOutputPin(0).getDataObject().getData() == false){
                     line.setStroke(Color.RED);
                 }
-                Globals.main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse over " + name);
             }
         });
         line.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                Globals.main.showOnConsole("Mouse exited " + name);
+                //Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
         return line;
@@ -240,14 +240,14 @@ public class PinObject {
                 //change the z-coordinate of the circle
                 //circle.toFront();
                 rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
-                Globals.main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse over " + name);
                 me.consume();
             }
         });
         rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
-                Globals.main.showOnConsole("Mouse exited " + name);
+                //Globals.main.showOnConsole("Mouse exited " + name);
                 me.consume();
             }
         });

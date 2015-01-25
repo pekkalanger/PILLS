@@ -38,14 +38,14 @@ public class GateObject {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
                 //circle.toFront();
-                Globals.main.showOnConsole("Mouse entered " + name);
+                Globals.main.showOnConsole("Mouse over " + name);
                 me.consume();
             }
         });
         rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
-                Globals.main.showOnConsole("Mouse exited " + name);
+                //Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
         return rectangle;
