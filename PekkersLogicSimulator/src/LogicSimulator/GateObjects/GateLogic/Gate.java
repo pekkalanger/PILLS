@@ -18,8 +18,8 @@ package LogicSimulator.GateObjects.GateLogic;
 
 
 public interface Gate {
+    
     public boolean update(long deltaTime);
-    //public void render();
     @Override
     public String toString();
     public void setInputPin(int pos , InputPin ip);

@@ -21,10 +21,6 @@ import LogicSimulator.Textures;
 import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 
-/**
- *
- * @author PEKKA
- */
 public class InputPinObject extends PinObject {
     
     InputPin inputPin;
@@ -38,9 +34,8 @@ public class InputPinObject extends PinObject {
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
+        //rectangle = createPinRectangle(Textures.inputPin, g, rectangle, ip, name);
         rectangle = createInputPinRectangle(Textures.inputPin, g, rectangle, ip, name);
     } 
 
-    
-    
 }

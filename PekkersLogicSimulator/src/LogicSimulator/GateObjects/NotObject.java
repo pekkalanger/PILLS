@@ -22,10 +22,6 @@ import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
-/**
- *
- * @author PEKKA
- */
 public class NotObject extends GateObject{
     
     //And gate;
@@ -43,13 +39,11 @@ public class NotObject extends GateObject{
         inputPinObjectA = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
         outputPinObjectQ = new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ");
         
-        // this should be added to InputPin gate list which will be updated all the fucknig time
+        // this should be added to InputPin gate list which will be updated all the f***ing time
         // gate also assigned the pins
 
-        
         rectangle = initRectangle(Textures.notGate);
 
-        
         group.getChildren().addAll(inputPinObjectA.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
        
         initGroup(inputPinObjectA, null, outputPinObjectQ);

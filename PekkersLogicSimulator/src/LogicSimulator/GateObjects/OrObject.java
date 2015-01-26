@@ -22,10 +22,6 @@ import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
-/**
- *
- * @author PEKKA
- */
 public class OrObject extends GateObject{
     
     //And gate;
@@ -45,12 +41,11 @@ public class OrObject extends GateObject{
         inputPinObjectB = new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB");
         outputPinObjectQ = new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ");
         
-        // this should be added to InputPin gate list which will be updated all the fucknig time
+        // this should be added to InputPin gate list which will be updated all the f***ing time
         // gate also assigned the pins
 
         rectangle = initRectangle(Textures.orGate);
       
-        
         group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
        
         initGroup(inputPinObjectA, inputPinObjectB, outputPinObjectQ);
@@ -60,10 +55,8 @@ public class OrObject extends GateObject{
     @Override
     public void update(long deltaTime) {
         //here will the andGate gate drawing of lines be updated 
-        
         if (gate != null )gate.update(deltaTime);
         //lines will get updated coordinates based upon gates coords, render
-        
     }
     
 }

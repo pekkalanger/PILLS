@@ -16,10 +16,6 @@
  */
 package LogicSimulator.GateObjects;
 
-/**
- *
- * @author PEKKA
- */
 public class TheProbulatorObject {
     
 }

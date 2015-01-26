@@ -58,7 +58,7 @@ public class SideBarBuilder {
         sideBar.setSpacing(2f);
         
         /*      Create Button1                  */
-        final Button butt1 = new Button();//"add and gayt");
+        final Button butt1 = new Button();//"add and gate");
         butt1.setGraphic(new ImageView(Textures.andGate));
         butt1.setTooltip(new Tooltip("And Gate"));
         butt1.setOnAction(new EventHandler<ActionEvent>() {
@@ -71,7 +71,7 @@ public class SideBarBuilder {
             }
         });
         /*      Create Button2                  */
-        final Button butt2 = new Button();//"add or gayt");
+        final Button butt2 = new Button();//"add or gate");
         butt2.setGraphic(new ImageView(Textures.orGate));
         butt2.setTooltip(new Tooltip("Or Gate"));
         butt2.setOnAction(new EventHandler<ActionEvent>() {
@@ -84,7 +84,7 @@ public class SideBarBuilder {
             }
         });
         /*      Create Button3                  */        
-        final Button butt3 = new Button();//
+        final Button butt3 = new Button();//"add not gate");
         butt3.setGraphic(new ImageView(Textures.notGate));
         butt3.setTooltip(new Tooltip("Not Gate"));
         butt3.setOnAction(new EventHandler<ActionEvent>() {
@@ -126,7 +126,7 @@ public class SideBarBuilder {
         });
         
         /*      Create Button6                  */
-        final Button butt6 = new Button();//"skvaer");
+        final Button butt6 = new Button();//"square");
         butt6.setGraphic(new ImageView(Textures.pinOver));
         butt6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -148,7 +148,7 @@ public class SideBarBuilder {
         butt7.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                main.showOnConsole("Created new blueCircle");
+                main.showOnConsole("Created new Blue Circle");
                 SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
                 final Circle c = sexyCircleBuilder.createBlueCircle(false);
                 c.setTranslateX(300);
@@ -164,7 +164,7 @@ public class SideBarBuilder {
         butt8.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                main.showOnConsole("Created new orangeCircle");
+                main.showOnConsole("Created new Orange Circle");
                 SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
                 final Circle c = sexyCircleBuilder.createOrangeCircle(false);
                 c.setTranslateX(300);

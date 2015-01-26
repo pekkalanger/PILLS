@@ -43,9 +43,7 @@ public class Or implements Gate {
                     Globals.main.showOnConsole("Or = " + !outputPins[0].getDataObject().getData());
                 }
                 outputPins[0].getDataObject().setData(false);
-
             }
-            //System.out.println("===============END================");
             System.out.println("Or out: " + outputPins[0].getDataObject().getData());
             return false;
         } else return true;

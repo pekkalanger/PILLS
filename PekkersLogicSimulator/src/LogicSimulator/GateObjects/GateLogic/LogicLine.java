@@ -31,20 +31,12 @@ public class LogicLine implements Gate{
     @Override
     public boolean update(long deltaTime) {
         if(pinA != null && pinB != null){
-                //System.out.println(pinA.type + " kuk " + pinB.type); 
-                pinA.setDataObject(pinB.getDataObject());
-            /* else if(pinB instanceof InputPin){
-                pinA.setDataObject(pinB.getDataObject());
-            }*/
-           // System.out.println("Line data A: " + pinA.getDataObject().getData());
-           // System.out.println("Line data B" + pinB.getDataObject().getData());
+            pinA.setDataObject(pinB.getDataObject());
             return false;
         } else {
-            
-            if(pinA != null)System.out.println("Line bit: A" );
-            if(pinB != null)System.out.println("Line bit: B" );
+            if(pinA == null)System.out.println("Line pinA = null" );
+            if(pinB == null)System.out.println("Line pinB = null" );
             return true;
-        
         }
     }
     

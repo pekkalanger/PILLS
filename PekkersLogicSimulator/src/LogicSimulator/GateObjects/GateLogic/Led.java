@@ -28,10 +28,12 @@ public class Led implements Gate{
         dataObject = new DataObject(false);
         inputPins[0] = new InputPin();
     }
-
+    
+    @Deprecated
     public void setLine(LogicLine l){
-       // this.inputPin = l.getOutputPin();
+        //this.inputPins[0] = l.getOutputPin(0);
     }
+    @Deprecated
     public void removeLine(){
         this.inputPins[0] = null;
     }
@@ -56,9 +58,9 @@ public class Led implements Gate{
                 dataObject = inputPins[0].getDataObject();
                 if(getDataObject() != null)
                 last = getDataObject().getData();
+                System.out.print("Led status: ");
+                System.out.println(dataObject.getData());
             }
-            System.out.print("Led status: ");
-            //System.out.println(dataObject.getData());
             return false;
             
         } else return true;

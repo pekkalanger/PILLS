@@ -31,7 +31,6 @@ import javafx.scene.shape.Rectangle;
 public class LedObject extends GateObject{
     
     boolean last = false;
-    //Led gate;
     InputPinObject inputPinObjectA;
     
      public LedObject() {
@@ -46,7 +45,7 @@ public class LedObject extends GateObject{
         inputPinObjectA = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
         //final Line lineA = inputPinObjectA.connectionLineObject.line;
         
-        // this should be added to InputPin gate list which will be updated all the fucknig time
+        // this should be added to InputPin gate list which will be updated all the f***ing time
         // gate also assigned the pins
 
         //inputPinObject = new InputPinObject(lineA, group, 0, 12, gate.getInputPin(0), name + " PinA");
@@ -138,12 +137,10 @@ public class LedObject extends GateObject{
     public void update(long deltaTime) {
         //here we will take the data from line and render leds new status (via println())
         if(gate != null){ 
-            //System.out.println("wefwef");
             gate.update(deltaTime);
             if(gate.getDataObject() != null){
                 if(last != gate.getDataObject().getData()){
                     if(gate.getDataObject().getData() == true){
-
                      rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/   
                     } else {
                         rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
@@ -153,7 +150,7 @@ public class LedObject extends GateObject{
                 last = gate.getDataObject().getData();
             } 
         }
+        
     }
-    
-    
+   
 }

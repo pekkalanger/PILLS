@@ -16,16 +16,8 @@
  */
 package LogicSimulator.GateObjects.GateLogic;
 
-/**
- *
- * @author PEKKA
- */
-
-//public interface Pin {
-//}
-
 public abstract class Pin { 
-        //public String type="undefined";
+    
         private DataObject dataObject;
 
         public Pin(){

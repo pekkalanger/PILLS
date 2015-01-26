@@ -116,7 +116,7 @@ public class GateObject {
                     me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    Globals.main.showOnConsole("Removed specified orangeCircle");
+                    Globals.main.showOnConsole("Removed specified Gate");
                     //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
                     gate=null ;

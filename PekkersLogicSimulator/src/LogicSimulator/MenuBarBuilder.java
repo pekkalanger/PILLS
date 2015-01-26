@@ -168,10 +168,10 @@ public class MenuBarBuilder {
         fileMenu.getItems().addAll(fileNew, fileOpen, fileSave, fileSaveAs, new SeparatorMenuItem(), fileExit);
 
         // Prepare 'Extras' drop-down menu
-        final javafx.scene.control.Menu examplesMenu = new javafx.scene.control.Menu("Extras");
-        examplesMenu.getItems().add(new MenuItem("001"));
-        examplesMenu.getItems().add(new MenuItem("002"));
-        examplesMenu.getItems().add(new MenuItem("003"));
+        final javafx.scene.control.Menu extrasMenu = new javafx.scene.control.Menu("Extras");
+        extrasMenu.getItems().add(new MenuItem("001"));
+        extrasMenu.getItems().add(new MenuItem("002"));
+        extrasMenu.getItems().add(new MenuItem("003"));
         
         // Prepare 'Help' drop-down menu
         final javafx.scene.control.Menu helpMenu = new javafx.scene.control.Menu("Help");
@@ -189,7 +189,7 @@ public class MenuBarBuilder {
                 
                 final Stage dialogStage = new Stage();
                 dialogStage.initModality(Modality.WINDOW_MODAL);
-                dialogStage.initStyle(StageStyle.UTILITY);//UNDECORATED);//
+                dialogStage.initStyle(StageStyle.UTILITY);
                 dialogStage.setResizable(false);
                 dialogStage.setTitle("About");
                 Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo \nleft for move and add lines\nmiddle for removal\nright for toggling switches");
@@ -220,7 +220,7 @@ public class MenuBarBuilder {
                 
         helpMenu.getItems().addAll(searchMenuItem, onlineManualMenuItem, new SeparatorMenuItem(), aboutMenuItem);
         
-        menuBar.getMenus().addAll(fileMenu, examplesMenu, helpMenu);
+        menuBar.getMenus().addAll(fileMenu, extrasMenu, helpMenu);
         // bind width of menu bar to width of associated stage
         menuBar.prefWidthProperty().bind(main.primaryStage.widthProperty());
         return menuBar;

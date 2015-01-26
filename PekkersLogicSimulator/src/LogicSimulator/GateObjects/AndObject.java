@@ -40,7 +40,7 @@ public class AndObject extends GateObject{
         inputPinObjectB = new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB");
         outputPinObjectQ = new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ");
         
-        // this should be added to InputPin gate list which will be updated all the fucknig time
+        // this should be added to InputPin gate list which will be updated all the f***ing time
         // gate also assigned the pins
 
         rectangle = initRectangle(Textures.andGate);

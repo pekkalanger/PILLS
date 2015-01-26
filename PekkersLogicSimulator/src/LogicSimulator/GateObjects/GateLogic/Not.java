@@ -45,10 +45,7 @@ public class Not implements Gate {
                         Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
                     }
                     outputPins[0].getDataObject().setData(true);
-
                 }
-                //System.out.println("===============END================");
-                //System.out.println("Not out: " + outputPins[0].getDataObject().getData());
                 
             }
             return false;

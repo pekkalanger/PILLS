@@ -28,10 +28,12 @@ public class Switch implements Gate{
         this.dataObject = new DataObject(d);
         outputPin = new OutputPin();
     }
-
+    
+    @Deprecated
     public void setLine(LogicLine l){
        // this.outputPin=l.getInputPin();
     }
+    @Deprecated
     public void removeLine(){
         this.outputPin=null;
     }

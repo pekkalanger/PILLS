@@ -32,10 +32,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-/**
- *
- * @author PEKKA
- */
 public class PinObject {
     
     String name;
@@ -159,8 +155,6 @@ public class PinObject {
                             ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                             ClipBoard.printDragBoard();
                             System.out.println("sorry bro, you cant link an" + ClipBoard.getOutputPin().getClass());
-
-
                     }
                     
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
@@ -176,20 +170,15 @@ public class PinObject {
                 }
             }
         });
-        
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.PRIMARY) {
                // Globals.main.showOnConsole("you are dragging a line from " + name);
                 me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
-                     
                 }
-                
             }
         });
-        
-        
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
@@ -206,7 +195,6 @@ public class PinObject {
                 me.consume();
             }
         });
-        
         rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 // if (me.getButton() == MouseButton.SECONDARY) {
@@ -218,16 +206,15 @@ public class PinObject {
                 //Globals.main.initY = rectangle.getTranslateY();
                 //Globals.main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
                 //Globals.main.showOnConsole("Mouse pressed above " + name);
-                
                 me.consume();
-                 }
+                }
             }
         });
         
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 // rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
-                 rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
+                rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
                      me.consume();
                 //Globals.main.showOnConsole("Mouse released above " + name);
                 /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
@@ -313,26 +300,20 @@ public class PinObject {
                     //remove line from this to target
                     
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    
                     Globals.main.showOnConsole("Nothing happened");
                     me.consume();
                 }
             }
         });
-        
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.PRIMARY) {
                // Globals.main.showOnConsole("you are dragging a line from " + name);
                 me.consume();
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                     
+                } else if (me.getButton() == MouseButton.SECONDARY) { 
                 }
-                
             }
         });
-        
-        
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
@@ -349,7 +330,6 @@ public class PinObject {
                 me.consume();
             }
         });
-        
         rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 // if (me.getButton() == MouseButton.SECONDARY) {
@@ -363,10 +343,9 @@ public class PinObject {
                 //Globals.main.showOnConsole("Mouse pressed above " + name);
                 
                 me.consume();
-                 }
+                }
             }
         });
-        
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 // rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
@@ -448,37 +427,27 @@ public class PinObject {
                             ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                             ClipBoard.printDragBoard();
                             System.out.println("sorry bro, you cant link an" + ClipBoard.getOutputPin().getClass());
-
-
                     }
-                    
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     //the event will be passed only to the circle which is on front
                     //} else if (me.getButton() == MouseButton.PRIMARY) {
                     //System.out.println(" " + pin.type + "  " + pin.getDataObject().getData());
                     //remove line from this to target
-                    
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    
                     Globals.main.showOnConsole("Nothing happened");
                     me.consume();
                 }
             }
         });
-        
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.PRIMARY) {
                // Globals.main.showOnConsole("you are dragging a line from " + name);
                 me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
-                     
                 }
-                
             }
         });
-        
-        
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 //change the z-coordinate of the circle
@@ -495,7 +464,6 @@ public class PinObject {
                 me.consume();
             }
         });
-        
         rectangle.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 // if (me.getButton() == MouseButton.SECONDARY) {
@@ -509,10 +477,9 @@ public class PinObject {
                 //Globals.main.showOnConsole("Mouse pressed above " + name);
                 
                 me.consume();
-                 }
+                }
             }
         });
-        
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 // rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
@@ -528,6 +495,5 @@ public class PinObject {
         });
         return rectangle;
     }
-
 
 }

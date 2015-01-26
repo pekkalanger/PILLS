@@ -82,7 +82,7 @@ public class Main extends Application {
     public Point2D dragAnchor;
     public MenuBar menuBar;
     public Group schematicGroup;
-    public Group circleGroup;  // "the scetch"
+    public Group circleGroup;  // "the schematic"  will use schematicGroup later on
     public VBox rootGroup;
     public VBox rootVBox;
     public VBox sideBar;
@@ -90,7 +90,7 @@ public class Main extends Application {
     public Stage primaryStage;
     Timeline timeline;
     
-        //create a observableArrayList of logged events that will be listed in console
+    //create a observableArrayList of logged events that will be listed in console
     final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();{
         //set up the console
         console.setItems(consoleObservableList);
@@ -103,9 +103,11 @@ public class Main extends Application {
         
         gateObjects = new ArrayList();
         lines = new ArrayList();
-        connectionLineObjects = new ArrayList<ConnectionLineObject>();
-        
-        
+        connectionLineObjects = new ArrayList<>();
+        circleList = new LinkedList<>();
+        logicLines = new LinkedList<>();
+        lines = new LinkedList<>();
+
         primaryStage.setTitle("P.I.L.L.S pekkers incredibly logical logic simulator"); 
         primaryStage.setResizable(false); // this aint working so far
         
@@ -118,11 +120,6 @@ public class Main extends Application {
         //menuBar = new MenuBar();      // a most excelent menubar
         schematicGroup = new Group();   // where gateGroup and lineGroup? r comin  
         circleGroup = new Group();      // gateGroup (atm circleGroup)
-        
-        circleList = new LinkedList<Circle>();
-        logicLines = new LinkedList<LogicLine>();
-        lines = new LinkedList<Line>();
-
         
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();

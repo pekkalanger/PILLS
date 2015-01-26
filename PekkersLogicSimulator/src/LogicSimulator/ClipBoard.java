@@ -48,7 +48,8 @@ public class ClipBoard {
     public static void setGateObject(GateObject go){
         gateObject = go;
     }
-        public static GateObject getGateObject(){
+    
+    public static GateObject getGateObject(){
         return gateObject;
     }
         
@@ -83,7 +84,7 @@ public class ClipBoard {
     public static void setInputPin(InputPin ip){
         inputPin = ip;
     }
-        public static OutputPin getOutputPin(){
+    public static OutputPin getOutputPin(){
         return outputPin;
     }
     public static void setOutputPin(OutputPin op ){

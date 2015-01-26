@@ -64,7 +64,7 @@ public class ConnectionLineObject {
         line.setStartY(ClipBoard.getY() + height/2 + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
         line.setEndX(r.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
         line.setEndY(r.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
-        //add InputPin mouse listeners
+        //add mouse listeners
         Globals.main.showOnConsole("created outline");
         line.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
