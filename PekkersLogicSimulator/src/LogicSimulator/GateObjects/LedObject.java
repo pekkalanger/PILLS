@@ -20,10 +20,10 @@ import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.Led;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javafx.event.EventHandler;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
@@ -31,10 +31,9 @@ import javafx.scene.shape.Rectangle;
 public class LedObject extends GateObject{
     
     boolean last = false;
-    InputPinObject inputPinObjectA;
     
      public LedObject() {
-                
+        super();        
         /*      movable group   */
         group = new Group();
         name = "Led";
@@ -42,24 +41,15 @@ public class LedObject extends GateObject{
         gate = new Led();
         gate.setInputPin(0, new InputPin());
         
-        inputPinObjectA = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
-        //final Line lineA = inputPinObjectA.connectionLineObject.line;
-        
-        // this should be added to InputPin gate list which will be updated all the f***ing time
-        // gate also assigned the pins
-
-        //inputPinObject = new InputPinObject(lineA, group, 0, 12, gate.getInputPin(0), name + " PinA");
+        ipos.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
         
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/
         rectangle.setTranslateX(8);
         rectangle.setTranslateY(0);
-        
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
-                //change the z-coordinate of the circle
-                //circle.toFront();
                 Globals.main.showOnConsole("Mouse entered " + name);
                 me.consume();
             }
@@ -71,65 +61,21 @@ public class LedObject extends GateObject{
             }
         });
         
-        group.getChildren().addAll(inputPinObjectA.getRectangle(), rectangle);
-        
-        group.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                 //when mouse is pressed, store initial position
-                initX = group.getTranslateX();
-                initY = group.getTranslateY();
-                dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-                //showOnConsole("Mouse pressed above " + name);
+        group.getChildren().add(rectangle);
+        if(ipos != null){
+            Iterator<InputPinObject> iterator = ipos.iterator();
+            while (iterator.hasNext()) {
+                group.getChildren().add(iterator.next().getRectangle());
             }
-        });
-        group.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                 if (me.getButton() == MouseButton.PRIMARY) {
-                    double dragX = me.getSceneX() - dragAnchor.getX();
-                    double dragY = me.getSceneY() - dragAnchor.getY();
-                    double newXPosition = initX + dragX;
-                    double newYPosition = initY + dragY;
-                    group.setTranslateX(newXPosition);
-                    group.setTranslateY(newYPosition);
-                    me.consume();
-                }
+        }
+        if(opos != null){
+            Iterator<OutputPinObject> iterator = opos.iterator();
+            while (iterator.hasNext()) {
+                
+                group.getChildren().add(iterator.next().getRectangle());
             }
-        });
-        group.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                group.toFront();
-                if (me.getButton() == MouseButton.PRIMARY) {
-                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    me.consume();
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    me.consume();
-                } else if (me.getButton() == MouseButton.MIDDLE) {
-                    Globals.main.showOnConsole("Removed specified Led");
-                    //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
-                    Globals.main.circleGroup.getChildren().remove(group);
-                    
-                    gate=null ;
-                    //Globals.main.gateObjects.remove(this);
-                    System.out.println("Led gate should be null now");
-                    if(null != inputPinObjectA){
-                        if(Globals.main.circleGroup.getChildren().contains(inputPinObjectA.connectionLineObject.line)) {
-                            Globals.main.circleGroup.getChildren().remove(inputPinObjectA.connectionLineObject.line);
-                        }
-                        inputPinObjectA.connectionLineObject.logicLine = null;
-                        inputPinObjectA.connectionLineObject = null;
-                        inputPinObjectA.connectionLineObject2 = null;
-                    }
-                    
-                    me.consume();
-                }
-                  
-            }
-        });
-        group.setOpacity(0.8f);
-        Globals.main.circleGroup.getChildren().add(group);
+        }
+        initGroup(ipos, opos);
     }
 
     

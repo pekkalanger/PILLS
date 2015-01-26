@@ -20,6 +20,7 @@ import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.Nand;
 import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.Textures;
+import java.util.Iterator;
 import javafx.scene.Group;
 
 /**
@@ -28,11 +29,8 @@ import javafx.scene.Group;
  */
 public class NandObject extends GateObject{
     
-    InputPinObject inputPinObjectA; // maybe use as array gate move all code to GateObject gate extend it
-    InputPinObject inputPinObjectB;
-    OutputPinObject outputPinObjectQ;
-    
     public NandObject() {
+        super();
         group = new Group();
         name = "Nand Gate";
         gate = new Nand();
@@ -40,19 +38,29 @@ public class NandObject extends GateObject{
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
         
-        inputPinObjectA = new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA");
-        inputPinObjectB = new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB");
-        outputPinObjectQ = new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ");
+        ipos.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
+        ipos.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
+        opos.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
         
-        // this should be added to InputPin gate list which will be updated all the f***ing time
-        // gate also assigned the pins
-
         rectangle = initRectangle(Textures.nandGate);
-        
-        group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+        group.getChildren().add(rectangle);
+        if(ipos != null){
+            Iterator<InputPinObject> iterator = ipos.iterator();
+            while (iterator.hasNext()) {
+                group.getChildren().add(iterator.next().getRectangle());
+            }
+        }
+        if(opos != null){
+            Iterator<OutputPinObject> iterator = opos.iterator();
+            while (iterator.hasNext()) {
+                group.getChildren().add(iterator.next().getRectangle());
+            }
+        }
+                            
+        //group.getChildren().addAll(ipos.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
         y = group.getTranslateY();
-        initGroup(inputPinObjectA, inputPinObjectB, outputPinObjectQ);
+        initGroup(ipos, opos);
     }
 
     
