@@ -82,13 +82,15 @@ public class SwitchObject extends GateObject{
             @Override
             public void handle(MouseEvent me) {
                  if (me.getButton() == MouseButton.PRIMARY) {
-                    double dragX = me.getSceneX() - dragAnchor.getX();
-                    double dragY = me.getSceneY() - dragAnchor.getY();
-                    double newXPosition = initX + dragX;
-                    double newYPosition = initY + dragY;
-                    group.setTranslateX(newXPosition);
-                    group.setTranslateY(newYPosition);
-                    me.consume();
+                     if( dragAnchor != null){
+                        double dragX = me.getSceneX() - dragAnchor.getX();
+                        double dragY = me.getSceneY() - dragAnchor.getY();
+                        double newXPosition = initX + dragX;
+                        double newYPosition = initY + dragY;
+                        group.setTranslateX(newXPosition);
+                        group.setTranslateY(newYPosition);
+                        me.consume();
+                     }
                 }
             }
         });

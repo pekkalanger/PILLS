@@ -39,22 +39,26 @@ public class ConnectionLineObject {
     Gate gate;
     Color colorOff;
     Color colorOn; 
-
+boolean last = false;
     public ConnectionLineObject() {
         name = "A Line"; 
         line = new Line();
         logicLine = new LogicLine();
         colorOff = Color.RED;
-        colorOn = Color.LIMEGREEN; 
+        colorOn = Color.LIGHTGREEN; 
+        
     }
     
     public void update(Long deltaTime){
          logicLine.update(deltaTime);
-         if(logicLine.getInputPin(0).getDataObject().getData() == true){
-             line.setStroke(colorOn);
-         } else {
-             line.setStroke(colorOff);
+         if(logicLine.getInputPin(0).getDataObject().getData() != last ){
+            if(logicLine.getInputPin(0).getDataObject().getData() == true){
+                line.setStroke(colorOn);
+            } else {
+                line.setStroke(colorOff);
+            }
          }
+         last = logicLine.getInputPin(0).getDataObject().getData();
     }
     
     public Line createLine(final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
