@@ -22,6 +22,7 @@ import LogicSimulator.GateObjects.NandObject;
 import LogicSimulator.GateObjects.NotObject;
 import LogicSimulator.GateObjects.OrObject;
 import LogicSimulator.GateObjects.SwitchObject;
+import LogicSimulator.GateObjects.XorObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
@@ -109,7 +110,20 @@ public class SideBarBuilder {
                 main.gateObjects.add(nandObject);
                 event.consume();
             }
-        });      
+        });     
+        /*      Create Button5                  */
+        final Button butt5 = new Button();//"add or gate");
+        butt5.setGraphic(new ImageView(Textures.xorGate));
+        butt5.setTooltip(new Tooltip("Xor Gate"));
+        butt5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                main.showOnConsole("Created new Xor gate");
+                XorObject xorObject = new XorObject();
+                main.gateObjects.add(xorObject);
+                event.consume();
+            }
+        });
         /*      Create Button20                  */
         final Button butt20 = new Button();//"add Switch");
         butt20.setGraphic(new ImageView(Textures.switchOn));
@@ -207,7 +221,7 @@ public class SideBarBuilder {
                 if(ke.getCode()== KeyCode.DIGIT1){
                     butt1.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT2){
-                    butt2.fire();
+                    butt5.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT3){
                     butt3.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT4){
@@ -234,7 +248,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
         
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
         
         return sideBar;
     }

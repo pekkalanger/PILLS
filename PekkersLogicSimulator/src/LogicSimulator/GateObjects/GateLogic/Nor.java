@@ -35,16 +35,16 @@ public class Nor implements Gate {
        if(inputPins[0] != null && inputPins[1] != null && outputPins[0] != null){
             if(inputPins[0].getDataObject().getData() == false && inputPins[1].getDataObject().getData() == false) {
                 if(outputPins[0].getDataObject().getData() == false){
-                    Globals.main.showOnConsole("Or = " + !outputPins[0].getDataObject().getData());
+                    Globals.main.showOnConsole("Nor = " + !outputPins[0].getDataObject().getData());
                 }
                 outputPins[0].getDataObject().setData(true);
             } else {
                 if(outputPins[0].getDataObject().getData() == true){
-                    Globals.main.showOnConsole("Or = " + !outputPins[0].getDataObject().getData());
+                    Globals.main.showOnConsole("Nor = " + !outputPins[0].getDataObject().getData());
                 }
                 outputPins[0].getDataObject().setData(false);
             }
-            System.out.println("Or out: " + outputPins[0].getDataObject().getData());
+            System.out.println("Nor out: " + outputPins[0].getDataObject().getData());
             return false;
         } else return true;
     }
