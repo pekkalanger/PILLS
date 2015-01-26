@@ -22,7 +22,7 @@ public class LedObject extends GateObject{
     
     boolean last = false;
     //Led gate;
-    InputPinObject inputPinObject;
+    InputPinObject inputPinObjectA;
     
      public LedObject() {
                 
@@ -33,8 +33,8 @@ public class LedObject extends GateObject{
         gate = new Led();
         gate.setInputPin(0, new InputPin());
         
-        inputPinObject = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
-        final Line lineA = inputPinObject.connectionLineObject.line;
+        inputPinObjectA = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
+        //final Line lineA = inputPinObjectA.connectionLineObject.line;
         
         // this should be added to InputPin gate list which will be updated all the fucknig time
         // gate also assigned the pins
@@ -62,7 +62,7 @@ public class LedObject extends GateObject{
             }
         });
         
-        group.getChildren().addAll(inputPinObject.getRectangle(), rectangle);
+        group.getChildren().addAll(inputPinObjectA.getRectangle(), rectangle);
         
         group.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
@@ -109,15 +109,20 @@ public class LedObject extends GateObject{
                     Globals.main.showOnConsole("Removed specified Led");
                     //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
-
-                    if(Globals.main.circleGroup.getChildren().contains(lineA)) {
-                        Globals.main.circleGroup.getChildren().remove(lineA);
-                    }
+                    
                     gate=null ;
                     //Globals.main.gateObjects.remove(this);
                     System.out.println("Led gate should be null now");
-                        
-                        
+                    if(null != inputPinObjectA){
+                        if(Globals.main.circleGroup.getChildren().contains(inputPinObjectA.connectionLineObject.line)) {
+                           //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
+                            Globals.main.circleGroup.getChildren().remove(inputPinObjectA.connectionLineObject.line);
+                        }
+                        inputPinObjectA.connectionLineObject.logicLine = null;
+                        inputPinObjectA.connectionLineObject = null;
+                        inputPinObjectA.connectionLineObject2 = null;
+                    }
+                    
                     me.consume();
                 }
                   
