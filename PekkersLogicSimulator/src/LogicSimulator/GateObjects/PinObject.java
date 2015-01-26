@@ -20,7 +20,6 @@ import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.LogicLine;
 import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.ClipBoard;
-import LogicSimulator.GateObjects.GateLogic.DataObject;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
 import javafx.event.EventHandler;
@@ -229,7 +228,7 @@ public class PinObject {
         return rectangle;
     }
     
-    
+    /*      this one seems to be working fine*/
     public Rectangle createPinRectangle(final Image i, final Group g, final Rectangle rectangle, final InputPin inputPin, final String name) {
         
         connectionLineObject = new ConnectionLineObject();
@@ -246,13 +245,14 @@ public class PinObject {
                         } 
                         ClipBoard.setLine(connectionLineObject.line);
                         ClipBoard.setConnectionLineObject(connectionLineObject);
+                        ClipBoard.setConnectionLineObject2(connectionLineObject2);
                         ClipBoard.setGroup(g);
                         ClipBoard.setName(name);
                         ClipBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
                         ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                         ClipBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
-                    } else if(ClipBoard.getOutputPin() != null){
+                    } else if(ClipBoard.getOutputPin() != null && ClipBoard.getConnectionLineObject2() == null){
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, inputPin);
                         logicLine.setOutputPin(0, ClipBoard.getOutputPin());
@@ -344,30 +344,32 @@ public class PinObject {
                         }
                         ClipBoard.setLine(connectionLineObject.line);
                         ClipBoard.setConnectionLineObject(connectionLineObject);
+                        ClipBoard.setConnectionLineObject2(connectionLineObject2);
                         ClipBoard.setGroup(g);
                         ClipBoard.setName(name);
                         ClipBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
                         ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                         ClipBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
-                    } else if(ClipBoard.getInputPin() != null){
+                    } else if(ClipBoard.getInputPin() != null && ClipBoard.getConnectionLineObject2() == null){
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, ClipBoard.getInputPin());
                         logicLine.setOutputPin(0, outputPin);
-                        
                         connectionLineObject.logicLine = logicLine;
                         connectionLineObject2 = ClipBoard.getConnectionLineObject();
                         Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
-                        if(connectionLineObject2 != null) connectionLineObject2.line = line;
-                        /*ConnectionLineObject connectionLineObject3 = ClipBoard.getConnectionLineObject();
-                        if(connectionLineObject3 != null){
-                            connectionLineObject3.line = null;
-                            if(connectionLineObject3.logicLine != null){
-                                connectionLineObject3.logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                                connectionLineObject3.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                                connectionLineObject3.logicLine.setInputPin(0, null);
-                                connectionLineObject3.logicLine.setOutputPin(0, null);
-                                connectionLineObject3.logicLine=null;
+                        if(connectionLineObject2 != null){
+                            connectionLineObject2.line = line;
+                        }
+                        /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
+                        if(connectionLineObject2 != null){
+                            connectionLineObject2.line = null;
+                            if(connectionLineObject2.logicLine != null){
+                                connectionLineObject2.logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                                connectionLineObject2.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
+                                connectionLineObject2.logicLine.setInputPin(0, null);
+                                connectionLineObject2.logicLine.setOutputPin(0, null);
+                                connectionLineObject2.logicLine=null;
                             }
                         }*/
                         if(line != null){
