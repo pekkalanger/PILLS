@@ -113,11 +113,11 @@ public class SwitchObject extends GateObject{
                     System.out.println("Switch gate should be null now");
                         
                     if(null != outputPinObjectQ){
-                        if(Globals.main.circleGroup.getChildren().contains(outputPinObjectQ.connectionLineObject.line)) {
-                            Globals.main.circleGroup.getChildren().remove(outputPinObjectQ.connectionLineObject.line);
+                        if(Globals.main.circleGroup.getChildren().contains(outputPinObjectQ.connectionLineObjects.get(0).line)) {
+                            Globals.main.circleGroup.getChildren().remove(outputPinObjectQ.connectionLineObjects.get(0).line);
                         }
-                        outputPinObjectQ.connectionLineObject.logicLine = null;
-                        outputPinObjectQ.connectionLineObject = null;
+                        outputPinObjectQ.connectionLineObjects.get(0).logicLine = null;
+                        outputPinObjectQ.connectionLineObjects = null;
                         outputPinObjectQ.connectionLineObject2 = null;
                     }
                     me.consume();

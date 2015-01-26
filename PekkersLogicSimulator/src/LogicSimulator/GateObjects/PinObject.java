@@ -46,12 +46,12 @@ public class PinObject {
     
     List<ConnectionLineObject> connectionLineObjects;
     
-    ConnectionLineObject connectionLineObject;
+    //ConnectionLineObject connectionLineObject;
     ConnectionLineObject connectionLineObject2;
 
     public PinObject() {
         connectionLineObjects = new ArrayList<>();
-        connectionLineObject = new ConnectionLineObject();
+        connectionLineObject2 = new ConnectionLineObject();
     }
 
     public void setRectangle(Rectangle r){
@@ -69,6 +69,9 @@ public class PinObject {
         connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
         */
+        ConnectionLineObject connectionLineObject = new ConnectionLineObject();
+        connectionLineObjects.add(connectionLineObject);
+        
         Image cursorImage = Textures.defaultCursorActive;
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
@@ -148,6 +151,7 @@ public class PinObject {
         });
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
+                me.consume();
             }
         });
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -182,8 +186,8 @@ public class PinObject {
     
     
     public Rectangle createPinRectangle(OutputPinObject opo, final Image i, final Group g, final Rectangle rectangle, final OutputPin outputPin, final String name) {
-        
-        connectionLineObject = new ConnectionLineObject();
+        ConnectionLineObject connectionLineObject = new ConnectionLineObject();
+        connectionLineObjects.add(connectionLineObject);
         Image cursorImage = Textures.defaultCursorActive;
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
@@ -272,6 +276,7 @@ public class PinObject {
         });
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
+                me.consume();
             }
         });
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {

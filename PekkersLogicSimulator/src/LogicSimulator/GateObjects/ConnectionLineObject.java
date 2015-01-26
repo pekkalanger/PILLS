@@ -82,22 +82,23 @@ boolean last = false;
                         //mouseEvents.circleList.remove(circle);
                         Globals.main.circleGroup.getChildren().remove(line);
                         //ip.setDataObject(null);
+                        
                         if(Globals.main.logicLines.contains(logicLine)){  // -> connectionlineobject
                             logicLine.getInputPin(0).setDataObject(new DataObject(false));
                             logicLine.getOutputPin(0).setDataObject(new DataObject(false));
                             logicLine.setInputPin(0, null);
                             logicLine.setOutputPin(0, null);
-                            // logicLine.setDataObject(null);
-                            logicLine=null;
-
+                            //logicLine.setDataObject(new DataObject(false));
+                            
                             Globals.main.showOnConsole("nully");
                             Globals.main.logicLines.remove(logicLine);
+                            logicLine=null;
                         }
-                        if(Globals.main.connectionLineObjects.contains(this)){  // -> connectionlineobject
+                        if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
                             //logicLine.setDataObject(null);
                             //logicLine=null;
                             Globals.main.showOnConsole("nully this");
-                            Globals.main.connectionLineObjects.remove(this);
+                            Globals.main.connectionLineObjects.remove(clo);
                         }
 
                         if(clo != null){
@@ -113,16 +114,10 @@ boolean last = false;
                             //clo.logicLine.setDataObject(null);
                             clo.logicLine=null;
                         }
-                        if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
-                            Globals.main.showOnConsole("nully that");
-                            Globals.main.connectionLineObjects.remove(clo);
-                            Globals.main.logicLines.remove(clo.logicLine);
-                        }
                         me.consume();
                     }
                 }
             });
-
             line.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent me) {
                     //change the z-coordinate of the circle

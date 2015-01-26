@@ -130,10 +130,18 @@ public class Main extends Application {
         rootHBox.getChildren().add(sideBar);
         
         rectangle = new Rectangle(schematicWidth, schematicHeigth);
-        rectangle.setStroke(Color.BLACK);
+        rectangle.setStroke(Color.WHITE);
         rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
+                new Stop(1, Color.rgb(205,235,255)), new Stop(0, Color.rgb(205,235,255, 0.5))
+            }));
+        /*rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
                 new Stop(1, Color.rgb(156,216,255)), new Stop(0, Color.rgb(156,216,255, 0.5))
             }));
+        */
+        /*
+         * should draw a grid on screen 
+        */
+        
         
         // we can set mouse event to any node, also on the rectangle
         rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -190,7 +198,6 @@ public class Main extends Application {
         Image defaultCursorImage = Textures.defaultCursor;
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
-        
     }
     
     public void showOnConsole(String text) {
@@ -238,8 +245,6 @@ public class Main extends Application {
         init(primaryStage);
         buildAndSetLoop();
         primaryStage.show();
-        
-        
     }
 
     /**
