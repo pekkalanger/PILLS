@@ -19,9 +19,11 @@ package LogicSimulator;
 import LogicSimulator.GateObjects.AndObject;
 import LogicSimulator.GateObjects.LedObject;
 import LogicSimulator.GateObjects.NandObject;
+import LogicSimulator.GateObjects.NorObject;
 import LogicSimulator.GateObjects.NotObject;
 import LogicSimulator.GateObjects.OrObject;
 import LogicSimulator.GateObjects.SwitchObject;
+import LogicSimulator.GateObjects.XnorObject;
 import LogicSimulator.GateObjects.XorObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -111,16 +113,45 @@ public class SideBarBuilder {
                 event.consume();
             }
         });     
+        
         /*      Create Button5                  */
-        final Button butt5 = new Button();//"add or gate");
-        butt5.setGraphic(new ImageView(Textures.xorGate));
-        butt5.setTooltip(new Tooltip("Xor Gate"));
+        final Button butt5 = new Button();//"add xnor gate");
+        butt5.setGraphic(new ImageView(Textures.norGate));
+        butt5.setTooltip(new Tooltip("Nor Gate"));
         butt5.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                main.showOnConsole("Created new Nor gate");
+                NorObject norObject = new NorObject();
+                main.gateObjects.add(norObject);
+                event.consume();
+            }
+        });
+        
+        /*      Create Button6                  */
+        final Button butt6 = new Button();//"add or gate");
+        butt6.setGraphic(new ImageView(Textures.xorGate));
+        butt6.setTooltip(new Tooltip("Xor Gate"));
+        butt6.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Xor gate");
                 XorObject xorObject = new XorObject();
                 main.gateObjects.add(xorObject);
+                event.consume();
+            }
+        });
+
+        /*      Create Button7                  */
+        final Button butt7 = new Button();//"add xnor gate");
+        butt7.setGraphic(new ImageView(Textures.xnorGate));
+        butt7.setTooltip(new Tooltip("Xnor Gate"));
+        butt7.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                main.showOnConsole("Created new Xnor gate");
+                XnorObject xnorObject = new XnorObject();
+                main.gateObjects.add(xnorObject);
                 event.consume();
             }
         });
@@ -221,7 +252,7 @@ public class SideBarBuilder {
                 if(ke.getCode()== KeyCode.DIGIT1){
                     butt1.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT2){
-                    butt5.fire();
+                    butt7.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT3){
                     butt3.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT4){
@@ -248,7 +279,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
         
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt6, butt7, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
         
         return sideBar;
     }

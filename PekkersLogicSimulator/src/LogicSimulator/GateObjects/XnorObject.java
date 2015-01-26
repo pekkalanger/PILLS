@@ -18,7 +18,7 @@ package LogicSimulator.GateObjects;
 
 import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.OutputPin;
-import LogicSimulator.GateObjects.GateLogic.Xor;
+import LogicSimulator.GateObjects.GateLogic.Xnor;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
@@ -26,17 +26,17 @@ import javafx.scene.Group;
  *
  * @author PEKKA
  */
-public class XorObject extends GateObject{
+public class XnorObject extends GateObject{
     
     //And gate;
     InputPinObject inputPinObjectA; // maybe use as array gate move all code to GateObject gate extend it
     InputPinObject inputPinObjectB;
     OutputPinObject outputPinObjectQ;
     
-    public XorObject() {
+    public XnorObject() {
         group = new Group();
-        name = "Xor Gate";
-        gate = new Xor();
+        name = "Xnor Gate";
+        gate = new Xnor();
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
@@ -48,7 +48,7 @@ public class XorObject extends GateObject{
         // this should be added to InputPin gate list which will be updated all the f***ing time
         // gate also assigned the pins
 
-        rectangle = initRectangle(Textures.xorGate);
+        rectangle = initRectangle(Textures.xnorGate);
       
         group.getChildren().addAll(inputPinObjectA.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
        

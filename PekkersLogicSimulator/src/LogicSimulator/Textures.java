@@ -25,10 +25,11 @@ public class Textures {
     static public Image lineCursor;
     static public Image switchCursor;
     static public Image andGate;
-    static public Image orGate;
     static public Image nandGate;
+    static public Image orGate;
     static public Image norGate;
     static public Image xorGate;
+    static public Image xnorGate;
     static public Image notGate;
     static public Image ledOff;
     static public Image ledOn;
@@ -65,6 +66,7 @@ public class Textures {
     nandGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/nandgate2.png");
     norGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/norgate2.png");
     xorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xorgate2.png");
+    xnorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xnorgate2.png");
     //xorGate = new Image("file:res/xorgate2.png");
     /*          Led                 */
     ledOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledoff.png");
