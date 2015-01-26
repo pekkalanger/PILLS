@@ -14,13 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package LogicSimulator;
+package LogicSimulator.GateObjects;
 
 /**
  *
  * @author PEKKA
  */
-public class Globals {
-    public static Main main;
+public class TheProbulatorObject {
     
 }
