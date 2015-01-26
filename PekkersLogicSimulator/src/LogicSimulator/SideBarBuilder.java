@@ -279,7 +279,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
         
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt6, butt7, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
         
         return sideBar;
     }
