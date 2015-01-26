@@ -216,24 +216,10 @@ public class Main extends Application {
                         GateObject next = iterator.next();
                         next.update(delta);   
                     }
-                    /*
-                    for (Iterator<LogicLine> iterator = logicLines.iterator(); iterator.hasNext();) {
-                        LogicLine next = iterator.next();
-                        next.update(delta);   
-                    }
-                    */
                     for (Iterator<ConnectionLineObject> iterator = connectionLineObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         ConnectionLineObject next = iterator.next();
                         if(next != null && next.logicLine != null ){
-                            next.update(delta);  
-                            if(next.logicLine != null && next.logicLine.getOutputPin(0) != null && next.logicLine.getOutputPin(0).getDataObject() != null){
-                                if(next.logicLine.getOutputPin(0).getDataObject().getData() == true){
-                                    if(next.line != null)next.line.setStroke(Color.GREEN);
-                                }
-                                if(next.logicLine.getOutputPin(0).getDataObject().getData() == false){
-                                    if(next.line != null)next.line.setStroke(Color.RED);
-                                }
-                            }
+                            next.update(delta);
                         }
                     }
                     System.out.println("===============END================");
