@@ -39,8 +39,6 @@ import javafx.util.Duration;
 
 public class Main extends Application {
     
-
-    
     int mainWidth = 1024;
     int mainHeight = 768;
     int schematicWidth = mainWidth-50;
