@@ -2,6 +2,7 @@ package LogicSimulator.GateObjects;
 
 import LogicSimulator.GateObjects.GateLogic.Gate;
 import LogicSimulator.Globals;
+import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -74,6 +75,16 @@ public class GateObject {
                     double newYPosition = initY + dragY;
                     group.setTranslateX(newXPosition);
                     group.setTranslateY(newYPosition);
+                    if(inputPinObjectA != null){
+                        inputPinObjectA.connectionLineObject.line.endXProperty().set(inputPinObjectA.x + group.getTranslateX());
+                        inputPinObjectA.connectionLineObject.line.endYProperty().set(inputPinObjectA.y + group.getTranslateY());
+                    } 
+                    if(inputPinObjectB != null){
+                        inputPinObjectB.connectionLineObject.line.endXProperty().set(inputPinObjectB.x + group.getTranslateX());
+                        inputPinObjectB.connectionLineObject.line.endYProperty().set(inputPinObjectB.y + group.getTranslateY());
+                    }
+                    outputPinObjectQ.connectionLineObject.line.endXProperty().set(outputPinObjectQ.x + group.getTranslateX());
+                    outputPinObjectQ.connectionLineObject.line.endYProperty().set(outputPinObjectQ.y + group.getTranslateY());
                     me.consume();
                 }
             }

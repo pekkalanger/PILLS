@@ -39,7 +39,7 @@ import javafx.util.Duration;
 
 public class Main extends Application {
     
-    long previousTime = System.nanoTime();
+
     
     int mainWidth = 1024;
     int mainHeight = 768;
@@ -192,7 +192,7 @@ public class Main extends Application {
 
     protected final void buildAndSetLoop() {        // this vill update everything 100 times per second / once every 1.666 seconds
         final int fps = 100; //  if toggle then 100on + 100off = 200/2 hertz
-        int i;
+        //int i;
         final Duration oneFrameAmt = Duration.millis(1000/fps);  // "100 fps" should be enough.. for nao
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt,
             new EventHandler() {
@@ -200,9 +200,6 @@ public class Main extends Application {
                 public void handle(Event event) {
                     System.out.println("==============START===============");
                     Long delta = 0L;
-                    long currentTime = System.nanoTime();
-                    long elapsedNanos = currentTime - previousTime;
-                    double deltaTime = elapsedNanos / 1000000000.0; /* to seconds */
                     //System.out.println(deltaTime *1000 + " ms?");
                     for (Iterator<GateObject> iterator = gateObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
                         GateObject next = iterator.next();
@@ -228,11 +225,6 @@ public class Main extends Application {
                             }
                         }
                     }
-                    //showOnConsole("kuket");
-                    // update actors
-                    //updateSprites();
-                    
-                    previousTime = currentTime;
                     System.out.println("===============END================");
                 }
         }); // oneFrame
@@ -247,8 +239,9 @@ public class Main extends Application {
         Textures.init();
         Globals.main = this;
         init(primaryStage);
-        primaryStage.show();
         buildAndSetLoop();
+        primaryStage.show();
+        
         
     }
 

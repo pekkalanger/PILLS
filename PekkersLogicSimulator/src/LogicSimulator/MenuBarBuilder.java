@@ -64,11 +64,12 @@ public class MenuBarBuilder {
             public void handle(ActionEvent event) {
                 /*       null all the lists!!!       */
                 
-                main.circleGroup = new Group();
                 
+                //main.schematicGroup = new Group();  will not use circlegroup in the future
                 main.schematicGroup.getChildren().remove(main.circleGroup);
+                main.circleGroup = new Group();
                 main.schematicGroup.getChildren().add(main.circleGroup);
-                //main.schematicGroup = new Group();
+               
                 
                 main.gateObjects = new ArrayList();
                 main.lines = new ArrayList();
