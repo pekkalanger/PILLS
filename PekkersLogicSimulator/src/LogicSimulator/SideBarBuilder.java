@@ -18,6 +18,7 @@ package LogicSimulator;
 
 import LogicSimulator.GateObjects.AndObject;
 import LogicSimulator.GateObjects.LedObject;
+import LogicSimulator.GateObjects.NandObject;
 import LogicSimulator.GateObjects.NotObject;
 import LogicSimulator.GateObjects.OrObject;
 import LogicSimulator.GateObjects.SwitchObject;
@@ -96,12 +97,24 @@ public class SideBarBuilder {
                 event.consume();
             }
         });
-              
         /*      Create Button4                  */
-        final Button butt4 = new Button();//"add Switch");
-        butt4.setGraphic(new ImageView(Textures.switchOn));
-        butt4.setTooltip(new Tooltip("Switch"));
+        final Button butt4 = new Button();//"add nand gate");
+        butt4.setGraphic(new ImageView(Textures.nandGate));
+        butt4.setTooltip(new Tooltip("Nand Gate"));
         butt4.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                main.showOnConsole("Created new nand gate");
+                NandObject nandObject = new NandObject();
+                main.gateObjects.add(nandObject);
+                event.consume();
+            }
+        });      
+        /*      Create Button20                  */
+        final Button butt20 = new Button();//"add Switch");
+        butt20.setGraphic(new ImageView(Textures.switchOn));
+        butt20.setTooltip(new Tooltip("Switch"));
+        butt20.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Switch");
@@ -111,11 +124,11 @@ public class SideBarBuilder {
                 event.consume();
             }
         });
-        /*      Create Button5                  */
-        final Button butt5 = new Button();//"add LED");
-        butt5.setGraphic(new ImageView(Textures.ledOn));
-        butt5.setTooltip(new Tooltip("LED"));
-        butt5.setOnAction(new EventHandler<ActionEvent>() {
+        /*      Create Button21                  */
+        final Button butt21 = new Button();//"add LED");
+        butt21.setGraphic(new ImageView(Textures.ledOn));
+        butt21.setTooltip(new Tooltip("LED"));
+        butt21.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new LED");
@@ -125,10 +138,10 @@ public class SideBarBuilder {
             }
         });
         
-        /*      Create Button6                  */
-        final Button butt6 = new Button();//"square");
-        butt6.setGraphic(new ImageView(Textures.pinOver));
-        butt6.setOnAction(new EventHandler<ActionEvent>() {
+        /*      Create Button79                  */
+        final Button butt79 = new Button();//"square");
+        butt79.setGraphic(new ImageView(Textures.pinOver));
+        butt79.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new skaver");
@@ -143,9 +156,9 @@ public class SideBarBuilder {
             }
         });
         
-        /*      Create Button7                  */
-        final Button butt7 = new Button("blu c");
-        butt7.setOnAction(new EventHandler<ActionEvent>() {
+        /*      Create Button80                  */
+        final Button butt80 = new Button("blu c");
+        butt80.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Blue Circle");
@@ -159,9 +172,9 @@ public class SideBarBuilder {
                 event.consume();
             }
         });
-        /*      Create Button8                  */
-        final Button butt8 = new Button("ora c");
-        butt8.setOnAction(new EventHandler<ActionEvent>() {
+        /*      Create Button81                  */
+        final Button butt81 = new Button("ora c");
+        butt81.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Orange Circle");
@@ -198,11 +211,11 @@ public class SideBarBuilder {
                 } else if(ke.getCode()== KeyCode.DIGIT3){
                     butt3.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT4){
-                    butt4.fire();
+                    butt20.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT5){
-                    butt5.fire();
+                    butt21.fire();
                 } else if(ke.getCode()== KeyCode.DIGIT6){
-                    butt6.fire();
+                    butt79.fire();
                 } else {
                     return;
                 }
@@ -221,7 +234,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
         
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, spacer1, butt99, spacer2, butt6, butt7, butt8);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
         
         return sideBar;
     }
