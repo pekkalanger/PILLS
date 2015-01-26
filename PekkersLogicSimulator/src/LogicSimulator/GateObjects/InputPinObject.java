@@ -28,7 +28,7 @@ public class InputPinObject extends PinObject {
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
-        rectangle = createPinRectangle(Textures.inputPin, g, rectangle, null, ip, name);
+        rectangle = createInputPinRectangle(Textures.inputPin, g, rectangle, ip, name);
     } 
 
     
