@@ -228,10 +228,10 @@ public class Main extends Application {
                             next.update(delta);  
                             if(next.logicLine != null && next.logicLine.getOutputPin(0) != null && next.logicLine.getOutputPin(0).getDataObject() != null){
                                 if(next.logicLine.getOutputPin(0).getDataObject().getData() == true){
-                                    next.line.setStroke(Color.GREEN);
+                                    if(next.line != null)next.line.setStroke(Color.GREEN);
                                 }
                                 if(next.logicLine.getOutputPin(0).getDataObject().getData() == false){
-                                    next.line.setStroke(Color.RED);
+                                    if(next.line != null)next.line.setStroke(Color.RED);
                                 }
                             }
                         }

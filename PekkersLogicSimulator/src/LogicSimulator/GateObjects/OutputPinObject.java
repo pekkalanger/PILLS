@@ -37,8 +37,7 @@ public class OutputPinObject extends PinObject{
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
-        //rectangle = createPinRectangle(Textures.outputPin, g, rectangle, outputPin, name);
-        rectangle = createOutputPinRectangle(Textures.outputPin, g, rectangle, outputPin, name);
+        rectangle = createPinRectangle(Textures.outputPin, g, rectangle, outputPin, name);
         
 
     }
