@@ -34,6 +34,8 @@ public class GateObject {
         
     List<InputPinObject> ipos;
     List<OutputPinObject> opos;
+    public int width = 32;
+    public int height = 32;
     double x;
     double y;
     String name;

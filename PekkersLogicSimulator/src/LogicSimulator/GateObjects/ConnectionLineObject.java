@@ -39,14 +39,14 @@ public class ConnectionLineObject {
     Gate gate;
     Color colorOff;
     Color colorOn; 
-boolean last = false;
+    boolean last = false;
+    
     public ConnectionLineObject() {
         name = "A Line"; 
         line = new Line();
         logicLine = new LogicLine();
         colorOff = Color.RED;
         colorOn = Color.LIGHTGREEN; 
-        
     }
     
     public void update(Long deltaTime){

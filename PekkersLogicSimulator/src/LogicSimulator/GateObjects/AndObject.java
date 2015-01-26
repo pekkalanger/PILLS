@@ -16,11 +16,11 @@
  */
 package LogicSimulator.GateObjects;
 
+import LogicSimulator.ClipBoard;
 import LogicSimulator.GateObjects.GateLogic.And;
 import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.Textures;
-import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.scene.Group;
 
@@ -35,10 +35,11 @@ public class AndObject extends GateObject{
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
-        
+        double width = 32;
+    double height = 32;
         ipos.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         ipos.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
-        opos.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
+        opos.add(new OutputPinObject(group, (int) (width + ClipBoard.getOutputPinObject().width), 12, gate.getOutputPin(0), name + " PinQ"));
         
         rectangle = initRectangle(Textures.andGate);
         group.getChildren().add(rectangle);

@@ -38,10 +38,10 @@ import javafx.scene.shape.Rectangle;
 public class PinObject {
     
     String name;
-    int x; // rectangle translate
-    int y;
-    int width = 8;
-    int height = 8;
+    public int x; // rectangle translate
+    public int y;
+    static final int width = 8;
+    static final int height = 8;
     protected Rectangle rectangle;
     
     List<ConnectionLineObject> connectionLineObjects;
@@ -50,6 +50,8 @@ public class PinObject {
     ConnectionLineObject connectionLineObject2;
 
     public PinObject() {
+        x = 0;
+        y = 0;
         connectionLineObjects = new ArrayList<>();
         connectionLineObject2 = new ConnectionLineObject();
     }
