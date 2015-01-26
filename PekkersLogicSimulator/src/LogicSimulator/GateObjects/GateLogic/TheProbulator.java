@@ -1,6 +1,6 @@
-package Logic;
+package LogicSimulator.GateObjects.GateLogic;
 
-public class AnalProbulator {
+public class TheProbulator {
 /*  * InputPin ip
     * outputpins[]
     * outputpins 

@@ -5,8 +5,8 @@
  */
 package LogicSimulator.GateObjects;
 
-import Logic.OutputPin;
-import Logic.Switch;
+import LogicSimulator.GateObjects.GateLogic.OutputPin;
+import LogicSimulator.GateObjects.GateLogic.Switch;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
 import javafx.event.EventHandler;

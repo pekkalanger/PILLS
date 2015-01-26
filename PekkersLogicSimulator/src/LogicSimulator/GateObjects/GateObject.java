@@ -1,6 +1,6 @@
 package LogicSimulator.GateObjects;
 
-import Logic.Gate;
+import LogicSimulator.GateObjects.GateLogic.Gate;
 import LogicSimulator.Globals;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;

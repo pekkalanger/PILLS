@@ -1,4 +1,4 @@
-package Logic;
+package LogicSimulator.GateObjects.GateLogic;
 
 import LogicSimulator.Globals;
 

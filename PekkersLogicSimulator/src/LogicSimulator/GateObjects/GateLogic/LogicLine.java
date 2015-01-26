@@ -1,4 +1,4 @@
-package Logic;
+package LogicSimulator.GateObjects.GateLogic;
  /*
     draw line from PinA.pos to PinB.pos
 */

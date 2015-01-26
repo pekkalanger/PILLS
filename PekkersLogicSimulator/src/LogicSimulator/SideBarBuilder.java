@@ -161,7 +161,7 @@ public class SideBarBuilder {
         });
         
         /*      Create Button99                  */
-        final Button butt99 = new Button("Lab");
+        final Button butt99 = new Button("Label");
         butt99.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

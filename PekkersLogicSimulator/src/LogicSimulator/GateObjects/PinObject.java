@@ -1,8 +1,8 @@
 package LogicSimulator.GateObjects;
 
-import Logic.InputPin;
-import Logic.LogicLine;
-import Logic.OutputPin;
+import LogicSimulator.GateObjects.GateLogic.InputPin;
+import LogicSimulator.GateObjects.GateLogic.LogicLine;
+import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.ClipBoard;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;

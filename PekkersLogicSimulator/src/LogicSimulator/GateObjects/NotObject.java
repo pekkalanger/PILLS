@@ -5,12 +5,11 @@
  */
 package LogicSimulator.GateObjects;
 
-import Logic.InputPin;
-import Logic.Not;
-import Logic.OutputPin;
+import LogicSimulator.GateObjects.GateLogic.InputPin;
+import LogicSimulator.GateObjects.GateLogic.Not;
+import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
-import javafx.scene.shape.Line;
 
 /**
  *
@@ -28,7 +27,7 @@ public class NotObject extends GateObject{
         name = "Not Gate";
         gate = new Not();
         gate.setInputPin(0, new InputPin());
-        gate.setOutputPin(0, new OutputPin());
+        gate.setOutputPin(0, new OutputPin(true));
         
         inputPinObjectA = new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA");
         outputPinObjectQ = new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ");

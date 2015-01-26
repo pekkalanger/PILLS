@@ -56,17 +56,16 @@ public class MenuBarBuilder {
         fileNew.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                
-            /*       null all the lists!!!       */
-            main.schematicGroup.getChildren().remove(main.circleGroup);
-            main.circleGroup = new Group();
-            main.schematicGroup.getChildren().add(main.circleGroup);
-          
-            main.gateObjects = new ArrayList();
-            main.lines = new ArrayList();
-            main.connectionLineObjects = new ArrayList<ConnectionLineObject>();
-        
-            event.consume();
+                /*       null all the lists!!!       */
+                main.schematicGroup.getChildren().remove(main.circleGroup);
+                main.circleGroup = new Group();
+                main.schematicGroup.getChildren().add(main.circleGroup);
+
+                main.gateObjects = new ArrayList();
+                main.lines = new ArrayList();
+                main.connectionLineObjects = new ArrayList<ConnectionLineObject>();
+
+                event.consume();
             }
         });
                 
@@ -85,7 +84,7 @@ public class MenuBarBuilder {
                     try {
                         fileIn = new FileInputStream(file);
                         ObjectInputStream in = new ObjectInputStream(fileIn);
-                        //circleList = (LinkedList<Circle>) in.readObject();
+                        //in.readObject();
                     }  catch (Exception e) {
                         System.out.println(e);
                     } finally {
@@ -118,7 +117,7 @@ public class MenuBarBuilder {
                     try {
                         fileOut = new FileOutputStream(file);
                         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                        //out.writeObject(circleList);
+                        //out.writeObject();
                     }  catch (Exception e) {
                         System.out.println(e);
                     } finally {
@@ -126,8 +125,9 @@ public class MenuBarBuilder {
                             fileOut.flush();
                             fileOut.close();
                             fileOut = null;
-                            main.showOnConsole("Saved successfully");
                             System.gc();
+                            main.showOnConsole("something Saved successfully");
+                            
                         } catch (IOException ex) {
                             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -140,7 +140,7 @@ public class MenuBarBuilder {
         final MenuItem fileExit = new MenuItem("Exit");         // quit
         fileExit.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent event) {
-                System.out.println("Exiting this shitty app ");
+                System.out.println("Exiting this shi.. witty app ");
                 Platform.exit(); 
                 event.consume();
             }
@@ -149,9 +149,8 @@ public class MenuBarBuilder {
         
         fileMenu.getItems().addAll(fileNew, fileOpen, fileSave, fileSaveAs, new SeparatorMenuItem(), fileExit);
 
-        // Prepare 'Examples' drop-down menu
+        // Prepare 'Extras' drop-down menu
         final javafx.scene.control.Menu examplesMenu = new javafx.scene.control.Menu("Extras");
-        
         examplesMenu.getItems().add(new MenuItem("001"));
         examplesMenu.getItems().add(new MenuItem("002"));
         examplesMenu.getItems().add(new MenuItem("003"));
@@ -179,6 +178,7 @@ public class MenuBarBuilder {
                 aboutLabel.setAlignment(Pos.BASELINE_CENTER);
                 Button okButt = new Button("Ok");
                 okButt.setCancelButton(true);
+                okButt.setDefaultButton(true);
                 okButt.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent arg0) {

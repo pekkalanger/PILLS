@@ -1,6 +1,6 @@
 package LogicSimulator;
 
-import Logic.LogicLine;
+import LogicSimulator.GateObjects.GateLogic.LogicLine;
 import LogicSimulator.GateObjects.ConnectionLineObject;
 import LogicSimulator.GateObjects.GateObject;
 import java.util.ArrayList;

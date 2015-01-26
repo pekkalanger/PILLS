@@ -1,4 +1,4 @@
-package Logic;
+package LogicSimulator.GateObjects.GateLogic;
 
 
 public interface Gate {

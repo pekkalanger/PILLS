@@ -5,7 +5,7 @@
  */
 package LogicSimulator.GateObjects;
 
-import Logic.InputPin;
+import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;

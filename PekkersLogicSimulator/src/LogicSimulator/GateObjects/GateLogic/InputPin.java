@@ -1,4 +1,4 @@
-package Logic;
+package LogicSimulator.GateObjects.GateLogic;
 
 public class InputPin extends Pin{
     
@@ -7,7 +7,9 @@ public class InputPin extends Pin{
     public InputPin(){
         super();
     }
-    
+    public InputPin(boolean d){
+        super(d);
+    }
     
     
 }

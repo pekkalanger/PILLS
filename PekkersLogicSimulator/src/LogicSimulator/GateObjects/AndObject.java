@@ -1,8 +1,8 @@
 package LogicSimulator.GateObjects;
 
-import Logic.And;
-import Logic.InputPin;
-import Logic.OutputPin;
+import LogicSimulator.GateObjects.GateLogic.And;
+import LogicSimulator.GateObjects.GateLogic.InputPin;
+import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;

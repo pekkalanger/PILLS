@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logic;
+package LogicSimulator.GateObjects.GateLogic;
 
 /**
  *
@@ -19,6 +19,9 @@ public abstract class Pin {
 
         public Pin(){
             dataObject = new DataObject(false);
+        }
+        public Pin(boolean d){
+            dataObject = new DataObject(d);
         }
         public void setDataObject(DataObject dataObject){
             this.dataObject = dataObject;
