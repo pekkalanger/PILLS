@@ -75,6 +75,7 @@ public class GateObject {
                     double newYPosition = initY + dragY;
                     group.setTranslateX(newXPosition);
                     group.setTranslateY(newYPosition);
+                    
                     if(inputPinObjectA != null){
                         inputPinObjectA.connectionLineObject.line.endXProperty().set(inputPinObjectA.x + group.getTranslateX());
                         inputPinObjectA.connectionLineObject.line.endYProperty().set(inputPinObjectA.y + group.getTranslateY());
@@ -83,8 +84,11 @@ public class GateObject {
                         inputPinObjectB.connectionLineObject.line.endXProperty().set(inputPinObjectB.x + group.getTranslateX());
                         inputPinObjectB.connectionLineObject.line.endYProperty().set(inputPinObjectB.y + group.getTranslateY());
                     }
-                    outputPinObjectQ.connectionLineObject.line.endXProperty().set(outputPinObjectQ.x + group.getTranslateX());
-                    outputPinObjectQ.connectionLineObject.line.endYProperty().set(outputPinObjectQ.y + group.getTranslateY());
+                    if(outputPinObjectQ != null){
+                        outputPinObjectQ.connectionLineObject.line.endXProperty().set(outputPinObjectQ.x + group.getTranslateX());
+                        outputPinObjectQ.connectionLineObject.line.endYProperty().set(outputPinObjectQ.y + group.getTranslateY());
+                    }
+                    
                     me.consume();
                 }
             }

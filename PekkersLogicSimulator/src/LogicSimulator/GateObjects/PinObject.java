@@ -88,6 +88,7 @@ public class PinObject {
                         //createLine(line, logicLine);
                         connectionLineObject2 = ClipBoard.getConnectionLineObject();
                         Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                        if(connectionLineObject2 != null) connectionLineObject2.line = line;
                         //createLine(line, logicLine);
                         
                         if(!Globals.main.circleGroup.getChildren().contains(line)){
@@ -109,6 +110,7 @@ public class PinObject {
                         //createLine(line, logicLine);
                         connectionLineObject2 = ClipBoard.getConnectionLineObject();
                         Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                        if(connectionLineObject2 != null) connectionLineObject2.line = line;
                         //createLine(line, logicLine);
                         
                         if(!Globals.main.circleGroup.getChildren().contains(line)){
