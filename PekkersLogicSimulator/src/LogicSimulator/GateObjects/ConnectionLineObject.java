@@ -1,6 +1,7 @@
 
 package LogicSimulator.GateObjects;
 
+import Logic.DataObject;
 import Logic.Gate;
 import Logic.InputPin;
 import Logic.LogicLine;
@@ -23,11 +24,15 @@ public class ConnectionLineObject {
     public Line line;
     public LogicLine logicLine;
     Gate gate;
+    Color colorOff;
+    Color colorOn; 
 
     public ConnectionLineObject() {
         name = "A Line"; 
         line = new Line();
         logicLine = new LogicLine();
+        colorOff = Color.RED;
+        colorOn = Color.GREENYELLOW; 
     }
     
     public void update(Long deltaTime){
@@ -35,16 +40,6 @@ public class ConnectionLineObject {
     }
     
     public Line createOutLine(final OutputPin op, final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
-        
-        
-        Color colorOff = Color.RED;
-        Color colorOn = Color.GREENYELLOW;; 
-    
-        //create InputPin circle with desired name,  color and radius
-        Color color = Color.DODGERBLUE;
-        
-        //final Line line = new Line();
-        
         line.setStroke(Color.RED);
         line.setStrokeWidth(2);
         //add InputPin shadow effect
@@ -57,45 +52,52 @@ public class ConnectionLineObject {
         line.setEndX(r.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
         line.setEndY(r.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
         //add InputPin mouse listeners
+        Globals.main.showOnConsole("created outline");
         line.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.MIDDLE) {
                     Globals.main.showOnConsole("Removed specified line");
                     //mouseEvents.circleList.remove(circle);
                     Globals.main.circleGroup.getChildren().remove(line);
-                    //op.setDataObject(null);
+                    //ip.setDataObject(null);
                     if(Globals.main.logicLines.contains(logicLine)){  // -> connectionlineobject
+                        logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                        logicLine.getOutputPin(0).setDataObject(new DataObject(false));
                         logicLine.setInputPin(0, null);
                         logicLine.setOutputPin(0, null);
+                        // logicLine.setDataObject(null);
+                        logicLine=null;
                         
+                        Globals.main.showOnConsole("nully");
                         Globals.main.logicLines.remove(logicLine);
-                        
                     }
                     if(Globals.main.connectionLineObjects.contains(this)){  // -> connectionlineobject
-                        logicLine.setDataObject(null);
-                        logicLine=null;
+                        //logicLine.setDataObject(null);
+                        //logicLine=null;
+                        Globals.main.showOnConsole("nully this");
                         Globals.main.connectionLineObjects.remove(this);
                     }
-                    if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
-                        
-                        if(clo != null){
-                            if(clo.logicLine != null){
-                                if(clo.logicLine.getInputPin(0) != null){
-                                    clo.logicLine.getInputPin(0).setDataObject(null);
-                                    clo.logicLine.setInputPin(0, null);
-                                } else if(clo.logicLine.getOutputPin(0) != null){
-                                    clo.logicLine.getOutputPin(0).setDataObject(null);
-                                    clo.logicLine.setOutputPin(0, null);
-                                }
+                    
+                    if(clo != null){
+                        if(clo.logicLine != null){
+                            if(clo.logicLine.getInputPin(0) != null){
+                                clo.logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                                clo.logicLine.setInputPin(0, null);
+                            } else if(clo.logicLine.getOutputPin(0) != null){
+                                clo.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
+                                clo.logicLine.setOutputPin(0, null);
                             }
-                            //clo.logicLine.setDataObject(null);
-                            clo.logicLine=null;
                         }
+                        //clo.logicLine.setDataObject(null);
+                        clo.logicLine=null;
+                    }
+                    if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
+                        Globals.main.showOnConsole("nully that");
                         Globals.main.connectionLineObjects.remove(clo);
+                        Globals.main.logicLines.remove(clo.logicLine);
                     }
                     me.consume();
-                } 
-                 
+                }
             }
         });
         
@@ -116,16 +118,6 @@ public class ConnectionLineObject {
     }
     
     public Line createInLine(final InputPin ip, final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
-        
-        
-        Color colorOff = Color.RED;
-        Color colorOn = Color.GREENYELLOW;; 
-    
-        //create InputPin circle with desired name,  color and radius
-        Color color = Color.DODGERBLUE;
-        
-        //final Line line = new Line();
-        
         line.setStroke(Color.RED);
         line.setStrokeWidth(2);
         //add InputPin shadow effect
@@ -138,7 +130,7 @@ public class ConnectionLineObject {
         line.setEndX(r.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
         line.setEndY(r.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
         //add InputPin mouse listeners
-        
+        Globals.main.showOnConsole("created inline");
         line.setOnMouseClicked(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 if (me.getButton() == MouseButton.MIDDLE) {
@@ -147,11 +139,11 @@ public class ConnectionLineObject {
                     Globals.main.circleGroup.getChildren().remove(line);
                     //ip.setDataObject(null);
                     if(Globals.main.logicLines.contains(logicLine)){  // -> connectionlineobject
-                        logicLine.getInputPin(0).setDataObject(null);
-                        logicLine.getOutputPin(0).setDataObject(null);
+                        logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                        logicLine.getOutputPin(0).setDataObject(new DataObject(false));
                         logicLine.setInputPin(0, null);
                         logicLine.setOutputPin(0, null);
-                       // logicLine.setDataObject(null);
+                        // logicLine.setDataObject(null);
                         logicLine=null;
                         
                         Globals.main.showOnConsole("nully");
@@ -167,10 +159,10 @@ public class ConnectionLineObject {
                     if(clo != null){
                         if(clo.logicLine != null){
                             if(clo.logicLine.getInputPin(0) != null){
-                                clo.logicLine.getInputPin(0).setDataObject(null);
+                                clo.logicLine.getInputPin(0).setDataObject(new DataObject(false));
                                 clo.logicLine.setInputPin(0, null);
                             } else if(clo.logicLine.getOutputPin(0) != null){
-                                clo.logicLine.getOutputPin(0).setDataObject(null);
+                                clo.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
                                 clo.logicLine.setOutputPin(0, null);
                             }
                         }
@@ -178,15 +170,12 @@ public class ConnectionLineObject {
                         clo.logicLine=null;
                     }
                     if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
-                        
-                        
                         Globals.main.showOnConsole("nully that");
                         Globals.main.connectionLineObjects.remove(clo);
                         Globals.main.logicLines.remove(clo.logicLine);
                     }
                     me.consume();
-                } 
-                 
+                }
             }
         });
         
