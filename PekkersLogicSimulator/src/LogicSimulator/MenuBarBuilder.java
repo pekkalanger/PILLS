@@ -6,6 +6,8 @@
 package LogicSimulator;
 
 import LogicSimulator.GateObjects.ConnectionLineObject;
+import LogicSimulator.GateObjects.GateLogic.LogicLine;
+import LogicSimulator.GateObjects.GateObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,6 +15,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
@@ -32,6 +36,8 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -57,14 +63,20 @@ public class MenuBarBuilder {
             @Override
             public void handle(ActionEvent event) {
                 /*       null all the lists!!!       */
-                main.schematicGroup.getChildren().remove(main.circleGroup);
+                
                 main.circleGroup = new Group();
+                
+                main.schematicGroup.getChildren().remove(main.circleGroup);
                 main.schematicGroup.getChildren().add(main.circleGroup);
-
+                //main.schematicGroup = new Group();
+                
                 main.gateObjects = new ArrayList();
                 main.lines = new ArrayList();
-                main.connectionLineObjects = new ArrayList<ConnectionLineObject>();
-
+                main.connectionLineObjects = new ArrayList();
+                main.logicLines = new ArrayList();
+                main.circleList = new LinkedList();
+                
+                
                 event.consume();
             }
         });

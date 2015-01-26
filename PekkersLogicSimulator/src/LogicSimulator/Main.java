@@ -47,11 +47,14 @@ public class Main extends Application {
     int schematicHeigth = 500;
     int consoleWidth = 700;
     int consoleHeight = 200;
+    
+    /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
     public List<Line> lines;
     public List<LogicLine> logicLines;
     public List<ConnectionLineObject> connectionLineObjects;
     public LinkedList<Circle> circleList = null;
+    
     
     //create a console for logging mouse events
     final ListView<String> console = new ListView<String>();
