@@ -20,8 +20,8 @@ public class DataObject {
 	
 	private boolean data = false;
 	
-        public DataObject(boolean data) {
-            this.data = data;
+        public DataObject(boolean d) {
+            this.data = d;
 	}
 	public boolean getData() {
             return data;

@@ -25,9 +25,9 @@ public class Xnor implements Gate {
     OutputPin[] outputPins = new OutputPin[1];
 
     public Xnor(){
-        inputPins[0] = new InputPin();
-        inputPins[1] = new InputPin();
-        outputPins[0] = new OutputPin();
+        inputPins[0] = new InputPin(false);
+        inputPins[1] = new InputPin(false);
+        outputPins[0] = new OutputPin(true);
     }
 
     @Override
