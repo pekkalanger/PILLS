@@ -7,8 +7,8 @@ public class Textures {
     static public Image defaultCursor;
     static public Image defaultCursorActive;
     static public Image lineCursor;
-    static public Image buttonCursor;
-    // static public Image buttonCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
+    static public Image switchCursor;
+    // static public Image switchCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
     static public Image andGate;
     static public Image orGate;
     static public Image nandGate;
@@ -30,8 +30,8 @@ public class Textures {
     defaultCursor = new Image("file:res/defaultcursorr.png");
     defaultCursorActive = new Image("file:res/defaultcursorractive.png");
     lineCursor = new Image("file:res/linecursor.png");
-    buttonCursor = new Image("file:res/buttoncursor.png");
-    // static public Image buttonCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
+    switchCursor = new Image("file:res/buttoncursor.png");
+    // static public Image switchCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
     
     andGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/andgate2.png");
     

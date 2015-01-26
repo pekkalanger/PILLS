@@ -93,17 +93,9 @@ public class LedObject extends GateObject{
                 group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    
-                    //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                     Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    
-                    //last = true;
-                    //gate.getDataObject().setData(!gate.getDataObject().getData());
-                    //update(delt);
-                    
-                    //the event will be passed only to the circle which is on front
                     me.consume();
                 } else if (me.getButton() == MouseButton.MIDDLE) {
                     Globals.main.showOnConsole("Removed specified Led");
@@ -115,7 +107,6 @@ public class LedObject extends GateObject{
                     System.out.println("Led gate should be null now");
                     if(null != inputPinObjectA){
                         if(Globals.main.circleGroup.getChildren().contains(inputPinObjectA.connectionLineObject.line)) {
-                           //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
                             Globals.main.circleGroup.getChildren().remove(inputPinObjectA.connectionLineObject.line);
                         }
                         inputPinObjectA.connectionLineObject.logicLine = null;

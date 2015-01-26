@@ -27,23 +27,16 @@ public class SwitchObject extends GateObject{
     //Switch gate;
     
      public SwitchObject() {
-                
-        /*      movable group   */
         group = new Group();
         name = "Switch";
         
-        Image exitIcon = Textures.buttonCursor;
+        Image exitIcon = Textures.switchCursor;
         ImageCursor imageCursor = new ImageCursor(exitIcon, -exitIcon.getWidth(), -exitIcon.getHeight());
         group.setCursor(imageCursor);
         gate = new Switch(false);
         gate.setOutputPin(0, new OutputPin());
         
         outputPinObjectQ = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
-        
-        // this should be added to a gate list which will be updated all the fucknig time
-        // gate also assigned the pins
-
-       
         
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true)); /* should create a Gate (square with andGate gate boolean logic linked to pins)*/
@@ -53,11 +46,7 @@ public class SwitchObject extends GateObject{
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
-                
-                //change the z-coordinate of the circle
-                //circle.toFront();
-                //Globals.main.showOnConsole("Mouse entered " + name);
-                me.consume();
+                //me.consume();
             }
         });
         rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
@@ -97,20 +86,12 @@ public class SwitchObject extends GateObject{
             public void handle(MouseEvent me) {
                 group.toFront();
                 if (me.getButton() == MouseButton.PRIMARY) {
-                    //Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    
-                    //the event will be passed only to the circle which is on front
-                    me.consume();
+                    //me.consume();
                 } else if (me.getButton() == MouseButton.SECONDARY) {
-                    //Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                     toggled = true;
                     gate.toggle();
-                    //update(true);
                     me.consume();
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    
-                    
-                    
                     Globals.main.showOnConsole("Removed specified Switch");
                     //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                     Globals.main.circleGroup.getChildren().remove(group);
@@ -127,10 +108,8 @@ public class SwitchObject extends GateObject{
                         outputPinObjectQ.connectionLineObject = null;
                         outputPinObjectQ.connectionLineObject2 = null;
                     }
-                        
                     me.consume();
                 }
-                  
             }
         });
         group.setOpacity(0.8f);
