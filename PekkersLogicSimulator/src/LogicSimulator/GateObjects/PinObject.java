@@ -20,6 +20,7 @@ import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.LogicLine;
 import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.ClipBoard;
+import LogicSimulator.GateObjects.GateLogic.DataObject;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
 import javafx.event.EventHandler;
@@ -252,7 +253,21 @@ public class PinObject {
                         ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                         ClipBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
-                    } else if(ClipBoard.getOutputPin() != null && ClipBoard.getConnectionLineObject2() == null){
+                    } else if(ClipBoard.getOutputPin() != null){
+                        
+                        if (ClipBoard.getConnectionLineObject2() != null){
+                            
+                            LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
+                            if(ll != null){
+                                ll.getInputPin(0).setDataObject(new DataObject(false));
+                                ll.getOutputPin(0).setDataObject(new DataObject(false));
+                                ll.setInputPin(0, new InputPin());
+                                ll.setOutputPin(0, new OutputPin());
+                                // logicLine.setDataObject(null);
+                                ll=null;
+                            }
+                            ClipBoard.setConnectionLineObject2(null); 
+                        }
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, inputPin);
                         logicLine.setOutputPin(0, ClipBoard.getOutputPin());
@@ -351,7 +366,19 @@ public class PinObject {
                         ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                         ClipBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
-                    } else if(ClipBoard.getInputPin() != null && ClipBoard.getConnectionLineObject2() == null){
+                    } else if(ClipBoard.getInputPin() != null){
+                        if (ClipBoard.getConnectionLineObject2() != null){
+                            LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
+                            if(ll != null){
+                                ll.getInputPin(0).setDataObject(new DataObject(false));
+                                ll.getOutputPin(0).setDataObject(new DataObject(false));
+                                ll.setInputPin(0, new InputPin());
+                                ll.setOutputPin(0, new OutputPin());
+                                // logicLine.setDataObject(null);
+                                ll=null;
+                            }
+                            ClipBoard.setConnectionLineObject2(null); 
+                        }
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, ClipBoard.getInputPin());
                         logicLine.setOutputPin(0, outputPin);
