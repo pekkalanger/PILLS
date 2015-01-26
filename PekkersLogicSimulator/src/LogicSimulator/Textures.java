@@ -24,7 +24,6 @@ public class Textures {
     static public Image defaultCursorActive;
     static public Image lineCursor;
     static public Image switchCursor;
-    // static public Image switchCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
     static public Image andGate;
     static public Image orGate;
     static public Image nandGate;
@@ -42,12 +41,19 @@ public class Textures {
     static public Image exitIcon;
     
     public static void init() {
-    /*      uses file: when testing, and as fallback later     */
-    defaultCursor = new Image("file:res/defaultcursorr.png");
-    defaultCursorActive = new Image("file:res/defaultcursorractive.png");
-    lineCursor = new Image("file:res/linecursor.png");
-    switchCursor = new Image("file:res/buttoncursor.png");
-    // static public Image switchCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
+    /*      uses file: when testing, and as fallback later  if https fails   */
+        
+    /*          Fallback            */
+    //defaultCursor = new Image("file:res/defaultcursorr.png");
+    //defaultCursorActive = new Image("file:res/defaultcursorractive.png");
+    //lineCursor = new Image("file:res/linecursor.png");
+    //switchCursor = new Image("file:res/buttoncursor.png");
+        
+    /*          Https               */
+    defaultCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursorr.png");
+    defaultCursorActive = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursorractive.png");
+    lineCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/linecursor.png");
+    switchCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttoncursor.png");
     
     andGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/andgate2.png");
     
