@@ -5,7 +5,6 @@ import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
-import javafx.scene.shape.Line;
 
 public class AndObject extends GateObject{
     

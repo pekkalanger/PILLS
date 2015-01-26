@@ -2,7 +2,6 @@ package LogicSimulator.GateObjects;
 
 import LogicSimulator.GateObjects.GateLogic.Gate;
 import LogicSimulator.Globals;
-import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
@@ -10,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class GateObject {

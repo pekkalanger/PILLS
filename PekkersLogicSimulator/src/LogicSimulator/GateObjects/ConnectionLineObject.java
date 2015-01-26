@@ -3,9 +3,7 @@ package LogicSimulator.GateObjects;
 
 import LogicSimulator.GateObjects.GateLogic.DataObject;
 import LogicSimulator.GateObjects.GateLogic.Gate;
-import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.LogicLine;
-import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.ClipBoard;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;

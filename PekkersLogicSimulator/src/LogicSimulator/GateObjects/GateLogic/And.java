@@ -1,7 +1,6 @@
 package LogicSimulator.GateObjects.GateLogic;
 
 import LogicSimulator.Globals;
-import java.util.logging.Logger;
 
 
 public class And implements Gate {
