@@ -43,7 +43,9 @@ public class PinObject {
     int width = 8;
     int height = 8;
     protected Rectangle rectangle;
+    
     List<ConnectionLineObject> connectionLineObjects;
+    
     ConnectionLineObject connectionLineObject;
     ConnectionLineObject connectionLineObject2;
 
@@ -61,7 +63,7 @@ public class PinObject {
     }
     
     /*      this one seems to be acting fine*/
-    public Rectangle createPinRectangle(final Image i, final Group g, final Rectangle rectangle, final InputPin inputPin, final String name) {
+    public Rectangle createPinRectangle(InputPinObject ipo, final Image i, final Group g, final Rectangle rectangle, final InputPin inputPin, final String name) {
         
         /* add line to connectionlineobjects if there is no such connection already
         connectionLineObject = new ConnectionLineObject();
@@ -79,7 +81,7 @@ public class PinObject {
                             ClipBoard.setInputPin(inputPin);
                         } 
                         
-                        
+                        ClipBoard.setInputPinObject(ipo);
                         ClipBoard.setLine(connectionLineObject.line);
                         ClipBoard.setConnectionLineObject(connectionLineObject);
                         ClipBoard.setConnectionLineObject2(connectionLineObject2);
@@ -179,7 +181,7 @@ public class PinObject {
     }
     
     
-    public Rectangle createPinRectangle(final Image i, final Group g, final Rectangle rectangle, final OutputPin outputPin, final String name) {
+    public Rectangle createPinRectangle(OutputPinObject opo, final Image i, final Group g, final Rectangle rectangle, final OutputPin outputPin, final String name) {
         
         connectionLineObject = new ConnectionLineObject();
         Image cursorImage = Textures.defaultCursorActive;
@@ -193,6 +195,7 @@ public class PinObject {
                         if(outputPin != null){  // this is by default a input pin then
                             ClipBoard.setOutputPin(outputPin);
                         }
+                        ClipBoard.setOutputPinObject(opo);
                         ClipBoard.setLine(connectionLineObject.line);
                         ClipBoard.setConnectionLineObject(connectionLineObject);
                         ClipBoard.setConnectionLineObject2(connectionLineObject2);

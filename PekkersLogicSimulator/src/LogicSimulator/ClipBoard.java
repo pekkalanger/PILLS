@@ -21,6 +21,8 @@ import LogicSimulator.GateObjects.GateLogic.Gate;
 import LogicSimulator.GateObjects.GateLogic.InputPin;
 import LogicSimulator.GateObjects.GateLogic.OutputPin;
 import LogicSimulator.GateObjects.ConnectionLineObject;
+import LogicSimulator.GateObjects.InputPinObject;
+import LogicSimulator.GateObjects.OutputPinObject;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
 
@@ -30,6 +32,7 @@ import javafx.scene.shape.Line;
  */
 public class ClipBoard {
     private static GateObject gateObject;
+    
     public static ConnectionLineObject connectionLineObject;
     public static ConnectionLineObject connectionLineObject2;
     public static Line line;
@@ -39,6 +42,8 @@ public class ClipBoard {
     private static Gate gate;
     private static OutputPin outputPin;
     private static InputPin inputPin;
+    private static OutputPinObject outputPinObject;
+    private static InputPinObject inputPinObject;
     private static double x = -1;
     private static double y = -1;
 
@@ -98,6 +103,18 @@ public class ClipBoard {
     public static void setOutputPin(OutputPin op ){
         outputPin = op;
     }
+        public static InputPinObject getInputPinObject(){
+        return inputPinObject;
+    }
+    public static void setInputPinObject(InputPinObject ipo){
+        inputPinObject = ipo;
+    }
+    public static OutputPinObject getOutputPinObject(){
+        return outputPinObject;
+    }
+    public static void setOutputPinObject(OutputPinObject opo ){
+        outputPinObject = opo;
+    }
 
     public static double getX(){
         return x;
@@ -136,6 +153,8 @@ public class ClipBoard {
         gate = null;
         inputPin = null;
         outputPin = null;
+        inputPinObject = null;
+        outputPinObject = null;
         x = -1;
         y = -1;
     }
