@@ -9,14 +9,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
+@Deprecated
 public class SexyRectangleBuilder {
     
     final Main main;
-    
+    @Deprecated
     public SexyRectangleBuilder (final Main main) {
         this.main = main;
     }
-    
+    @Deprecated
      public Rectangle createRectangle(final Image i) {
         final Rectangle rectangle = new Rectangle(100, 100);
         rectangle.setLayoutX(100);

@@ -3,7 +3,7 @@ package LogicSimulator.GateObjects;
 import Logic.InputPin;
 import Logic.LogicLine;
 import Logic.OutputPin;
-import LogicSimulator.DragBoard;
+import LogicSimulator.ClipBoard;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
 import com.sun.corba.se.pept.encoding.InputObject;
@@ -64,30 +64,30 @@ public class PinObject {
                     //rectangle.setFill(new ImagePattern(Textures.pinPressed, 0, 0, 1, 1, true));
                     //rectangle.toFront();
                     
-                    if(DragBoard.getInputPin() == null && DragBoard.getOutputPin() == null){
+                    if(ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null){
                         
                         if(outputPin == null){  // this is by default a input pin then
-                            DragBoard.setInputPin(inputPin);
+                            ClipBoard.setInputPin(inputPin);
                         } else {
-                            DragBoard.setOutputPin(outputPin);
+                            ClipBoard.setOutputPin(outputPin);
                         }
-                        DragBoard.setLine(connectionLineObject.line);
-                        DragBoard.setConnectionLineObject(connectionLineObject);
+                        ClipBoard.setLine(connectionLineObject.line);
+                        ClipBoard.setConnectionLineObject(connectionLineObject);
                         
-                        DragBoard.setGroup(g);
-                        DragBoard.setName(name);
-                        DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
-                        DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
-                        DragBoard.printDragBoard();
+                        ClipBoard.setGroup(g);
+                        ClipBoard.setName(name);
+                        ClipBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
+                        ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
+                        ClipBoard.printDragBoard();
                         System.out.println("copied pin to dragboard");
-                    } else if(DragBoard.getInputPin() != null && inputPin == null){
+                    } else if(ClipBoard.getInputPin() != null && inputPin == null){
                         LogicLine logicLine = new LogicLine();
-                        logicLine.setInputPin(0, DragBoard.getInputPin());
+                        logicLine.setInputPin(0, ClipBoard.getInputPin());
                         logicLine.setOutputPin(0, outputPin);
                         connectionLineObject.logicLine = logicLine;
                         //createLine(line, logicLine);
-                        connectionLineObject2 = DragBoard.getConnectionLineObject();
-                        Line line = connectionLineObject.createInLine(inputPin, connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                        connectionLineObject2 = ClipBoard.getConnectionLineObject();
+                        Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                         //createLine(line, logicLine);
                         
                         if(!Globals.main.circleGroup.getChildren().contains(line)){
@@ -99,16 +99,16 @@ public class PinObject {
                             Globals.main.connectionLineObjects.add(connectionLineObject);
                             System.out.println("line did not exist in schematic");
                         }
-                        DragBoard.clearDragBoard();
+                        ClipBoard.clearDragBoard();
                       
-                    } else if(DragBoard.getOutputPin() != null && outputPin == null){
+                    } else if(ClipBoard.getOutputPin() != null && outputPin == null){
                         LogicLine logicLine = new LogicLine();
                         logicLine.setInputPin(0, inputPin);
-                        logicLine.setOutputPin(0, DragBoard.getOutputPin());
+                        logicLine.setOutputPin(0, ClipBoard.getOutputPin());
                         connectionLineObject.logicLine = logicLine;
                         //createLine(line, logicLine);
-                        connectionLineObject2 = DragBoard.getConnectionLineObject();
-                        Line line = connectionLineObject.createOutLine(outputPin, connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                        connectionLineObject2 = ClipBoard.getConnectionLineObject();
+                        Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                         //createLine(line, logicLine);
                         
                         if(!Globals.main.circleGroup.getChildren().contains(line)){
@@ -120,35 +120,35 @@ public class PinObject {
                             Globals.main.connectionLineObjects.add(connectionLineObject);
                             System.out.println("line did not exist in schematic");
                         }
-                        DragBoard.clearDragBoard();
+                        ClipBoard.clearDragBoard();
  
-                    } else if(DragBoard.getInputPin() == inputPin && DragBoard.getOutputPin() == outputPin) {
+                    } else if(ClipBoard.getInputPin() == inputPin && ClipBoard.getOutputPin() == outputPin) {
 
                             System.out.println("clicked on the same pin, dragboard cleared");
-                            DragBoard.clearDragBoard();
-                            DragBoard.printDragBoard();
-                    } else if(DragBoard.getInputPin() != inputPin && DragBoard.getInputPin() != null && outputPin == null){
+                            ClipBoard.clearDragBoard();
+                            ClipBoard.printDragBoard();
+                    } else if(ClipBoard.getInputPin() != inputPin && ClipBoard.getInputPin() != null && outputPin == null){
                         
-                            DragBoard.clearDragBoard();
-                            DragBoard.setInputPin(inputPin);
-                            DragBoard.setLine(connectionLineObject.line);
-                            DragBoard.setGroup(g);
-                            DragBoard.setName(name);
-                            DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
-                            DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
-                            DragBoard.printDragBoard();
-                            System.out.println("sorry bro, you cant link an" + DragBoard.getInputPin().getClass());
-                    } else if(DragBoard.getOutputPin() != outputPin && DragBoard.getOutputPin() != null && inputPin == null){
+                            ClipBoard.clearDragBoard();
+                            ClipBoard.setInputPin(inputPin);
+                            ClipBoard.setLine(connectionLineObject.line);
+                            ClipBoard.setGroup(g);
+                            ClipBoard.setName(name);
+                            ClipBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
+                            ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
+                            ClipBoard.printDragBoard();
+                            System.out.println("sorry bro, you cant link an" + ClipBoard.getInputPin().getClass());
+                    } else if(ClipBoard.getOutputPin() != outputPin && ClipBoard.getOutputPin() != null && inputPin == null){
                         
-                            DragBoard.clearDragBoard();
-                            DragBoard.setOutputPin(outputPin);
-                            DragBoard.setLine(connectionLineObject.line);
-                            DragBoard.setGroup(g);
-                            DragBoard.setName(name);
-                            DragBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
-                            DragBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
-                            DragBoard.printDragBoard();
-                            System.out.println("sorry bro, you cant link an" + DragBoard.getOutputPin().getClass());
+                            ClipBoard.clearDragBoard();
+                            ClipBoard.setOutputPin(outputPin);
+                            ClipBoard.setLine(connectionLineObject.line);
+                            ClipBoard.setGroup(g);
+                            ClipBoard.setName(name);
+                            ClipBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()
+                            ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
+                            ClipBoard.printDragBoard();
+                            System.out.println("sorry bro, you cant link an" + ClipBoard.getOutputPin().getClass());
 
 
                     }

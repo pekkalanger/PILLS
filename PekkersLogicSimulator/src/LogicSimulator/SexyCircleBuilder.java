@@ -17,18 +17,15 @@ import javafx.scene.paint.RadialGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 
-/**
- *
- * @author PEKKA
- */
+@Deprecated
 public class SexyCircleBuilder {
     
     final Main main;
-    
+    @Deprecated
     public SexyCircleBuilder(final Main main) {
         this.main = main;
     }
-          
+    @Deprecated  
     public Circle createBlueCircle(final boolean parent) {
         //create a circle with desired name,  color and radius
         Color color = Color.DODGERBLUE;
@@ -140,7 +137,7 @@ public class SexyCircleBuilder {
         });
         return circle;
     }
-    
+    @Deprecated
     public Circle createOrangeCircle(final boolean parent) {
         //create a circle with desired name,  color and radius
         Color color = Color.CORAL;

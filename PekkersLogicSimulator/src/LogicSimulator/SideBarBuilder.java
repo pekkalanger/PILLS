@@ -40,7 +40,8 @@ public class SideBarBuilder {
         
         VBox sideBar = new VBox();
         sideBar.setSpacing(2f);
-        //final GateBuilder gateBuilder = new GateBuilder();
+        
+        /*      Create Button1                  */
         final Button butt1 = new Button();//"add and gayt");
         butt1.setGraphic(new ImageView(Textures.andGate));
         butt1.setTooltip(new Tooltip("And Gate"));
@@ -48,22 +49,12 @@ public class SideBarBuilder {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new and gate");
-                /*
-                final Rectangle andGate = GateBuilder.createAndGate();
-                andGate.setTranslateX(50);
-                andGate.setTranslateY(50);
-                andGate.toFront();
-                //main.schematicGroup.getChildren().add(rectangle);
-                main.circleGroup.getChildren().add(andGate);
-                */
-                
                 AndObject andObject = new AndObject();
                 main.gateObjects.add(andObject);
-                
                 event.consume();
             }
-         });
-        
+        });
+        /*      Create Button2                  */
         final Button butt2 = new Button();//"add or gayt");
         butt2.setGraphic(new ImageView(Textures.orGate));
         butt2.setTooltip(new Tooltip("Or Gate"));
@@ -75,8 +66,8 @@ public class SideBarBuilder {
                 main.gateObjects.add(orObject);
                 event.consume();
             }
-         });
-                
+        });
+        /*      Create Button3                  */        
         final Button butt3 = new Button();//
         butt3.setGraphic(new ImageView(Textures.notGate));
         butt3.setTooltip(new Tooltip("Not Gate"));
@@ -86,10 +77,9 @@ public class SideBarBuilder {
                 main.showOnConsole("Created new not gate");
                 NotObject notObject = new NotObject();
                 main.gateObjects.add(notObject);
-        
                 event.consume();
             }
-         });
+        });
               
         /*      Create Button4                  */
         final Button butt4 = new Button();//"add Switch");
@@ -104,8 +94,8 @@ public class SideBarBuilder {
                 
                 event.consume();
             }
-         });
-        
+        });
+        /*      Create Button5                  */
         final Button butt5 = new Button();//"add LED");
         butt5.setGraphic(new ImageView(Textures.ledOn));
         butt5.setTooltip(new Tooltip("LED"));
@@ -115,12 +105,11 @@ public class SideBarBuilder {
                 main.showOnConsole("Created new LED");
                 LedObject ledObject = new LedObject();
                 main.gateObjects.add(ledObject);
-                
                 event.consume();
             }
-         });
+        });
         
-                /*      Create Button5                  */
+        /*      Create Button6                  */
         final Button butt6 = new Button();//"skvaer");
         butt6.setGraphic(new ImageView(Textures.pinOver));
         butt6.setOnAction(new EventHandler<ActionEvent>() {
@@ -136,8 +125,9 @@ public class SideBarBuilder {
                 main.circleGroup.getChildren().add(rectangle);
                 event.consume();
             }
-         });
+        });
         
+        /*      Create Button7                  */
         final Button butt7 = new Button("blu c");
         butt7.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -168,98 +158,20 @@ public class SideBarBuilder {
                 main.circleList.add(c);
                 event.consume();
             }
-         });
+        });
         
+        /*      Create Button99                  */
         final Button butt99 = new Button("Lab");
         butt99.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 main.showOnConsole("Created new Label");
-                
-                final Label label = new Label("Label");
-                label.setTranslateX(0);
-                label.setTranslateY(0);
-                label.toFront();
-                //label.setFont(Font.font(Font.getFamilies().get(22)));
-                
-                label.setOnMousePressed(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent me) {
-                         //when mouse is pressed, store initial position
-                        initX = label.getTranslateX();
-                        initY = label.getTranslateY();
-                        dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-                        //showOnConsole("Mouse pressed above " + name);
-                    }
-                });
-                
-                label.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent me) {
-                         if (me.getButton() == MouseButton.PRIMARY) {
-                            double dragX = me.getSceneX() - dragAnchor.getX();
-                            double dragY = me.getSceneY() - dragAnchor.getY();
-                            double newXPosition = initX + dragX;
-                            double newYPosition = initY + dragY;
-                            label.setTranslateX(newXPosition);
-                            label.setTranslateY(newYPosition);
-                            me.consume();
-                        }
-                    }
-                });
-                
-                label.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent me) {
-                        label.toFront();
-                        if (me.getButton() == MouseButton.PRIMARY) {
-                            
-                        } else if (me.getButton() == MouseButton.SECONDARY) {//.PRIMARY) {
-                            
-                            main.showOnConsole("Clicked on" + label.getText() + ", " + me.getClickCount() + "times");
-                            
-                            final HBox labelPromptBox = new HBox();
-                            labelPromptBox.setTranslateX(label.getTranslateX());
-                            labelPromptBox.setTranslateY(label.getTranslateY());
-                            main.circleGroup.getChildren().add(labelPromptBox);
-                            
-                            final TextField textField = new TextField();
-                            textField.setPromptText(label.getText());
-                            textField.setText(label.getText());
-                            textField.setPrefColumnCount(10);
-                            labelPromptBox.getChildren().add(textField);
-                            
-                            Button okButt = new Button("Ok");
-                            okButt.setCancelButton(true);
-                            okButt.setDefaultButton(true);
-                            okButt.setOnAction(new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent arg0) {
-                                    label.setText(textField.getText());
-                                    main.circleGroup.getChildren().remove(labelPromptBox);
-                                    main.showOnConsole("textfield closed, Label text updated");
-                                }
-                            });
-                            labelPromptBox.getChildren().add(okButt);
-                            
-                            me.consume();
-                            
-                        } else if (me.getButton() == MouseButton.MIDDLE) {
-                            main.showOnConsole("Removed specified Label");
-                            //main.circleList.remove(gg);
-                            main.circleGroup.getChildren().remove(label);
-                            me.consume();
-                        }
-                    }
-                });
-                main.circleGroup.getChildren().add(label);
+                main.circleGroup.getChildren().add(createLabel());
                 event.consume();
             }
-         });
-        
+        });
         
         /*      set keycodes to buttons                  */
-        
         main.rootGroup.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
@@ -278,20 +190,95 @@ public class SideBarBuilder {
                 } else {
                     return;
                 }
-                
                 ke.consume();
             }
         });
         
-        
+        /*      Create Spacer1                  */
         Region spacer1 = new Region();
         VBox.setVgrow(spacer1, Priority.ALWAYS);     
         spacer1.setMaxHeight(20);
+        
+        /*      Create Spacer2                  */
         Region spacer2 = new Region();
         VBox.setVgrow(spacer2, Priority.ALWAYS);     
         spacer2.setMaxHeight(20);
+        
+        /*      add it all to the sideBar group */
         sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, spacer1, butt99, spacer2, butt6, butt7, butt8);
         
         return sideBar;
     }
+    
+     public Label createLabel(){
+        final Label label = new Label("Label");
+        label.setTranslateX(0);
+        label.setTranslateY(0);
+        label.toFront();
+        label.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                 //when mouse is pressed, store initial position
+                initX = label.getTranslateX();
+                initY = label.getTranslateY();
+                dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
+            }
+        });
+
+        label.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                 if (me.getButton() == MouseButton.PRIMARY) {
+                    double dragX = me.getSceneX() - dragAnchor.getX();
+                    double dragY = me.getSceneY() - dragAnchor.getY();
+                    double newXPosition = initX + dragX;
+                    double newYPosition = initY + dragY;
+                    label.setTranslateX(newXPosition);
+                    label.setTranslateY(newYPosition);
+                    me.consume();
+                }
+            }
+        });
+
+        label.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent me) {
+                label.toFront();
+                if (me.getButton() == MouseButton.PRIMARY) {
+                } else if (me.getButton() == MouseButton.SECONDARY) {//.PRIMARY) {
+                    //main.showOnConsole("Clicked on" + label.getText() + ", " + me.getClickCount() + "times");
+                    final HBox labelPromptBox = new HBox();
+                    labelPromptBox.setTranslateX(label.getTranslateX());
+                    labelPromptBox.setTranslateY(label.getTranslateY());
+                    main.circleGroup.getChildren().add(labelPromptBox);
+
+                    final TextField textField = new TextField();
+                    textField.setPromptText(label.getText());
+                    textField.setText(label.getText());
+                    textField.setPrefColumnCount(10);
+                    labelPromptBox.getChildren().add(textField);
+
+                    Button okButt = new Button("Ok");
+                    okButt.setCancelButton(true);
+                    okButt.setDefaultButton(true);
+                    okButt.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent arg0) {
+                            label.setText(textField.getText());
+                            main.circleGroup.getChildren().remove(labelPromptBox);
+                            //main.showOnConsole("textfield closed, Label text updated");
+                        }
+                    });
+                    labelPromptBox.getChildren().add(okButt);
+                    me.consume();
+                } else if (me.getButton() == MouseButton.MIDDLE) {
+                    main.circleGroup.getChildren().remove(label);
+                    me.consume();
+                }
+            }
+        });
+        return label;
+    }
+    
+    
 }

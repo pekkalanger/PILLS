@@ -17,7 +17,7 @@ import javafx.scene.shape.Line;
  *
  * @author PEKKA
  */
-public class DragBoard {
+public class ClipBoard {
     private static GateObject gateObject;
     public static ConnectionLineObject connectionLineObject;
     public static Line line;
@@ -30,7 +30,7 @@ public class DragBoard {
     private static double x = -1;
     private static double y = -1;
 
-    public DragBoard() {
+    public ClipBoard() {
         
     }
     

@@ -1,0 +1,354 @@
+@startuml
+abstract class Logic.Pin
+annotation java.lang.Override
+class Logic.AnalProbulator
+class Logic.And
+class Logic.DataObject
+class Logic.InputPin
+class Logic.Led
+class Logic.LogicLine
+class Logic.Not
+class Logic.Or
+class Logic.OutputPin
+class Logic.Switch
+class LogicSimulator.DragBoard
+class LogicSimulator.GateObjects.AndObject
+class LogicSimulator.GateObjects.ConnectionLineObject
+class LogicSimulator.GateObjects.GateObject
+class LogicSimulator.GateObjects.InputPinObject
+class LogicSimulator.GateObjects.LedObject
+class LogicSimulator.GateObjects.NotObject
+class LogicSimulator.GateObjects.OrObject
+class LogicSimulator.GateObjects.OutputPinObject
+class LogicSimulator.GateObjects.PinObject
+class LogicSimulator.GateObjects.SwitchObject
+class LogicSimulator.Globals
+class LogicSimulator.Main
+class LogicSimulator.MenuBarBuilder
+class LogicSimulator.SexyCircleBuilder
+class LogicSimulator.SexyRectangleBuilder
+class LogicSimulator.SideBarBuilder
+class LogicSimulator.Textures
+class com.sun.corba.se.pept.encoding.InputObject
+class java.io.File
+class java.io.FileInputStream
+class java.io.FileOutputStream
+class java.io.IOException
+class java.io.ObjectInputStream
+class java.io.ObjectOutputStream
+class java.util.ArrayList
+class java.util.Iterator
+class java.util.LinkedList
+class java.util.List
+class java.util.logging.Level
+class java.util.logging.Logger
+class javafx.animation.Animation
+class javafx.animation.KeyFrame
+class javafx.animation.Timeline
+class javafx.application.Application
+class javafx.application.Platform
+class javafx.collections.FXCollections
+class javafx.collections.ObservableList
+class javafx.event.ActionEvent
+class javafx.event.Event
+class javafx.event.EventHandler
+class javafx.geometry.Point2D
+class javafx.geometry.Pos
+class javafx.scene.Cursor
+class javafx.scene.Group
+class javafx.scene.ImageCursor
+class javafx.scene.Scene
+class javafx.scene.control.Button
+class javafx.scene.control.Label
+class javafx.scene.control.ListView
+class javafx.scene.control.MenuBar
+class javafx.scene.control.MenuItem
+class javafx.scene.control.SeparatorMenuItem
+class javafx.scene.control.TextField
+class javafx.scene.control.Tooltip
+class javafx.scene.effect.InnerShadow
+class javafx.scene.image.Image
+class javafx.scene.image.ImageView
+class javafx.scene.input.KeyCode
+class javafx.scene.input.KeyCodeCombination
+class javafx.scene.input.KeyCombination
+class javafx.scene.input.KeyEvent
+class javafx.scene.input.MouseButton
+class javafx.scene.input.MouseEvent
+class javafx.scene.input.ScrollEvent
+class javafx.scene.layout.HBox
+class javafx.scene.layout.Priority
+class javafx.scene.layout.Region
+class javafx.scene.layout.VBox
+class javafx.scene.paint.Color
+class javafx.scene.paint.CycleMethod
+class javafx.scene.paint.ImagePattern
+class javafx.scene.paint.LinearGradient
+class javafx.scene.paint.RadialGradient
+class javafx.scene.paint.Stop
+class javafx.scene.shape.Circle
+class javafx.scene.shape.Line
+class javafx.scene.shape.Rectangle
+class javafx.stage.FileChooser
+class javafx.stage.Modality
+class javafx.stage.Stage
+class javafx.stage.StageStyle
+class javafx.util.Duration
+interface Logic.Gate
+Logic.And ..> java.lang.Override
+Logic.And ..> LogicSimulator.Globals
+Logic.And ..> java.util.logging.Logger
+Logic.And --|> Logic.Gate
+Logic.InputPin --|> Logic.Pin
+Logic.Led ..> java.lang.Override
+Logic.Led ..> LogicSimulator.Globals
+Logic.Led --|> Logic.Gate
+Logic.LogicLine ..> java.lang.Override
+Logic.LogicLine --|> Logic.Gate
+Logic.Not ..> java.lang.Override
+Logic.Not ..> LogicSimulator.Globals
+Logic.Not --|> Logic.Gate
+Logic.Or ..> java.lang.Override
+Logic.Or ..> LogicSimulator.Globals
+Logic.Or --|> Logic.Gate
+Logic.OutputPin --|> Logic.Pin
+Logic.Switch ..> java.lang.Override
+Logic.Switch ..> LogicSimulator.Globals
+Logic.Switch --|> Logic.Gate
+LogicSimulator.DragBoard ..> Logic.InputPin
+LogicSimulator.DragBoard ..> Logic.OutputPin
+LogicSimulator.DragBoard ..> LogicSimulator.GateObjects.ConnectionLineObject
+LogicSimulator.DragBoard ..> LogicSimulator.GateObjects.GateObject
+LogicSimulator.DragBoard ..> javafx.scene.Group
+LogicSimulator.DragBoard ..> javafx.scene.shape.Line
+LogicSimulator.DragBoard ..> Logic.Gate
+LogicSimulator.GateObjects.AndObject ..> java.lang.Override
+LogicSimulator.GateObjects.AndObject ..> Logic.And
+LogicSimulator.GateObjects.AndObject ..> Logic.InputPin
+LogicSimulator.GateObjects.AndObject ..> Logic.OutputPin
+LogicSimulator.GateObjects.AndObject --|> LogicSimulator.GateObjects.GateObject
+LogicSimulator.GateObjects.AndObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.AndObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.AndObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.ConnectionLineObject ..> Logic.DataObject
+LogicSimulator.GateObjects.ConnectionLineObject ..> Logic.InputPin
+LogicSimulator.GateObjects.ConnectionLineObject ..> Logic.LogicLine
+LogicSimulator.GateObjects.ConnectionLineObject ..> Logic.OutputPin
+LogicSimulator.GateObjects.ConnectionLineObject ..> LogicSimulator.DragBoard
+LogicSimulator.GateObjects.ConnectionLineObject ..> LogicSimulator.Globals
+LogicSimulator.GateObjects.ConnectionLineObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.event.EventHandler
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.ImageCursor
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.image.Image
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.input.MouseButton
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.input.MouseEvent
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.paint.Color
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.ConnectionLineObject ..> javafx.scene.shape.Rectangle
+LogicSimulator.GateObjects.ConnectionLineObject ..> Logic.Gate
+LogicSimulator.GateObjects.GateObject ..> java.lang.Override
+LogicSimulator.GateObjects.GateObject ..> LogicSimulator.Globals
+LogicSimulator.GateObjects.GateObject ..> javafx.event.EventHandler
+LogicSimulator.GateObjects.GateObject ..> javafx.geometry.Point2D
+LogicSimulator.GateObjects.GateObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.GateObject ..> javafx.scene.image.Image
+LogicSimulator.GateObjects.GateObject ..> javafx.scene.input.MouseButton
+LogicSimulator.GateObjects.GateObject ..> javafx.scene.input.MouseEvent
+LogicSimulator.GateObjects.GateObject ..> javafx.scene.paint.ImagePattern
+LogicSimulator.GateObjects.GateObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.GateObject ..> javafx.scene.shape.Rectangle
+LogicSimulator.GateObjects.GateObject ..> Logic.Gate
+LogicSimulator.GateObjects.InputPinObject ..> Logic.InputPin
+LogicSimulator.GateObjects.InputPinObject --|> LogicSimulator.GateObjects.PinObject
+LogicSimulator.GateObjects.InputPinObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.InputPinObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.InputPinObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.InputPinObject ..> javafx.scene.shape.Rectangle
+LogicSimulator.GateObjects.LedObject ..> java.lang.Override
+LogicSimulator.GateObjects.LedObject ..> Logic.InputPin
+LogicSimulator.GateObjects.LedObject ..> Logic.Led
+LogicSimulator.GateObjects.LedObject --|> LogicSimulator.GateObjects.GateObject
+LogicSimulator.GateObjects.LedObject ..> LogicSimulator.Globals
+LogicSimulator.GateObjects.LedObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.LedObject ..> javafx.event.EventHandler
+LogicSimulator.GateObjects.LedObject ..> javafx.geometry.Point2D
+LogicSimulator.GateObjects.LedObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.LedObject ..> javafx.scene.input.MouseButton
+LogicSimulator.GateObjects.LedObject ..> javafx.scene.input.MouseEvent
+LogicSimulator.GateObjects.LedObject ..> javafx.scene.paint.ImagePattern
+LogicSimulator.GateObjects.LedObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.LedObject ..> javafx.scene.shape.Rectangle
+LogicSimulator.GateObjects.NotObject ..> java.lang.Override
+LogicSimulator.GateObjects.NotObject ..> Logic.InputPin
+LogicSimulator.GateObjects.NotObject ..> Logic.Not
+LogicSimulator.GateObjects.NotObject ..> Logic.OutputPin
+LogicSimulator.GateObjects.NotObject --|> LogicSimulator.GateObjects.GateObject
+LogicSimulator.GateObjects.NotObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.NotObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.NotObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.OrObject ..> java.lang.Override
+LogicSimulator.GateObjects.OrObject ..> Logic.InputPin
+LogicSimulator.GateObjects.OrObject ..> Logic.Or
+LogicSimulator.GateObjects.OrObject ..> Logic.OutputPin
+LogicSimulator.GateObjects.OrObject --|> LogicSimulator.GateObjects.GateObject
+LogicSimulator.GateObjects.OrObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.OrObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.OrObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.OutputPinObject ..> Logic.OutputPin
+LogicSimulator.GateObjects.OutputPinObject --|> LogicSimulator.GateObjects.PinObject
+LogicSimulator.GateObjects.OutputPinObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.OutputPinObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.OutputPinObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.OutputPinObject ..> javafx.scene.shape.Rectangle
+LogicSimulator.GateObjects.PinObject ..> Logic.InputPin
+LogicSimulator.GateObjects.PinObject ..> Logic.LogicLine
+LogicSimulator.GateObjects.PinObject ..> Logic.OutputPin
+LogicSimulator.GateObjects.PinObject ..> LogicSimulator.DragBoard
+LogicSimulator.GateObjects.PinObject ..> LogicSimulator.Globals
+LogicSimulator.GateObjects.PinObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.PinObject ..> com.sun.corba.se.pept.encoding.InputObject
+LogicSimulator.GateObjects.PinObject ..> javafx.event.EventHandler
+LogicSimulator.GateObjects.PinObject ..> javafx.geometry.Point2D
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.Cursor
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.ImageCursor
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.image.Image
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.input.MouseButton
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.input.MouseEvent
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.paint.Color
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.paint.ImagePattern
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.PinObject ..> javafx.scene.shape.Rectangle
+LogicSimulator.GateObjects.SwitchObject ..> java.lang.Override
+LogicSimulator.GateObjects.SwitchObject ..> Logic.OutputPin
+LogicSimulator.GateObjects.SwitchObject ..> Logic.Switch
+LogicSimulator.GateObjects.SwitchObject --|> LogicSimulator.GateObjects.GateObject
+LogicSimulator.GateObjects.SwitchObject ..> LogicSimulator.Globals
+LogicSimulator.GateObjects.SwitchObject ..> LogicSimulator.Textures
+LogicSimulator.GateObjects.SwitchObject ..> javafx.event.EventHandler
+LogicSimulator.GateObjects.SwitchObject ..> javafx.geometry.Point2D
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.Group
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.ImageCursor
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.image.Image
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.input.MouseButton
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.input.MouseEvent
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.paint.ImagePattern
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.shape.Line
+LogicSimulator.GateObjects.SwitchObject ..> javafx.scene.shape.Rectangle
+LogicSimulator.Main ..> java.lang.Override
+LogicSimulator.Main ..> Logic.LogicLine
+LogicSimulator.Main ..> LogicSimulator.GateObjects.ConnectionLineObject
+LogicSimulator.Main ..> LogicSimulator.GateObjects.GateObject
+LogicSimulator.Main ..> java.util.ArrayList
+LogicSimulator.Main ..> java.util.Iterator
+LogicSimulator.Main ..> java.util.LinkedList
+LogicSimulator.Main ..> java.util.List
+LogicSimulator.Main ..> javafx.animation.Animation
+LogicSimulator.Main ..> javafx.animation.KeyFrame
+LogicSimulator.Main ..> javafx.animation.Timeline
+LogicSimulator.Main --|> javafx.application.Application
+LogicSimulator.Main ..> javafx.collections.FXCollections
+LogicSimulator.Main ..> javafx.collections.ObservableList
+LogicSimulator.Main ..> javafx.event.Event
+LogicSimulator.Main ..> javafx.event.EventHandler
+LogicSimulator.Main ..> javafx.geometry.Point2D
+LogicSimulator.Main ..> javafx.scene.Group
+LogicSimulator.Main ..> javafx.scene.ImageCursor
+LogicSimulator.Main ..> javafx.scene.Scene
+LogicSimulator.Main ..> javafx.scene.control.ListView
+LogicSimulator.Main ..> javafx.scene.control.MenuBar
+LogicSimulator.Main ..> javafx.scene.image.Image
+LogicSimulator.Main ..> javafx.scene.input.MouseEvent
+LogicSimulator.Main ..> javafx.scene.input.ScrollEvent
+LogicSimulator.Main ..> javafx.scene.layout.HBox
+LogicSimulator.Main ..> javafx.scene.layout.VBox
+LogicSimulator.Main ..> javafx.scene.paint.Color
+LogicSimulator.Main ..> javafx.scene.paint.CycleMethod
+LogicSimulator.Main ..> javafx.scene.paint.LinearGradient
+LogicSimulator.Main ..> javafx.scene.paint.Stop
+LogicSimulator.Main ..> javafx.scene.shape.Circle
+LogicSimulator.Main ..> javafx.scene.shape.Line
+LogicSimulator.Main ..> javafx.scene.shape.Rectangle
+LogicSimulator.Main ..> javafx.stage.Stage
+LogicSimulator.Main ..> javafx.util.Duration
+LogicSimulator.MenuBarBuilder ..> java.lang.Override
+LogicSimulator.MenuBarBuilder ..> LogicSimulator.GateObjects.ConnectionLineObject
+LogicSimulator.MenuBarBuilder ..> java.io.File
+LogicSimulator.MenuBarBuilder ..> java.io.FileInputStream
+LogicSimulator.MenuBarBuilder ..> java.io.FileOutputStream
+LogicSimulator.MenuBarBuilder ..> java.io.IOException
+LogicSimulator.MenuBarBuilder ..> java.io.ObjectInputStream
+LogicSimulator.MenuBarBuilder ..> java.io.ObjectOutputStream
+LogicSimulator.MenuBarBuilder ..> java.util.ArrayList
+LogicSimulator.MenuBarBuilder ..> java.util.logging.Level
+LogicSimulator.MenuBarBuilder ..> java.util.logging.Logger
+LogicSimulator.MenuBarBuilder ..> javafx.application.Platform
+LogicSimulator.MenuBarBuilder ..> javafx.event.ActionEvent
+LogicSimulator.MenuBarBuilder ..> javafx.event.EventHandler
+LogicSimulator.MenuBarBuilder ..> javafx.geometry.Pos
+LogicSimulator.MenuBarBuilder ..> javafx.scene.Group
+LogicSimulator.MenuBarBuilder ..> javafx.scene.Scene
+LogicSimulator.MenuBarBuilder ..> javafx.scene.control.Button
+LogicSimulator.MenuBarBuilder ..> javafx.scene.control.Label
+LogicSimulator.MenuBarBuilder ..> javafx.scene.control.MenuBar
+LogicSimulator.MenuBarBuilder ..> javafx.scene.control.MenuItem
+LogicSimulator.MenuBarBuilder ..> javafx.scene.control.SeparatorMenuItem
+LogicSimulator.MenuBarBuilder ..> javafx.scene.image.ImageView
+LogicSimulator.MenuBarBuilder ..> javafx.scene.input.KeyCode
+LogicSimulator.MenuBarBuilder ..> javafx.scene.input.KeyCodeCombination
+LogicSimulator.MenuBarBuilder ..> javafx.scene.input.KeyCombination
+LogicSimulator.MenuBarBuilder ..> javafx.scene.layout.HBox
+LogicSimulator.MenuBarBuilder ..> javafx.scene.layout.VBox
+LogicSimulator.MenuBarBuilder ..> javafx.stage.FileChooser
+LogicSimulator.MenuBarBuilder ..> javafx.stage.Modality
+LogicSimulator.MenuBarBuilder ..> javafx.stage.Stage
+LogicSimulator.MenuBarBuilder ..> javafx.stage.StageStyle
+LogicSimulator.SexyCircleBuilder ..> java.lang.Override
+LogicSimulator.SexyCircleBuilder ..> javafx.event.EventHandler
+LogicSimulator.SexyCircleBuilder ..> javafx.geometry.Point2D
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.Cursor
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.effect.InnerShadow
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.input.MouseButton
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.input.MouseEvent
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.paint.Color
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.paint.CycleMethod
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.paint.RadialGradient
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.paint.Stop
+LogicSimulator.SexyCircleBuilder ..> javafx.scene.shape.Circle
+LogicSimulator.SexyRectangleBuilder ..> java.lang.Override
+LogicSimulator.SexyRectangleBuilder ..> javafx.event.EventHandler
+LogicSimulator.SexyRectangleBuilder ..> javafx.geometry.Point2D
+LogicSimulator.SexyRectangleBuilder ..> javafx.scene.Cursor
+LogicSimulator.SexyRectangleBuilder ..> javafx.scene.image.Image
+LogicSimulator.SexyRectangleBuilder ..> javafx.scene.input.MouseButton
+LogicSimulator.SexyRectangleBuilder ..> javafx.scene.input.MouseEvent
+LogicSimulator.SexyRectangleBuilder ..> javafx.scene.paint.ImagePattern
+LogicSimulator.SexyRectangleBuilder ..> javafx.scene.shape.Rectangle
+LogicSimulator.SideBarBuilder ..> java.lang.Override
+LogicSimulator.SideBarBuilder ..> LogicSimulator.GateObjects.AndObject
+LogicSimulator.SideBarBuilder ..> LogicSimulator.GateObjects.LedObject
+LogicSimulator.SideBarBuilder ..> LogicSimulator.GateObjects.NotObject
+LogicSimulator.SideBarBuilder ..> LogicSimulator.GateObjects.OrObject
+LogicSimulator.SideBarBuilder ..> LogicSimulator.GateObjects.SwitchObject
+LogicSimulator.SideBarBuilder ..> javafx.event.ActionEvent
+LogicSimulator.SideBarBuilder ..> javafx.event.EventHandler
+LogicSimulator.SideBarBuilder ..> javafx.geometry.Point2D
+LogicSimulator.SideBarBuilder ..> javafx.scene.control.Button
+LogicSimulator.SideBarBuilder ..> javafx.scene.control.Label
+LogicSimulator.SideBarBuilder ..> javafx.scene.control.TextField
+LogicSimulator.SideBarBuilder ..> javafx.scene.control.Tooltip
+LogicSimulator.SideBarBuilder ..> javafx.scene.image.ImageView
+LogicSimulator.SideBarBuilder ..> javafx.scene.input.KeyCode
+LogicSimulator.SideBarBuilder ..> javafx.scene.input.KeyEvent
+LogicSimulator.SideBarBuilder ..> javafx.scene.input.MouseButton
+LogicSimulator.SideBarBuilder ..> javafx.scene.input.MouseEvent
+LogicSimulator.SideBarBuilder ..> javafx.scene.layout.HBox
+LogicSimulator.SideBarBuilder ..> javafx.scene.layout.Priority
+LogicSimulator.SideBarBuilder ..> javafx.scene.layout.Region
+LogicSimulator.SideBarBuilder ..> javafx.scene.layout.VBox
+LogicSimulator.SideBarBuilder ..> javafx.scene.shape.Circle
+LogicSimulator.SideBarBuilder ..> javafx.scene.shape.Rectangle
+LogicSimulator.Textures ..> javafx.scene.image.Image
+Logic.Gate ..> java.lang.Override
+@enduml
