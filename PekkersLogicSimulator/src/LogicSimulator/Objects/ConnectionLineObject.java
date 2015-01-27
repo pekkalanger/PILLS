@@ -63,16 +63,7 @@ public class ConnectionLineObject {
 
     public Line createLine(final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
         if (line != null) {
-            /*
-             if (logicLine != null) {
-             if (logicLine.getInputPin(0).getDataObject().getData()) {
-             line.setStroke(colorOn);
-             } else {
-             line.setStroke(colorOff);
-             }
-             }
-             */
-            line.setStrokeWidth(2);
+
             //add InputPin shadow effect
             Image cursorImage = Textures.lineCursor;
             ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
@@ -131,6 +122,12 @@ public class ConnectionLineObject {
             line.setOnMouseExited((MouseEvent me) -> {
                 //me.consume();
             });
+            line.setStrokeWidth(2);
+            if (logicLine.getInputPin(0).getDataObject().getData() == true) {
+                line.setStroke(colorOn);
+            } else {
+                line.setStroke(colorOff);
+            }
             return line;
         } else {
             return null;

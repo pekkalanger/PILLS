@@ -161,9 +161,10 @@ public abstract class GateObject {
     }
 
     public void update(long deltaTime) {
+        x = group.getTranslateX();
+        y = group.getTranslateY();
         if (gate != null) {
             gate.update(deltaTime);
         }
     }
-
 }

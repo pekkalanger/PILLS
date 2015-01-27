@@ -63,13 +63,4 @@ public class AndObject extends GateObject {
         initGroup(inputPinObjects, outputPinObjects);
     }
 
-    @Override
-    public void update(long deltaTime) {
-        x = group.getTranslateX();
-        y = group.getTranslateY();
-        if (gate != null) {
-            gate.update(deltaTime);
-        }
-    }
-
 }
