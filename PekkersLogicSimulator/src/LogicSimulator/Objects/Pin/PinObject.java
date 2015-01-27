@@ -44,7 +44,7 @@ public class PinObject {
     static final int width = 8;
     static final int height = 8;
     protected Rectangle rectangle;
-
+    Image image;
     public List<ConnectionLineObject> connectionLineObjects;
     public ConnectionLineObject connectionLineObject2;
 
@@ -99,7 +99,6 @@ public class PinObject {
                     ClipBoard.clearDragBoard();
                 } else if (ClipBoard.getInputPin() == inputPin) {
                     ClipBoard.clearDragBoard();
-                    ClipBoard.printDragBoard();
                 } else if (ClipBoard.getInputPin() != inputPin && ClipBoard.getInputPin() != null) {
                     setDragBoard(inputPin, null, ipo, null, g);
                 }
@@ -108,14 +107,6 @@ public class PinObject {
             }
         });
         rectangle.setOnMouseDragged((MouseEvent me) -> {
-            me.consume();
-        });
-        rectangle.setOnMouseEntered((MouseEvent me) -> {
-            rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
-            me.consume();
-        });
-        rectangle.setOnMouseExited((MouseEvent me) -> {
-            rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
             me.consume();
         });
         rectangle.setOnMousePressed((MouseEvent me) -> {
@@ -129,6 +120,9 @@ public class PinObject {
             rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
             me.consume();
         });
+        
+        setinfoPopup(i);
+        
         return rectangle;
     }
 
@@ -177,7 +171,6 @@ public class PinObject {
                     ClipBoard.clearDragBoard();
                 } else if (ClipBoard.getOutputPin() == outputPin) {
                     ClipBoard.clearDragBoard();
-                    ClipBoard.printDragBoard();
                 } else if (ClipBoard.getOutputPin() != outputPin && ClipBoard.getOutputPin() != null) {
                     setDragBoard(null, outputPin, null, opo, g);
                     System.out.println("sorry bro, you cant link an" + ClipBoard.getOutputPin().getClass());
@@ -187,14 +180,6 @@ public class PinObject {
             }
         });
         rectangle.setOnMouseDragged((MouseEvent me) -> {
-            me.consume();
-        });
-        rectangle.setOnMouseEntered((MouseEvent me) -> {
-            rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
-            me.consume();
-        });
-        rectangle.setOnMouseExited((MouseEvent me) -> {
-            rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
             me.consume();
         });
         rectangle.setOnMousePressed((MouseEvent me) -> {
@@ -208,9 +193,33 @@ public class PinObject {
             rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
             me.consume();
         });
+        setinfoPopup(i);
         return rectangle;
     }
     
+    public void setinfoPopup(Image i){        
+        rectangle.setOnMouseEntered((MouseEvent me) -> {
+            rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
+            if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
+                Globals.infoPopup.setTranslateX(750);
+                Globals.infoPopup.setTranslateY(0);
+                if(image != null)Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+                Globals.main.showOnConsole("Open infoPopup");
+                Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
+            }
+                me.consume();
+        });
+        rectangle.setOnMouseExited((MouseEvent me) -> {
+            rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
+            if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+                Globals.main.showOnConsole("remove infopopup");
+                Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+                    
+            }
+            me.consume();
+        }); 
+    }
+        
     public void nullLogicLine(LogicLine ll){
         if (ll != null) {
             ll.getInputPin(0).setDataObject(new DataObject(false));
@@ -246,6 +255,5 @@ public class PinObject {
         ClipBoard.setInputPinObject(ipo);
         ClipBoard.setConnectionLineObject(connectionLineObject);
         ClipBoard.setConnectionLineObject2(connectionLineObject2);
-        ClipBoard.printDragBoard();
     }
 }

@@ -178,6 +178,7 @@ public class ClipBoard {
         outputPinObject = null;
         x = -1;
         y = -1;
+        printDragBoard();
     }
 
 }

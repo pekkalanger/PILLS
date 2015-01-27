@@ -20,7 +20,6 @@ import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Globals;
-import LogicSimulator.Textures;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -61,12 +60,7 @@ public abstract class GateObject {
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(y);
 
-        rectangle.setOnMouseEntered((MouseEvent me) -> {
-            me.consume();
-        });
-        rectangle.setOnMouseExited((MouseEvent me) -> {
-            me.consume();
-        });
+        setinfoPopup();
         return rectangle;
     }
 
@@ -157,12 +151,18 @@ public abstract class GateObject {
                 me.consume();
             }
         });
+        
+        group.setOpacity(0.8f);
+        Globals.main.circleGroup.getChildren().add(group);
+    }
+    
+    public void setinfoPopup(){
         rectangle.setOnMouseEntered((MouseEvent me) -> {
             if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
                     Globals.infoPopup.setTranslateX(750);
                     Globals.infoPopup.setTranslateY(0);
                     if(image != null)Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
-                    Globals.main.showOnConsole("righty on");
+                    Globals.main.showOnConsole("Open infoPopup");
                     Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
                 }
                 me.consume();
@@ -174,10 +174,7 @@ public abstract class GateObject {
                     
             }
             me.consume();
-        });    
-        
-        group.setOpacity(0.8f);
-        Globals.main.circleGroup.getChildren().add(group);
+        }); 
     }
 
     public void destroy() {

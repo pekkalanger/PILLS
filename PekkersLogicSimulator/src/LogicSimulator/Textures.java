@@ -47,6 +47,7 @@ public class Textures {
     static public Image outputPin;
     static public Image texture;
     static public Image exitIcon;
+    static public Image inputInfo;
 
     public static void init() {
         /*      uses file: when testing, and as fallback later  if https fails   */
@@ -103,6 +104,7 @@ public class Textures {
         exitIcon = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/exiticon.png");
 
         /*          Other               */
+        inputInfo = new Image("file:res/inputinfo.png");
         texture = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/texture.png");
 
     }

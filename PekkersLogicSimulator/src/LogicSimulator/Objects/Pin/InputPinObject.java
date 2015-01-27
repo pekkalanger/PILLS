@@ -31,6 +31,7 @@ public class InputPinObject extends PinObject {
         this.y = y;
         name = n;
         this.inputPin = ip;
+        image = Textures.inputInfo;
 
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
