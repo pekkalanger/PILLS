@@ -20,8 +20,6 @@ import javafx.scene.shape.Rectangle;
 
 public class Globals {
     
-    public static Rectangle infoPopup = new Rectangle(196, 168);
-    
     public static Main main;
 
 }

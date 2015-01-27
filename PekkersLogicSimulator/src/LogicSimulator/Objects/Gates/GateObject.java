@@ -20,6 +20,7 @@ import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Globals;
+import LogicSimulator.InfoPopup;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,14 +54,12 @@ public abstract class GateObject {
         outputPinObjects = new ArrayList<>();
     }
 
-    public Rectangle initRectangle(int x, int y, int width, int height, Image image) {
+    public Rectangle initRectangle(int x, int y, int width, int height, Image i) {
         rectangle = new Rectangle(width, height);
-        rectangle.setFill(new ImagePattern(image, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
-
+        rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(y);
-
-        setinfoPopup();
+        InfoPopup.setinfoPopup(rectangle, image, i);
         return rectangle;
     }
 
@@ -109,9 +108,9 @@ public abstract class GateObject {
                 //the event will be passed only to the circle which is on front
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
-                if(Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)){
+                if(Globals.main.schematicGroup.getChildren().contains(InfoPopup.infoPopup)){
                     Globals.main.showOnConsole("remove infopopup");
-                    Globals.main.schematicGroup.getChildren().remove(Globals.infoPopup);
+                    Globals.main.schematicGroup.getChildren().remove(InfoPopup.infoPopup);
 
                 }
                 Globals.main.showOnConsole("Removed specified Gate");
@@ -155,27 +154,7 @@ public abstract class GateObject {
         group.setOpacity(0.8f);
         Globals.main.schematicGroup.getChildren().add(group);
     }
-    
-    public void setinfoPopup(){
-        rectangle.setOnMouseEntered((MouseEvent me) -> {
-            if(!Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)) {
-                    Globals.infoPopup.setTranslateX(750);
-                    Globals.infoPopup.setTranslateY(0);
-                    if(image != null)Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
-                    Globals.main.showOnConsole("Open infoPopup");
-                    Globals.main.schematicGroup.getChildren().add(Globals.infoPopup);
-                }
-                me.consume();
-        });
-        rectangle.setOnMouseExited((MouseEvent me) -> {
-            if(Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)){
-                Globals.main.showOnConsole("remove infopopup");
-                Globals.main.schematicGroup.getChildren().remove(Globals.infoPopup);
-                    
-            }
-            me.consume();
-        }); 
-    }
+   
 
     public void destroy() {
         /* remove all the lines from this object and all other sh*t*/

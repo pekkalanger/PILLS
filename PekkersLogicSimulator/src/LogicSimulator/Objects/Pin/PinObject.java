@@ -23,6 +23,7 @@ import LogicSimulator.ClipBoard;
 import static LogicSimulator.ClipBoard.connectionLineObject;
 import LogicSimulator.Objects.Gates.GateLogic.DataObject;
 import LogicSimulator.Globals;
+import LogicSimulator.InfoPopup;
 import LogicSimulator.Objects.ConnectionLineObject;
 import LogicSimulator.Textures;
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ public class PinObject {
             me.consume();
         });
         
-        setinfoPopup(i);
+        InfoPopup.setinfoPopup(rectangle, image, i);
         
         return rectangle;
     }
@@ -193,32 +194,10 @@ public class PinObject {
             rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
             me.consume();
         });
-        setinfoPopup(i);
+        InfoPopup.setinfoPopup(rectangle, image, i);
         return rectangle;
     }
     
-    public void setinfoPopup(Image i){        
-        rectangle.setOnMouseEntered((MouseEvent me) -> {
-            rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
-            if(!Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)) {
-                Globals.infoPopup.setTranslateX(750);
-                Globals.infoPopup.setTranslateY(0);
-                if(image != null)Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
-                Globals.main.showOnConsole("Open infoPopup");
-                Globals.main.schematicGroup.getChildren().add(Globals.infoPopup);
-            }
-                me.consume();
-        });
-        rectangle.setOnMouseExited((MouseEvent me) -> {
-            rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
-            if(Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)){
-                Globals.main.showOnConsole("remove infopopup");
-                Globals.main.schematicGroup.getChildren().remove(Globals.infoPopup);
-                    
-            }
-            me.consume();
-        }); 
-    }
         
     public void nullLogicLine(LogicLine ll){
         if (ll != null) {
