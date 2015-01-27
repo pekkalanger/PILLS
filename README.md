@@ -5,7 +5,7 @@
 
 ![Screenshot2](https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/screenshot6.png)
 
-TBD:  
+#To Be Done:  
 
       fix the bugwhich makes some lines go bananas.
       implement undo/redo stacks for Gates and Connection lines.
