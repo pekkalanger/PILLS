@@ -1,8 +1,8 @@
 # PekkersLogicSimulator
 
 **Work In Progress**
-
-
+**Requires Java 8 or greater**
+[PekkersLogicSimulator.jar](https://dl.dropboxusercontent.com/u/26427179/code/java/pekkersLogicSimulator.jar)
 ![Screenshot2](https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/screenshot6.png)
 
 #To Be Done:  
