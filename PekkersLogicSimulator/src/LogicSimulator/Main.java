@@ -53,28 +53,27 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-    
+
     int mainWidth = 1024;
     int mainHeight = 768;
-    int schematicWidth = mainWidth-50;
+    int schematicWidth = mainWidth - 50;
     int schematicHeigth = 500;
     int consoleWidth = 700;
     int consoleHeight = 200;
-    
+
     /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
     public List<Line> lines;
     public List<LogicLine> logicLines;
     public List<ConnectionLineObject> connectionLineObjects;
     public LinkedList<Circle> circleList = null;
-    
-    
+
     //create a console for logging mouse events
     final ListView<String> console = new ListView<>();
-    
+
     //create a rectangle - (XXXpx X XXXpx) in which our circles can move
     Rectangle rectangle;
-    
+
     //variables for storing initial position before drag of circle
     public double initX;
     public double initY;
@@ -88,18 +87,20 @@ public class Main extends Application {
     public HBox rootHBox;
     public Stage primaryStage;
     Timeline timeline;
-    
+
     //create a observableArrayList of logged events that will be listed in console
-    final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();{
+    final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();
+
+    {
         //set up the console
         console.setItems(consoleObservableList);
         //console.setLayoutY(55);
         console.setPrefSize(consoleWidth, consoleHeight);
     }
-    
+
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        
+
         gateObjects = new ArrayList();
         lines = new ArrayList();
         connectionLineObjects = new ArrayList<>();
@@ -107,9 +108,9 @@ public class Main extends Application {
         logicLines = new LinkedList<>();
         lines = new LinkedList<>();
 
-        primaryStage.setTitle("P.I.L.L.S pekkers incredibly logical logic simulator"); 
+        primaryStage.setTitle("P.I.L.L.S pekkers incredibly logical logic simulator");
         primaryStage.setResizable(false); // this aint working so far
-        
+
         rootGroup = new VBox(2);        // contains menuBar and rootHBox
         rootHBox = new HBox(2);         // contains sideBar and rootVBox
         rootVBox = new VBox(2);         // contains rectangle and console
@@ -119,29 +120,28 @@ public class Main extends Application {
         //menuBar = new MenuBar();      // a most excelent menubar
         schematicGroup = new Group();   // where gateGroup and lineGroup? r comin  
         circleGroup = new Group();      // gateGroup (atm circleGroup)
-        
+
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
         rootGroup.getChildren().add(menuBar);
-        
+
         SideBarBuilder classySideBarBuilder = new SideBarBuilder(this);
         sideBar = classySideBarBuilder.buildSideBarWithButtons();
         rootHBox.getChildren().add(sideBar);
-        
+
         rectangle = new Rectangle(schematicWidth, schematicHeigth);
         rectangle.setStroke(Color.WHITE);
-        rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-                new Stop(1, Color.rgb(205,235,255)), new Stop(0, Color.rgb(205,235,255, 0.5))
-            }));
+        rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
+            new Stop(1, Color.rgb(205, 235, 255)), new Stop(0, Color.rgb(205, 235, 255, 0.5))
+        }));
         /*rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-                new Stop(1, Color.rgb(156,216,255)), new Stop(0, Color.rgb(156,216,255, 0.5))
-            }));
-        */
+         new Stop(1, Color.rgb(156,216,255)), new Stop(0, Color.rgb(156,216,255, 0.5))
+         }));
+         */
         /*
          * should draw a grid on screen 
-        */
-        
-        
+         */
+
         // we can set mouse event to any node, also on the rectangle
         rectangle.setOnMouseMoved((MouseEvent me) -> {
             //me.consume();
@@ -150,23 +150,23 @@ public class Main extends Application {
         rectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
             double translateX = event.getDeltaX();
             double translateY = event.getDeltaY();
-            
+
             // reduce the deltas for the circles to stay in the screen
             for (Circle c : circleList) {
                 if (c.getTranslateX() + translateX + c.getRadius() > mainWidth) {
                     translateX = mainWidth - c.getTranslateX() - c.getRadius();
                 }
                 if (c.getTranslateX() + translateX - c.getRadius() < 0) {
-                    translateX = - c.getTranslateX() + c.getRadius();
+                    translateX = -c.getTranslateX() + c.getRadius();
                 }
                 if (c.getTranslateY() + translateY + c.getRadius() > mainHeight) {
                     translateY = mainHeight - c.getTranslateY() - c.getRadius();
                 }
                 if (c.getTranslateY() + translateY - c.getRadius() < 0) {
-                    translateY = - c.getTranslateY() + c.getRadius();
+                    translateY = -c.getTranslateY() + c.getRadius();
                 }
             }
-            
+
             // move the circles
             for (Circle c : circleList) {
                 c.setTranslateX(c.getTranslateX() + translateX);
@@ -175,53 +175,53 @@ public class Main extends Application {
             // log event
             showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
         });
-        
+
         schematicGroup.getChildren().add(rectangle);
         rectangle.toBack();
         schematicGroup.getChildren().add(circleGroup);
 
         rootVBox.getChildren().add(schematicGroup);
         rootVBox.getChildren().add(console);
-        
+
         rootHBox.getChildren().add(rootVBox);
         rootGroup.getChildren().add(rootHBox);
-        
-        Scene scene = new Scene(rootGroup, mainWidth,mainHeight);
+
+        Scene scene = new Scene(rootGroup, mainWidth, mainHeight);
         primaryStage.setScene(scene);
-        
+
         Image defaultCursorImage = Textures.defaultCursor;
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
     }
-    
+
     public void showOnConsole(String text) {
-         //if there is 8 items in list, delete first log message, shift other logs and  add a new one to end position
-         if (consoleObservableList.size()==8){
+        //if there is 8 items in list, delete first log message, shift other logs and  add a new one to end position
+        if (consoleObservableList.size() == 8) {
             consoleObservableList.remove(0);
-         }
-         consoleObservableList.add(text);
+        }
+        consoleObservableList.add(text);
     }
 
     protected final void buildAndSetLoop() {        // this vill update everything 100 times per second / once every 1.666 seconds
         final int fps = 50; //  if toggle then 100on + 100off = 200/2 hertz
         //int i;
-        final Duration oneFrameAmt = Duration.millis(1000/fps);  // "100 fps" should be enough.. for nao
+        final Duration oneFrameAmt = Duration.millis(1000 / fps);  // "100 fps" should be enough.. for nao
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, new EventHandler() {
-                @Override
-                public void handle(Event event) {
-                    System.out.println("==============START===============");
-                    Long delta = 0L;
-                    
-                    for (GateObject next : gateObjects) {
-                        next.update(delta);   
-                    }
-                    for (ConnectionLineObject next : connectionLineObjects) {
-                        if(next != null && next.logicLine != null ){
-                            next.update(delta);
-                        }
-                    }
-                    System.out.println("===============END================");
+            @Override
+            public void handle(Event event) {
+                System.out.println("==============START===============");
+                Long delta = 0L;
+
+                for (GateObject next : gateObjects) {
+                    next.update(delta);
                 }
+                for (ConnectionLineObject next : connectionLineObjects) {
+                    if (next != null && next.logicLine != null) {
+                        next.update(delta);
+                    }
+                }
+                System.out.println("===============END================");
+            }
         }); // oneFrame
 
         // sets the apps loop (Timeline)
@@ -229,8 +229,9 @@ public class Main extends Application {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
     }
-      
-    @Override public void start(Stage primaryStage) throws Exception {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
         Textures.init();
         Globals.main = this;
         init(primaryStage);
@@ -239,10 +240,11 @@ public class Main extends Application {
     }
 
     /**
-     * The main() method is ignored in correctly deployed JavaFX 
-     * application. main() serves only as fallback in case the 
-     * application can not be launched through deployment artifacts,
-     * e.g., in IDEs with limited FX support. NetBeans ignores main().
+     * The main() method is ignored in correctly deployed JavaFX application.
+     * main() serves only as fallback in case the application can not be
+     * launched through deployment artifacts, e.g., in IDEs with limited FX
+     * support. NetBeans ignores main().
+     *
      * @param args the command line arguments
      */
     public static void main(String[] args) {

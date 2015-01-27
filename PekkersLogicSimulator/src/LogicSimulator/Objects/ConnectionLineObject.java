@@ -33,46 +33,47 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class ConnectionLineObject {
-    final String name; 
+
+    final String name;
     public Line line;
     public LogicLine logicLine;
     GateInterface gate;
     Color colorOff;
-    Color colorOn; 
+    Color colorOn;
     boolean last = false;
-    
+
     public ConnectionLineObject() {
-        name = "A Line"; 
+        name = "A Line";
         line = new Line();
         logicLine = new LogicLine();
         colorOff = Color.RED;
-        colorOn = Color.LIGHTGREEN; 
+        colorOn = Color.LIGHTGREEN;
     }
-    
-    public void update(Long deltaTime){
-         logicLine.update(deltaTime);
-         if(logicLine.getInputPin(0).getDataObject().getData() != last ){
-            if(logicLine.getInputPin(0).getDataObject().getData() == true){
+
+    public void update(Long deltaTime) {
+        logicLine.update(deltaTime);
+        if (logicLine.getInputPin(0).getDataObject().getData() != last) {
+            if (logicLine.getInputPin(0).getDataObject().getData() == true) {
                 line.setStroke(colorOn);
             } else {
                 line.setStroke(colorOff);
             }
-         }
-         last = logicLine.getInputPin(0).getDataObject().getData();
+        }
+        last = logicLine.getInputPin(0).getDataObject().getData();
     }
-    
+
     public Line createLine(final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
-        if(line != null){
+        if (line != null) {
             line.setStroke(Color.RED);
             line.setStrokeWidth(2);
             //add InputPin shadow effect
             Image cursorImage = Textures.lineCursor;
             ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
             line.setCursor(imageCursor);
-            line.setStartX(ClipBoard.getX() + width/2 + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
-            line.setStartY(ClipBoard.getY() + height/2 + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
-            line.setEndX(r.getTranslateX() + width/2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
-            line.setEndY(r.getTranslateY() + height/2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
+            line.setStartX(ClipBoard.getX() + width / 2 + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
+            line.setStartY(ClipBoard.getY() + height / 2 + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
+            line.setEndX(r.getTranslateX() + width / 2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
+            line.setEndY(r.getTranslateY() + height / 2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
             //add mouse listeners
             Globals.main.showOnConsole("created outline");
             line.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -82,37 +83,37 @@ public class ConnectionLineObject {
                         //mouseEvents.circleList.remove(circle);
                         Globals.main.circleGroup.getChildren().remove(line);
                         //ip.setDataObject(null);
-                        
-                        if(Globals.main.logicLines.contains(logicLine)){  // -> connectionlineobject
+
+                        if (Globals.main.logicLines.contains(logicLine)) {  // -> connectionlineobject
                             logicLine.getInputPin(0).setDataObject(new DataObject(false));
                             logicLine.getOutputPin(0).setDataObject(new DataObject(false));
                             logicLine.setInputPin(0, null);
                             logicLine.setOutputPin(0, null);
                             //logicLine.setDataObject(new DataObject(false));
-                            
+
                             Globals.main.showOnConsole("nully");
                             Globals.main.logicLines.remove(logicLine);
-                            logicLine=null;
+                            logicLine = null;
                         }
-                        if(Globals.main.connectionLineObjects.contains(clo)){  // -> connectionlineobject
+                        if (Globals.main.connectionLineObjects.contains(clo)) {  // -> connectionlineobject
                             //logicLine.setDataObject(null);
                             //logicLine=null;
                             Globals.main.showOnConsole("nully this");
                             Globals.main.connectionLineObjects.remove(clo);
                         }
 
-                        if(clo != null){
-                            if(clo.logicLine != null){
-                                if(clo.logicLine.getInputPin(0) != null){
+                        if (clo != null) {
+                            if (clo.logicLine != null) {
+                                if (clo.logicLine.getInputPin(0) != null) {
                                     clo.logicLine.getInputPin(0).setDataObject(new DataObject(false));
                                     clo.logicLine.setInputPin(0, null);
-                                } else if(clo.logicLine.getOutputPin(0) != null){
+                                } else if (clo.logicLine.getOutputPin(0) != null) {
                                     clo.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
                                     clo.logicLine.setOutputPin(0, null);
                                 }
                             }
                             //clo.logicLine.setDataObject(null);
-                            clo.logicLine=null;
+                            clo.logicLine = null;
                         }
                         me.consume();
                     }
@@ -121,7 +122,9 @@ public class ConnectionLineObject {
             line.setOnMouseEntered(new EventHandler<MouseEvent>() {
                 public void handle(MouseEvent me) {
                     //change the z-coordinate of the circle
-                    if(line != null)line.toFront();
+                    if (line != null) {
+                        line.toFront();
+                    }
                     //Globals.main.showOnConsole("Mouse over " + name);
                 }
             });
@@ -136,5 +139,5 @@ public class ConnectionLineObject {
             return null;
         }
     }
-    
+
 }

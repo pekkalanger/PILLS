@@ -29,23 +29,24 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class LedObject extends GateObject{
-    
+public class LedObject extends GateObject {
+
     boolean last = false;
-    
-     public LedObject() {
-        super();        
+
+    public LedObject() {
+        super();
         /*      movable group   */
         group = new Group();
         name = "Led";
-        
+
         gate = new Led();
         gate.setInputPin(0, new InputPin());
-        
+
         inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
-        
+
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
+
         rectangle.setTranslateX(8);
         rectangle.setTranslateY(0);
         rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -61,43 +62,43 @@ public class LedObject extends GateObject{
                 Globals.main.showOnConsole("Mouse exited " + name);
             }
         });
-        
+
         group.getChildren().add(rectangle);
-        if(inputPinObjects != null){
+        if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        if(outputPinObjects != null){
+        if (outputPinObjects != null) {
             Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
-                
+
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
         initGroup(inputPinObjects, outputPinObjects);
     }
 
-    
     @Override
     public void update(long deltaTime) {
         //here we will take the data from line and render leds new status (via println())
-        if(gate != null){ 
+        if (gate != null) {
             gate.update(deltaTime);
-            if(gate.getDataObject() != null){
-                if(last != gate.getDataObject().getData()){
-                    if(gate.getDataObject().getData() == true){
-                     rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/   
+            if (gate.getDataObject() != null) {
+                if (last != gate.getDataObject().getData()) {
+                    if (gate.getDataObject().getData() == true) {
+                        rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
+
                     } else {
                         rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
                     }
-                    last=false;
+                    last = false;
                 }
                 last = gate.getDataObject().getData();
-            } 
+            }
         }
-        
+
     }
-   
+
 }

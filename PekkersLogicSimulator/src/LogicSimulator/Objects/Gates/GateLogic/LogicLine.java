@@ -15,39 +15,45 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package LogicSimulator.Objects.Gates.GateLogic;
- /*
-    draw line from PinA.pos to PinB.pos
-*/
-public class LogicLine implements GateInterface{
+/*
+ draw line from PinA.pos to PinB.pos
+ */
+
+public class LogicLine implements GateInterface {
+
     private final String name = "Line";
-    private InputPin pinA ;
-    private OutputPin pinB ;
-    
-    public LogicLine(){
-        pinA = new  InputPin();
+    private InputPin pinA;
+    private OutputPin pinB;
+
+    public LogicLine() {
+        pinA = new InputPin();
         pinB = new OutputPin();
     }
-    
+
     @Override
     public boolean update(long deltaTime) {
-        if(pinA != null && pinB != null){
+        if (pinA != null && pinB != null) {
             pinA.setDataObject(pinB.getDataObject());
             return false;
         } else {
-            if(pinA == null)System.out.println("Line pinA = null" );
-            if(pinB == null)System.out.println("Line pinB = null" );
+            if (pinA == null) {
+                System.out.println("Line pinA = null");
+            }
+            if (pinB == null) {
+                System.out.println("Line pinB = null");
+            }
             return true;
         }
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-         pinA = ip;
+        pinA = ip;
     }
 
     @Override

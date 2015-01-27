@@ -53,12 +53,14 @@ import javafx.stage.StageStyle;
  * @author PEKKA
  */
 public class MenuBarBuilder {
+
     final Main main;
+
     public MenuBarBuilder(final Main main) {
         this.main = main;
     }
-            
-    public MenuBar buildMenuBarWithMenus(){
+
+    public MenuBar buildMenuBarWithMenus() {
         final MenuBar menuBar = new MenuBar();
 
         // Prepare left-most 'File' drop-down menu
@@ -68,32 +70,29 @@ public class MenuBarBuilder {
             @Override
             public void handle(ActionEvent event) {
                 /*       null all the lists!!!       */
-                
-                
+
                 //main.schematicGroup = new Group();  will not use circlegroup in the future
                 main.schematicGroup.getChildren().remove(main.circleGroup);
                 main.circleGroup = new Group();
                 main.schematicGroup.getChildren().add(main.circleGroup);
-               
-                
+
                 main.gateObjects = new ArrayList();
                 main.lines = new ArrayList();
                 main.connectionLineObjects = new ArrayList();
                 main.logicLines = new ArrayList();
                 main.circleList = new LinkedList();
-                
-                
+
                 event.consume();
             }
         });
-                
+
         final MenuItem fileOpen = new MenuItem("Open");
-         fileOpen.setOnAction(new EventHandler<ActionEvent>() {
+        fileOpen.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Schematic");
-                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));                 
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
                 fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("schematic", "*.schematic"));
                 File file = fileChooser.showOpenDialog(main.primaryStage);
                 if (file != null) {
@@ -103,7 +102,7 @@ public class MenuBarBuilder {
                         fileIn = new FileInputStream(file);
                         ObjectInputStream in = new ObjectInputStream(fileIn);
                         //in.readObject();
-                    }  catch (Exception e) {
+                    } catch (Exception e) {
                         System.out.println(e);
                     } finally {
                         try {
@@ -118,16 +117,16 @@ public class MenuBarBuilder {
                 event.consume();
             }
         });
-         
+
         final MenuItem fileSave = new MenuItem("Save");
-        
+
         final MenuItem fileSaveAs = new MenuItem("Save As");
         fileSaveAs.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Save Schematic");
-                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));                 
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
                 fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("schematic", "*.schematic"));
                 File file = fileChooser.showSaveDialog(main.primaryStage);
                 if (file != null) {
@@ -136,7 +135,7 @@ public class MenuBarBuilder {
                         fileOut = new FileOutputStream(file);
                         ObjectOutputStream out = new ObjectOutputStream(fileOut);
                         //out.writeObject();
-                    }  catch (Exception e) {
+                    } catch (Exception e) {
                         System.out.println(e);
                     } finally {
                         try {
@@ -145,7 +144,7 @@ public class MenuBarBuilder {
                             fileOut = null;
                             System.gc();
                             main.showOnConsole("something Saved successfully");
-                            
+
                         } catch (IOException ex) {
                             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -154,17 +153,18 @@ public class MenuBarBuilder {
                 event.consume();
             }
         });
-        
+
         final MenuItem fileExit = new MenuItem("Exit");         // quit
         fileExit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent event) {
+            @Override
+            public void handle(ActionEvent event) {
                 System.out.println("Exiting this shi.. witty app ");
-                Platform.exit(); 
+                Platform.exit();
                 event.consume();
             }
         });
         fileExit.setGraphic(new ImageView(Textures.exitIcon));
-        
+
         fileMenu.getItems().addAll(fileNew, fileOpen, fileSave, fileSaveAs, new SeparatorMenuItem(), fileExit);
 
         // Prepare 'Extras' drop-down menu
@@ -172,21 +172,22 @@ public class MenuBarBuilder {
         extrasMenu.getItems().add(new MenuItem("001"));
         extrasMenu.getItems().add(new MenuItem("002"));
         extrasMenu.getItems().add(new MenuItem("003"));
-        
+
         // Prepare 'Help' drop-down menu
         final javafx.scene.control.Menu helpMenu = new javafx.scene.control.Menu("Help");
-        
+
         final MenuItem searchMenuItem = new MenuItem("Search");
         searchMenuItem.setDisable(true);
-        
+
         final MenuItem onlineManualMenuItem = new MenuItem("Online Manual");
         onlineManualMenuItem.setVisible(false);
-        
+
         final MenuItem aboutMenuItem = new MenuItem("About");
         aboutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent event) {
+            @Override
+            public void handle(ActionEvent event) {
                 main.showOnConsole("About Menu Item was clicked");
-                
+
                 final Stage dialogStage = new Stage();
                 dialogStage.initModality(Modality.WINDOW_MODAL);
                 dialogStage.initStyle(StageStyle.UTILITY);
@@ -217,9 +218,9 @@ public class MenuBarBuilder {
             }
         });
         aboutMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F1, KeyCombination.SHORTCUT_ANY));
-                
+
         helpMenu.getItems().addAll(searchMenuItem, onlineManualMenuItem, new SeparatorMenuItem(), aboutMenuItem);
-        
+
         menuBar.getMenus().addAll(fileMenu, extrasMenu, helpMenu);
         // bind width of menu bar to width of associated stage
         menuBar.prefWidthProperty().bind(main.primaryStage.widthProperty());

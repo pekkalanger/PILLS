@@ -18,25 +18,26 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 import LogicSimulator.Globals;
 
-public class Switch extends Gate implements GateInterface{
-        
+public class Switch extends Gate implements GateInterface {
+
     DataObject dataObject;
     String name = "Switch";
     private OutputPin outputPin = null;
-    
-    public Switch(boolean d){
+
+    public Switch(boolean d) {
         super();
         this.dataObject = new DataObject(d);
         outputPin = new OutputPin();
     }
-    
+
     @Deprecated
-    public void setLine(LogicLine l){
-       // this.outputPin=l.getInputPin();
+    public void setLine(LogicLine l) {
+        // this.outputPin=l.getInputPin();
     }
+
     @Deprecated
-    public void removeLine(){
-        this.outputPin=null;
+    public void removeLine() {
+        this.outputPin = null;
     }
 
     @Override
@@ -52,9 +53,10 @@ public class Switch extends Gate implements GateInterface{
     @Override
     public boolean update(long deltaTime) {
         //toggle(); used as a generator/clock
-        if( outputPin != null ){
-            if(outputPin.getDataObject() != null)
-                System.out.println("Switch status: " + outputPin.getDataObject().getData() );
+        if (outputPin != null) {
+            if (outputPin.getDataObject() != null) {
+                System.out.println("Switch status: " + outputPin.getDataObject().getData());
+            }
             outputPin.setDataObject(dataObject);
             return false;
         } else {
@@ -64,7 +66,7 @@ public class Switch extends Gate implements GateInterface{
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 
@@ -80,7 +82,7 @@ public class Switch extends Gate implements GateInterface{
 
     @Override
     public void setOutputPin(int pos, OutputPin op) {
-       outputPin = op;
+        outputPin = op;
     }
 
     @Override
@@ -89,9 +91,9 @@ public class Switch extends Gate implements GateInterface{
     }
 
     @Override
-    public void toggle(){
-        Globals.main.showOnConsole("Switch status: " + !outputPin.getDataObject().getData() );
+    public void toggle() {
+        Globals.main.showOnConsole("Switch status: " + !outputPin.getDataObject().getData());
         dataObject.toggle();
     }
-    
+
 }

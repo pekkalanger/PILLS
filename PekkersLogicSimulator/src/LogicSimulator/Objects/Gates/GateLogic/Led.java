@@ -18,26 +18,27 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 import LogicSimulator.Globals;
 
-public class Led extends Gate implements GateInterface{
-    
+public class Led extends Gate implements GateInterface {
+
     String name = "Led";
     DataObject dataObject;
-    
-    public Led(){
-        super(1,0);
+
+    public Led() {
+        super(1, 0);
         dataObject = new DataObject(false);
         inputPins[0] = new InputPin();
     }
-    
+
     @Deprecated
-    public void setLine(LogicLine l){
+    public void setLine(LogicLine l) {
         //this.inputPins[0] = l.getOutputPin(0);
     }
+
     @Deprecated
-    public void removeLine(){
+    public void removeLine() {
         this.inputPins[0] = null;
     }
-    
+
     @Override
     public void setDataObject(DataObject dataObject) {
         this.dataObject = dataObject;
@@ -47,28 +48,30 @@ public class Led extends Gate implements GateInterface{
     public DataObject getDataObject() {
         return dataObject;
     }
-    
+
     @Override
     public boolean update(long deltaTime) {
-        if( inputPins[0] != null ){
-            if(getDataObject() != null){
-                if(last != getDataObject().getData()){
-                    Globals.main.showOnConsole("LED = " + getDataObject().getData()); 
+        if (inputPins[0] != null) {
+            if (getDataObject() != null) {
+                if (last != getDataObject().getData()) {
+                    Globals.main.showOnConsole("LED = " + getDataObject().getData());
                 }
                 dataObject = inputPins[0].getDataObject();
-                if(getDataObject() != null)
-                last = getDataObject().getData();
+                if (getDataObject() != null) {
+                    last = getDataObject().getData();
+                }
                 System.out.print("Led status: ");
                 System.out.println(dataObject.getData());
             }
             return false;
-            
-        } else return true;
+
+        } else {
+            return true;
+        }
     }
 
-    
     @Override
-    public String toString(){
+    public String toString() {
         return name;
     }
 
@@ -96,5 +99,5 @@ public class Led extends Gate implements GateInterface{
     public void toggle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

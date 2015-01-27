@@ -22,20 +22,20 @@ import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 
 public class InputPinObject extends PinObject {
-    
+
     InputPin inputPin;
-    
-    public InputPinObject(Group g, int x , int y, InputPin ip, String n) {
+
+    public InputPinObject(Group g, int x, int y, InputPin ip, String n) {
         super();
         this.x = x;
         this.y = y;
-        name = n; 
+        name = n;
         this.inputPin = ip;
-        
+
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
         rectangle = createPinRectangle(this, Textures.inputPin, g, rectangle, ip, name);
-    } 
+    }
 
 }

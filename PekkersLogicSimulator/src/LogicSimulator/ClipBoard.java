@@ -31,8 +31,9 @@ import javafx.scene.shape.Line;
  * @author PEKKA
  */
 public class ClipBoard {
+
     private static GateObject gateObject;
-    
+
     public static ConnectionLineObject connectionLineObject;
     public static ConnectionLineObject connectionLineObject2;
     public static Line line;
@@ -48,101 +49,121 @@ public class ClipBoard {
     private static double y = -1;
 
     public ClipBoard() {
-        
+
     }
-    
-    public static void setGateObject(GateObject go){
+
+    public static void setGateObject(GateObject go) {
         gateObject = go;
     }
-    
-    public static GateObject getGateObject(){
+
+    public static GateObject getGateObject() {
         return gateObject;
     }
-        
-    public static void setConnectionLineObject(ConnectionLineObject clo){
+
+    public static void setConnectionLineObject(ConnectionLineObject clo) {
         connectionLineObject = clo;
     }
-    public static ConnectionLineObject getConnectionLineObject(){
+
+    public static ConnectionLineObject getConnectionLineObject() {
         return connectionLineObject;
     }
-            
-    public static void setConnectionLineObject2(ConnectionLineObject clo2){
+
+    public static void setConnectionLineObject2(ConnectionLineObject clo2) {
         connectionLineObject2 = clo2;
     }
-    public static ConnectionLineObject getConnectionLineObject2(){
+
+    public static ConnectionLineObject getConnectionLineObject2() {
         return connectionLineObject2;
     }
-    
-    public static Group getGroup(){
+
+    public static Group getGroup() {
         return group;
     }
-    public static void setGroup(Group g){
+
+    public static void setGroup(Group g) {
         group = g;
     }
-    public static Line getLine(){
+
+    public static Line getLine() {
         return line;
     }
-    public static void setLine(Line l){
+
+    public static void setLine(Line l) {
         line = l;
     }
-    public static String getName(){
+
+    public static String getName() {
         return name;
     }
-    public static void setName(String n){
+
+    public static void setName(String n) {
         name = n;
     }
-    public static InputPin getInputPin(){
+
+    public static InputPin getInputPin() {
         return inputPin;
     }
-    public static void setInputPin(InputPin ip){
+
+    public static void setInputPin(InputPin ip) {
         inputPin = ip;
     }
-    public static OutputPin getOutputPin(){
+
+    public static OutputPin getOutputPin() {
         return outputPin;
     }
-    public static void setOutputPin(OutputPin op ){
+
+    public static void setOutputPin(OutputPin op) {
         outputPin = op;
     }
-        public static InputPinObject getInputPinObject(){
+
+    public static InputPinObject getInputPinObject() {
         return inputPinObject;
     }
-    public static void setInputPinObject(InputPinObject ipo){
+
+    public static void setInputPinObject(InputPinObject ipo) {
         inputPinObject = ipo;
     }
-    public static OutputPinObject getOutputPinObject(){
+
+    public static OutputPinObject getOutputPinObject() {
         return outputPinObject;
     }
-    public static void setOutputPinObject(OutputPinObject opo ){
+
+    public static void setOutputPinObject(OutputPinObject opo) {
         outputPinObject = opo;
     }
 
-    public static double getX(){
+    public static double getX() {
         return x;
     }
-    public static double getY(){
+
+    public static double getY() {
         return y;
     }
-    public static void setX(double newX){
+
+    public static void setX(double newX) {
         x = newX;
     }
-    public static void setY(double newY){
+
+    public static void setY(double newY) {
         y = newY;
     }
-    public static void printDragBoard(){
+
+    public static void printDragBoard() {
         System.out.println("===========Start================");
-         System.out.println(gateObject);
-                 System.out.println(connectionLineObject);
-          System.out.println(name);
-           System.out.println(object);
-            System.out.println(group);
-             System.out.println(gate);
-              System.out.println(inputPin);
-              System.out.println(outputPin);
-               System.out.println(x);
-                System.out.println(y);
-                System.out.println("============End=================");
+        System.out.println(gateObject);
+        System.out.println(connectionLineObject);
+        System.out.println(name);
+        System.out.println(object);
+        System.out.println(group);
+        System.out.println(gate);
+        System.out.println(inputPin);
+        System.out.println(outputPin);
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println("============End=================");
     }
-    public static void clearDragBoard(){
+
+    public static void clearDragBoard() {
         gateObject = null;
         connectionLineObject = null;
         connectionLineObject2 = null;
@@ -159,5 +180,4 @@ public class ClipBoard {
         y = -1;
     }
 
-    
 }

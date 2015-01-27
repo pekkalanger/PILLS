@@ -30,20 +30,22 @@ import javafx.scene.shape.Circle;
 
 @Deprecated
 public class SexyCircleBuilder {
-    
+
     final Main main;
+
     @Deprecated
     public SexyCircleBuilder(final Main main) {
         this.main = main;
     }
-    @Deprecated  
+
+    @Deprecated
     public Circle createBlueCircle(final boolean parent) {
         //create a circle with desired name,  color and radius
         Color color = Color.DODGERBLUE;
         int radius = 10;
-        final String name = "Blue circle"; 
-        final Circle circle = new Circle(radius, new RadialGradient(0, 0, 0.2, 0.3, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-            new Stop(0, Color.rgb(250,250,255,0.5f)),
+        final String name = "Blue circle";
+        final Circle circle = new Circle(radius, new RadialGradient(0, 0, 0.2, 0.3, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
+            new Stop(0, Color.rgb(250, 250, 255, 0.5f)),
             new Stop(1, color)
         }));
         //add a shadow effect
@@ -70,14 +72,14 @@ public class SexyCircleBuilder {
                     main.circleList.remove(circle);
                     main.circleGroup.getChildren().remove(circle);
                 }
-                 me.consume(); 
+                me.consume();
             }
         });
         circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent me) {
 
-                 if (me.getButton() == MouseButton.PRIMARY && !parent) {
+                if (me.getButton() == MouseButton.PRIMARY && !parent) {
                     double dragX = me.getSceneX() - main.dragAnchor.getX();
                     double dragY = me.getSceneY() - main.dragAnchor.getY();
                     //calculate new position of the circle
@@ -85,34 +87,34 @@ public class SexyCircleBuilder {
                     double newYPosition = main.initY + dragY;
                     //System.out.println(main.initX + " + " + me.getSceneX() + " - " + main.dragAnchor.getX());
                     //if new position do not exceeds borders of the rectangle, translate to this position
-                    if ((newXPosition>=circle.getRadius()) && (newXPosition<=main.schematicWidth-circle.getRadius())) {
+                    if ((newXPosition >= circle.getRadius()) && (newXPosition <= main.schematicWidth - circle.getRadius())) {
                         circle.setTranslateX(newXPosition);
                     }
-                    if ((newYPosition>=circle.getRadius()) && (newYPosition<=main.schematicHeigth-circle.getRadius())){
+                    if ((newYPosition >= circle.getRadius()) && (newYPosition <= main.schematicHeigth - circle.getRadius())) {
                         circle.setTranslateY(newYPosition);
                     }
-                    main.showOnConsole(name + " was dragged (x:" + dragX + ", y:" + dragY +")");
+                    main.showOnConsole(name + " was dragged (x:" + dragX + ", y:" + dragY + ")");
                 } else if (me.getButton() == MouseButton.SECONDARY && !parent) {
-                /*    
-                    double dragX = main.dragAnchor.getX();
-                    double dragY = main.dragAnchor.getY();
-                    //calculate new position of the circle
-                    double newXPosition = main.initX + dragX;
-                    double newYPosition = main.initY + dragY;
+                    /*    
+                     double dragX = main.dragAnchor.getX();
+                     double dragY = main.dragAnchor.getY();
+                     //calculate new position of the circle
+                     double newXPosition = main.initX + dragX;
+                     double newYPosition = main.initY + dragY;
                     
-                    final Line line = new Line();
-                    line.setStartX(dragX);
-                    line.setStartY(dragY);
-                    main.showOnConsole(" " + dragX + " " + dragY);
-                    line.setEndX(newXPosition);
-                    line.setEndY(newYPosition);
-                    line.setStroke(Color.RED);
-                    line.setStrokeWidth(10);
-                    main.circleGroup.getChildren().add(line);
+                     final Line line = new Line();
+                     line.setStartX(dragX);
+                     line.setStartY(dragY);
+                     main.showOnConsole(" " + dragX + " " + dragY);
+                     line.setEndX(newXPosition);
+                     line.setEndY(newYPosition);
+                     line.setStroke(Color.RED);
+                     line.setStrokeWidth(10);
+                     main.circleGroup.getChildren().add(line);
                     
-                    */
+                     */
                 }
-                    
+
             }
         });
         circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -130,7 +132,7 @@ public class SexyCircleBuilder {
         });
         circle.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                 //when mouse is pressed, store initial position
+                //when mouse is pressed, store initial position
                 main.initX = circle.getTranslateX();
                 main.initY = circle.getTranslateY();
                 main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
@@ -148,14 +150,15 @@ public class SexyCircleBuilder {
         });
         return circle;
     }
+
     @Deprecated
     public Circle createOrangeCircle(final boolean parent) {
         //create a circle with desired name,  color and radius
         Color color = Color.CORAL;
         int radius = 40;
-        final String name = "Orange circle"; 
-        final Circle circle = new Circle(radius, new RadialGradient(0, 0, 0.2, 0.3, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-            new Stop(0, Color.rgb(250,250,255)),
+        final String name = "Orange circle";
+        final Circle circle = new Circle(radius, new RadialGradient(0, 0, 0.2, 0.3, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
+            new Stop(0, Color.rgb(250, 250, 255)),
             new Stop(1, color)
         }));
         //add a shadow effect
@@ -182,38 +185,38 @@ public class SexyCircleBuilder {
                     main.circleList.remove(circle);
                     main.circleGroup.getChildren().remove(circle);
                 }
-                 me.consume(); 
+                me.consume();
             }
         });
         circle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
 
-                 if (me.getButton() == MouseButton.PRIMARY && !parent) {
+                if (me.getButton() == MouseButton.PRIMARY && !parent) {
                     double dragX = me.getSceneX() - main.dragAnchor.getX();
                     double dragY = me.getSceneY() - main.dragAnchor.getY();
                     //calculate new position of the circle
                     double newXPosition = main.initX + dragX;
                     double newYPosition = main.initY + dragY;
                     //if new position do not exceeds borders of the rectangle, translate to this position
-                    if ((newXPosition>=circle.getRadius()) && (newXPosition <= main.schematicWidth-circle.getRadius())) {
+                    if ((newXPosition >= circle.getRadius()) && (newXPosition <= main.schematicWidth - circle.getRadius())) {
                         circle.setTranslateX(newXPosition);
                     }
-                    if ((newYPosition>=circle.getRadius()) && (newYPosition <= main.schematicHeigth-circle.getRadius())){
+                    if ((newYPosition >= circle.getRadius()) && (newYPosition <= main.schematicHeigth - circle.getRadius())) {
                         circle.setTranslateY(newYPosition);
                     }
-                    main.showOnConsole(name + " was dragged (x:" + dragX + ", y:" + dragY +")");
+                    main.showOnConsole(name + " was dragged (x:" + dragX + ", y:" + dragY + ")");
                 }
                 /*
-                if (me.getButton() == MouseButton.MIDDLE && !parent) {
-                    double dragX = me.getSceneX() - mouseEvents.dragAnchor.getX();
-                    double dragY = me.getSceneY() - mouseEvents.dragAnchor.getY();
-                    //calculate new position of the circle
-                    double newXPosition = mouseEvents.initX + dragX;
-                    double newYPosition = mouseEvents.initY + dragY;
-                     LineTo li = new LineTo(newXPosition, newYPosition);
-                     //root.getChildren().add(li);
-                }
-                */
+                 if (me.getButton() == MouseButton.MIDDLE && !parent) {
+                 double dragX = me.getSceneX() - mouseEvents.dragAnchor.getX();
+                 double dragY = me.getSceneY() - mouseEvents.dragAnchor.getY();
+                 //calculate new position of the circle
+                 double newXPosition = mouseEvents.initX + dragX;
+                 double newYPosition = mouseEvents.initY + dragY;
+                 LineTo li = new LineTo(newXPosition, newYPosition);
+                 //root.getChildren().add(li);
+                 }
+                 */
             }
         });
         circle.setOnMouseEntered(new EventHandler<MouseEvent>() {
@@ -230,7 +233,7 @@ public class SexyCircleBuilder {
         });
         circle.setOnMousePressed(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
-                 //when mouse is pressed, store initial position
+                //when mouse is pressed, store initial position
                 main.initX = circle.getTranslateX();
                 main.initY = circle.getTranslateY();
                 main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());

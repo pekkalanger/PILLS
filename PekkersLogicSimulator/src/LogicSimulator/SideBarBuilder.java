@@ -142,7 +142,7 @@ public class SideBarBuilder {
             main.showOnConsole("Created new Switch");
             SwitchObject switchObject = new SwitchObject();
             main.gateObjects.add(switchObject);
-            
+
             event.consume();
         });
         /*      Create Button21                  */
@@ -275,13 +275,13 @@ public class SideBarBuilder {
                 labelPromptBox.setTranslateX(label.getTranslateX());
                 labelPromptBox.setTranslateY(label.getTranslateY());
                 main.circleGroup.getChildren().add(labelPromptBox);
-                
+
                 final TextField textField = new TextField();
                 textField.setPromptText(label.getText());
                 textField.setText(label.getText());
                 textField.setPrefColumnCount(10);
                 labelPromptBox.getChildren().add(textField);
-                
+
                 Button okButt = new Button("Ok");
                 okButt.setCancelButton(true);
                 okButt.setDefaultButton(true);

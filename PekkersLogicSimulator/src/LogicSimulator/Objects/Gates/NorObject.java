@@ -29,8 +29,8 @@ import javafx.scene.Group;
  *
  * @author PEKKA
  */
-public class NorObject extends GateObject{
-    
+public class NorObject extends GateObject {
+
     public NorObject() {
         super();
         group = new Group();
@@ -39,38 +39,39 @@ public class NorObject extends GateObject{
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
-        
+
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-        
+
         rectangle = initRectangle(8, 0, Textures.norGate);
         group.getChildren().add(rectangle);
-        if(inputPinObjects != null){
+        if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        if(outputPinObjects != null){
+        if (outputPinObjects != null) {
             Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-                            
+
         //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
         y = group.getTranslateY();
         initGroup(inputPinObjects, outputPinObjects);
     }
 
-    
     @Override
     public void update(long deltaTime) {
         //here will the andGate gate drawing of lines be updated 
-        if (gate != null )gate.update(deltaTime);
+        if (gate != null) {
+            gate.update(deltaTime);
+        }
         //lines will get updated coordinates based upon gates coords, render
     }
-    
+
 }

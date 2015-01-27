@@ -16,16 +16,16 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-public class InputPin extends Pin{
-    
-    public String type="input";
-    
-    public InputPin(){
+public class InputPin extends Pin {
+
+    public String type = "input";
+
+    public InputPin() {
         super();
     }
-    public InputPin(boolean d){
+
+    public InputPin(boolean d) {
         super(d);
     }
-    
-    
+
 }

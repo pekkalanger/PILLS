@@ -25,14 +25,14 @@ import LogicSimulator.Textures;
 import java.util.Iterator;
 import javafx.scene.Group;
 
-public class AndObject extends GateObject{
-    
+public class AndObject extends GateObject {
+
     public AndObject() {
         super();
         group = new Group();
         name = "And Gate";
         gate = new And();
-        
+
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
@@ -41,22 +41,22 @@ public class AndObject extends GateObject{
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-        
+
         rectangle = initRectangle(8, 0, Textures.andGate);
         group.getChildren().add(rectangle);
-        if(inputPinObjects != null){
+        if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        if(outputPinObjects != null){
+        if (outputPinObjects != null) {
             Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-                            
+
         //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
         y = group.getTranslateY();
@@ -67,7 +67,9 @@ public class AndObject extends GateObject{
     public void update(long deltaTime) {
         x = group.getTranslateX();
         y = group.getTranslateY();
-        if(gate != null) gate.update(deltaTime);
+        if (gate != null) {
+            gate.update(deltaTime);
+        }
     }
-    
+
 }

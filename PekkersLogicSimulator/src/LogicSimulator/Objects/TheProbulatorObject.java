@@ -17,5 +17,5 @@
 package LogicSimulator.Objects;
 
 public class TheProbulatorObject {
-    
+
 }

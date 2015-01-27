@@ -17,25 +17,29 @@
 package LogicSimulator.Objects.Gates.GateLogic;
 
 public class DataObject {
-	
-	private boolean data = false;
-	
-        public DataObject(boolean d) {
-            this.data = d;
-	}
-	public boolean getData() {
-            return data;
-	}
-	public void setData(boolean data) {
-            this.data = data;
-	}
-        public boolean toggle(){
-            setData(!getData());
-            return getData();
-	}
-        public DataObject notted(){
-            DataObject newDataObject = new DataObject(!getData());
-            return newDataObject;
-	}
-		
+
+    private boolean data = false;
+
+    public DataObject(boolean d) {
+        this.data = d;
+    }
+
+    public boolean getData() {
+        return data;
+    }
+
+    public void setData(boolean data) {
+        this.data = data;
+    }
+
+    public boolean toggle() {
+        setData(!getData());
+        return getData();
+    }
+
+    public DataObject notted() {
+        DataObject newDataObject = new DataObject(!getData());
+        return newDataObject;
+    }
+
 }

@@ -36,14 +36,14 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class PinObject {
-    
+
     String name;
     public int x; // rectangle translate
     public int y;
     static final int width = 8;
     static final int height = 8;
     protected Rectangle rectangle;
-    
+
     public List<ConnectionLineObject> connectionLineObjects;
     public ConnectionLineObject connectionLineObject2;
 
@@ -54,30 +54,30 @@ public class PinObject {
         connectionLineObject2 = new ConnectionLineObject();
     }
 
-    public void setRectangle(Rectangle r){
+    public void setRectangle(Rectangle r) {
         rectangle = r;
     }
-    
-    public Rectangle getRectangle(){
+
+    public Rectangle getRectangle() {
         return rectangle;
     }
-    
+
     /*      this one seems to be acting fine*/
     public Rectangle createPinRectangle(InputPinObject ipo, final Image i, final Group g, final Rectangle rectangle, final InputPin inputPin, final String name) {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
-        
+
         Image cursorImage = Textures.defaultCursorActive;
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
         rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
         rectangle.setOnMouseClicked((MouseEvent me) -> {
-            if (me.getButton() == MouseButton.PRIMARY){
-                if(ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null){
-                    if(inputPin != null){  // this is by default a input pin then
+            if (me.getButton() == MouseButton.PRIMARY) {
+                if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
+                    if (inputPin != null) {  // this is by default a input pin then
                         ClipBoard.setInputPin(inputPin);
                     }
-                     
+
                     ClipBoard.setInputPinObject(ipo);
                     ClipBoard.setLine(connectionLineObject.line);
                     ClipBoard.setConnectionLineObject(connectionLineObject);
@@ -88,18 +88,18 @@ public class PinObject {
                     ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                     ClipBoard.printDragBoard();
                     System.out.println("copied pin to dragboard");
-                } else if(ClipBoard.getOutputPin() != null){
-                    
-                    if (ClipBoard.getConnectionLineObject2() != null){
-                        
+                } else if (ClipBoard.getOutputPin() != null) {
+
+                    if (ClipBoard.getConnectionLineObject2() != null) {
+
                         LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
-                        if(ll != null){
+                        if (ll != null) {
                             ll.getInputPin(0).setDataObject(new DataObject(false));
                             ll.getOutputPin(0).setDataObject(new DataObject(false));
                             ll.setInputPin(0, new InputPin());
                             ll.setOutputPin(0, new OutputPin());
                             // logicLine.setDataObject(null);
-                            ll=null; 
+                            ll = null;
                         }
                         ClipBoard.setConnectionLineObject2(null);
                     }
@@ -109,24 +109,24 @@ public class PinObject {
                     connectionLineObject.logicLine = logicLine;
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
-                    if(connectionLineObject2 != null){
+                    if (connectionLineObject2 != null) {
                         connectionLineObject2.line = line;
                     }
-                    if(line != null && !Globals.main.circleGroup.getChildren().contains(line)){
+                    if (line != null && !Globals.main.circleGroup.getChildren().contains(line)) {
                         Globals.main.circleGroup.getChildren().add(line);
                         Globals.main.logicLines.add(logicLine);
                         System.out.println("line did not exist in schematic");
                     }
-                    if(!Globals.main.connectionLineObjects.contains(connectionLineObject)){
+                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject);
                         System.out.println("line did not exist in schematic");
                     }
                     ClipBoard.clearDragBoard();
-                } else if(ClipBoard.getInputPin() == inputPin) {
+                } else if (ClipBoard.getInputPin() == inputPin) {
                     System.out.println("clicked on the same pin, dragboard cleared");
                     ClipBoard.clearDragBoard();
                     ClipBoard.printDragBoard();
-                } else if(ClipBoard.getInputPin() != inputPin && ClipBoard.getInputPin() != null){
+                } else if (ClipBoard.getInputPin() != inputPin && ClipBoard.getInputPin() != null) {
                     ClipBoard.clearDragBoard();
                     ClipBoard.setInputPin(inputPin);
                     ClipBoard.setLine(connectionLineObject.line);
@@ -166,20 +166,19 @@ public class PinObject {
         });
         return rectangle;
     }
-    
-    
+
     public Rectangle createPinRectangle(OutputPinObject opo, final Image i, final Group g, final Rectangle rectangle, final OutputPin outputPin, final String name) {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
-        
+
         Image cursorImage = Textures.defaultCursorActive;
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
         rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
         rectangle.setOnMouseClicked((MouseEvent me) -> {
-            if (me.getButton() == MouseButton.PRIMARY){
-                if(ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null){
-                    if(outputPin != null){  // this is by default a input pin then
+            if (me.getButton() == MouseButton.PRIMARY) {
+                if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
+                    if (outputPin != null) {  // this is by default a input pin then
                         ClipBoard.setOutputPin(outputPin);
                     }
                     ClipBoard.setOutputPinObject(opo);
@@ -192,16 +191,16 @@ public class PinObject {
                     ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
                     ClipBoard.printDragBoard();
                     System.out.println("copied pin to dragboard");
-                } else if(ClipBoard.getInputPin() != null){
-                    if (ClipBoard.getConnectionLineObject2() != null){
+                } else if (ClipBoard.getInputPin() != null) {
+                    if (ClipBoard.getConnectionLineObject2() != null) {
                         LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
-                        if(ll != null){
+                        if (ll != null) {
                             ll.getInputPin(0).setDataObject(new DataObject(false));
                             ll.getOutputPin(0).setDataObject(new DataObject(false));
                             ll.setInputPin(0, new InputPin());
                             ll.setOutputPin(0, new OutputPin());
                             // logicLine.setDataObject(null);
-                            ll=null;
+                            ll = null;
                         }
                         ClipBoard.setConnectionLineObject2(null);
                     }
@@ -211,36 +210,37 @@ public class PinObject {
                     connectionLineObject.logicLine = logicLine;
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
-                    if(connectionLineObject2 != null){
+                    if (connectionLineObject2 != null) {
                         connectionLineObject2.line = line;
                     }
                     /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
-                    if(connectionLineObject2 != null){
-                    connectionLineObject2.line = null;
-                    if(connectionLineObject2.logicLine != null){
-                    connectionLineObject2.logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                    connectionLineObject2.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                    connectionLineObject2.logicLine.setInputPin(0, null);
-                    connectionLineObject2.logicLine.setOutputPin(0, null);
-                    connectionLineObject2.logicLine=null;
-                    }
-                    }*/
-                    if(line != null){
-                        if(!Globals.main.circleGroup.getChildren().contains(line)){
+                     if(connectionLineObject2 != null){
+                     connectionLineObject2.line = null;
+                     if(connectionLineObject2.logicLine != null){
+                     connectionLineObject2.logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                     connectionLineObject2.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
+                     connectionLineObject2.logicLine.setInputPin(0, null);
+                     connectionLineObject2.logicLine.setOutputPin(0, null);
+                     connectionLineObject2.logicLine=null;
+                     }
+                     }*/
+                    if (line != null) {
+                        if (!Globals.main.circleGroup.getChildren().contains(line)) {
                             Globals.main.circleGroup.getChildren().add(line);
                             Globals.main.logicLines.add(logicLine);
                             System.out.println("line did not exist in schematic");
-                        }}
-                    if(!Globals.main.connectionLineObjects.contains(connectionLineObject)){
+                        }
+                    }
+                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject);
                         System.out.println("line did not exist in schematic");
                     }
                     ClipBoard.clearDragBoard();
-                }  else if(ClipBoard.getOutputPin() == outputPin) {
+                } else if (ClipBoard.getOutputPin() == outputPin) {
                     System.out.println("clicked on the same pin, dragboard cleared");
                     ClipBoard.clearDragBoard();
                     ClipBoard.printDragBoard();
-                } else if(ClipBoard.getOutputPin() != outputPin && ClipBoard.getOutputPin() != null){
+                } else if (ClipBoard.getOutputPin() != outputPin && ClipBoard.getOutputPin() != null) {
                     ClipBoard.clearDragBoard();
                     ClipBoard.setOutputPin(outputPin);
                     ClipBoard.setLine(connectionLineObject.line);

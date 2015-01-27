@@ -30,35 +30,37 @@ public class Not extends Gate implements GateInterface {
 
     @Override
     public boolean update(long deltaTime) {
-       if(inputPins[0] != null && outputPins[0] != null){
-            if(inputPins[0].getDataObject() != null && outputPins[0].getDataObject() != null){
-                if(inputPins[0].getDataObject().getData() == true) {
-                    if(outputPins[0].getDataObject() != null){
-                    if(outputPins[0].getDataObject().getData() == true){
-                        Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
+        if (inputPins[0] != null && outputPins[0] != null) {
+            if (inputPins[0].getDataObject() != null && outputPins[0].getDataObject() != null) {
+                if (inputPins[0].getDataObject().getData() == true) {
+                    if (outputPins[0].getDataObject() != null) {
+                        if (outputPins[0].getDataObject().getData() == true) {
+                            Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
+                        }
+                        outputPins[0].getDataObject().setData(false);
                     }
-                    outputPins[0].getDataObject().setData(false);
-                }
-                } else if(inputPins[0].getDataObject().getData() == false) {
-                    if(outputPins[0].getDataObject().getData() == false){
+                } else if (inputPins[0].getDataObject().getData() == false) {
+                    if (outputPins[0].getDataObject().getData() == false) {
                         Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
                     }
                     outputPins[0].getDataObject().setData(true);
                 }
-                
+
             }
             return false;
-       } else return true;
+        } else {
+            return true;
+        }
     }
 
     @Override
-    public String toString(){
-            return name;
+    public String toString() {
+        return name;
     }
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-         inputPins[pos] = ip;
+        inputPins[pos] = ip;
     }
 
     @Override
@@ -90,6 +92,5 @@ public class Not extends Gate implements GateInterface {
     public void toggle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-	
+
 }

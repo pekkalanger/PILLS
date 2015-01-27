@@ -27,20 +27,22 @@ import javafx.scene.shape.Rectangle;
 
 @Deprecated
 public class SexyRectangleBuilder {
-    
+
     final Main main;
+
     @Deprecated
-    public SexyRectangleBuilder (final Main main) {
+    public SexyRectangleBuilder(final Main main) {
         this.main = main;
     }
+
     @Deprecated
-     public Rectangle createRectangle(final Image i) {
+    public Rectangle createRectangle(final Image i) {
         final Rectangle rectangle = new Rectangle(100, 100);
         rectangle.setLayoutX(100);
         rectangle.setLayoutY(10);
         rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
-        
-        final String name = "a rectangul"; 
+
+        final String name = "a rectangul";
 
         rectangle.setCursor(Cursor.HAND);
         //add a mouse listeners
@@ -57,22 +59,22 @@ public class SexyRectangleBuilder {
                     rectangle.toFront();
                     main.circleGroup.getChildren().add(rectangle);
                     //main.circleList.add(rectangle);
-                    
+
                 } else if (me.getButton() == MouseButton.MIDDLE) {
-                    
+
                     main.showOnConsole("Removed specified Rectangle");
-                   //main.circleList.remove(rectangle);
+                    //main.circleList.remove(rectangle);
                     main.circleGroup.getChildren().remove(rectangle);
-                    
+
                 }
-                 me.consume(); 
+                me.consume();
             }
         });
         rectangle.setOnMouseDragged(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
 
-                 if (me.getButton() == MouseButton.PRIMARY) {
-                     
+                if (me.getButton() == MouseButton.PRIMARY) {
+
                     double dragX = me.getSceneX() - main.dragAnchor.getX();
                     double dragY = me.getSceneY() - main.dragAnchor.getY();
                     //calculate new position of the circle
@@ -80,13 +82,13 @@ public class SexyRectangleBuilder {
                     double newYPosition = main.initY + dragY;
                     //if new position do not exceeds borders of the rectangle, translate to this position
                     //if ((newXPosition>=circle.getRadius()) && (newXPosition<=main.schematicWidth-circle.getRadius())) {
-                        rectangle.setTranslateX(newXPosition);
+                    rectangle.setTranslateX(newXPosition);
                     //}
                     //if ((newYPosition>=circle.getRadius()) && (newYPosition<=main.schematicHeigth-circle.getRadius())){
-                        rectangle.setTranslateY(newYPosition);
+                    rectangle.setTranslateY(newYPosition);
                     //}
-                    main.showOnConsole(name + " was dragged (x:" + dragX + ", y:" + dragY +")");
-                    
+                    main.showOnConsole(name + " was dragged (x:" + dragX + ", y:" + dragY + ")");
+
                 } else if (me.getButton() == MouseButton.SECONDARY) {
                 }
             }
@@ -107,7 +109,7 @@ public class SexyRectangleBuilder {
             @Override
             public void handle(MouseEvent me) {
                 rectangle.toFront();
-                 //when mouse is pressed, store initial position
+                //when mouse is pressed, store initial position
                 main.initX = rectangle.getTranslateX();
                 main.initY = rectangle.getTranslateY();
                 main.dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
@@ -118,10 +120,10 @@ public class SexyRectangleBuilder {
             public void handle(MouseEvent me) {
                 main.showOnConsole("Mouse released above " + name);
                 /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
-                    rectangle.setTranslateX(150);
-                    rectangle.setTranslateY(150);
-                }
-                */
+                 rectangle.setTranslateX(150);
+                 rectangle.setTranslateY(150);
+                 }
+                 */
             }
         });
         return rectangle;

@@ -17,6 +17,7 @@
 package LogicSimulator;
 
 public class Globals {
+
     public static Main main;
-    
+
 }

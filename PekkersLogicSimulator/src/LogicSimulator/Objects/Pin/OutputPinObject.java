@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package LogicSimulator.Objects.Pin;
+
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
@@ -24,22 +25,22 @@ import javafx.scene.shape.Rectangle;
  *
  * @author PEKKA
  */
-public class OutputPinObject extends PinObject{
-    
+public class OutputPinObject extends PinObject {
+
     OutputPin outputPin;
-    public OutputPinObject(Group g, int x , int y, OutputPin op, String n) {
+
+    public OutputPinObject(Group g, int x, int y, OutputPin op, String n) {
         super();
         this.x = x;
         this.y = y;
-        name = n; 
+        name = n;
         this.outputPin = op;
-        
+
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
         rectangle = createPinRectangle(this, Textures.outputPin, g, rectangle, outputPin, name);
-        
 
     }
-    
+
 }

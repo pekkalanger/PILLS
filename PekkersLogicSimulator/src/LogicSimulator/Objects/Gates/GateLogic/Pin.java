@@ -16,21 +16,24 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-public abstract class Pin { 
-    
-        private DataObject dataObject;
+public abstract class Pin {
 
-        public Pin(){
-            dataObject = new DataObject(false);
-        }
-        public Pin(boolean d){
-            dataObject = new DataObject(d);
-        }
-        public void setDataObject(DataObject dataObject){
-            this.dataObject = dataObject;
-        }
-        public DataObject getDataObject(){
-            return dataObject;
-        }
-    
+    private DataObject dataObject;
+
+    public Pin() {
+        dataObject = new DataObject(false);
+    }
+
+    public Pin(boolean d) {
+        dataObject = new DataObject(d);
+    }
+
+    public void setDataObject(DataObject dataObject) {
+        this.dataObject = dataObject;
+    }
+
+    public DataObject getDataObject() {
+        return dataObject;
+    }
+
 }
