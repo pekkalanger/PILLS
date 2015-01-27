@@ -37,7 +37,7 @@ public class ConnectionLineObject {
     final String name;
     public Line line;
     public LogicLine logicLine;
-    GateInterface gate;
+    public GateInterface gate;
     Color colorOff;
     Color colorOn;
     boolean last = false;
@@ -64,7 +64,7 @@ public class ConnectionLineObject {
 
     public Line createLine(final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
         if (line != null) {
-            line.setStroke(Color.RED);
+            line.setStroke(colorOff);
             line.setStrokeWidth(2);
             //add InputPin shadow effect
             Image cursorImage = Textures.lineCursor;
@@ -76,63 +76,53 @@ public class ConnectionLineObject {
             line.setEndY(r.getTranslateY() + height / 2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
             //add mouse listeners
             Globals.main.showOnConsole("created outline");
-            line.setOnMouseClicked(new EventHandler<MouseEvent>() {
-                public void handle(MouseEvent me) {
-                    if (me.getButton() == MouseButton.MIDDLE) {
-                        Globals.main.showOnConsole("Removed specified line");
-                        //mouseEvents.circleList.remove(circle);
-                        Globals.main.circleGroup.getChildren().remove(line);
-                        //ip.setDataObject(null);
-
-                        if (Globals.main.logicLines.contains(logicLine)) {  // -> connectionlineobject
-                            logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                            logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                            logicLine.setInputPin(0, null);
-                            logicLine.setOutputPin(0, null);
-                            //logicLine.setDataObject(new DataObject(false));
-
-                            Globals.main.showOnConsole("nully");
-                            Globals.main.logicLines.remove(logicLine);
-                            logicLine = null;
-                        }
-                        if (Globals.main.connectionLineObjects.contains(clo)) {  // -> connectionlineobject
-                            //logicLine.setDataObject(null);
-                            //logicLine=null;
-                            Globals.main.showOnConsole("nully this");
-                            Globals.main.connectionLineObjects.remove(clo);
-                        }
-
-                        if (clo != null) {
-                            if (clo.logicLine != null) {
-                                if (clo.logicLine.getInputPin(0) != null) {
-                                    clo.logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                                    clo.logicLine.setInputPin(0, null);
-                                } else if (clo.logicLine.getOutputPin(0) != null) {
-                                    clo.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                                    clo.logicLine.setOutputPin(0, null);
-                                }
+            line.setOnMouseClicked((MouseEvent me) -> {
+                if (me.getButton() == MouseButton.MIDDLE) {
+                    Globals.main.showOnConsole("Removed specified line");
+                    //mouseEvents.circleList.remove(circle);
+                    Globals.main.circleGroup.getChildren().remove(line);
+                    //ip.setDataObject(null);
+                    if (Globals.main.logicLines.contains(logicLine)) {  // -> connectionlineobject
+                        logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                        logicLine.getOutputPin(0).setDataObject(new DataObject(false));
+                        logicLine.setInputPin(0, null);
+                        logicLine.setOutputPin(0, null);
+                        //logicLine.setDataObject(new DataObject(false));
+                        Globals.main.showOnConsole("nully");
+                        Globals.main.logicLines.remove(logicLine);
+                        logicLine = null;
+                    }
+                    if (Globals.main.connectionLineObjects.contains(clo)) {  // -> connectionlineobject
+                        //logicLine.setDataObject(null);
+                        //logicLine=null;
+                        Globals.main.showOnConsole("nully this");
+                        Globals.main.connectionLineObjects.remove(clo);
+                    }
+                    if (clo != null) {
+                        if (clo.logicLine != null) {
+                            if (clo.logicLine.getInputPin(0) != null) {
+                                clo.logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                                clo.logicLine.setInputPin(0, null);
+                            } else if (clo.logicLine.getOutputPin(0) != null) {
+                                clo.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
+                                clo.logicLine.setOutputPin(0, null);
                             }
-                            //clo.logicLine.setDataObject(null);
-                            clo.logicLine = null;
                         }
-                        me.consume();
+                        //clo.logicLine.setDataObject(null);
+                        clo.logicLine = null;
                     }
+                    me.consume();
                 }
             });
-            line.setOnMouseEntered(new EventHandler<MouseEvent>() {
-                public void handle(MouseEvent me) {
-                    //change the z-coordinate of the circle
-                    if (line != null) {
-                        line.toFront();
-                    }
-                    //Globals.main.showOnConsole("Mouse over " + name);
+            line.setOnMouseEntered((MouseEvent me) -> {
+                //change the z-coordinate of the circle
+                if (line != null) {
+                    line.toFront();
                 }
+                me.consume();
             });
-            line.setOnMouseExited(new EventHandler<MouseEvent>() {
-                public void handle(MouseEvent me) {
-
-                    //Globals.main.showOnConsole("Mouse exited " + name);
-                }
+            line.setOnMouseExited((MouseEvent me) -> {
+                //me.consume();
             });
             return line;
         } else {
