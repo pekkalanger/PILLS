@@ -16,13 +16,13 @@
  */
 package LogicSimulator;
 
-import LogicSimulator.GateObjects.GateObject;
-import LogicSimulator.GateObjects.GateLogic.Gate;
-import LogicSimulator.GateObjects.GateLogic.InputPin;
-import LogicSimulator.GateObjects.GateLogic.OutputPin;
-import LogicSimulator.GateObjects.ConnectionLineObject;
-import LogicSimulator.GateObjects.InputPinObject;
-import LogicSimulator.GateObjects.OutputPinObject;
+import LogicSimulator.Objects.Gates.GateObject;
+import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
+import LogicSimulator.Objects.Gates.GateLogic.InputPin;
+import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
+import LogicSimulator.Objects.ConnectionLineObject;
+import LogicSimulator.Objects.Pin.InputPinObject;
+import LogicSimulator.Objects.Pin.OutputPinObject;
 import javafx.scene.Group;
 import javafx.scene.shape.Line;
 
@@ -39,7 +39,7 @@ public class ClipBoard {
     private static String name;
     private static Object object;
     private static Group group;
-    private static Gate gate;
+    private static GateInterface gate;
     private static OutputPin outputPin;
     private static InputPin inputPin;
     private static OutputPinObject outputPinObject;

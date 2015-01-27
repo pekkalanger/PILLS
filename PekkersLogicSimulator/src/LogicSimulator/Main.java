@@ -16,9 +16,9 @@
  */
 package LogicSimulator;
 
-import LogicSimulator.GateObjects.GateLogic.LogicLine;
-import LogicSimulator.GateObjects.ConnectionLineObject;
-import LogicSimulator.GateObjects.GateObject;
+import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
+import LogicSimulator.Objects.ConnectionLineObject;
+import LogicSimulator.Objects.Gates.GateObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;

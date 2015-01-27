@@ -16,15 +16,15 @@
  */
 package LogicSimulator;
 
-import LogicSimulator.GateObjects.AndObject;
-import LogicSimulator.GateObjects.LedObject;
-import LogicSimulator.GateObjects.NandObject;
-import LogicSimulator.GateObjects.NorObject;
-import LogicSimulator.GateObjects.NotObject;
-import LogicSimulator.GateObjects.OrObject;
-import LogicSimulator.GateObjects.SwitchObject;
-import LogicSimulator.GateObjects.XnorObject;
-import LogicSimulator.GateObjects.XorObject;
+import LogicSimulator.Objects.Gates.AndObject;
+import LogicSimulator.Objects.Gates.LedObject;
+import LogicSimulator.Objects.Gates.NandObject;
+import LogicSimulator.Objects.Gates.NorObject;
+import LogicSimulator.Objects.Gates.NotObject;
+import LogicSimulator.Objects.Gates.OrObject;
+import LogicSimulator.Objects.Gates.SwitchObject;
+import LogicSimulator.Objects.Gates.XnorObject;
+import LogicSimulator.Objects.Gates.XorObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
