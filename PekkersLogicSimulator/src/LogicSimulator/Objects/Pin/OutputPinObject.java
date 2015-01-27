@@ -35,7 +35,7 @@ public class OutputPinObject extends PinObject {
         this.y = y;
         name = n;
         this.outputPin = op;
-        image = Textures.outputPin;
+        image = Textures.inputInfo;
 
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);

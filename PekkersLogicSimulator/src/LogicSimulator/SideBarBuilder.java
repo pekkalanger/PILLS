@@ -32,6 +32,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -41,6 +42,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -61,19 +63,21 @@ public class SideBarBuilder {
         sideBar.setSpacing(2f);
 
         /*      Create Button1                  */
-        final Button butt1 = new Button();//"add and gate");
-        butt1.setGraphic(new ImageView(Textures.andGate));
-        butt1.setTooltip(new Tooltip("And Gate"));
+        final Button butt1 = new Button();//"add not gate");
+        butt1.setGraphic(new ImageView(Textures.notGate));
+        butt1.setTooltip(new Tooltip("Not Gate"));
+        setinfoPopup(butt1, Textures.notGate);
         butt1.setOnAction((ActionEvent event) -> {
-            main.showOnConsole("Created new and gate");
-            AndObject andObject = new AndObject();
-            main.gateObjects.add(andObject);
+            main.showOnConsole("Created new not gate");
+            NotObject notObject = new NotObject();
+            main.gateObjects.add(notObject);
             event.consume();
         });
         /*      Create Button2                  */
         final Button butt2 = new Button();//"add or gate");
         butt2.setGraphic(new ImageView(Textures.orGate));
         butt2.setTooltip(new Tooltip("Or Gate"));
+        setinfoPopup(butt2, Textures.orTruth);
         butt2.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Or gate");
             OrObject orObject = new OrObject();
@@ -81,19 +85,21 @@ public class SideBarBuilder {
             event.consume();
         });
         /*      Create Button3                  */
-        final Button butt3 = new Button();//"add not gate");
-        butt3.setGraphic(new ImageView(Textures.notGate));
-        butt3.setTooltip(new Tooltip("Not Gate"));
+        final Button butt3 = new Button();//"add and gate");
+        butt3.setGraphic(new ImageView(Textures.andGate));
+        butt3.setTooltip(new Tooltip("And Gate"));
+        setinfoPopup(butt3, Textures.andTruth);
         butt3.setOnAction((ActionEvent event) -> {
-            main.showOnConsole("Created new not gate");
-            NotObject notObject = new NotObject();
-            main.gateObjects.add(notObject);
+            main.showOnConsole("Created new and gate");
+            AndObject andObject = new AndObject();
+            main.gateObjects.add(andObject);
             event.consume();
         });
         /*      Create Button4                  */
         final Button butt4 = new Button();//"add nand gate");
         butt4.setGraphic(new ImageView(Textures.nandGate));
         butt4.setTooltip(new Tooltip("Nand Gate"));
+        setinfoPopup(butt4, Textures.nandTruth);
         butt4.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new nand gate");
             NandObject nandObject = new NandObject();
@@ -104,6 +110,7 @@ public class SideBarBuilder {
         final Button butt5 = new Button();//"add xnor gate");
         butt5.setGraphic(new ImageView(Textures.norGate));
         butt5.setTooltip(new Tooltip("Nor Gate"));
+        setinfoPopup(butt5, Textures.norTruth);
         butt5.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Nor gate");
             NorObject norObject = new NorObject();
@@ -114,6 +121,7 @@ public class SideBarBuilder {
         final Button butt6 = new Button();//"add or gate");
         butt6.setGraphic(new ImageView(Textures.xorGate));
         butt6.setTooltip(new Tooltip("Xor Gate"));
+        setinfoPopup(butt6, Textures.xorTruth);
         butt6.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Xor gate");
             XorObject xorObject = new XorObject();
@@ -124,6 +132,7 @@ public class SideBarBuilder {
         final Button butt7 = new Button();//"add xnor gate");
         butt7.setGraphic(new ImageView(Textures.xnorGate));
         butt7.setTooltip(new Tooltip("Xnor Gate"));
+        setinfoPopup(butt7, Textures.xnorTruth);
         butt7.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Xnor gate");
             XnorObject xnorObject = new XnorObject();
@@ -217,15 +226,17 @@ public class SideBarBuilder {
             if (ke.getCode() == KeyCode.DIGIT1) {
                 butt1.fire();
             } else if (ke.getCode() == KeyCode.DIGIT2) {
-                butt8.fire();
+                butt2.fire();
             } else if (ke.getCode() == KeyCode.DIGIT3) {
                 butt3.fire();
             } else if (ke.getCode() == KeyCode.DIGIT4) {
-                butt20.fire();
+                butt4.fire();
             } else if (ke.getCode() == KeyCode.DIGIT5) {
-                butt21.fire();
+                butt5.fire();
             } else if (ke.getCode() == KeyCode.DIGIT6) {
-                butt79.fire();
+                butt6.fire();
+            } else if (ke.getCode() == KeyCode.DIGIT7) {
+                butt7.fire();
             } else {
                 return;
             }
@@ -305,4 +316,26 @@ public class SideBarBuilder {
         return label;
     }
 
+    
+       public void setinfoPopup(Button butt, Image i){        
+        butt.setOnMouseEntered((MouseEvent me) -> {
+            if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
+                Globals.infoPopup.setTranslateX(750);
+                Globals.infoPopup.setTranslateY(0);
+                if(i != null)Globals.infoPopup.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
+                Globals.main.showOnConsole("Open infoPopup");
+                Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
+            }
+                me.consume();
+        });
+        butt.setOnMouseExited((MouseEvent me) -> {
+            if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+                Globals.main.showOnConsole("remove infopopup");
+                Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+                    
+            }
+            me.consume();
+        }); 
+    }
+       
 }
