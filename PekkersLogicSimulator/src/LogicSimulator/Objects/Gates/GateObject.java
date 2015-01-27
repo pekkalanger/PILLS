@@ -36,8 +36,8 @@ public abstract class GateObject {
 
     List<InputPinObject> inputPinObjects;
     List<OutputPinObject> outputPinObjects;
-    public int width = 32;
-    public int height = 32;
+    public double width = 32;
+    public double height = 32;
     double x;
     double y;
     String name;
@@ -53,9 +53,11 @@ public abstract class GateObject {
         group = new Group();
         inputPinObjects = new ArrayList<>();
         outputPinObjects = new ArrayList<>();
+        x = group.getTranslateX();
+        y = group.getTranslateY();
     }
 
-    public Rectangle initRectangle(int x, int y, int width, int height, Image i) {
+    public Rectangle initRectangle(double x, double y, double width, double height, Image i) {
         rectangle = new Rectangle(width, height);
         rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
 

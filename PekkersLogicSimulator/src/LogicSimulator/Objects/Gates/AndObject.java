@@ -30,24 +30,16 @@ public class AndObject extends GateObject {
         super();
         group = new Group();
         name = "And Gate";
-        gate = new And();
         image = Textures.andTruth;
+        gate = new And();
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
-        width = 32;
-        height = 32;
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-
         rectangle = initRectangle(8, 0, width, height, Textures.andGate);
-
         addPinObjects();
-
-        //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
-        x = group.getTranslateX();
-        y = group.getTranslateY();
         initGroup(inputPinObjects, outputPinObjects);
     }
 

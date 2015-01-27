@@ -22,7 +22,6 @@ import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Textures;
-import java.util.Iterator;
 import javafx.scene.Group;
 
 public class OrObject extends GateObject {
@@ -31,24 +30,17 @@ public class OrObject extends GateObject {
         super();
         group = new Group();
         name = "Or Gate";
-        gate = new Or();
         image = Textures.orTruth;
+        gate = new Or();
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
-
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-
         rectangle = initRectangle(8, 0, width, height, Textures.orGate);
         group.getChildren().add(rectangle);
-
         addPinObjects();
-
-        //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
-        x = group.getTranslateX();
-        y = group.getTranslateY();
         initGroup(inputPinObjects, outputPinObjects);
     }
 

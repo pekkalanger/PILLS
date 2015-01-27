@@ -62,9 +62,6 @@ public class BridgeObject extends GateObject {
             }
         }
 
-        //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
-        x = group.getTranslateX();
-        y = group.getTranslateY();
         initGroup(inputPinObjects, outputPinObjects);
     }
 

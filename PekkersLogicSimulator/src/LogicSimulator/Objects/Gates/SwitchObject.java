@@ -36,42 +36,30 @@ public class SwitchObject extends GateObject {
 
     public SwitchObject() {
         super();
-        group = new Group();
-        name = "Switch";
-        image = Textures.switchOn;
         Image exitIcon = Textures.switchCursor;
         ImageCursor imageCursor = new ImageCursor(exitIcon, -exitIcon.getWidth(), -exitIcon.getHeight());
+        group = new Group();
         group.setCursor(imageCursor);
+        name = "Switch";
+        image = Textures.switchOn;
         gate = new Switch(false);
         gate.setOutputPin(0, new OutputPin());
-
+        rectangle = initRectangle(0, 0, width, height, Textures.switchOff);
         OutputPinObject outputPinObjectQ = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
         outputPinObjects.add(outputPinObjectQ);
-
-        rectangle = initRectangle(0, 0, width, height, Textures.switchOff);
-
+        addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);
-
-        group.getChildren().addAll(outputPinObjectQ.getRectangle(), rectangle);
-
+        group.getChildren().addAll(rectangle);
         group.setOnMouseClicked((MouseEvent me) -> {
             group.toFront();
-            if (me.getButton() == MouseButton.PRIMARY) {
-                //me.consume();
-            } else if (me.getButton() == MouseButton.SECONDARY) {
+            if (me.getButton() == MouseButton.SECONDARY) {
                 toggled = true;
                 gate.toggle();
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
                 Globals.main.showOnConsole("Removed specified Gate");
-                //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                 Globals.main.schematicGroup.getChildren().remove(group);
                 gate = null;
-
-                //Globals.main.gateObjects.remove(gate);
-                System.out.println("gate should be null now");
-                Globals.main.showOnConsole("gate should be null now");
-
                 if (outputPinObjects != null) {
                     Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
                     while (iterator.hasNext()) {
@@ -88,22 +76,15 @@ public class SwitchObject extends GateObject {
             }
         });
 
-        group.setOpacity(0.8f);
-
-        //Globals.main.schematicGroup.getChildren().add(group);
     }
 
     @Override
     public void update(long deltaTime) {
-        //here we will take the data from line and render leds new status (via println())
         if (gate != null) {
             gate.update(deltaTime);
-            //System.out.println(" switch state= " + gate.getDataObject().getData());
             if (toggled) {
                 if (gate.getDataObject().getData()) {
-
                     rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
-
                 } else {
                     rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));
                 }

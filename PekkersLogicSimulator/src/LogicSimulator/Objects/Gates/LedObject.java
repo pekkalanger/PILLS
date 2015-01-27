@@ -16,16 +16,11 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Led;
-import LogicSimulator.Globals;
 import LogicSimulator.Textures;
-import java.util.Iterator;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
@@ -35,54 +30,22 @@ public class LedObject extends GateObject {
 
     public LedObject() {
         super();
-        /*      movable group   */
         group = new Group();
-        name = "Led";
         image = Textures.ledOn;
+        name = "Led";
         gate = new Led();
         gate.setInputPin(0, new InputPin());
-
         inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
-
-        rectangle = new Rectangle(32, 32);
-        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
-
-        rectangle.setTranslateX(8);
-        rectangle.setTranslateY(0);
-        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                Globals.main.showOnConsole("Mouse entered " + name);
-                me.consume();
-            }
-        });
-        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                Globals.main.showOnConsole("Mouse exited " + name);
-            }
-        });
-
+        rectangle = new Rectangle(width, height);
+        x = 8;
+        initRectangle(x, y, width, height, Textures.ledOff);
         group.getChildren().add(rectangle);
-        if (inputPinObjects != null) {
-            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                group.getChildren().add(iterator.next().getRectangle());
-            }
-        }
-        if (outputPinObjects != null) {
-            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-            while (iterator.hasNext()) {
-
-                group.getChildren().add(iterator.next().getRectangle());
-            }
-        }
+        addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);
     }
 
     @Override
     public void update(long deltaTime) {
-        //here we will take the data from line and render leds new status (via println())
         if (gate != null) {
             gate.update(deltaTime);
             if (gate.getDataObject() != null) {
@@ -98,7 +61,6 @@ public class LedObject extends GateObject {
                 last = gate.getDataObject().getData();
             }
         }
-
     }
 
 }
