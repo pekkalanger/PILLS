@@ -20,11 +20,11 @@ import LogicSimulator.Globals;
 
 
 public class And extends Gate implements GateInterface {
-    boolean last = false;
+    
     String name = "And";
     
     public And() {
-        super(2, 1);
+        super(2, 1); // create 2 inputs and 1 output
         inputPins[0] = new InputPin();
         inputPins[1] = new InputPin();
         outputPins[0] = new OutputPin();

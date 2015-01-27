@@ -20,7 +20,6 @@ import LogicSimulator.Globals;
 
 public class Led extends Gate implements GateInterface{
     
-    boolean last=false;
     String name = "Led";
     DataObject dataObject;
     

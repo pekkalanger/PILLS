@@ -20,11 +20,10 @@ import LogicSimulator.Globals;
 
 public class Nand extends Gate implements GateInterface {
     
-    boolean last = false;
     String name = "Nand";
 
     public Nand() {
-        super(2, 1);
+        super(2, 1); // create 2 inputs and 1 output
         inputPins[0] = new InputPin(false);
         inputPins[1] = new InputPin(false);
         outputPins[0] = new OutputPin(true);

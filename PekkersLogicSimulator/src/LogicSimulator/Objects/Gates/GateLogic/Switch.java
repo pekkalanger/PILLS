@@ -18,13 +18,14 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 import LogicSimulator.Globals;
 
-public class Switch implements GateInterface{
+public class Switch extends Gate implements GateInterface{
         
     DataObject dataObject;
     String name = "Switch";
     private OutputPin outputPin = null;
     
     public Switch(boolean d){
+        super();
         this.dataObject = new DataObject(d);
         outputPin = new OutputPin();
     }

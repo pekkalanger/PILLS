@@ -22,9 +22,13 @@ package LogicSimulator.Objects.Gates.GateLogic;
  */
 public class Gate {
     
+    boolean last = false;
     InputPin[] inputPins;
     OutputPin[] outputPins;
-
+    
+    public Gate(){
+        
+    }
     public Gate(int in, int out){
         if(in > 0)
             inputPins = new InputPin[in];
