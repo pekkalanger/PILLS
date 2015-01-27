@@ -109,9 +109,9 @@ public class PinObject {
                     connectionLineObject.logicLine = logicLine;
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
-                    if (connectionLineObject2 != null) {
+                    /*if (connectionLineObject2 != null) {
                         connectionLineObject2.line = line;
-                    }
+                    }*/
                     if (line != null && !Globals.main.circleGroup.getChildren().contains(line)) {
                         Globals.main.circleGroup.getChildren().add(line);
                         Globals.main.logicLines.add(logicLine);
@@ -121,6 +121,7 @@ public class PinObject {
                         Globals.main.connectionLineObjects.add(connectionLineObject);
                         System.out.println("line did not exist in schematic");
                     }
+                    
                     ClipBoard.clearDragBoard();
                 } else if (ClipBoard.getInputPin() == inputPin) {
                     System.out.println("clicked on the same pin, dragboard cleared");
@@ -210,9 +211,10 @@ public class PinObject {
                     connectionLineObject.logicLine = logicLine;
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
-                    if (connectionLineObject2 != null) {
+                    /*if (connectionLineObject2 != null) {
                         connectionLineObject2.line = line;
                     }
+                    */
                     /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
                      if(connectionLineObject2 != null){
                      connectionLineObject2.line = null;

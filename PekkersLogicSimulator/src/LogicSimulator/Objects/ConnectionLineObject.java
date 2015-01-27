@@ -22,7 +22,6 @@ import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.ClipBoard;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
@@ -64,7 +63,15 @@ public class ConnectionLineObject {
 
     public Line createLine(final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
         if (line != null) {
-            line.setStroke(colorOff);
+            /*
+            if (logicLine != null) {
+                if (logicLine.getInputPin(0).getDataObject().getData()) {
+                    line.setStroke(colorOn);
+                } else {
+                    line.setStroke(colorOff);
+                }
+            }
+                    */
             line.setStrokeWidth(2);
             //add InputPin shadow effect
             Image cursorImage = Textures.lineCursor;

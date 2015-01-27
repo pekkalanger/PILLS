@@ -25,7 +25,7 @@ public class Electricity {
     double current;
  
     public Electricity(){
-    volt = 0;
-    current = 0;
+        volt = 0;
+        current = 0;
     }
 }
