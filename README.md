@@ -4,6 +4,7 @@
 
 TBD:  
       fix the bugwhich makes some lines go bananas.
+      
       implement undo/redo stacks for Gates and Connection lines.
       add save/load schematic to file feature.
       improve graphical resources.
