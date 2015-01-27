@@ -26,6 +26,7 @@ public class InputPinObject extends PinObject {
     InputPin inputPin;
     
     public InputPinObject(Group g, int x , int y, InputPin ip, String n) {
+        super();
         this.x = x;
         this.y = y;
         name = n; 

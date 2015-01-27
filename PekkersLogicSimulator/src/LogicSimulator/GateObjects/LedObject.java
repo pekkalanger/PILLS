@@ -41,7 +41,7 @@ public class LedObject extends GateObject{
         gate = new Led();
         gate.setInputPin(0, new InputPin());
         
-        ipos.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
+        inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
         
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/
@@ -62,20 +62,20 @@ public class LedObject extends GateObject{
         });
         
         group.getChildren().add(rectangle);
-        if(ipos != null){
-            Iterator<InputPinObject> iterator = ipos.iterator();
+        if(inputPinObjects != null){
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        if(opos != null){
-            Iterator<OutputPinObject> iterator = opos.iterator();
+        if(outputPinObjects != null){
+            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
                 
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        initGroup(ipos, opos);
+        initGroup(inputPinObjects, outputPinObjects);
     }
 
     

@@ -33,28 +33,28 @@ public class NotObject extends GateObject{
         gate.setInputPin(0, new InputPin());
         gate.setOutputPin(0, new OutputPin(true));
         
-        ipos.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
-        opos.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
+        inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
+        outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
         
-        rectangle = initRectangle(Textures.notGate);
+        rectangle = initRectangle(8, 0, Textures.notGate);
         group.getChildren().add(rectangle);
-        if(ipos != null){
-            Iterator<InputPinObject> iterator = ipos.iterator();
+        if(inputPinObjects != null){
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        if(opos != null){
-            Iterator<OutputPinObject> iterator = opos.iterator();
+        if(outputPinObjects != null){
+            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
                             
-        //group.getChildren().addAll(ipos.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+        //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
         y = group.getTranslateY();
-        initGroup(ipos, opos);
+        initGroup(inputPinObjects, outputPinObjects);
     }
 
     

@@ -144,42 +144,37 @@ public class Main extends Application {
         
         
         // we can set mouse event to any node, also on the rectangle
-        rectangle.setOnMouseMoved(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                //log mouse move to console, method listed below
-                //showOnConsole("Mouse moved, x: " + me.getX() + ", y: " + me.getY() );
-            }
+        rectangle.setOnMouseMoved((MouseEvent me) -> {
+            //me.consume();
         });
 
-        rectangle.setOnScroll(new EventHandler<ScrollEvent>() {
-            @Override public void handle(ScrollEvent event) {
-                double translateX = event.getDeltaX();
-                double translateY = event.getDeltaY();
-
-                // reduce the deltas for the circles to stay in the screen
-                for (Circle c : circleList) {
-                    if (c.getTranslateX() + translateX + c.getRadius() > mainWidth) {
-                        translateX = mainWidth - c.getTranslateX() - c.getRadius();
-                    }
-                    if (c.getTranslateX() + translateX - c.getRadius() < 0) {
-                        translateX = - c.getTranslateX() + c.getRadius();
-                    }
-                    if (c.getTranslateY() + translateY + c.getRadius() > mainHeight) {
-                        translateY = mainHeight - c.getTranslateY() - c.getRadius();
-                    }
-                    if (c.getTranslateY() + translateY - c.getRadius() < 0) {
-                        translateY = - c.getTranslateY() + c.getRadius();
-                    }
+        rectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
+            double translateX = event.getDeltaX();
+            double translateY = event.getDeltaY();
+            
+            // reduce the deltas for the circles to stay in the screen
+            for (Circle c : circleList) {
+                if (c.getTranslateX() + translateX + c.getRadius() > mainWidth) {
+                    translateX = mainWidth - c.getTranslateX() - c.getRadius();
                 }
-
-                // move the circles
-                for (Circle c : circleList) {
-                    c.setTranslateX(c.getTranslateX() + translateX);
-                    c.setTranslateY(c.getTranslateY() + translateY);
+                if (c.getTranslateX() + translateX - c.getRadius() < 0) {
+                    translateX = - c.getTranslateX() + c.getRadius();
                 }
-                // log event
-                showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
+                if (c.getTranslateY() + translateY + c.getRadius() > mainHeight) {
+                    translateY = mainHeight - c.getTranslateY() - c.getRadius();
+                }
+                if (c.getTranslateY() + translateY - c.getRadius() < 0) {
+                    translateY = - c.getTranslateY() + c.getRadius();
+                }
             }
+            
+            // move the circles
+            for (Circle c : circleList) {
+                c.setTranslateX(c.getTranslateX() + translateX);
+                c.setTranslateY(c.getTranslateY() + translateY);
+            }
+            // log event
+            showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
         });
         
         schematicGroup.getChildren().add(rectangle);
@@ -209,22 +204,19 @@ public class Main extends Application {
     }
 
     protected final void buildAndSetLoop() {        // this vill update everything 100 times per second / once every 1.666 seconds
-        final int fps = 10; //  if toggle then 100on + 100off = 200/2 hertz
+        final int fps = 50; //  if toggle then 100on + 100off = 200/2 hertz
         //int i;
         final Duration oneFrameAmt = Duration.millis(1000/fps);  // "100 fps" should be enough.. for nao
-        final KeyFrame oneFrame = new KeyFrame(oneFrameAmt,
-            new EventHandler() {
+        final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, new EventHandler() {
                 @Override
                 public void handle(Event event) {
                     System.out.println("==============START===============");
                     Long delta = 0L;
-                    //System.out.println(deltaTime *1000 + " ms?");
-                    for (Iterator<GateObject> iterator = gateObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
-                        GateObject next = iterator.next();
+                    
+                    for (GateObject next : gateObjects) {
                         next.update(delta);   
                     }
-                    for (Iterator<ConnectionLineObject> iterator = connectionLineObjects.iterator(); iterator.hasNext(); /*nop*/ ) {
-                        ConnectionLineObject next = iterator.next();
+                    for (ConnectionLineObject next : connectionLineObjects) {
                         if(next != null && next.logicLine != null ){
                             next.update(delta);
                         }

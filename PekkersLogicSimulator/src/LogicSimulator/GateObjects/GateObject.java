@@ -32,8 +32,8 @@ import javafx.scene.shape.Rectangle;
 
 public class GateObject {
         
-    List<InputPinObject> ipos;
-    List<OutputPinObject> opos;
+    List<InputPinObject> inputPinObjects;
+    List<OutputPinObject> outputPinObjects;
     public int width = 32;
     public int height = 32;
     double x;
@@ -47,122 +47,108 @@ public class GateObject {
     protected Point2D dragAnchor;
     
     public GateObject(){
-        ipos = new ArrayList<>();
-        opos = new ArrayList<>();
+        inputPinObjects = new ArrayList<>();
+        outputPinObjects = new ArrayList<>();
     }
     public void update(long deltaTime){
         if(gate != null) gate.update(deltaTime);
     }
-    public Rectangle initRectangle(Image image){
+    public Rectangle initRectangle(int x , int y, Image image){
         rectangle = new Rectangle(32, 32);
         rectangle.setFill(new ImagePattern(image, 0, 0, 1, 1, true)); /* should create InputPin Gate (square with andGate gate boolean logic linked to pins)*/
-        rectangle.setTranslateX(8);  // move 8 to the left because of inputpins on the left
-        rectangle.setTranslateY(0);
+        rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
+        rectangle.setTranslateY(y);
 
-        rectangle.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                me.consume();
-            }
+        rectangle.setOnMouseEntered((MouseEvent me) -> {
+            me.consume();
         });
-        rectangle.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                me.consume();
-            }
+        rectangle.setOnMouseExited((MouseEvent me) -> {
+            me.consume();
         });
         return rectangle;
     }
     
     public void initGroup(final List<InputPinObject> inputPinObjects, final List<OutputPinObject> outputPinObjects){
-        group.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                 //when mouse is pressed, store initial position
-                initX = group.getTranslateX();
-                initY = group.getTranslateY();
-                dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-                //showOnConsole("Mouse pressed above " + name);
-            }
+        group.setOnMousePressed((MouseEvent me) -> {
+            //when mouse is pressed, store initial position
+            initX = group.getTranslateX();
+            initY = group.getTranslateY();
+            dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
+            //showOnConsole("Mouse pressed above " + name);
         });
-        group.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent me) {
-                 if (me.getButton() == MouseButton.PRIMARY) {
-                    if( dragAnchor != null){
-                        double dragX = me.getSceneX() - dragAnchor.getX();
-                        double dragY = me.getSceneY() - dragAnchor.getY();
-                        double newXPosition = initX + dragX;
-                        double newYPosition = initY + dragY;
-                        group.setTranslateX(newXPosition);
-                        group.setTranslateY(newYPosition);
+        group.setOnMouseDragged((MouseEvent me) -> {
+            if (me.getButton() == MouseButton.PRIMARY) {
+                if( dragAnchor != null){
+                    double dragX = me.getSceneX() - dragAnchor.getX();
+                    double dragY = me.getSceneY() - dragAnchor.getY();
+                    double newXPosition = initX + dragX;
+                    double newYPosition = initY + dragY;
+                    group.setTranslateX(newXPosition);
+                    group.setTranslateY(newYPosition);
                     
-                        if(inputPinObjects != null){
-                            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-                            while (iterator.hasNext()) {
-                                InputPinObject ipo = iterator.next();
-                                ipo.connectionLineObjects.get(0).line.endXProperty().set(ipo.x + group.getTranslateX());
-                                ipo.connectionLineObjects.get(0).line.endYProperty().set(ipo.y + group.getTranslateY());
-                            } 
-                        }
-                        if(outputPinObjects != null){
-                            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-                            while (iterator.hasNext()) {
-                                OutputPinObject opo = iterator.next();
-                                opo.connectionLineObjects.get(0).line.endXProperty().set(opo.x + group.getTranslateX());
-                                opo.connectionLineObjects.get(0).line.endYProperty().set(opo.y + group.getTranslateY());
-                            }
-                        }
-                    }
-                    me.consume();
-                }
-            }
-        });
-        group.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            public void handle(MouseEvent me) {
-                group.toFront();
-                if (me.getButton() == MouseButton.PRIMARY) {
-                    Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                    //the event will be passed only to the circle which is on front
-                    me.consume();
-                } else if (me.getButton() == MouseButton.SECONDARY) {
-                } else if (me.getButton() == MouseButton.MIDDLE) {
-                    Globals.main.showOnConsole("Removed specified Gate");
-                    //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
-                    Globals.main.circleGroup.getChildren().remove(group);
-                    gate=null ;
-                    
-                    //Globals.main.gateObjects.remove(gate);
-                    System.out.println("gate should be null now");
-                    Globals.main.showOnConsole("gate should be null now");
-                    
-                   if(inputPinObjects != null){
+                    if(inputPinObjects != null){
                         Iterator<InputPinObject> iterator = inputPinObjects.iterator();
                         while (iterator.hasNext()) {
                             InputPinObject ipo = iterator.next();
-                            if(Globals.main.circleGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
-                               //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
-                                Globals.main.circleGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
-                            }
-                            ipo.connectionLineObjects.get(0).logicLine = null;
-                            ipo.connectionLineObjects = null;
-                            ipo.connectionLineObject2 = null;
+                            ipo.connectionLineObjects.get(0).line.endXProperty().set(ipo.x + group.getTranslateX());
+                            ipo.connectionLineObjects.get(0).line.endYProperty().set(ipo.y + group.getTranslateY()); 
                         }
                     }
                     if(outputPinObjects != null){
                         Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
                         while (iterator.hasNext()) {
                             OutputPinObject opo = iterator.next();
-                            if(Globals.main.circleGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
-                                Globals.main.circleGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
-                            }
-                            opo.connectionLineObjects.get(0).logicLine = null;
-                            opo.connectionLineObjects = null;
-                            opo.connectionLineObject2 = null;
+                            opo.connectionLineObjects.get(0).line.endXProperty().set(opo.x + group.getTranslateX());
+                            opo.connectionLineObjects.get(0).line.endYProperty().set(opo.y + group.getTranslateY());
                         }
                     }
-                    me.consume();
-                }  
+                }
+                me.consume();
+            }
+        });
+        group.setOnMouseClicked((MouseEvent me) -> {
+            group.toFront();
+            if (me.getButton() == MouseButton.PRIMARY) {
+                Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
+                //the event will be passed only to the circle which is on front
+                me.consume();
+            } else if (me.getButton() == MouseButton.SECONDARY) {
+            } else if (me.getButton() == MouseButton.MIDDLE) {
+                Globals.main.showOnConsole("Removed specified Gate");
+                //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
+                Globals.main.circleGroup.getChildren().remove(group);
+                gate=null ;
+                
+                //Globals.main.gateObjects.remove(gate);
+                System.out.println("gate should be null now");
+                Globals.main.showOnConsole("gate should be null now");
+                
+                if(inputPinObjects != null){
+                    Iterator<InputPinObject> iterator = inputPinObjects.iterator();
+                    while (iterator.hasNext()) {
+                        InputPinObject ipo = iterator.next();
+                        if(Globals.main.circleGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
+                            //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
+                            Globals.main.circleGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
+                        }
+                        ipo.connectionLineObjects.get(0).logicLine = null;
+                        ipo.connectionLineObjects = null;
+                        ipo.connectionLineObject2 = null;
+                    }
+                }
+                if(outputPinObjects != null){
+                    Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
+                    while (iterator.hasNext()) {
+                        OutputPinObject opo = iterator.next();
+                        if(Globals.main.circleGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
+                            Globals.main.circleGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
+                        }
+                        opo.connectionLineObjects.get(0).logicLine = null;
+                        opo.connectionLineObjects = null;
+                        opo.connectionLineObject2 = null;
+                    }
+                }
+                me.consume();  
             }
         });
         group.setOpacity(0.8f);

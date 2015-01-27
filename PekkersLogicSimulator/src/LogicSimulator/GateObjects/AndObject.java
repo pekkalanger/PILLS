@@ -35,31 +35,31 @@ public class AndObject extends GateObject{
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
-        double width = 32;
-    double height = 32;
-        ipos.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
-        ipos.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
-        opos.add(new OutputPinObject(group, (int) (width + ClipBoard.getOutputPinObject().width), 12, gate.getOutputPin(0), name + " PinQ"));
+        width = 32;
+        height = 32;
+        inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
+        inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
+        outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
         
-        rectangle = initRectangle(Textures.andGate);
+        rectangle = initRectangle(8, 0, Textures.andGate);
         group.getChildren().add(rectangle);
-        if(ipos != null){
-            Iterator<InputPinObject> iterator = ipos.iterator();
+        if(inputPinObjects != null){
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        if(opos != null){
-            Iterator<OutputPinObject> iterator = opos.iterator();
+        if(outputPinObjects != null){
+            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
                             
-        //group.getChildren().addAll(ipos.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+        //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
         y = group.getTranslateY();
-        initGroup(ipos, opos);
+        initGroup(inputPinObjects, outputPinObjects);
     }
 
     @Override

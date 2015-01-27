@@ -38,29 +38,30 @@ public class XnorObject extends GateObject{
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
         
-        ipos.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
-        ipos.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
-        opos.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
+        inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
+        inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
+        outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
         
-        rectangle = initRectangle(Textures.xnorGate);
+        rectangle = initRectangle(8, 0, Textures.xnorGate);
         group.getChildren().add(rectangle);
-        if(ipos != null){
-            Iterator<InputPinObject> iterator = ipos.iterator();
+        
+        if(inputPinObjects != null){
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
-        if(opos != null){
-            Iterator<OutputPinObject> iterator = opos.iterator();
+        if(outputPinObjects != null){
+            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
                 group.getChildren().add(iterator.next().getRectangle());
             }
         }
                             
-        //group.getChildren().addAll(ipos.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
+        //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
         y = group.getTranslateY();
-        initGroup(ipos, opos);
+        initGroup(inputPinObjects, outputPinObjects);
     }
 
     
