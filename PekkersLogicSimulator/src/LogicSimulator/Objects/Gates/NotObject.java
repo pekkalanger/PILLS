@@ -32,6 +32,7 @@ public class NotObject extends GateObject {
         group = new Group();
         name = "Not Gate";
         gate = new Not();
+        image = Textures.notGate;
         gate.setInputPin(0, new InputPin());
         gate.setOutputPin(0, new OutputPin(true));
 

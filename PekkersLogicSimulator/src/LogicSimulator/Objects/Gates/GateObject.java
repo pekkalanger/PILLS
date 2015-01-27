@@ -20,6 +20,7 @@ import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Globals;
+import LogicSimulator.Textures;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -46,6 +47,7 @@ public abstract class GateObject {
     protected double initX;
     protected double initY;
     protected Point2D dragAnchor;
+    Image image;
 
     public GateObject() {
         inputPinObjects = new ArrayList<>();
@@ -112,8 +114,12 @@ public abstract class GateObject {
                 Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
                 //the event will be passed only to the circle which is on front
                 me.consume();
-            } else if (me.getButton() == MouseButton.SECONDARY) {
             } else if (me.getButton() == MouseButton.MIDDLE) {
+                if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+                    Globals.main.showOnConsole("remove infopopup");
+                    Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+
+                }
                 Globals.main.showOnConsole("Removed specified Gate");
                 //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
                 Globals.main.circleGroup.getChildren().remove(group);
@@ -151,6 +157,25 @@ public abstract class GateObject {
                 me.consume();
             }
         });
+        rectangle.setOnMouseEntered((MouseEvent me) -> {
+            if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
+                    Globals.infoPopup.setTranslateX(750);
+                    Globals.infoPopup.setTranslateY(0);
+                    Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+                    Globals.main.showOnConsole("righty on");
+                    Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
+                }
+                me.consume();
+        });
+        rectangle.setOnMouseExited((MouseEvent me) -> {
+            if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+                Globals.main.showOnConsole("remove infopopup");
+                Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+                    
+            }
+            me.consume();
+        });    
+        
         group.setOpacity(0.8f);
         Globals.main.circleGroup.getChildren().add(group);
     }

@@ -16,6 +16,7 @@
  */
 package LogicSimulator.Objects.Gates;
 
+import LogicSimulator.Globals;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.And;
@@ -24,6 +25,8 @@ import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import java.util.Iterator;
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class AndObject extends GateObject {
 
@@ -32,7 +35,7 @@ public class AndObject extends GateObject {
         group = new Group();
         name = "And Gate";
         gate = new And();
-
+        image = Textures.andTruth;
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
@@ -43,6 +46,8 @@ public class AndObject extends GateObject {
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
 
         rectangle = initRectangle(8, 0, width, height, Textures.andGate);
+        
+        
         group.getChildren().add(rectangle);
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();

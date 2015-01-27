@@ -35,6 +35,9 @@ public class Textures {
     static public Image ledOn;
     static public Image switchOff;
     static public Image switchOn;
+    static public Image andTruth;
+    static public Image nandTruth;
+    static public Image orTruth;
     static public Image pinPressed;
     static public Image pinOver;
     static public Image inputPin;
@@ -66,7 +69,13 @@ public class Textures {
         xorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xorgate2.png");
         xnorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xnorgate2.png");
     //xorGate = new Image("file:res/xorgate2.png");
-    /*          Led                 */
+        
+        /*          Truth               */
+        andTruth = new Image("file:res/andtruth.png");
+        nandTruth = new Image("file:res/nandtruth.png");
+        orTruth = new Image("file:res/ortruth.png");
+        
+        /*          Led                 */
         //ledOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledoff.png");
         //ledOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledon.png");
         ledOff = new Image("file:res/ledoff.png");

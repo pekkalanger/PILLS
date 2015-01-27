@@ -36,6 +36,7 @@ public class NorObject extends GateObject {
         group = new Group();
         name = "Nor Gate";
         gate = new Nor();
+        image = Textures.norGate;
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());

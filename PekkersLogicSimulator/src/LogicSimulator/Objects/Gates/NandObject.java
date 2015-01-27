@@ -35,6 +35,7 @@ public class NandObject extends GateObject {
         super();
         group = new Group();
         name = "Nand Gate";
+        image = Textures.nandTruth;
         gate = new Nand();
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());

@@ -38,7 +38,7 @@ public class LedObject extends GateObject {
         /*      movable group   */
         group = new Group();
         name = "Led";
-
+        image = Textures.ledOff;
         gate = new Led();
         gate.setInputPin(0, new InputPin());
 
