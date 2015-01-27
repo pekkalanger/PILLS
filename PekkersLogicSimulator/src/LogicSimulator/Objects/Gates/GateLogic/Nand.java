@@ -18,7 +18,6 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 import LogicSimulator.Globals;
 
-
 public class Nand extends Gate implements GateInterface {
     
     boolean last = false;

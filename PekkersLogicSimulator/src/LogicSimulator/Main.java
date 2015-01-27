@@ -20,7 +20,6 @@ import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.Objects.ConnectionLineObject;
 import LogicSimulator.Objects.Gates.GateObject;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javafx.animation.Animation;

@@ -22,7 +22,6 @@ import LogicSimulator.Objects.Gates.GateLogic.Switch;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
 import java.util.Iterator;
-import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;

@@ -18,7 +18,6 @@ package LogicSimulator.Objects.Gates;
 
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
-import LogicSimulator.ClipBoard;
 import LogicSimulator.Objects.Gates.GateLogic.And;
 import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;

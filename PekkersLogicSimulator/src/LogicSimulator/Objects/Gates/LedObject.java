@@ -22,7 +22,6 @@ import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Led;
 import LogicSimulator.Globals;
 import LogicSimulator.Textures;
-import java.util.ArrayList;
 import java.util.Iterator;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

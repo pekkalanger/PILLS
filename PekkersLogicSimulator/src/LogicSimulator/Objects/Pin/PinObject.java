@@ -26,7 +26,6 @@ import LogicSimulator.Objects.ConnectionLineObject;
 import LogicSimulator.Textures;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
