@@ -31,7 +31,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class GateObject {
+public abstract class GateObject {
 
     List<InputPinObject> inputPinObjects;
     List<OutputPinObject> outputPinObjects;
@@ -50,12 +50,6 @@ public class GateObject {
     public GateObject() {
         inputPinObjects = new ArrayList<>();
         outputPinObjects = new ArrayList<>();
-    }
-
-    public void update(long deltaTime) {
-        if (gate != null) {
-            gate.update(deltaTime);
-        }
     }
 
     public Rectangle initRectangle(int x, int y, int width, int height, Image image) {
@@ -159,6 +153,17 @@ public class GateObject {
         });
         group.setOpacity(0.8f);
         Globals.main.circleGroup.getChildren().add(group);
+    }
+
+    public void destroy() {
+        /* remove all the lines from this object and all other sh*t*/
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void update(long deltaTime) {
+        if (gate != null) {
+            gate.update(deltaTime);
+        }
     }
 
 }
