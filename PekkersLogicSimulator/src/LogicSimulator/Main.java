@@ -71,16 +71,16 @@ public class Main extends Application {
     //create a console for logging mouse events
     final ListView<String> console = new ListView<>();
 
-    //create a rectangle - (XXXpx X XXXpx) in which our circles can move
-    Rectangle rectangle;
+    //create a schematicRectangle - (XXXpx X XXXpx) in which our circles can move
+    Rectangle schematicRectangle;
 
     //variables for storing initial position before drag of circle
     public double initX;
     public double initY;
     public Point2D dragAnchor;
     public MenuBar menuBar;
-    public Group schematicGroup;
-    public Group circleGroup;  // "the schematic"  will use schematicGroup later on
+    //public Group schematicGroup;
+    public Group schematicGroup;  // "the schematic"  will use schematicGroup later on
     public VBox rootGroup;
     public VBox rootVBox;
     public VBox sideBar;
@@ -113,13 +113,13 @@ public class Main extends Application {
 
         rootGroup = new VBox(2);        // contains menuBar and rootHBox
         rootHBox = new HBox(2);         // contains sideBar and rootVBox
-        rootVBox = new VBox(2);         // contains rectangle and console
+        rootVBox = new VBox(2);         // contains schematicRectangle and console
         rootHBox.setSpacing(1f);
         rootVBox.setSpacing(5f);
         //sideBar = new VBox();         // contains sidebar items
         //menuBar = new MenuBar();      // a most excelent menubar
         schematicGroup = new Group();   // where gateGroup and lineGroup? r comin  
-        circleGroup = new Group();      // gateGroup (atm circleGroup)
+        //schematicGroup = new Group();      // gateGroup (atm schematicGroup)
 
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
@@ -129,12 +129,12 @@ public class Main extends Application {
         sideBar = classySideBarBuilder.buildSideBarWithButtons();
         rootHBox.getChildren().add(sideBar);
 
-        rectangle = new Rectangle(schematicWidth, schematicHeigth);
-        rectangle.setStroke(Color.WHITE);
-        rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
+        schematicRectangle = new Rectangle(schematicWidth, schematicHeigth);
+        schematicRectangle.setStroke(Color.WHITE);
+        schematicRectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
             new Stop(1, Color.rgb(205, 235, 255)), new Stop(0, Color.rgb(205, 235, 255, 0.5))
         }));
-        /*rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
+        /*schematicRectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
          new Stop(1, Color.rgb(156,216,255)), new Stop(0, Color.rgb(156,216,255, 0.5))
          }));
          */
@@ -142,12 +142,12 @@ public class Main extends Application {
          * should draw a grid on screen 
          */
 
-        // we can set mouse event to any node, also on the rectangle
-        rectangle.setOnMouseMoved((MouseEvent me) -> {
+        // we can set mouse event to any node, also on the schematicRectangle
+        schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
             //me.consume();
         });
 
-        rectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
+        schematicRectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
             double translateX = event.getDeltaX();
             double translateY = event.getDeltaY();
 
@@ -176,9 +176,8 @@ public class Main extends Application {
             showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
         });
 
-        schematicGroup.getChildren().add(rectangle);
-        rectangle.toBack();
-        schematicGroup.getChildren().add(circleGroup);
+        schematicGroup.getChildren().add(schematicRectangle);
+        schematicRectangle.toBack();
 
         rootVBox.getChildren().add(schematicGroup);
         rootVBox.getChildren().add(console);

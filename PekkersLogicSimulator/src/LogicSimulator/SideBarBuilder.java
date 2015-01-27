@@ -181,8 +181,8 @@ public class SideBarBuilder {
             rectangle.setTranslateX(400);
             rectangle.setTranslateY(300);
             rectangle.toFront();
-            //main.schematicGroup.getChildren().add(rectangle);
-            main.circleGroup.getChildren().add(rectangle);
+            //main.schematicGroup.getChildren().add(schematicRectangle);
+            main.schematicGroup.getChildren().add(rectangle);
             event.consume();
         });
 
@@ -195,7 +195,7 @@ public class SideBarBuilder {
             c.setTranslateX(300);
             c.setTranslateY(50);
             c.toFront();
-            main.circleGroup.getChildren().add(c);
+            main.schematicGroup.getChildren().add(c);
             main.circleList.add(c);
             event.consume();
         });
@@ -208,7 +208,7 @@ public class SideBarBuilder {
             c.setTranslateX(300);
             c.setTranslateY(150);
             c.toFront();
-            main.circleGroup.getChildren().add(c);
+            main.schematicGroup.getChildren().add(c);
             main.circleList.add(c);
             event.consume();
         });
@@ -217,7 +217,7 @@ public class SideBarBuilder {
         final Button butt99 = new Button("Label");
         butt99.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Label");
-            main.circleGroup.getChildren().add(createLabel());
+            main.schematicGroup.getChildren().add(createLabel());
             event.consume();
         });
 
@@ -291,7 +291,7 @@ public class SideBarBuilder {
                 final HBox labelPromptBox = new HBox();
                 labelPromptBox.setTranslateX(label.getTranslateX());
                 labelPromptBox.setTranslateY(label.getTranslateY());
-                main.circleGroup.getChildren().add(labelPromptBox);
+                main.schematicGroup.getChildren().add(labelPromptBox);
 
                 final TextField textField = new TextField();
                 textField.setPromptText(label.getText());
@@ -304,12 +304,12 @@ public class SideBarBuilder {
                 okButt.setDefaultButton(true);
                 okButt.setOnAction((ActionEvent arg0) -> {
                     label.setText(textField.getText());
-                    main.circleGroup.getChildren().remove(labelPromptBox);
+                    main.schematicGroup.getChildren().remove(labelPromptBox);
                 });
                 labelPromptBox.getChildren().add(okButt);
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
-                main.circleGroup.getChildren().remove(label);
+                main.schematicGroup.getChildren().remove(label);
                 me.consume();
             }
         });
@@ -319,19 +319,19 @@ public class SideBarBuilder {
     
        public void setinfoPopup(Button butt, Image i){        
         butt.setOnMouseEntered((MouseEvent me) -> {
-            if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
+            if(!Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)) {
                 Globals.infoPopup.setTranslateX(750);
                 Globals.infoPopup.setTranslateY(0);
                 if(i != null)Globals.infoPopup.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
                 Globals.main.showOnConsole("Open infoPopup");
-                Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
+                Globals.main.schematicGroup.getChildren().add(Globals.infoPopup);
             }
                 me.consume();
         });
         butt.setOnMouseExited((MouseEvent me) -> {
-            if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+            if(Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)){
                 Globals.main.showOnConsole("remove infopopup");
-                Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+                Globals.main.schematicGroup.getChildren().remove(Globals.infoPopup);
                     
             }
             me.consume();

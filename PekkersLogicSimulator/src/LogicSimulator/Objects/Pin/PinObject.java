@@ -39,7 +39,7 @@ import javafx.scene.shape.Rectangle;
 public class PinObject {
 
     String name;
-    public int x; // rectangle translate
+    public int x; // schematicRectangle translate
     public int y;
     static final int width = 8;
     static final int height = 8;
@@ -200,20 +200,20 @@ public class PinObject {
     public void setinfoPopup(Image i){        
         rectangle.setOnMouseEntered((MouseEvent me) -> {
             rectangle.setFill(new ImagePattern(Textures.pinOver, 0, 0, 1, 1, true));
-            if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
+            if(!Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)) {
                 Globals.infoPopup.setTranslateX(750);
                 Globals.infoPopup.setTranslateY(0);
                 if(image != null)Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
                 Globals.main.showOnConsole("Open infoPopup");
-                Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
+                Globals.main.schematicGroup.getChildren().add(Globals.infoPopup);
             }
                 me.consume();
         });
         rectangle.setOnMouseExited((MouseEvent me) -> {
             rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
-            if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+            if(Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)){
                 Globals.main.showOnConsole("remove infopopup");
-                Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+                Globals.main.schematicGroup.getChildren().remove(Globals.infoPopup);
                     
             }
             me.consume();
@@ -231,14 +231,14 @@ public class PinObject {
     }
     
     public void addLine(Line line, LogicLine logicLine){
-        if (line != null && !Globals.main.circleGroup.getChildren().contains(line)) {
-            Globals.main.circleGroup.getChildren().add(line);
+        if (line != null && !Globals.main.schematicGroup.getChildren().contains(line)) {
+            Globals.main.schematicGroup.getChildren().add(line);
             Globals.main.logicLines.add(logicLine);
         }
     }
     public void removeLine(Line line, LogicLine logicLine){
-        if (!Globals.main.circleGroup.getChildren().contains(line)) {
-            Globals.main.circleGroup.getChildren().add(line);
+        if (!Globals.main.schematicGroup.getChildren().contains(line)) {
+            Globals.main.schematicGroup.getChildren().add(line);
             Globals.main.logicLines.add(logicLine);
         }
     }

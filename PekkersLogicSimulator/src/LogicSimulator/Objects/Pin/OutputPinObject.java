@@ -21,10 +21,6 @@ import LogicSimulator.Textures;
 import javafx.scene.Group;
 import javafx.scene.shape.Rectangle;
 
-/**
- *
- * @author PEKKA
- */
 public class OutputPinObject extends PinObject {
 
     OutputPin outputPin;

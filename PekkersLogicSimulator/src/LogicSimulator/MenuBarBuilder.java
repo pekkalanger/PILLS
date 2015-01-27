@@ -72,9 +72,9 @@ public class MenuBarBuilder {
                 /*       null all the lists!!!       */
 
                 //main.schematicGroup = new Group();  will not use circlegroup in the future
-                main.schematicGroup.getChildren().remove(main.circleGroup);
-                main.circleGroup = new Group();
-                main.schematicGroup.getChildren().add(main.circleGroup);
+                main.schematicGroup.getChildren().remove(main.schematicGroup);
+                main.schematicGroup = new Group();
+                main.schematicGroup.getChildren().add(main.schematicGroup);
 
                 main.gateObjects = new ArrayList();
                 main.lines = new ArrayList();

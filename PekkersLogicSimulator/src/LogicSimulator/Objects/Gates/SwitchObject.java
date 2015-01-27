@@ -65,7 +65,7 @@ public class SwitchObject extends GateObject {
             } else if (me.getButton() == MouseButton.MIDDLE) {
                 Globals.main.showOnConsole("Removed specified Gate");
                 //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
-                Globals.main.circleGroup.getChildren().remove(group);
+                Globals.main.schematicGroup.getChildren().remove(group);
                 gate = null;
 
                 //Globals.main.gateObjects.remove(gate);
@@ -76,8 +76,8 @@ public class SwitchObject extends GateObject {
                     Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
                     while (iterator.hasNext()) {
                         OutputPinObject opo = iterator.next();
-                        if (Globals.main.circleGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
-                            Globals.main.circleGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
+                        if (Globals.main.schematicGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
+                            Globals.main.schematicGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
                         }
                         opo.connectionLineObjects.get(0).logicLine = null;
                         opo.connectionLineObjects = null;
@@ -90,7 +90,7 @@ public class SwitchObject extends GateObject {
 
         group.setOpacity(0.8f);
 
-        //Globals.main.circleGroup.getChildren().add(group);
+        //Globals.main.schematicGroup.getChildren().add(group);
     }
 
     @Override

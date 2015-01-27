@@ -57,14 +57,14 @@ public class SexyRectangleBuilder {
                     rectangle.setTranslateX(300);
                     rectangle.setTranslateY(50);
                     rectangle.toFront();
-                    main.circleGroup.getChildren().add(rectangle);
-                    //main.circleList.add(rectangle);
+                    main.schematicGroup.getChildren().add(rectangle);
+                    //main.circleList.add(schematicRectangle);
 
                 } else if (me.getButton() == MouseButton.MIDDLE) {
 
                     main.showOnConsole("Removed specified Rectangle");
-                    //main.circleList.remove(rectangle);
-                    main.circleGroup.getChildren().remove(rectangle);
+                    //main.circleList.remove(schematicRectangle);
+                    main.schematicGroup.getChildren().remove(rectangle);
 
                 }
                 me.consume();
@@ -80,7 +80,7 @@ public class SexyRectangleBuilder {
                     //calculate new position of the circle
                     double newXPosition = main.initX + dragX;
                     double newYPosition = main.initY + dragY;
-                    //if new position do not exceeds borders of the rectangle, translate to this position
+                    //if new position do not exceeds borders of the schematicRectangle, translate to this position
                     //if ((newXPosition>=circle.getRadius()) && (newXPosition<=main.schematicWidth-circle.getRadius())) {
                     rectangle.setTranslateX(newXPosition);
                     //}
@@ -119,9 +119,9 @@ public class SexyRectangleBuilder {
         rectangle.setOnMouseReleased(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent me) {
                 main.showOnConsole("Mouse released above " + name);
-                /*if (rectangle.getTranslateX() < (150) && rectangle.getTranslateX() > (- 150) && rectangle.getTranslateY() < (150) && rectangle.getTranslateY() > (- 150)) {
-                 rectangle.setTranslateX(150);
-                 rectangle.setTranslateY(150);
+                /*if (schematicRectangle.getTranslateX() < (150) && schematicRectangle.getTranslateX() > (- 150) && schematicRectangle.getTranslateY() < (150) && schematicRectangle.getTranslateY() > (- 150)) {
+                 schematicRectangle.setTranslateX(150);
+                 schematicRectangle.setTranslateY(150);
                  }
                  */
             }

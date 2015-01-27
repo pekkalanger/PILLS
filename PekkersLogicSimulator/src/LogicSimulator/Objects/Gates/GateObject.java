@@ -109,14 +109,14 @@ public abstract class GateObject {
                 //the event will be passed only to the circle which is on front
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
-                if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+                if(Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)){
                     Globals.main.showOnConsole("remove infopopup");
-                    Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+                    Globals.main.schematicGroup.getChildren().remove(Globals.infoPopup);
 
                 }
                 Globals.main.showOnConsole("Removed specified Gate");
                 //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
-                Globals.main.circleGroup.getChildren().remove(group);
+                Globals.main.schematicGroup.getChildren().remove(group);
                 gate = null;
 
                 //Globals.main.gateObjects.remove(gate);
@@ -127,9 +127,9 @@ public abstract class GateObject {
                     Iterator<InputPinObject> iterator = inputPinObjects.iterator();
                     while (iterator.hasNext()) {
                         InputPinObject ipo = iterator.next();
-                        if (Globals.main.circleGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
-                            //Line l = Globals.main.circleGroup.getChildren().get(Globals.main.circleGroup.getChildren().indexOf(lineA));
-                            Globals.main.circleGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
+                        if (Globals.main.schematicGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
+                            //Line l = Globals.main.schematicGroup.getChildren().get(Globals.main.schematicGroup.getChildren().indexOf(lineA));
+                            Globals.main.schematicGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
                         }
                         ipo.connectionLineObjects.get(0).logicLine = null;
                         ipo.connectionLineObjects = null;
@@ -140,8 +140,8 @@ public abstract class GateObject {
                     Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
                     while (iterator.hasNext()) {
                         OutputPinObject opo = iterator.next();
-                        if (Globals.main.circleGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
-                            Globals.main.circleGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
+                        if (Globals.main.schematicGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
+                            Globals.main.schematicGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
                         }
                         opo.connectionLineObjects.get(0).logicLine = null;
                         opo.connectionLineObjects = null;
@@ -153,24 +153,24 @@ public abstract class GateObject {
         });
         
         group.setOpacity(0.8f);
-        Globals.main.circleGroup.getChildren().add(group);
+        Globals.main.schematicGroup.getChildren().add(group);
     }
     
     public void setinfoPopup(){
         rectangle.setOnMouseEntered((MouseEvent me) -> {
-            if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
+            if(!Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)) {
                     Globals.infoPopup.setTranslateX(750);
                     Globals.infoPopup.setTranslateY(0);
                     if(image != null)Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
                     Globals.main.showOnConsole("Open infoPopup");
-                    Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
+                    Globals.main.schematicGroup.getChildren().add(Globals.infoPopup);
                 }
                 me.consume();
         });
         rectangle.setOnMouseExited((MouseEvent me) -> {
-            if(Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)){
+            if(Globals.main.schematicGroup.getChildren().contains(Globals.infoPopup)){
                 Globals.main.showOnConsole("remove infopopup");
-                Globals.main.circleGroup.getChildren().remove(Globals.infoPopup);
+                Globals.main.schematicGroup.getChildren().remove(Globals.infoPopup);
                     
             }
             me.consume();

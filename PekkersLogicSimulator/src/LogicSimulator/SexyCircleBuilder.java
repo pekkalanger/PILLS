@@ -65,12 +65,12 @@ public class SexyCircleBuilder {
                     c.setTranslateX(300);
                     c.setTranslateY(50);
                     c.toFront();
-                    main.circleGroup.getChildren().add(c);
+                    main.schematicGroup.getChildren().add(c);
                     main.circleList.add(c);
                 } else if (me.getButton() == MouseButton.MIDDLE && !parent) {
                     main.showOnConsole("Removed specified orangeCircle");
                     main.circleList.remove(circle);
-                    main.circleGroup.getChildren().remove(circle);
+                    main.schematicGroup.getChildren().remove(circle);
                 }
                 me.consume();
             }
@@ -86,7 +86,7 @@ public class SexyCircleBuilder {
                     double newXPosition = main.initX + dragX;
                     double newYPosition = main.initY + dragY;
                     //System.out.println(main.initX + " + " + me.getSceneX() + " - " + main.dragAnchor.getX());
-                    //if new position do not exceeds borders of the rectangle, translate to this position
+                    //if new position do not exceeds borders of the schematicRectangle, translate to this position
                     if ((newXPosition >= circle.getRadius()) && (newXPosition <= main.schematicWidth - circle.getRadius())) {
                         circle.setTranslateX(newXPosition);
                     }
@@ -110,7 +110,7 @@ public class SexyCircleBuilder {
                      line.setEndY(newYPosition);
                      line.setStroke(Color.RED);
                      line.setStrokeWidth(10);
-                     main.circleGroup.getChildren().add(line);
+                     main.schematicGroup.getChildren().add(line);
                     
                      */
                 }
@@ -178,12 +178,12 @@ public class SexyCircleBuilder {
                     c.setTranslateX(300);
                     c.setTranslateY(150);
                     c.toFront();
-                    main.circleGroup.getChildren().add(c);
+                    main.schematicGroup.getChildren().add(c);
                     main.circleList.add(c);
                 } else if (me.getButton() == MouseButton.MIDDLE && !parent) {
                     main.showOnConsole("removed specified orangeCircle");
                     main.circleList.remove(circle);
-                    main.circleGroup.getChildren().remove(circle);
+                    main.schematicGroup.getChildren().remove(circle);
                 }
                 me.consume();
             }
@@ -197,7 +197,7 @@ public class SexyCircleBuilder {
                     //calculate new position of the circle
                     double newXPosition = main.initX + dragX;
                     double newYPosition = main.initY + dragY;
-                    //if new position do not exceeds borders of the rectangle, translate to this position
+                    //if new position do not exceeds borders of the schematicRectangle, translate to this position
                     if ((newXPosition >= circle.getRadius()) && (newXPosition <= main.schematicWidth - circle.getRadius())) {
                         circle.setTranslateX(newXPosition);
                     }
