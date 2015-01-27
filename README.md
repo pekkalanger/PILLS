@@ -14,3 +14,5 @@
       Add drag n drop feature on add gate buttons.
       Clean up the code and go home.
 
+
+truth tables taken from http://gcat.davidson.edu/GcatWiki/index.php/Logic_Gates:_Symbols_and_Truth_Tables
