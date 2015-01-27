@@ -7,10 +7,10 @@
 
 #To Be Done:  
 
-      fix the bugwhich makes some lines go bananas.
-      implement undo/redo stacks for Gates and Connection lines.
-      add save/load schematic to file feature.
-      improve graphical resources.
-      add drag n drop feature on add gate buttons.
-      clean up the code and go home.
+      Fix the bug which makes some lines go bananas.
+      Implement undo/redo stacks for Gates and Connection lines.
+      Add save/load schematic to file feature.
+      Improve graphical resources.
+      Add drag n drop feature on add gate buttons.
+      Clean up the code and go home.
 
