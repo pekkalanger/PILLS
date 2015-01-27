@@ -79,13 +79,7 @@ public class PinObject {
                 } else if (ClipBoard.getOutputPin() != null) {
                     if (ClipBoard.getConnectionLineObject2() != null) {
                         LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
-                        if (ll != null) {
-                            ll.getInputPin(0).setDataObject(new DataObject(false));
-                            ll.getOutputPin(0).setDataObject(new DataObject(false));
-                            ll.setInputPin(0, new InputPin());
-                            ll.setOutputPin(0, new OutputPin());
-                            ll = null;
-                        }
+                        nullLogicLine(ll);
                         ClipBoard.setConnectionLineObject2(null);
                     }
                     LogicLine logicLine = new LogicLine();
@@ -97,10 +91,8 @@ public class PinObject {
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                    
-                    if (line != null && !Globals.main.circleGroup.getChildren().contains(line)) {
-                        Globals.main.circleGroup.getChildren().add(line);
-                        Globals.main.logicLines.add(logicLine);
-                    }
+                    addLine(line, logicLine);
+                    
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
@@ -154,13 +146,7 @@ public class PinObject {
                 } else if (ClipBoard.getInputPin() != null) {
                     if (ClipBoard.getConnectionLineObject2() != null) {
                         LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
-                        if (ll != null) {
-                            ll.getInputPin(0).setDataObject(new DataObject(false));
-                            ll.getOutputPin(0).setDataObject(new DataObject(false));
-                            ll.setInputPin(0, new InputPin());
-                            ll.setOutputPin(0, new OutputPin());
-                            ll = null;
-                        }
+                        nullLogicLine(ll);
                         ClipBoard.setConnectionLineObject2(null);
                     }
                     LogicLine logicLine = new LogicLine();
@@ -182,12 +168,9 @@ public class PinObject {
                             connectionLineObject2.logicLine=null;
                         }
                     }*/
-                    if (line != null) {
-                        if (!Globals.main.circleGroup.getChildren().contains(line)) {
-                            Globals.main.circleGroup.getChildren().add(line);
-                            Globals.main.logicLines.add(logicLine);
-                        }
-                    }
+                    
+                    addLine(line, logicLine);
+                    
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
@@ -227,7 +210,29 @@ public class PinObject {
         });
         return rectangle;
     }
-
+    
+    public void nullLogicLine(LogicLine ll){
+        if (ll != null) {
+            ll.getInputPin(0).setDataObject(new DataObject(false));
+            ll.getOutputPin(0).setDataObject(new DataObject(false));
+            ll.setInputPin(0, new InputPin());
+            ll.setOutputPin(0, new OutputPin());
+            ll = null;
+        }
+    }
+    
+    public void addLine(Line line, LogicLine logicLine){
+        if (line != null && !Globals.main.circleGroup.getChildren().contains(line)) {
+            Globals.main.circleGroup.getChildren().add(line);
+            Globals.main.logicLines.add(logicLine);
+        }
+    }
+    public void removeLine(Line line, LogicLine logicLine){
+        if (!Globals.main.circleGroup.getChildren().contains(line)) {
+            Globals.main.circleGroup.getChildren().add(line);
+            Globals.main.logicLines.add(logicLine);
+        }
+    }
     public void setDragBoard(InputPin inputPin, OutputPin outputPin, InputPinObject ipo, OutputPinObject opo, Group g){
         ClipBoard.clearDragBoard();
         ClipBoard.setInputPin(inputPin);
