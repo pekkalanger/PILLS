@@ -91,9 +91,9 @@ public class PinObject {
                     connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
-                   
+
                     addLine(line, logicLine);
-                    
+
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
@@ -121,9 +121,9 @@ public class PinObject {
             rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
             me.consume();
         });
-        
+
         InfoPopup.setinfoPopup(rectangle, image, i);
-        
+
         return rectangle;
     }
 
@@ -153,19 +153,19 @@ public class PinObject {
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                     /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
-                    if(connectionLineObject2 != null){
-                        connectionLineObject2.line = null;
-                        if(connectionLineObject2.logicLine != null){
-                            connectionLineObject2.logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                            connectionLineObject2.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                            connectionLineObject2.logicLine.setInputPin(0, null);
-                            connectionLineObject2.logicLine.setOutputPin(0, null);
-                            connectionLineObject2.logicLine=null;
-                        }
-                    }*/
-                    
+                     if(connectionLineObject2 != null){
+                     connectionLineObject2.line = null;
+                     if(connectionLineObject2.logicLine != null){
+                     connectionLineObject2.logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                     connectionLineObject2.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
+                     connectionLineObject2.logicLine.setInputPin(0, null);
+                     connectionLineObject2.logicLine.setOutputPin(0, null);
+                     connectionLineObject2.logicLine=null;
+                     }
+                     }*/
+
                     addLine(line, logicLine);
-                    
+
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
@@ -197,9 +197,8 @@ public class PinObject {
         InfoPopup.setinfoPopup(rectangle, image, i);
         return rectangle;
     }
-    
-        
-    public void nullLogicLine(LogicLine ll){
+
+    public void nullLogicLine(LogicLine ll) {
         if (ll != null) {
             ll.getInputPin(0).setDataObject(new DataObject(false));
             ll.getOutputPin(0).setDataObject(new DataObject(false));
@@ -208,24 +207,28 @@ public class PinObject {
             //ll = null;
         }
     }
-    
-    public void addLine(Line line, LogicLine logicLine){
+
+    public void addLine(Line line, LogicLine logicLine) {
         if (line != null && !Globals.main.schematicGroup.getChildren().contains(line)) {
             Globals.main.schematicGroup.getChildren().add(line);
             Globals.main.logicLines.add(logicLine);
         }
     }
-    public void removeLine(Line line, LogicLine logicLine){
+
+    public void removeLine(Line line, LogicLine logicLine) {
         if (!Globals.main.schematicGroup.getChildren().contains(line)) {
             Globals.main.schematicGroup.getChildren().add(line);
             Globals.main.logicLines.add(logicLine);
         }
     }
-    public void setDragBoard(InputPin inputPin, OutputPin outputPin, InputPinObject ipo, OutputPinObject opo, Group g){
+
+    public void setDragBoard(InputPin inputPin, OutputPin outputPin, InputPinObject ipo, OutputPinObject opo, Group g) {
         ClipBoard.clearDragBoard();
         ClipBoard.setInputPin(inputPin);
         ClipBoard.setOutputPin(outputPin);
-        if (connectionLineObject != null)ClipBoard.setLine(connectionLineObject.line);
+        if (connectionLineObject != null) {
+            ClipBoard.setLine(connectionLineObject.line);
+        }
         ClipBoard.setGroup(g);
         ClipBoard.setName(name);
         ClipBoard.setX(rectangle.getTranslateX());     // + Dragboard.pinOver.setGroup.getTranslateX()

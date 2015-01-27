@@ -48,18 +48,7 @@ public class XorObject extends GateObject {
         rectangle = initRectangle(8, 0, width, height, Textures.xorGate);
         group.getChildren().add(rectangle);
 
-        if (inputPinObjects != null) {
-            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                group.getChildren().add(iterator.next().getRectangle());
-            }
-        }
-        if (outputPinObjects != null) {
-            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                group.getChildren().add(iterator.next().getRectangle());
-            }
-        }
+        addPinObjects();
 
         //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();

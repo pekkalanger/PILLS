@@ -50,6 +50,7 @@ public abstract class GateObject {
     Image image;
 
     public GateObject() {
+        group = new Group();
         inputPinObjects = new ArrayList<>();
         outputPinObjects = new ArrayList<>();
     }
@@ -57,6 +58,7 @@ public abstract class GateObject {
     public Rectangle initRectangle(int x, int y, int width, int height, Image i) {
         rectangle = new Rectangle(width, height);
         rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
+
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(y);
         InfoPopup.setinfoPopup(rectangle, image, i);
@@ -108,7 +110,7 @@ public abstract class GateObject {
                 //the event will be passed only to the circle which is on front
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
-                if(Globals.main.schematicGroup.getChildren().contains(InfoPopup.infoPopup)){
+                if (Globals.main.schematicGroup.getChildren().contains(InfoPopup.infoPopup)) {
                     Globals.main.showOnConsole("remove infopopup");
                     Globals.main.schematicGroup.getChildren().remove(InfoPopup.infoPopup);
 
@@ -150,11 +152,25 @@ public abstract class GateObject {
                 me.consume();
             }
         });
-        
+
         group.setOpacity(0.8f);
         Globals.main.schematicGroup.getChildren().add(group);
     }
-   
+
+    public void addPinObjects() {
+        if (inputPinObjects != null) {
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                group.getChildren().add(iterator.next().getRectangle());
+            }
+        }
+        if (outputPinObjects != null) {
+            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                group.getChildren().add(iterator.next().getRectangle());
+            }
+        }
+    }
 
     public void destroy() {
         /* remove all the lines from this object and all other sh*t*/

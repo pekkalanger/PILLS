@@ -73,8 +73,8 @@ public class Textures {
         norGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/norgate2.png");
         xorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xorgate2.png");
         xnorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xnorgate2.png");
-    //xorGate = new Image("file:res/xorgate2.png");
-        
+        //xorGate = new Image("file:res/xorgate2.png");
+
         /*          Truth               */
         andTruth = new Image("file:res/andtruth.png");
         nandTruth = new Image("file:res/nandtruth.png");
@@ -82,7 +82,7 @@ public class Textures {
         norTruth = new Image("file:res/nortruth.png");
         xorTruth = new Image("file:res/xortruth.png");
         xnorTruth = new Image("file:res/xnortruth.png");
-        
+
         /*          Led                 */
         //ledOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledoff.png");
         //ledOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledon.png");

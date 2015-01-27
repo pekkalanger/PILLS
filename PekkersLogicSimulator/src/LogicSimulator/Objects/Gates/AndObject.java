@@ -16,17 +16,13 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Globals;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.And;
 import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
-import java.util.Iterator;
 import javafx.scene.Group;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class AndObject extends GateObject {
 
@@ -46,21 +42,8 @@ public class AndObject extends GateObject {
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
 
         rectangle = initRectangle(8, 0, width, height, Textures.andGate);
-        
-        
-        group.getChildren().add(rectangle);
-        if (inputPinObjects != null) {
-            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                group.getChildren().add(iterator.next().getRectangle());
-            }
-        }
-        if (outputPinObjects != null) {
-            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                group.getChildren().add(iterator.next().getRectangle());
-            }
-        }
+
+        addPinObjects();
 
         //group.getChildren().addAll(inputPinObjects.getRectangle(), inputPinObjectB.getRectangle(), outputPinObjectQ.getRectangle(), rectangle);
         x = group.getTranslateX();
