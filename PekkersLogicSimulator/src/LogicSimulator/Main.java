@@ -70,7 +70,7 @@ public class Main extends Application {
     
     
     //create a console for logging mouse events
-    final ListView<String> console = new ListView<String>();
+    final ListView<String> console = new ListView<>();
     
     //create a rectangle - (XXXpx X XXXpx) in which our circles can move
     Rectangle rectangle;

@@ -21,8 +21,8 @@ import LogicSimulator.Globals;
 public class Xor extends Gate implements GateInterface {
 
     String name = "Xnor";
-    
-    public Xor(){
+
+    public Xor() {
         super(2, 1);
         inputPins[0] = new InputPin();
         inputPins[1] = new InputPin();
@@ -31,31 +31,33 @@ public class Xor extends Gate implements GateInterface {
 
     @Override
     public boolean update(long deltaTime) {
-       if(inputPins[0] != null && inputPins[1] != null && outputPins[0] != null){
-            if(inputPins[0].getDataObject().getData() !=  inputPins[1].getDataObject().getData()) {
-                if(outputPins[0].getDataObject().getData() == false){
+        if (inputPins[0] != null && inputPins[1] != null && outputPins[0] != null) {
+            if (inputPins[0].getDataObject().getData() != inputPins[1].getDataObject().getData()) {
+                if (outputPins[0].getDataObject().getData() == false) {
                     Globals.main.showOnConsole("Xor = " + !outputPins[0].getDataObject().getData());
                 }
                 outputPins[0].getDataObject().setData(true);
             } else {
-                if(outputPins[0].getDataObject().getData() == true){
+                if (outputPins[0].getDataObject().getData() == true) {
                     Globals.main.showOnConsole("Xor = " + !outputPins[0].getDataObject().getData());
                 }
                 outputPins[0].getDataObject().setData(false);
             }
             System.out.println("Xor out: " + outputPins[0].getDataObject().getData());
             return false;
-        } else return true;
+        } else {
+            return true;
+        }
     }
 
     @Override
-    public String toString(){
-            return name;
+    public String toString() {
+        return name;
     }
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-         inputPins[pos] = ip;
+        inputPins[pos] = ip;
     }
 
     @Override
@@ -87,6 +89,5 @@ public class Xor extends Gate implements GateInterface {
     public void toggle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-	
-}
 
+}
