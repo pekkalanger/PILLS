@@ -20,6 +20,7 @@ import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.And;
 import LogicSimulator.Objects.Gates.GateLogic.InputPin;
+import LogicSimulator.Objects.Gates.GateLogic.Nand;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
@@ -39,6 +40,7 @@ public class AndObject extends GateObject {
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
         rectangle = initRectangle(8, 0, width, height, Textures.andGate);
+        group.getChildren().add(rectangle);
         addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);
     }

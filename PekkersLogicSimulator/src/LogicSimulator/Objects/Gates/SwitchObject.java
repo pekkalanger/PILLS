@@ -19,9 +19,7 @@ package LogicSimulator.Objects.Gates;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Switch;
-import LogicSimulator.Globals;
 import LogicSimulator.Textures;
-import java.util.Iterator;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
@@ -57,26 +55,13 @@ public class SwitchObject extends GateObject {
                 gate.toggle();
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
-                Globals.main.showOnConsole("Removed specified Gate");
-                Globals.main.schematicGroup.getChildren().remove(group);
-                gate = null;
-                if (outputPinObjects != null) {
-                    Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-                    while (iterator.hasNext()) {
-                        OutputPinObject opo = iterator.next();
-                        if (Globals.main.schematicGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
-                            Globals.main.schematicGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
-                        }
-                        opo.connectionLineObjects.get(0).logicLine = null;
-                        opo.connectionLineObjects = null;
-                        opo.connectionLineObject2 = null;
-                    }
-                }
+                remove();
                 me.consume();
             }
         });
 
     }
+        
 
     @Override
     public void update(long deltaTime) {

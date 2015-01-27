@@ -66,9 +66,7 @@ public class InfoPopup {
 
     public static void resetInfoPopup() {
         if (Globals.main.schematicGroup.getChildren().contains(infoPopup)) {
-            Globals.main.showOnConsole("remove infopopup");
             Globals.main.schematicGroup.getChildren().remove(infoPopup);
-
         }
     }
 }

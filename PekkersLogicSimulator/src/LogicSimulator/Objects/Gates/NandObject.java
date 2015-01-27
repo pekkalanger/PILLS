@@ -22,7 +22,6 @@ import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Nand;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
-import java.util.Iterator;
 import javafx.scene.Group;
 
 /**

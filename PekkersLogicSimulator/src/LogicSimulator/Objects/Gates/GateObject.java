@@ -107,50 +107,12 @@ public abstract class GateObject {
         });
         group.setOnMouseClicked((MouseEvent me) -> {
             group.toFront();
-            if (me.getButton() == MouseButton.PRIMARY) {
-                Globals.main.showOnConsole("Clicked on" + name + ", " + me.getClickCount() + "times");
-                //the event will be passed only to the circle which is on front
-                me.consume();
-            } else if (me.getButton() == MouseButton.MIDDLE) {
+            if (me.getButton() == MouseButton.MIDDLE) {
                 if (Globals.main.schematicGroup.getChildren().contains(InfoPopup.infoPopup)) {
                     Globals.main.showOnConsole("remove infopopup");
                     Globals.main.schematicGroup.getChildren().remove(InfoPopup.infoPopup);
-
                 }
-                Globals.main.showOnConsole("Removed specified Gate");
-                //Globals.main.circleList.remove(gg); // remove the gate from the list gate all the lines attached to it
-                Globals.main.schematicGroup.getChildren().remove(group);
-                gate = null;
-
-                //Globals.main.gateObjects.remove(gate);
-                System.out.println("gate should be null now");
-                Globals.main.showOnConsole("gate should be null now");
-
-                if (inputPinObjects != null) {
-                    Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-                    while (iterator.hasNext()) {
-                        InputPinObject ipo = iterator.next();
-                        if (Globals.main.schematicGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
-                            //Line l = Globals.main.schematicGroup.getChildren().get(Globals.main.schematicGroup.getChildren().indexOf(lineA));
-                            Globals.main.schematicGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
-                        }
-                        ipo.connectionLineObjects.get(0).logicLine = null;
-                        ipo.connectionLineObjects = null;
-                        ipo.connectionLineObject2 = null;
-                    }
-                }
-                if (outputPinObjects != null) {
-                    Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-                    while (iterator.hasNext()) {
-                        OutputPinObject opo = iterator.next();
-                        if (Globals.main.schematicGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
-                            Globals.main.schematicGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
-                        }
-                        opo.connectionLineObjects.get(0).logicLine = null;
-                        opo.connectionLineObjects = null;
-                        opo.connectionLineObject2 = null;
-                    }
-                }
+                remove();
                 me.consume();
             }
         });
@@ -173,6 +135,38 @@ public abstract class GateObject {
             }
         }
     }
+    
+   public void remove() {
+        Globals.main.showOnConsole("Removed specified Gate");
+        Globals.main.schematicGroup.getChildren().remove(group);
+        gate = null;
+        if (inputPinObjects != null) {
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                InputPinObject ipo = iterator.next();
+                if (Globals.main.schematicGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
+                    //Line l = Globals.main.schematicGroup.getChildren().get(Globals.main.schematicGroup.getChildren().indexOf(lineA));
+                    Globals.main.schematicGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
+                }
+                ipo.connectionLineObjects.get(0).logicLine = null;
+                ipo.connectionLineObjects = null;
+                ipo.connectionLineObject2 = null;
+            }
+        }
+        if (outputPinObjects != null) {
+            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                OutputPinObject opo = iterator.next();
+                if (Globals.main.schematicGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
+                    Globals.main.schematicGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
+                }
+                opo.connectionLineObjects.get(0).logicLine = null;
+                opo.connectionLineObjects = null;
+                opo.connectionLineObject2 = null;
+            }
+        }
+    }
+
 
     public void destroy() {
         /* remove all the lines from this object and all other sh*t*/
