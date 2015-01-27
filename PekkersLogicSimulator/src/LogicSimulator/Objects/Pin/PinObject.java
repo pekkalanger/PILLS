@@ -217,7 +217,7 @@ public class PinObject {
             ll.getOutputPin(0).setDataObject(new DataObject(false));
             ll.setInputPin(0, new InputPin());
             ll.setOutputPin(0, new OutputPin());
-            ll = null;
+            //ll = null;
         }
     }
     

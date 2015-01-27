@@ -36,6 +36,7 @@ public class XnorObject extends GateObject {
         group = new Group();
         name = "Xnor Gate";
         gate = new Xnor();
+        image = Textures.xnorTruth;
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());

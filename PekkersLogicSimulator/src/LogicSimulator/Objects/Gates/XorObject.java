@@ -36,6 +36,7 @@ public class XorObject extends GateObject {
         group = new Group();
         name = "Xor Gate";
         gate = new Xor();
+        image = Textures.xorTruth;
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
         gate.setOutputPin(0, new OutputPin());
