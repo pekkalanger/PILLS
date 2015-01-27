@@ -44,7 +44,7 @@ public class XnorObject extends GateObject {
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
 
-        rectangle = initRectangle(8, 0, Textures.xnorGate);
+        rectangle = initRectangle(8, 0, width, height, Textures.xnorGate);
         group.getChildren().add(rectangle);
 
         if (inputPinObjects != null) {

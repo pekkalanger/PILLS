@@ -48,7 +48,7 @@ public class SwitchObject extends GateObject {
         OutputPinObject outputPinObjectQ = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
         outputPinObjects.add(outputPinObjectQ);
 
-        rectangle = initRectangle(0, 0, Textures.switchOff);
+        rectangle = initRectangle(8, 0, width, height, Textures.switchOff);
 
         initGroup(inputPinObjects, outputPinObjects);
 

@@ -58,8 +58,8 @@ public class GateObject {
         }
     }
 
-    public Rectangle initRectangle(int x, int y, Image image) {
-        rectangle = new Rectangle(32, 32);
+    public Rectangle initRectangle(int x, int y, int width, int height, Image image) {
+        rectangle = new Rectangle(width, height);
         rectangle.setFill(new ImagePattern(image, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
 
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left

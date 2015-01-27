@@ -17,6 +17,7 @@
 package LogicSimulator;
 
 import LogicSimulator.Objects.Gates.AndObject;
+import LogicSimulator.Objects.Gates.BridgeObject;
 import LogicSimulator.Objects.Gates.LedObject;
 import LogicSimulator.Objects.Gates.NandObject;
 import LogicSimulator.Objects.Gates.NorObject;
@@ -26,7 +27,6 @@ import LogicSimulator.Objects.Gates.SwitchObject;
 import LogicSimulator.Objects.Gates.XnorObject;
 import LogicSimulator.Objects.Gates.XorObject;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -57,7 +57,6 @@ public class SideBarBuilder {
     }
 
     public VBox buildSideBarWithButtons() {
-
         VBox sideBar = new VBox();
         sideBar.setSpacing(2f);
 
@@ -101,7 +100,6 @@ public class SideBarBuilder {
             main.gateObjects.add(nandObject);
             event.consume();
         });
-
         /*      Create Button5                  */
         final Button butt5 = new Button();//"add xnor gate");
         butt5.setGraphic(new ImageView(Textures.norGate));
@@ -112,7 +110,6 @@ public class SideBarBuilder {
             main.gateObjects.add(norObject);
             event.consume();
         });
-
         /*      Create Button6                  */
         final Button butt6 = new Button();//"add or gate");
         butt6.setGraphic(new ImageView(Textures.xorGate));
@@ -123,7 +120,6 @@ public class SideBarBuilder {
             main.gateObjects.add(xorObject);
             event.consume();
         });
-
         /*      Create Button7                  */
         final Button butt7 = new Button();//"add xnor gate");
         butt7.setGraphic(new ImageView(Textures.xnorGate));
@@ -132,6 +128,16 @@ public class SideBarBuilder {
             main.showOnConsole("Created new Xnor gate");
             XnorObject xnorObject = new XnorObject();
             main.gateObjects.add(xnorObject);
+            event.consume();
+        });
+        /*      Create Button7                  */
+        final Button butt8 = new Button();//"add xnor gate");
+        butt8.setGraphic(new ImageView(Textures.inputPin));
+        butt8.setTooltip(new Tooltip("Bridge"));
+        butt8.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Bridge");
+            BridgeObject bridgeObject = new BridgeObject();
+            main.gateObjects.add(bridgeObject);
             event.consume();
         });
         /*      Create Button20                  */
@@ -211,7 +217,7 @@ public class SideBarBuilder {
             if (ke.getCode() == KeyCode.DIGIT1) {
                 butt1.fire();
             } else if (ke.getCode() == KeyCode.DIGIT2) {
-                butt7.fire();
+                butt8.fire();
             } else if (ke.getCode() == KeyCode.DIGIT3) {
                 butt3.fire();
             } else if (ke.getCode() == KeyCode.DIGIT4) {
@@ -237,7 +243,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
 
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
 
         return sideBar;
     }

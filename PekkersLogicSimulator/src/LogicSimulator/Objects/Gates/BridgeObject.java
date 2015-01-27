@@ -16,30 +16,39 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Objects.Pin.OutputPinObject;
-import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.InputPin;
-import LogicSimulator.Objects.Gates.GateLogic.Not;
+import LogicSimulator.Objects.Gates.GateLogic.Or;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
+import LogicSimulator.Objects.Pin.InputPinObject;
+import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Textures;
 import java.util.Iterator;
 import javafx.scene.Group;
 
-public class NotObject extends GateObject {
+/**
+ *
+ * @author PEKKA
+ */
+public class BridgeObject extends GateObject {
 
-    public NotObject() {
+    public BridgeObject() {
         super();
         group = new Group();
-        name = "Not Gate";
-        gate = new Not();
+        name = "Bridge";
+        gate = new Or();
+
         gate.setInputPin(0, new InputPin());
-        gate.setOutputPin(0, new OutputPin(true));
+        //gate.setInputPin(1, new InputPin());
+        gate.setOutputPin(0, new OutputPin());
+        width = 8;
+        height = 8;
+        inputPinObjects.add(new InputPinObject(group, 0, 0, gate.getInputPin(0), name + " PinA"));
+        //inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
+        outputPinObjects.add(new OutputPinObject(group, 16, 0, gate.getOutputPin(0), name + " PinQ"));
 
-        inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
-        outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-
-        rectangle = initRectangle(8, 0, width, height, Textures.notGate);
+        rectangle = initRectangle(8, 0, width, height, Textures.pinPressed);
         group.getChildren().add(rectangle);
+
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
@@ -61,13 +70,15 @@ public class NotObject extends GateObject {
 
     @Override
     public void update(long deltaTime) {
-        //here will the andGate gate drawing of lines be updated 
-
+        x = group.getTranslateX();
+        y = group.getTranslateY();
         if (gate != null) {
             gate.update(deltaTime);
         }
-        //lines will get updated coordinates based upon gates coords, render
-
     }
 
 }
+
+    // 2 big pins = 1 inputs 1 output ?
+// 1 big pin with list of inputs bridged with list of outputs
+
