@@ -106,9 +106,11 @@ public class PinObject {
                     LogicLine logicLine = new LogicLine();
                     logicLine.setInputPin(0, inputPin);
                     logicLine.setOutputPin(0, ClipBoard.getOutputPin());
-                    connectionLineObject.logicLine = logicLine;
+                    ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
+                    connectionLineObjects.add(connectionLineObject3);
+                    connectionLineObject3.logicLine = logicLine;
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
-                    Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                    Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                     /*if (connectionLineObject2 != null) {
                         connectionLineObject2.line = line;
                     }*/
@@ -117,8 +119,8 @@ public class PinObject {
                         Globals.main.logicLines.add(logicLine);
                         System.out.println("line did not exist in schematic");
                     }
-                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject)) {
-                        Globals.main.connectionLineObjects.add(connectionLineObject);
+                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
+                        Globals.main.connectionLineObjects.add(connectionLineObject3);
                         System.out.println("line did not exist in schematic");
                     }
                     
@@ -208,9 +210,11 @@ public class PinObject {
                     LogicLine logicLine = new LogicLine();
                     logicLine.setInputPin(0, ClipBoard.getInputPin());
                     logicLine.setOutputPin(0, outputPin);
-                    connectionLineObject.logicLine = logicLine;
+                    ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
+                    connectionLineObjects.add(connectionLineObject3);
+                    connectionLineObject3.logicLine = logicLine;
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
-                    Line line = connectionLineObject.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                    Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                     /*if (connectionLineObject2 != null) {
                         connectionLineObject2.line = line;
                     }
@@ -233,8 +237,8 @@ public class PinObject {
                             System.out.println("line did not exist in schematic");
                         }
                     }
-                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject)) {
-                        Globals.main.connectionLineObjects.add(connectionLineObject);
+                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
+                        Globals.main.connectionLineObjects.add(connectionLineObject3);
                         System.out.println("line did not exist in schematic");
                     }
                     ClipBoard.clearDragBoard();
