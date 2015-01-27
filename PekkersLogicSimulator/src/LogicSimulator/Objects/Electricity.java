@@ -21,10 +21,11 @@ package LogicSimulator.Objects;
  * @author PEKKA
  */
 public class Electricity {
+
     double volt;
     double current;
- 
-    public Electricity(){
+
+    public Electricity() {
         volt = 0;
         current = 0;
     }
