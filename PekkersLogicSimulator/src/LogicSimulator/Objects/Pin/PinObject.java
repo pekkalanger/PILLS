@@ -92,8 +92,8 @@ public class PinObject {
                     logicLine.setInputPin(0, inputPin);
                     logicLine.setOutputPin(0, ClipBoard.getOutputPin());
                     ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
-                    connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject3.logicLine = logicLine;
+                    connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                    
@@ -167,8 +167,8 @@ public class PinObject {
                     logicLine.setInputPin(0, ClipBoard.getInputPin());
                     logicLine.setOutputPin(0, outputPin);
                     ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
-                    connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject3.logicLine = logicLine;
+                    connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                     /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
