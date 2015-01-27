@@ -38,7 +38,7 @@ public class SwitchObject extends GateObject {
         super();
         group = new Group();
         name = "Switch";
-
+        image = Textures.switchOn;
         Image exitIcon = Textures.switchCursor;
         ImageCursor imageCursor = new ImageCursor(exitIcon, -exitIcon.getWidth(), -exitIcon.getHeight());
         group.setCursor(imageCursor);

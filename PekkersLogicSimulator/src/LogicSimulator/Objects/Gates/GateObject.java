@@ -161,7 +161,7 @@ public abstract class GateObject {
             if(!Globals.main.circleGroup.getChildren().contains(Globals.infoPopup)) {
                     Globals.infoPopup.setTranslateX(750);
                     Globals.infoPopup.setTranslateY(0);
-                    Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
+                    if(image != null)Globals.infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
                     Globals.main.showOnConsole("righty on");
                     Globals.main.circleGroup.getChildren().add(Globals.infoPopup);
                 }

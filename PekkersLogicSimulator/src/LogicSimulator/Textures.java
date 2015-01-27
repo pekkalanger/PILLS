@@ -39,6 +39,8 @@ public class Textures {
     static public Image nandTruth;
     static public Image orTruth;
     static public Image norTruth;
+    static public Image xorTruth;
+    static public Image xnorTruth;
     static public Image pinPressed;
     static public Image pinOver;
     static public Image inputPin;
@@ -76,6 +78,8 @@ public class Textures {
         nandTruth = new Image("file:res/nandtruth.png");
         orTruth = new Image("file:res/ortruth.png");
         norTruth = new Image("file:res/nortruth.png");
+        xorTruth = new Image("file:res/xortruth.png");
+        xnorTruth = new Image("file:res/xnortruth.png");
         
         /*          Led                 */
         //ledOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledoff.png");
