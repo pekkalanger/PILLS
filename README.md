@@ -1,7 +1,8 @@
 # PekkersLogicSimulator
 
 **Work In Progress**
-TBD:  fix the bugwhich makes some lines go bananas.
+TBD:  fix the bugwhich makes some lines go bananas.\n
+      
       implement undo/redo stacks for Gates and Connection lines.
       add save/load schematic to file feature.
       improve graphical resources.
