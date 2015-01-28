@@ -172,6 +172,22 @@ public abstract class GateObject {
                     //Line l = Globals.main.gateGroup.getChildren().get(Globals.main.gateGroup.getChildren().indexOf(lineA));
                     Globals.main.gateGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
                 }
+                
+                //if (inputPinObjects != null) {
+                //    Iterator<InputPinObject> iterator = inputPinObjects.iterator();
+                //    while (iterator.hasNext()) {
+                //        InputPinObject ipo = iterator.next();
+                        Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
+                        while (ipoclo.hasNext()) {
+                            ConnectionLineObject clo = ipoclo.next();
+                            clo.destroy(clo);
+
+                //        }
+                //    }
+                }
+                
+                
+                
                 ipo.connectionLineObjects.get(0).logicLine = null;
                 ipo.connectionLineObjects = null;
                 ipo.connectionLineObject2 = null;
@@ -184,6 +200,20 @@ public abstract class GateObject {
                 if (Globals.main.gateGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
                     Globals.main.gateGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
                 }
+                
+                //if (outputPinObjects != null) {
+                    //Iterator<OutputPinObject> opoIterator = outputPinObjects.iterator();
+                    //while (opoIterator.hasNext()) {
+                        //OutputPinObject opo = opoIterator.next();
+                        Iterator<ConnectionLineObject> cloIterator = opo.connectionLineObjects.iterator();
+                        while (cloIterator.hasNext()) {
+                            ConnectionLineObject clo = cloIterator.next();
+                            clo.destroy(clo);
+
+                        }
+                    //}
+               // }
+                        
                 opo.connectionLineObjects.get(0).logicLine = null;
                 opo.connectionLineObjects = null;
                 opo.connectionLineObject2 = null;
@@ -193,6 +223,20 @@ public abstract class GateObject {
 
     public void destroy() {
         /* remove all the lines from this object and all other sh*t*/
+        if (inputPinObjects != null) {
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                InputPinObject ipo = iterator.next();
+                Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
+                while (ipoclo.hasNext()) {
+                    ConnectionLineObject clo = ipoclo.next();
+                    clo.destroy(clo);
+                    
+                }
+            }
+        }
+
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

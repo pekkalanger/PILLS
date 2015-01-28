@@ -144,18 +144,6 @@ public class PinObject {
                     if (ClipBoard.getInputPinObject() != null && !ClipBoard.getInputPinObject().connectionLineObjects.contains(connectionLineObject3)) {
                         ClipBoard.getInputPinObject().connectionLineObjects.add(connectionLineObject3);
                     }
-                    /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
-                     if(connectionLineObject2 != null){
-                     connectionLineObject2.line = null;
-                     if(connectionLineObject2.logicLine != null){
-                     connectionLineObject2.logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                     connectionLineObject2.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                     connectionLineObject2.logicLine.setInputPin(0, null);
-                     connectionLineObject2.logicLine.setOutputPin(0, null);
-                     connectionLineObject2.logicLine=null;
-                     }
-                     }*/
-
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
@@ -243,4 +231,10 @@ public class PinObject {
         ClipBoard.setConnectionLineObject(connectionLineObject);
         ClipBoard.setConnectionLineObject2(connectionLineObject2);
     }
+    
+    public void removeLines(){
+    
+    }
+    
+    
 }
