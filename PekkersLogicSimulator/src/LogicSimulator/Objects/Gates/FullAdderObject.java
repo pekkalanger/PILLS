@@ -16,11 +16,12 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Objects.Pin.OutputPinObject;
-import LogicSimulator.Objects.Pin.InputPinObject;
+import LogicSimulator.Objects.Gates.GateLogic.And;
+import LogicSimulator.Objects.Gates.GateLogic.FullAdder;
 import LogicSimulator.Objects.Gates.GateLogic.InputPin;
-import LogicSimulator.Objects.Gates.GateLogic.Nor;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
+import LogicSimulator.Objects.Pin.InputPinObject;
+import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
@@ -28,25 +29,30 @@ import javafx.scene.Group;
  *
  * @author PEKKA
  */
-public class NorObject extends GateObject {
+public class FullAdderObject extends GateObject {
 
-    public NorObject() {
+    public FullAdderObject() {
         super();
         group = new Group();
-        name = "Nor Gate";
-        infoImage = Textures.norTruth;
-        gateImage = Textures.norGate;
-        gate = new Nor();
+        name = "Full Adder";
+        infoImage = Textures.andTruth;
+        gateImage = Textures.andGate;
+        gate = new FullAdder();       //fullAdder
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
+        gate.setInputPin(2, new InputPin());
         gate.setOutputPin(0, new OutputPin());
-        inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
-        inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
-        outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-        rectangle = initRectangle(8, 0);
+        gate.setOutputPin(1, new OutputPin());
+        inputPinObjects.add(new InputPinObject(group, 0, 10, gate.getInputPin(0), name + " PinA"));
+        inputPinObjects.add(new InputPinObject(group, 0, 30, gate.getInputPin(1), name + " PinB"));
+        inputPinObjects.add(new InputPinObject(group, 20, 0, gate.getInputPin(1), name + " PinCin"));
+        outputPinObjects.add(new OutputPinObject(group, 40, 20, gate.getOutputPin(0), name + " PinSum"));
+        outputPinObjects.add(new OutputPinObject(group, 20, 40, gate.getOutputPin(0), name + " PinCout"));
+        rectangle = initRectangle(8, 8);
         group.getChildren().add(rectangle);
         addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);
+
     }
 
 }

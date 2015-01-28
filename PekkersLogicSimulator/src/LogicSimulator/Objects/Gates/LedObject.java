@@ -31,14 +31,15 @@ public class LedObject extends GateObject {
     public LedObject() {
         super();
         group = new Group();
-        image = Textures.ledOn;
+        infoImage = Textures.ledOn;
+        gateImage = Textures.ledOff;
         name = "Led";
         gate = new Led();
         gate.setInputPin(0, new InputPin());
         inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
         rectangle = new Rectangle(width, height);
         x = 8;
-        initRectangle(x, y, width, height, Textures.ledOff);
+        initRectangle(x, y);
         group.getChildren().add(rectangle);
         addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);

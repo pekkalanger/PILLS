@@ -26,6 +26,7 @@ import LogicSimulator.Objects.Gates.OrObject;
 import LogicSimulator.Objects.Gates.SwitchObject;
 import LogicSimulator.Objects.Gates.XnorObject;
 import LogicSimulator.Objects.Gates.XorObject;
+import LogicSimulator.Objects.Gates.FullAdderObject;
 import javafx.event.ActionEvent;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
@@ -147,6 +148,17 @@ public class SideBarBuilder {
             main.gateObjects.add(bridgeObject);
             event.consume();
         });
+        /*      Create Button8                  */
+        final Button butt9 = new Button();//"add not gate");
+        butt9.setGraphic(new ImageView(Textures.notGate));
+        butt9.setTooltip(new Tooltip("Not Gate"));
+        InfoPopup.setinfoPopup(butt9, Textures.notGate);
+        butt9.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new not gate");
+            FullAdderObject fullAdder1 = new FullAdderObject();
+            main.gateObjects.add(fullAdder1);
+            event.consume();
+        });
         /*      Create Button20                  */
         final Button butt20 = new Button();//"add Switch");
         butt20.setGraphic(new ImageView(Textures.switchOn));
@@ -239,7 +251,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
 
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt20, butt21, spacer1, butt99, spacer2, butt79, butt81);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt99, spacer2, butt79, butt81);
 
         return sideBar;
     }

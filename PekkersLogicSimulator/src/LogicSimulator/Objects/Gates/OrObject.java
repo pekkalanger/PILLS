@@ -30,7 +30,8 @@ public class OrObject extends GateObject {
         super();
         group = new Group();
         name = "Or Gate";
-        image = Textures.orTruth;
+        infoImage = Textures.orTruth;
+        gateImage = Textures.orGate;
         gate = new Or();
         gate.setInputPin(0, new InputPin());
         gate.setInputPin(1, new InputPin());
@@ -38,7 +39,7 @@ public class OrObject extends GateObject {
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-        rectangle = initRectangle(8, 0, width, height, Textures.orGate);
+        rectangle = initRectangle(8, 0);
         group.getChildren().add(rectangle);
         addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);

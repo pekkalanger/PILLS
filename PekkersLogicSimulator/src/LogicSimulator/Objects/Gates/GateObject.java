@@ -22,6 +22,7 @@ import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Globals;
 import LogicSimulator.InfoPopup;
 import LogicSimulator.Objects.ConnectionLineObject;
+import LogicSimulator.Textures;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -48,9 +49,12 @@ public abstract class GateObject {
     protected double initX;
     protected double initY;
     protected Point2D dragAnchor;
-    Image image;
+    Image infoImage;
+    Image gateImage;
 
     public GateObject() {
+        infoImage = Textures.texture;
+        gateImage = Textures.texture;
         group = new Group();
         inputPinObjects = new ArrayList<>();
         outputPinObjects = new ArrayList<>();
@@ -58,13 +62,13 @@ public abstract class GateObject {
         y = group.getTranslateY();
     }
 
-    public Rectangle initRectangle(double x, double y, double width, double height, Image i) {
+    public Rectangle initRectangle(double x, double y) {
         rectangle = new Rectangle(width, height);
-        rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
+        rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
 
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(y);
-        InfoPopup.setinfoPopup(rectangle, image, i);
+        InfoPopup.setinfoPopup(rectangle, infoImage);
         return rectangle;
     }
 
@@ -200,7 +204,7 @@ public abstract class GateObject {
             clo.destroy();
         }
     }
-    
+
     public void destroy0() {
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();

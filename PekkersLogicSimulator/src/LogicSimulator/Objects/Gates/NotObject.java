@@ -30,13 +30,14 @@ public class NotObject extends GateObject {
         super();
         group = new Group();
         name = "Not Gate";
-        image = Textures.notGate;
+        infoImage = Textures.notGate;
+        gateImage = Textures.notGate;
         gate = new Not();
         gate.setInputPin(0, new InputPin());
         gate.setOutputPin(0, new OutputPin(true));
         inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-        rectangle = initRectangle(8, 0, width, height, Textures.notGate);
+        rectangle = initRectangle(8, 0);
         group.getChildren().add(rectangle);
         addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);

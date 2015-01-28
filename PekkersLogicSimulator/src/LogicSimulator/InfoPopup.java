@@ -30,7 +30,7 @@ public class InfoPopup {
 
     public static Rectangle infoPopup = new Rectangle(196, 168);
 
-    public static void setinfoPopup(Rectangle rectangle, Image image, Image i) {
+    public static void setinfoPopup(Rectangle rectangle, Image image) {
         rectangle.setOnMouseEntered((MouseEvent me) -> {
             setInfoPopup(image);
             me.consume();

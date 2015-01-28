@@ -39,10 +39,11 @@ public class SwitchObject extends GateObject {
         group = new Group();
         group.setCursor(imageCursor);
         name = "Switch";
-        image = Textures.switchOn;
+        infoImage = Textures.switchOn;
+        gateImage = Textures.switchOff;
         gate = new Switch(false);
         gate.setOutputPin(0, new OutputPin());
-        rectangle = initRectangle(0, 0, width, height, Textures.switchOff);
+        rectangle = initRectangle(0, 0);
         OutputPinObject outputPinObjectQ = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
         outputPinObjects.add(outputPinObjectQ);
         addPinObjects();

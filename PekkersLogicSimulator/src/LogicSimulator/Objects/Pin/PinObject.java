@@ -45,11 +45,14 @@ public class PinObject {
     static final int width = 8;
     static final int height = 8;
     protected Rectangle rectangle;
-    Image image;
+    Image infoImage;
+    Image gateImage;
     public List<ConnectionLineObject> connectionLineObjects;
     public ConnectionLineObject connectionLineObject2;
 
     public PinObject(String n, int x, int y) {
+        infoImage = Textures.texture;
+        gateImage = Textures.texture;
         name = n;
         this.x = x;
         this.y = y;
@@ -60,14 +63,14 @@ public class PinObject {
         rectangle.setTranslateY(y);
     }
 
-    public Rectangle createPinRectangle(InputPinObject ipo, final InputPin inputPin, final Image i, final Group g) {
+    public Rectangle createPinRectangle(InputPinObject ipo, final InputPin inputPin, final Group g) {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
 
         Image cursorImage = Textures.defaultCursorActive;
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
-        rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
+        rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
         rectangle.setOnMouseClicked((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
@@ -108,18 +111,18 @@ public class PinObject {
             me.consume();
         });
 
-        setOnMousePressedReleased(i);
-        InfoPopup.setinfoPopup(rectangle, image, i);
+        setOnMousePressedReleased(gateImage);
+        InfoPopup.setinfoPopup(rectangle, infoImage);
         return rectangle;
     }
 
-    public Rectangle createPinRectangle(OutputPinObject opo, final OutputPin outputPin, final Image i, final Group g) {
+    public Rectangle createPinRectangle(OutputPinObject opo, final OutputPin outputPin, final Group g) {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
         Image cursorImage = Textures.defaultCursorActive;
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
-        rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
+        rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
         rectangle.setOnMouseClicked((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
@@ -162,8 +165,8 @@ public class PinObject {
             me.consume();
         });
 
-        setOnMousePressedReleased(i);
-        InfoPopup.setinfoPopup(rectangle, image, i);
+        setOnMousePressedReleased(gateImage);
+        InfoPopup.setinfoPopup(rectangle, infoImage);
 
         return rectangle;
     }
@@ -231,10 +234,9 @@ public class PinObject {
         ClipBoard.setConnectionLineObject(connectionLineObject);
         ClipBoard.setConnectionLineObject2(connectionLineObject2);
     }
-    
-    public void removeLines(){
-    
+
+    public void removeLines() {
+
     }
-    
-    
+
 }
