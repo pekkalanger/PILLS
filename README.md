@@ -7,7 +7,6 @@
 
 #To Be Done:  
 
-      Fix the bug which makes some lines go bananas.
       Implement undo/redo stacks for Gates and Connection lines.
       Add save/load schematic to file feature.
       Improve graphical resources.
