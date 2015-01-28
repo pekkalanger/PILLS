@@ -76,24 +76,31 @@ public class Textures {
         //xorGate = new Image("file:res/xorgate2.png");
 
         /*          Truth               */
-        andTruth = new Image("file:res/andtruth.png");
+        andTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/andtruth.png");
+        nandTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/nandtruth.png");
+        orTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ortruth.png");
+        norTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/nortruth.png");
+        xorTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xortruth.png");
+        xnorTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xnortruth.png");
+        /*andTruth = new Image("file:res/andtruth.png");
         nandTruth = new Image("file:res/nandtruth.png");
         orTruth = new Image("file:res/ortruth.png");
         norTruth = new Image("file:res/nortruth.png");
         xorTruth = new Image("file:res/xortruth.png");
         xnorTruth = new Image("file:res/xnortruth.png");
+        */
 
         /*          Led                 */
-        //ledOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledoff.png");
-        //ledOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledon.png");
-        ledOff = new Image("file:res/ledoff.png");
-        ledOn = new Image("file:res/ledon.png");
+        ledOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledoff.png");
+        ledOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledon.png");
+        //ledOff = new Image("file:res/ledoff.png");
+        //ledOn = new Image("file:res/ledon.png");
 
         /*          Switch              */
-        //switchOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttonoff.png");
-        //switchOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttonon.png");
-        switchOff = new Image("file:res/buttonoff.png");
-        switchOn = new Image("file:res/buttonon.png");
+        switchOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttonoff.png");
+        switchOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttonon.png");
+        //switchOff = new Image("file:res/buttonoff.png");
+        //switchOn = new Image("file:res/buttonon.png");
 
         /*          Pins                */
         pinPressed = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/pinPressed.png");
@@ -105,8 +112,10 @@ public class Textures {
         exitIcon = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/exiticon.png");
 
         /*          Other               */
-        inputInfo = new Image("file:res/inputinfo.png");
-        outputInfo = new Image("file:res/outputinfo.png");
+        //inputInfo = new Image("file:res/inputinfo.png");
+        //outputInfo = new Image("file:res/outputinfo.png");
+        inputInfo = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/inputinfo.png");
+        outputInfo = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/outputinfo.png");
         texture = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/texture.png");
 
     }
