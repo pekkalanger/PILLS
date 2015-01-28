@@ -20,11 +20,11 @@ import LogicSimulator.Globals;
 
 public class Led extends Gate implements GateInterface {
 
-    String name = "Led";
     DataObject dataObject;
 
     public Led() {
         super(1, 0);
+        name = "Led";
         dataObject = new DataObject(false);
         inputPins[0] = new InputPin();
     }

@@ -16,14 +16,11 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-import LogicSimulator.Globals;
-
 public class Not extends Gate implements GateInterface {
-
-    String name = "Not";
 
     public Not() {
         super(2, 1);
+        name = "Not";
         inputPins[0] = new InputPin();
         outputPins[0] = new OutputPin();
     }
@@ -34,18 +31,13 @@ public class Not extends Gate implements GateInterface {
             if (inputPins[0].getDataObject() != null && outputPins[0].getDataObject() != null) {
                 if (inputPins[0].getDataObject().getData() == true) {
                     if (outputPins[0].getDataObject() != null) {
-                        if (outputPins[0].getDataObject().getData() == true) {
-                            Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
-                        }
+                        showOutputOnConsole(0, true);
                         outputPins[0].getDataObject().setData(false);
                     }
                 } else if (inputPins[0].getDataObject().getData() == false) {
-                    if (outputPins[0].getDataObject().getData() == false) {
-                        Globals.main.showOnConsole("Not = " + !outputPins[0].getDataObject().getData());
-                    }
+                    showOutputOnConsole(0, false);
                     outputPins[0].getDataObject().setData(true);
                 }
-
             }
             return false;
         } else {

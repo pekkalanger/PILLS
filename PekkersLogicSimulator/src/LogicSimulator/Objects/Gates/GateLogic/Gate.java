@@ -16,12 +16,15 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
+import LogicSimulator.Globals;
+
 /**
  *
  * @author PEKKA
  */
-public class Gate {
+public abstract class Gate {
 
+    String name = "unnamed";
     boolean last = false;
     InputPin[] inputPins;
     OutputPin[] outputPins;
@@ -36,6 +39,12 @@ public class Gate {
         }
         if (out > 0) {
             outputPins = new OutputPin[out];
+        }
+    }
+
+    public void showOutputOnConsole(int num, boolean b) {
+        if (outputPins[num].getDataObject().getData() == b) {
+            Globals.main.showOnConsole(name + " = " + !outputPins[num].getDataObject().getData());
         }
     }
 }

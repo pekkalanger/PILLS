@@ -24,10 +24,9 @@ import LogicSimulator.Globals;
  */
 public class FullAdder extends Gate implements GateInterface {
 
-    String name = "Full Adder";
-
     public FullAdder() {
         super(3, 2); // create 2 inputs and 1 output
+        name = "Full Adder";
         inputPins[0] = new InputPin();
         inputPins[1] = new InputPin();
         inputPins[2] = new InputPin();

@@ -20,10 +20,9 @@ import LogicSimulator.Globals;
 
 public class Nand extends Gate implements GateInterface {
 
-    String name = "Nand";
-
     public Nand() {
         super(2, 1); // create 2 inputs and 1 output
+        name = "Nand";
         inputPins[0] = new InputPin(false);
         inputPins[1] = new InputPin(false);
         outputPins[0] = new OutputPin(true);
@@ -33,15 +32,10 @@ public class Nand extends Gate implements GateInterface {
     public boolean update(long deltaTime) {
         if (inputPins[0] != null && inputPins[1] != null && outputPins[0] != null) {
             if (inputPins[0].getDataObject().getData() == true && inputPins[1].getDataObject().getData() == true) {
-                if (outputPins[0].getDataObject().getData() == true) {
-                    Globals.main.showOnConsole("Nand = " + !outputPins[0].getDataObject().getData());
-                }
+                showOutputOnConsole(0, true);
                 outputPins[0].getDataObject().setData(false);
-
             } else {
-                if (outputPins[0].getDataObject().getData() == false) {
-                    Globals.main.showOnConsole("Nand = " + !outputPins[0].getDataObject().getData());
-                }
+                showOutputOnConsole(0, false);
                 outputPins[0].getDataObject().setData(true);
             }
             System.out.println("Nand out: " + outputPins[0].getDataObject().getData());

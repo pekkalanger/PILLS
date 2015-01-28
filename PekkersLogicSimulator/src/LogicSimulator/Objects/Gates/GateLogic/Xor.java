@@ -16,14 +16,11 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-import LogicSimulator.Globals;
-
 public class Xor extends Gate implements GateInterface {
-
-    String name = "Xnor";
 
     public Xor() {
         super(2, 1);
+        name = "Xnor";
         inputPins[0] = new InputPin();
         inputPins[1] = new InputPin();
         outputPins[0] = new OutputPin();
@@ -33,14 +30,10 @@ public class Xor extends Gate implements GateInterface {
     public boolean update(long deltaTime) {
         if (inputPins[0] != null && inputPins[1] != null && outputPins[0] != null) {
             if (inputPins[0].getDataObject().getData() != inputPins[1].getDataObject().getData()) {
-                if (outputPins[0].getDataObject().getData() == false) {
-                    Globals.main.showOnConsole("Xor = " + !outputPins[0].getDataObject().getData());
-                }
+                showOutputOnConsole(0, false);
                 outputPins[0].getDataObject().setData(true);
             } else {
-                if (outputPins[0].getDataObject().getData() == true) {
-                    Globals.main.showOnConsole("Xor = " + !outputPins[0].getDataObject().getData());
-                }
+                showOutputOnConsole(0, true);
                 outputPins[0].getDataObject().setData(false);
             }
             System.out.println("Xor out: " + outputPins[0].getDataObject().getData());
