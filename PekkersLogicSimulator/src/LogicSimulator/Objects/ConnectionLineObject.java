@@ -17,7 +17,6 @@
 package LogicSimulator.Objects;
 
 import LogicSimulator.Objects.Gates.GateLogic.DataObject;
-import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.ClipBoard;
 import LogicSimulator.Globals;
@@ -47,6 +46,7 @@ public class ConnectionLineObject {
     public ConnectionLineObject() {
         name = "A Line";
         line = new Line();
+        line.setStrokeWidth(3);
         logicLine = new LogicLine();
         colorOff = Color.RED;
         colorOn = Color.LIGHTGREEN;
@@ -63,50 +63,33 @@ public class ConnectionLineObject {
         }
         last = logicLine.getInputPin(0).getDataObject().getData();
     }
-    
-    public void destroy(ConnectionLineObject clo) {
-        Globals.main.showOnConsole("Removed specified line");
-        //mouseEvents.circleList.remove(circle);
-        Globals.main.gateGroup.getChildren().remove(line);
-        //ip.setDataObject(null);
+
+    public void destroy() {
+        if (Globals.main.gateGroup.getChildren().contains(line)) {
+            Globals.main.gateGroup.getChildren().remove(line);
+            line = null;
+        }
         if (Globals.main.logicLines.contains(logicLine)) {  // -> connectionlineobject
-            logicLine.getInputPin(0).setDataObject(new DataObject(false));
-            logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-            logicLine.setInputPin(0, null);
-            logicLine.setOutputPin(0, null);
-            //logicLine.setDataObject(new DataObject(false));
-            Globals.main.showOnConsole("nully");
             Globals.main.logicLines.remove(logicLine);
+        }
+        if (Globals.main.connectionLineObjects.contains(this)) {  // -> connectionlineobject
+            Globals.main.connectionLineObjects.remove(this);
+        }
+        if (logicLine != null) {
+            if (logicLine.getInputPin(0) != null) {
+                logicLine.getInputPin(0).setDataObject(new DataObject(false));
+                logicLine.setInputPin(0, null);
+            } else if (logicLine.getOutputPin(0) != null) {
+                logicLine.getOutputPin(0).setDataObject(new DataObject(false));
+                logicLine.setOutputPin(0, null);
+            }
             logicLine = null;
         }
-        if (Globals.main.connectionLineObjects.contains(clo)) {  // -> connectionlineobject
-            //logicLine.setDataObject(null);
-            //logicLine=null;
-            Globals.main.showOnConsole("nully this");
-            Globals.main.connectionLineObjects.remove(clo);
-        }
-        if (clo != null) {
-            if (clo.logicLine != null) {
-                if (clo.logicLine.getInputPin(0) != null) {
-                    clo.logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                    clo.logicLine.setInputPin(0, null);
-                } else if (clo.logicLine.getOutputPin(0) != null) {
-                    clo.logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                    clo.logicLine.setOutputPin(0, null);
-                }
-            }
-            //clo.logicLine.setDataObject(null);
-            clo.logicLine = null;
-        }
-        
-        //line = null;
-        //logicLine = null;
         //boolean last = false;
         //inputPinObjectSource = null;
         //outputPinObjectSource = null;
-        
     }
-    
+
     public Line createLine(final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
         if (line != null) {
 
@@ -114,17 +97,15 @@ public class ConnectionLineObject {
             Image cursorImage = Textures.lineCursor;
             ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
             line.setCursor(imageCursor);
-            line.setStartX(ClipBoard.getX() + width / 2 + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
-            line.setStartY(ClipBoard.getY() + height / 2 + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
-            line.setEndX(r.getTranslateX() + width / 2 + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
-            line.setEndY(r.getTranslateY() + height / 2 + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
+            line.setStartX(width / 2 + ClipBoard.getX() + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
+            line.setStartY(height / 2 + ClipBoard.getY() + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
+            line.setEndX(width / 2 + r.getTranslateX() + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
+            line.setEndY(height / 2 + r.getTranslateY() + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
             //add mouse listeners
             Globals.main.showOnConsole("created outline");
             line.setOnMouseClicked((MouseEvent me) -> {
                 if (me.getButton() == MouseButton.MIDDLE) {
-                    
-                    destroy(clo);
-                    
+                    destroy();
                     me.consume();
                 }
             });
@@ -138,7 +119,7 @@ public class ConnectionLineObject {
             line.setOnMouseExited((MouseEvent me) -> {
                 //me.consume();
             });
-            line.setStrokeWidth(2);
+
             if (logicLine.getInputPin(0).getDataObject().getData() == true) {
                 line.setStroke(colorOn);
             } else {

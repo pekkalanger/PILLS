@@ -98,7 +98,7 @@ public abstract class GateObject {
                     Globals.main.showOnConsole("remove infopopup");
                     Globals.main.gateGroup.getChildren().remove(InfoPopup.infoPopup);
                 }
-                remove();
+                destroy();
                 me.consume();
             }
         });
@@ -116,11 +116,11 @@ public abstract class GateObject {
                 while (ipoclo.hasNext()) {
                     ConnectionLineObject clo = ipoclo.next();
                     if (ipo == clo.inputPinObjectSource) {
-                        clo.line.endXProperty().set(ipo.x + group.getTranslateX());
-                        clo.line.endYProperty().set(ipo.y + group.getTranslateY());
+                        clo.line.endXProperty().set(4 + ipo.x + group.getTranslateX());  // pin width 8, mid 8/2=4
+                        clo.line.endYProperty().set(4 + ipo.y + group.getTranslateY());
                     } else {
-                        clo.line.startXProperty().set(ipo.x + group.getTranslateX());
-                        clo.line.startYProperty().set(ipo.y + group.getTranslateY());
+                        clo.line.startXProperty().set(4 + ipo.x + group.getTranslateX());
+                        clo.line.startYProperty().set(4 + ipo.y + group.getTranslateY());
                     }
                 }
             }
@@ -133,11 +133,11 @@ public abstract class GateObject {
                 while (opoclo.hasNext()) {
                     ConnectionLineObject clo = opoclo.next();
                     if (opo == clo.outputPinObjectSource) {
-                        clo.line.endXProperty().set(opo.x + group.getTranslateX());
-                        clo.line.endYProperty().set(opo.y + group.getTranslateY());
+                        clo.line.endXProperty().set(4 + opo.x + group.getTranslateX());
+                        clo.line.endYProperty().set(4 + opo.y + group.getTranslateY());
                     } else {
-                        clo.line.startXProperty().set(opo.x + group.getTranslateX());
-                        clo.line.startYProperty().set(opo.y + group.getTranslateY());
+                        clo.line.startXProperty().set(4 + opo.x + group.getTranslateX());
+                        clo.line.startYProperty().set(4 + opo.y + group.getTranslateY());
                         System.out.println("output is not the same");
                     }
                 }
@@ -160,84 +160,62 @@ public abstract class GateObject {
         }
     }
 
-    public void remove() {
+    public void destroy() {
         Globals.main.showOnConsole("Removed specified Gate");
         Globals.main.gateGroup.getChildren().remove(group);
         gate = null;
         if (inputPinObjects != null) {
-            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                InputPinObject ipo = iterator.next();
+            Iterator<InputPinObject> ipoIterator = inputPinObjects.iterator();
+            while (ipoIterator.hasNext()) {
+                InputPinObject ipo = ipoIterator.next();
                 if (Globals.main.gateGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
                     //Line l = Globals.main.gateGroup.getChildren().get(Globals.main.gateGroup.getChildren().indexOf(lineA));
                     Globals.main.gateGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
                 }
-                
-                //if (inputPinObjects != null) {
-                //    Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-                //    while (iterator.hasNext()) {
-                //        InputPinObject ipo = iterator.next();
-                        Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
-                        while (ipoclo.hasNext()) {
-                            ConnectionLineObject clo = ipoclo.next();
-                            clo.destroy(clo);
-
-                //        }
-                //    }
-                }
-                
-                
-                
-                ipo.connectionLineObjects.get(0).logicLine = null;
-                ipo.connectionLineObjects = null;
-                ipo.connectionLineObject2 = null;
+                destroyConnectionLines(ipo.connectionLineObjects);
+                //ipo.connectionLineObjects.get(0).logicLine = null;
+                //ipo.connectionLineObjects = null;
+                //ipo.connectionLineObject2 = null;
             }
         }
         if (outputPinObjects != null) {
-            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                OutputPinObject opo = iterator.next();
+            Iterator<OutputPinObject> opoIterator = outputPinObjects.iterator();
+            while (opoIterator.hasNext()) {
+                OutputPinObject opo = opoIterator.next();
                 if (Globals.main.gateGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
                     Globals.main.gateGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
                 }
-                
-                //if (outputPinObjects != null) {
-                    //Iterator<OutputPinObject> opoIterator = outputPinObjects.iterator();
-                    //while (opoIterator.hasNext()) {
-                        //OutputPinObject opo = opoIterator.next();
-                        Iterator<ConnectionLineObject> cloIterator = opo.connectionLineObjects.iterator();
-                        while (cloIterator.hasNext()) {
-                            ConnectionLineObject clo = cloIterator.next();
-                            clo.destroy(clo);
-
-                        }
-                    //}
-               // }
-                        
-                opo.connectionLineObjects.get(0).logicLine = null;
-                opo.connectionLineObjects = null;
-                opo.connectionLineObject2 = null;
+                destroyConnectionLines(opo.connectionLineObjects);
+                //opo.connectionLineObjects.get(0).logicLine = null;
+                //opo.connectionLineObjects = null;
+                //opo.connectionLineObject2 = null;
             }
         }
     }
 
-    public void destroy() {
-        /* remove all the lines from this object and all other sh*t*/
+    public void destroyConnectionLines(final List<ConnectionLineObject> connectionLineObjects) {
+        Iterator<ConnectionLineObject> ipoclo = connectionLineObjects.iterator();
+        while (ipoclo.hasNext()) {
+            ConnectionLineObject clo = ipoclo.next();
+            clo.destroy();
+        }
+    }
+    
+    public void destroy0() {
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 InputPinObject ipo = iterator.next();
-                Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
-                while (ipoclo.hasNext()) {
-                    ConnectionLineObject clo = ipoclo.next();
-                    clo.destroy(clo);
-                    
-                }
+                destroyConnectionLines(ipo.connectionLineObjects);
             }
         }
-
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (inputPinObjects != null) {
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                InputPinObject ipo = iterator.next();
+                destroyConnectionLines(ipo.connectionLineObjects);
+            }
+        }
     }
 
     public void update(long deltaTime) {

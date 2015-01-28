@@ -60,7 +60,7 @@ public class SwitchObject extends GateObject {
                 }
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
-                remove();
+                destroy();
                 me.consume();
             }
         });
