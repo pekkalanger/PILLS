@@ -51,8 +51,7 @@ public class LedObject extends GateObject {
             if (gate.getDataObject() != null) {
                 if (last != gate.getDataObject().getData()) {
                     if (gate.getDataObject().getData() == true) {
-                        rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
-
+                        rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true));
                     } else {
                         rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
                     }

@@ -19,25 +19,16 @@ package LogicSimulator.Objects.Pin;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
-import javafx.scene.shape.Rectangle;
 
 public class OutputPinObject extends PinObject {
 
     OutputPin outputPin;
 
     public OutputPinObject(Group g, int x, int y, OutputPin op, String n) {
-        super();
-        this.x = x;
-        this.y = y;
-        name = n;
+        super(n, x, y);
         this.outputPin = op;
         image = Textures.outputInfo;
-
-        rectangle = new Rectangle(width, height);
-        rectangle.setTranslateX(x);
-        rectangle.setTranslateY(y);
-        rectangle = createPinRectangle(this, Textures.outputPin, g, rectangle, outputPin, name);
-
+        rectangle = createPinRectangle(this, outputPin, Textures.outputPin, g);
     }
 
 }

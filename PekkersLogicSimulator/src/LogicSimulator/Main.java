@@ -79,8 +79,8 @@ public class Main extends Application {
     public double initY;
     public Point2D dragAnchor;
     public MenuBar menuBar;
-    //public Group schematicGroup;
-    public Group schematicGroup;  // "the schematic"  will use schematicGroup later on
+    public Group schematicGroup;
+    public Group gateGroup;  // "the schematic"  will use gateGroup later on
     public VBox rootGroup;
     public VBox rootVBox;
     public VBox sideBar;
@@ -118,8 +118,8 @@ public class Main extends Application {
         rootVBox.setSpacing(5f);
         //sideBar = new VBox();         // contains sidebar items
         //menuBar = new MenuBar();      // a most excelent menubar
-        schematicGroup = new Group();   // where gateGroup and lineGroup? r comin  
-        //schematicGroup = new Group();      // gateGroup (atm schematicGroup)
+        gateGroup = new Group();   // where schematicGroup and lineGroup? r comin  
+        schematicGroup = new Group();      // schematicGroup (atm gateGroup)
 
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
@@ -175,7 +175,8 @@ public class Main extends Application {
             // log event
             showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
         });
-
+        schematicGroup.getChildren().add(gateGroup);
+        //gateGroup.getChildren()
         schematicGroup.getChildren().add(schematicRectangle);
         schematicRectangle.toBack();
 

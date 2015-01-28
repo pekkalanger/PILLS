@@ -16,8 +16,6 @@
  */
 package LogicSimulator;
 
-import javafx.scene.shape.Rectangle;
-
 public class Globals {
 
     public static Main main;

@@ -51,8 +51,12 @@ public class SwitchObject extends GateObject {
         group.setOnMouseClicked((MouseEvent me) -> {
             group.toFront();
             if (me.getButton() == MouseButton.SECONDARY) {
-                toggled = true;
                 gate.toggle();
+                if (gate.getDataObject().getData()) {
+                    rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
+                } else {
+                    rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));
+                }
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
                 remove();
@@ -60,22 +64,6 @@ public class SwitchObject extends GateObject {
             }
         });
 
-    }
-        
-
-    @Override
-    public void update(long deltaTime) {
-        if (gate != null) {
-            gate.update(deltaTime);
-            if (toggled) {
-                if (gate.getDataObject().getData()) {
-                    rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
-                } else {
-                    rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));
-                }
-                toggled = false;
-            }
-        }
     }
 
 }

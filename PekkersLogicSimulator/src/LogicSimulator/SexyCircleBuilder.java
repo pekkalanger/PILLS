@@ -65,12 +65,12 @@ public class SexyCircleBuilder {
                     c.setTranslateX(300);
                     c.setTranslateY(50);
                     c.toFront();
-                    main.schematicGroup.getChildren().add(c);
+                    main.gateGroup.getChildren().add(c);
                     main.circleList.add(c);
                 } else if (me.getButton() == MouseButton.MIDDLE && !parent) {
                     main.showOnConsole("Removed specified orangeCircle");
                     main.circleList.remove(circle);
-                    main.schematicGroup.getChildren().remove(circle);
+                    main.gateGroup.getChildren().remove(circle);
                 }
                 me.consume();
             }
@@ -110,7 +110,7 @@ public class SexyCircleBuilder {
                      line.setEndY(newYPosition);
                      line.setStroke(Color.RED);
                      line.setStrokeWidth(10);
-                     main.schematicGroup.getChildren().add(line);
+                     main.gateGroup.getChildren().add(line);
                     
                      */
                 }
@@ -178,12 +178,12 @@ public class SexyCircleBuilder {
                     c.setTranslateX(300);
                     c.setTranslateY(150);
                     c.toFront();
-                    main.schematicGroup.getChildren().add(c);
+                    main.gateGroup.getChildren().add(c);
                     main.circleList.add(c);
                 } else if (me.getButton() == MouseButton.MIDDLE && !parent) {
                     main.showOnConsole("removed specified orangeCircle");
                     main.circleList.remove(circle);
-                    main.schematicGroup.getChildren().remove(circle);
+                    main.gateGroup.getChildren().remove(circle);
                 }
                 me.consume();
             }

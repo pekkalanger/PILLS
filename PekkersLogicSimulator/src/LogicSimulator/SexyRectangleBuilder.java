@@ -57,14 +57,14 @@ public class SexyRectangleBuilder {
                     rectangle.setTranslateX(300);
                     rectangle.setTranslateY(50);
                     rectangle.toFront();
-                    main.schematicGroup.getChildren().add(rectangle);
+                    main.gateGroup.getChildren().add(rectangle);
                     //main.circleList.add(schematicRectangle);
 
                 } else if (me.getButton() == MouseButton.MIDDLE) {
 
                     main.showOnConsole("Removed specified Rectangle");
                     //main.circleList.remove(schematicRectangle);
-                    main.schematicGroup.getChildren().remove(rectangle);
+                    main.gateGroup.getChildren().remove(rectangle);
 
                 }
                 me.consume();

@@ -78,7 +78,7 @@ public class ConnectionLineObject {
                 if (me.getButton() == MouseButton.MIDDLE) {
                     Globals.main.showOnConsole("Removed specified line");
                     //mouseEvents.circleList.remove(circle);
-                    Globals.main.schematicGroup.getChildren().remove(line);
+                    Globals.main.gateGroup.getChildren().remove(line);
                     //ip.setDataObject(null);
                     if (Globals.main.logicLines.contains(logicLine)) {  // -> connectionlineobject
                         logicLine.getInputPin(0).setDataObject(new DataObject(false));

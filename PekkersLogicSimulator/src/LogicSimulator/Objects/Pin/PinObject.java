@@ -49,23 +49,18 @@ public class PinObject {
     public List<ConnectionLineObject> connectionLineObjects;
     public ConnectionLineObject connectionLineObject2;
 
-    public PinObject() {
-        x = 0;
-        y = 0;
+    public PinObject(String n, int x, int y) {
+        name = n;
+        this.x = x;
+        this.y = y;
         connectionLineObjects = new ArrayList<>();
         connectionLineObject2 = new ConnectionLineObject();
+        rectangle = new Rectangle(width, height);
+        rectangle.setTranslateX(x);
+        rectangle.setTranslateY(y);
     }
 
-    public void setRectangle(Rectangle r) {
-        rectangle = r;
-    }
-
-    public Rectangle getRectangle() {
-        return rectangle;
-    }
-
-    /*      this one seems to be acting fine*/
-    public Rectangle createPinRectangle(InputPinObject ipo, final Image i, final Group g, final Rectangle rectangle, final InputPin inputPin, final String name) {
+    public Rectangle createPinRectangle(InputPinObject ipo, final InputPin inputPin, final Image i, final Group g) {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
 
@@ -91,7 +86,6 @@ public class PinObject {
                     connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
-
                     addLine(line, logicLine);
 
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
@@ -110,24 +104,13 @@ public class PinObject {
         rectangle.setOnMouseDragged((MouseEvent me) -> {
             me.consume();
         });
-        rectangle.setOnMousePressed((MouseEvent me) -> {
-            if (me.getButton() == MouseButton.PRIMARY) {
-                rectangle.setFill(new ImagePattern(Textures.pinPressed, 0, 0, 1, 1, true));
-                rectangle.toFront();
-                me.consume();
-            }
-        });
-        rectangle.setOnMouseReleased((MouseEvent me) -> {
-            rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
-            me.consume();
-        });
 
+        setOnMousePressedReleased(i);
         InfoPopup.setinfoPopup(rectangle, image, i);
-
         return rectangle;
     }
 
-    public Rectangle createPinRectangle(OutputPinObject opo, final Image i, final Group g, final Rectangle rectangle, final OutputPin outputPin, final String name) {
+    public Rectangle createPinRectangle(OutputPinObject opo, final OutputPin outputPin, final Image i, final Group g) {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
         Image cursorImage = Textures.defaultCursorActive;
@@ -152,6 +135,7 @@ public class PinObject {
                     connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
+                    addLine(line, logicLine);
                     /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
                      if(connectionLineObject2 != null){
                      connectionLineObject2.line = null;
@@ -163,8 +147,6 @@ public class PinObject {
                      connectionLineObject2.logicLine=null;
                      }
                      }*/
-
-                    addLine(line, logicLine);
 
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
@@ -183,6 +165,23 @@ public class PinObject {
         rectangle.setOnMouseDragged((MouseEvent me) -> {
             me.consume();
         });
+
+        setOnMousePressedReleased(i);
+        InfoPopup.setinfoPopup(rectangle, image, i);
+
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle r) {
+        rectangle = r;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setOnMousePressedReleased(Image i) {
+
         rectangle.setOnMousePressed((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 rectangle.setFill(new ImagePattern(Textures.pinPressed, 0, 0, 1, 1, true));
@@ -194,8 +193,6 @@ public class PinObject {
             rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true));
             me.consume();
         });
-        InfoPopup.setinfoPopup(rectangle, image, i);
-        return rectangle;
     }
 
     public void nullLogicLine(LogicLine ll) {
@@ -209,15 +206,15 @@ public class PinObject {
     }
 
     public void addLine(Line line, LogicLine logicLine) {
-        if (line != null && !Globals.main.schematicGroup.getChildren().contains(line)) {
-            Globals.main.schematicGroup.getChildren().add(line);
+        if (line != null && !Globals.main.gateGroup.getChildren().contains(line)) {
+            Globals.main.gateGroup.getChildren().add(line);
             Globals.main.logicLines.add(logicLine);
         }
     }
 
     public void removeLine(Line line, LogicLine logicLine) {
-        if (!Globals.main.schematicGroup.getChildren().contains(line)) {
-            Globals.main.schematicGroup.getChildren().add(line);
+        if (!Globals.main.gateGroup.getChildren().contains(line)) {
+            Globals.main.gateGroup.getChildren().add(line);
             Globals.main.logicLines.add(logicLine);
         }
     }

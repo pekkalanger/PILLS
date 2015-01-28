@@ -28,7 +28,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -65,103 +64,89 @@ public class MenuBarBuilder {
 
         // Prepare left-most 'File' drop-down menu
         final javafx.scene.control.Menu fileMenu = new javafx.scene.control.Menu("File");
-        final MenuItem fileNew = new MenuItem("New");
-        fileNew.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                /*       null all the lists!!!       */
+        final MenuItem fileNew = new MenuItem("New");/*       null all the lists!!!       */
 
-                //main.schematicGroup = new Group();  will not use circlegroup in the future
-                main.schematicGroup.getChildren().remove(main.schematicGroup);
-                main.schematicGroup = new Group();
-                main.schematicGroup.getChildren().add(main.schematicGroup);
+        fileNew.setOnAction((ActionEvent event) -> {
+            main.schematicGroup.getChildren().remove(main.gateGroup);
+            main.gateGroup = new Group();
+            main.schematicGroup.getChildren().add(main.gateGroup);
+            /* reset all lists*/
+            main.gateObjects = new ArrayList();
+            main.lines = new ArrayList();
+            main.connectionLineObjects = new ArrayList();
+            main.logicLines = new ArrayList();
+            main.circleList = new LinkedList();
 
-                main.gateObjects = new ArrayList();
-                main.lines = new ArrayList();
-                main.connectionLineObjects = new ArrayList();
-                main.logicLines = new ArrayList();
-                main.circleList = new LinkedList();
-
-                event.consume();
-            }
+            event.consume();
         });
 
         final MenuItem fileOpen = new MenuItem("Open");
-        fileOpen.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Open Schematic");
-                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("schematic", "*.schematic"));
-                File file = fileChooser.showOpenDialog(main.primaryStage);
-                if (file != null) {
-                    main.showOnConsole(file.toString());
-                    FileInputStream fileIn = null;
+        fileOpen.setOnAction((ActionEvent event) -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open Schematic");
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("schematic", "*.schematic"));
+            File file = fileChooser.showOpenDialog(main.primaryStage);
+            if (file != null) {
+                main.showOnConsole(file.toString());
+                FileInputStream fileIn = null;
+                try {
+                    fileIn = new FileInputStream(file);
+                    ObjectInputStream in = new ObjectInputStream(fileIn);
+                    //in.readObject();
+                } catch (Exception e) {
+                    System.out.println(e);
+                } finally {
                     try {
-                        fileIn = new FileInputStream(file);
-                        ObjectInputStream in = new ObjectInputStream(fileIn);
-                        //in.readObject();
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    } finally {
-                        try {
-                            fileIn.close();
-                            fileIn = null;
-                            System.gc();
-                        } catch (IOException ex) {
-                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        fileIn.close();
+                        fileIn = null;
+                        System.gc();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                event.consume();
             }
+            event.consume();
         });
 
         final MenuItem fileSave = new MenuItem("Save");
 
         final MenuItem fileSaveAs = new MenuItem("Save As");
-        fileSaveAs.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                FileChooser fileChooser = new FileChooser();
-                fileChooser.setTitle("Save Schematic");
-                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
-                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("schematic", "*.schematic"));
-                File file = fileChooser.showSaveDialog(main.primaryStage);
-                if (file != null) {
-                    FileOutputStream fileOut = null;
+        fileSaveAs.setOnAction((ActionEvent event) -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save Schematic");
+            fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("schematic", "*.schematic"));
+            File file = fileChooser.showSaveDialog(main.primaryStage);
+            if (file != null) {
+                FileOutputStream fileOut = null;
+                try {
+                    fileOut = new FileOutputStream(file);
+                    ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                    //out.writeObject();
+                } catch (Exception e) {
+                    System.out.println(e);
+                } finally {
                     try {
-                        fileOut = new FileOutputStream(file);
-                        ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                        //out.writeObject();
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    } finally {
-                        try {
-                            fileOut.flush();
-                            fileOut.close();
-                            fileOut = null;
-                            System.gc();
-                            main.showOnConsole("something Saved successfully");
+                        fileOut.flush();
+                        fileOut.close();
+                        fileOut = null;
+                        System.gc();
+                        main.showOnConsole("something Saved successfully");
 
-                        } catch (IOException ex) {
-                            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                event.consume();
             }
+            event.consume();
         });
 
         final MenuItem fileExit = new MenuItem("Exit");         // quit
-        fileExit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Exiting this shi.. witty app ");
-                Platform.exit();
-                event.consume();
-            }
+        fileExit.setOnAction((ActionEvent event) -> {
+            System.out.println("Exiting this shi.. witty app ");
+            Platform.exit();
+            event.consume();
         });
         fileExit.setGraphic(new ImageView(Textures.exitIcon));
 
@@ -183,39 +168,33 @@ public class MenuBarBuilder {
         onlineManualMenuItem.setVisible(false);
 
         final MenuItem aboutMenuItem = new MenuItem("About");
-        aboutMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                main.showOnConsole("About Menu Item was clicked");
+        aboutMenuItem.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("About Menu Item was clicked");
 
-                final Stage dialogStage = new Stage();
-                dialogStage.initModality(Modality.WINDOW_MODAL);
-                dialogStage.initStyle(StageStyle.UTILITY);
-                dialogStage.setResizable(false);
-                dialogStage.setTitle("About");
-                Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo \nleft for move and add lines\nmiddle for removal\nright for toggling switches");
-                aboutLabel.setAlignment(Pos.BASELINE_CENTER);
-                Button okButt = new Button("Ok");
-                okButt.setCancelButton(true);
-                okButt.setDefaultButton(true);
-                okButt.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent arg0) {
-                        dialogStage.close();
-                    }
-                });
-                HBox hBox = new HBox();
-                hBox.setAlignment(Pos.BASELINE_CENTER);
-                hBox.setSpacing(40.0);
-                hBox.getChildren().addAll(okButt);
-                VBox vBox = new VBox();
-                vBox.setSpacing(40.0);
-                vBox.getChildren().addAll(aboutLabel, hBox);
+            final Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initStyle(StageStyle.UTILITY);
+            dialogStage.setResizable(false);
+            dialogStage.setTitle("About");
+            Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo \nleft for move and add lines\nmiddle for removal\nright for toggling switches");
+            aboutLabel.setAlignment(Pos.BASELINE_CENTER);
+            Button okButt = new Button("Ok");
+            okButt.setCancelButton(true);
+            okButt.setDefaultButton(true);
+            okButt.setOnAction((ActionEvent arg0) -> {
+                dialogStage.close();
+            });
+            HBox hBox = new HBox();
+            hBox.setAlignment(Pos.BASELINE_CENTER);
+            hBox.setSpacing(40.0);
+            hBox.getChildren().addAll(okButt);
+            VBox vBox = new VBox();
+            vBox.setSpacing(40.0);
+            vBox.getChildren().addAll(aboutLabel, hBox);
 
-                dialogStage.setScene(new Scene(vBox));
-                dialogStage.show();
-                event.consume();
-            }
+            dialogStage.setScene(new Scene(vBox));
+            dialogStage.show();
+            event.consume();
         });
         aboutMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F1, KeyCombination.SHORTCUT_ANY));
 

@@ -32,7 +32,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -42,7 +41,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
@@ -181,26 +179,13 @@ public class SideBarBuilder {
             rectangle.setTranslateX(400);
             rectangle.setTranslateY(300);
             rectangle.toFront();
-            //main.schematicGroup.getChildren().add(schematicRectangle);
-            main.schematicGroup.getChildren().add(rectangle);
+            //main.gateGroup.getChildren().add(schematicRectangle);
+            main.gateGroup.getChildren().add(rectangle);
             event.consume();
         });
 
-        /*      Create Button80                  */
-        final Button butt80 = new Button("blu c");
-        butt80.setOnAction((ActionEvent event) -> {
-            main.showOnConsole("Created new Blue Circle");
-            SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
-            final Circle c = sexyCircleBuilder.createBlueCircle(false);
-            c.setTranslateX(300);
-            c.setTranslateY(50);
-            c.toFront();
-            main.schematicGroup.getChildren().add(c);
-            main.circleList.add(c);
-            event.consume();
-        });
         /*      Create Button81                  */
-        final Button butt81 = new Button("ora c");
+        final Button butt81 = new Button("circl");
         butt81.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Orange Circle");
             SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
@@ -208,7 +193,7 @@ public class SideBarBuilder {
             c.setTranslateX(300);
             c.setTranslateY(150);
             c.toFront();
-            main.schematicGroup.getChildren().add(c);
+            main.gateGroup.getChildren().add(c);
             main.circleList.add(c);
             event.consume();
         });
@@ -217,7 +202,7 @@ public class SideBarBuilder {
         final Button butt99 = new Button("Label");
         butt99.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Label");
-            main.schematicGroup.getChildren().add(createLabel());
+            main.gateGroup.getChildren().add(createLabel());
             event.consume();
         });
 
@@ -254,7 +239,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
 
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt20, butt21, spacer1, butt99, spacer2, butt79, butt80, butt81);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt20, butt21, spacer1, butt99, spacer2, butt79, butt81);
 
         return sideBar;
     }
@@ -291,7 +276,7 @@ public class SideBarBuilder {
                 final HBox labelPromptBox = new HBox();
                 labelPromptBox.setTranslateX(label.getTranslateX());
                 labelPromptBox.setTranslateY(label.getTranslateY());
-                main.schematicGroup.getChildren().add(labelPromptBox);
+                main.gateGroup.getChildren().add(labelPromptBox);
 
                 final TextField textField = new TextField();
                 textField.setPromptText(label.getText());
@@ -304,12 +289,12 @@ public class SideBarBuilder {
                 okButt.setDefaultButton(true);
                 okButt.setOnAction((ActionEvent arg0) -> {
                     label.setText(textField.getText());
-                    main.schematicGroup.getChildren().remove(labelPromptBox);
+                    main.gateGroup.getChildren().remove(labelPromptBox);
                 });
                 labelPromptBox.getChildren().add(okButt);
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
-                main.schematicGroup.getChildren().remove(label);
+                main.gateGroup.getChildren().remove(label);
                 me.consume();
             }
         });
