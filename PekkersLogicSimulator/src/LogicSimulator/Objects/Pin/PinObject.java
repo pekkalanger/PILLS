@@ -123,7 +123,7 @@ public class PinObject {
         rectangle.setOnMouseClicked((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
-                    
+
                     setDragBoard(null, outputPin, null, opo, g);
                 } else if (ClipBoard.getInputPin() != null) {
                     if (ClipBoard.getConnectionLineObject2() != null) {

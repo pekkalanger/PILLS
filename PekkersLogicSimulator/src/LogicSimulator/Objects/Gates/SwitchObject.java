@@ -54,6 +54,7 @@ public class SwitchObject extends GateObject {
                 gate.toggle();
                 if (gate.getDataObject().getData()) {
                     rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
+
                 } else {
                     rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));
                 }

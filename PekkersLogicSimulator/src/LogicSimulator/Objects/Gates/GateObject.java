@@ -61,6 +61,7 @@ public abstract class GateObject {
     public Rectangle initRectangle(double x, double y, double width, double height, Image i) {
         rectangle = new Rectangle(width, height);
         rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
+
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(y);
         InfoPopup.setinfoPopup(rectangle, image, i);
@@ -114,7 +115,7 @@ public abstract class GateObject {
                 Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
                 while (ipoclo.hasNext()) {
                     ConnectionLineObject clo = ipoclo.next();
-                    if(ipo == clo.inputPinObjectSource){
+                    if (ipo == clo.inputPinObjectSource) {
                         clo.line.endXProperty().set(ipo.x + group.getTranslateX());
                         clo.line.endYProperty().set(ipo.y + group.getTranslateY());
                     } else {
@@ -131,7 +132,7 @@ public abstract class GateObject {
                 Iterator<ConnectionLineObject> opoclo = opo.connectionLineObjects.iterator();
                 while (opoclo.hasNext()) {
                     ConnectionLineObject clo = opoclo.next();
-                    if(opo == clo.outputPinObjectSource){
+                    if (opo == clo.outputPinObjectSource) {
                         clo.line.endXProperty().set(opo.x + group.getTranslateX());
                         clo.line.endYProperty().set(opo.y + group.getTranslateY());
                     } else {
@@ -143,7 +144,7 @@ public abstract class GateObject {
             }
         }
     }
-    
+
     public void addPinObjects() {
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
