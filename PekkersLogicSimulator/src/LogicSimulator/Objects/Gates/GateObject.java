@@ -114,8 +114,13 @@ public abstract class GateObject {
                 Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
                 while (ipoclo.hasNext()) {
                     ConnectionLineObject clo = ipoclo.next();
-                    clo.line.endXProperty().set(ipo.x + group.getTranslateX());
-                    clo.line.endYProperty().set(ipo.y + group.getTranslateY());
+                    if(ipo == clo.inputPinObjectSource){
+                        clo.line.endXProperty().set(ipo.x + group.getTranslateX());
+                        clo.line.endYProperty().set(ipo.y + group.getTranslateY());
+                    } else {
+                        clo.line.startXProperty().set(ipo.x + group.getTranslateX());
+                        clo.line.startYProperty().set(ipo.y + group.getTranslateY());
+                    }
                 }
             }
         }
@@ -125,9 +130,15 @@ public abstract class GateObject {
                 OutputPinObject opo = iterator.next();
                 Iterator<ConnectionLineObject> opoclo = opo.connectionLineObjects.iterator();
                 while (opoclo.hasNext()) {
+                    
                     ConnectionLineObject clo = opoclo.next();
-                    clo.line.endXProperty().set(opo.x + group.getTranslateX());
-                    clo.line.endYProperty().set(opo.y + group.getTranslateY());
+                    if(opo == clo.outputPinObjectSource){
+                        clo.line.endXProperty().set(opo.x + group.getTranslateX());
+                        clo.line.endYProperty().set(opo.y + group.getTranslateY());
+                    } else {
+                        clo.line.startXProperty().set(opo.x + group.getTranslateX());
+                        clo.line.startYProperty().set(opo.y + group.getTranslateY());
+                    }
                 }
             }
         }

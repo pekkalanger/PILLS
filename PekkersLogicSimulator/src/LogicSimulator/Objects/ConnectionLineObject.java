@@ -21,6 +21,8 @@ import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.ClipBoard;
 import LogicSimulator.Globals;
+import LogicSimulator.Objects.Pin.InputPinObject;
+import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
@@ -40,6 +42,8 @@ public class ConnectionLineObject {
     Color colorOff;
     Color colorOn;
     boolean last = false;
+    public InputPinObject inputPinObjectSource = null;
+    public OutputPinObject outputPinObjectSource = null;
 
     public ConnectionLineObject() {
         name = "A Line";

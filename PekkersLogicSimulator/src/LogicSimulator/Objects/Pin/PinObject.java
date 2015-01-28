@@ -83,11 +83,14 @@ public class PinObject {
                     logicLine.setOutputPin(0, ClipBoard.getOutputPin());
                     ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
                     connectionLineObject3.logicLine = logicLine;
+                    connectionLineObject3.inputPinObjectSource = ipo;
                     connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                     addLine(line, logicLine);
-
+                    if (ClipBoard.getOutputPinObject() != null && !ClipBoard.getOutputPinObject().connectionLineObjects.contains(connectionLineObject3)) {
+                        ClipBoard.getOutputPinObject().connectionLineObjects.add(connectionLineObject3);
+                    }
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
@@ -120,6 +123,7 @@ public class PinObject {
         rectangle.setOnMouseClicked((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
+                    
                     setDragBoard(null, outputPin, null, opo, g);
                 } else if (ClipBoard.getInputPin() != null) {
                     if (ClipBoard.getConnectionLineObject2() != null) {
@@ -132,6 +136,7 @@ public class PinObject {
                     logicLine.setOutputPin(0, outputPin);
                     ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
                     connectionLineObject3.logicLine = logicLine;
+                    connectionLineObject3.outputPinObjectSource = opo;
                     connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
