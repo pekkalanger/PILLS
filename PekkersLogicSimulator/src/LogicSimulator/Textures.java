@@ -63,7 +63,7 @@ public class Textures {
         defaultCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursorr2.png");
         defaultCursorActive = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursorractive.png");
         //lineCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/linecursor.png");
-        switchCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursor2toggle.png");
+        switchCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursorr2toggle.png");
 
         /*          Gates               */
         andGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/andgate2.png");
