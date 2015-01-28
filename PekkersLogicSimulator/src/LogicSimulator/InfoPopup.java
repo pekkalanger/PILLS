@@ -59,7 +59,7 @@ public class InfoPopup {
             if (image != null) {
                 infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
             }
-            Globals.main.showOnConsole("Open infoPopup");
+            //Globals.main.showOnConsole("Open infoPopup");
             Globals.main.gateGroup.getChildren().add(infoPopup);
         }
     }

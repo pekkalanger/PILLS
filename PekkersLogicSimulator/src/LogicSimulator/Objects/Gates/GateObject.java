@@ -99,7 +99,6 @@ public abstract class GateObject {
             group.toFront();
             if (me.getButton() == MouseButton.MIDDLE) {
                 if (Globals.main.gateGroup.getChildren().contains(InfoPopup.infoPopup)) {
-                    Globals.main.showOnConsole("remove infopopup");
                     Globals.main.gateGroup.getChildren().remove(InfoPopup.infoPopup);
                 }
                 destroy();
