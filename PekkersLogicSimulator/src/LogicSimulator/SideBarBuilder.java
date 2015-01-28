@@ -139,9 +139,10 @@ public class SideBarBuilder {
             event.consume();
         });
         /*      Create Button7                  */
-        final Button butt8 = new Button();//"add xnor gate");
+        final Button butt8 = new Button();
         butt8.setGraphic(new ImageView(Textures.inputPin));
         butt8.setTooltip(new Tooltip("Bridge"));
+        InfoPopup.setinfoPopup(butt8, Textures.texture);
         butt8.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Bridge");
             BridgeObject bridgeObject = new BridgeObject();
@@ -149,10 +150,10 @@ public class SideBarBuilder {
             event.consume();
         });
         /*      Create Button8                  */
-        final Button butt9 = new Button();//"add not gate");
-        butt9.setGraphic(new ImageView(Textures.notGate));
+        final Button butt9 = new Button();//"add not gate");    /// FULLADDER
+        butt9.setGraphic(new ImageView(Textures.andGate));
         butt9.setTooltip(new Tooltip("Not Gate"));
-        InfoPopup.setinfoPopup(butt9, Textures.notGate);
+        InfoPopup.setinfoPopup(butt9, Textures.texture);
         butt9.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new not gate");
             FullAdderObject fullAdder1 = new FullAdderObject();
@@ -163,6 +164,7 @@ public class SideBarBuilder {
         final Button butt20 = new Button();//"add Switch");
         butt20.setGraphic(new ImageView(Textures.switchOn));
         butt20.setTooltip(new Tooltip("Switch"));
+        InfoPopup.setinfoPopup(butt20, Textures.switchOn);
         butt20.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Switch");
             SwitchObject switchObject = new SwitchObject();
@@ -174,6 +176,7 @@ public class SideBarBuilder {
         final Button butt21 = new Button();//"add LED");
         butt21.setGraphic(new ImageView(Textures.ledOn));
         butt21.setTooltip(new Tooltip("LED"));
+        InfoPopup.setinfoPopup(butt21, Textures.ledOn);
         butt21.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new LED");
             LedObject ledObject = new LedObject();

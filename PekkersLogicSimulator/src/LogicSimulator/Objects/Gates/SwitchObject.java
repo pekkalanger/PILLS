@@ -16,6 +16,8 @@
  */
 package LogicSimulator.Objects.Gates;
 
+import LogicSimulator.Globals;
+import LogicSimulator.InfoPopup;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Switch;
@@ -61,6 +63,10 @@ public class SwitchObject extends GateObject {
                 }
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {
+                if (Globals.main.gateGroup.getChildren().contains(InfoPopup.infoPopup)) {
+                    Globals.main.showOnConsole("remove infopopup");
+                    Globals.main.gateGroup.getChildren().remove(InfoPopup.infoPopup);
+                }
                 destroy();
                 me.consume();
             }
