@@ -21,6 +21,7 @@ import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Globals;
 import LogicSimulator.InfoPopup;
+import LogicSimulator.Objects.ConnectionLineObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -60,7 +61,6 @@ public abstract class GateObject {
     public Rectangle initRectangle(double x, double y, double width, double height, Image i) {
         rectangle = new Rectangle(width, height);
         rectangle.setFill(new ImagePattern(i, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
-
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(y);
         InfoPopup.setinfoPopup(rectangle, image, i);
@@ -85,22 +85,7 @@ public abstract class GateObject {
                     group.setTranslateX(newXPosition);
                     group.setTranslateY(newYPosition);
 
-                    if (inputPinObjects != null) {
-                        Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-                        while (iterator.hasNext()) {
-                            InputPinObject ipo = iterator.next();
-                            ipo.connectionLineObjects.get(0).line.endXProperty().set(ipo.x + group.getTranslateX());
-                            ipo.connectionLineObjects.get(0).line.endYProperty().set(ipo.y + group.getTranslateY());
-                        }
-                    }
-                    if (outputPinObjects != null) {
-                        Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
-                        while (iterator.hasNext()) {
-                            OutputPinObject opo = iterator.next();
-                            opo.connectionLineObjects.get(0).line.endXProperty().set(opo.x + group.getTranslateX());
-                            opo.connectionLineObjects.get(0).line.endYProperty().set(opo.y + group.getTranslateY());
-                        }
-                    }
+                    updateLines();
                 }
                 me.consume();
             }
@@ -121,6 +106,33 @@ public abstract class GateObject {
         Globals.main.gateGroup.getChildren().add(group);
     }
 
+    public void updateLines() {
+        if (inputPinObjects != null) {
+            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                InputPinObject ipo = iterator.next();
+                Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
+                while (ipoclo.hasNext()) {
+                    ConnectionLineObject clo = ipoclo.next();
+                    clo.line.endXProperty().set(ipo.x + group.getTranslateX());
+                    clo.line.endYProperty().set(ipo.y + group.getTranslateY());
+                }
+            }
+        }
+        if (outputPinObjects != null) {
+            Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
+            while (iterator.hasNext()) {
+                OutputPinObject opo = iterator.next();
+                Iterator<ConnectionLineObject> opoclo = opo.connectionLineObjects.iterator();
+                while (opoclo.hasNext()) {
+                    ConnectionLineObject clo = opoclo.next();
+                    clo.line.endXProperty().set(opo.x + group.getTranslateX());
+                    clo.line.endYProperty().set(opo.y + group.getTranslateY());
+                }
+            }
+        }
+    }
+    
     public void addPinObjects() {
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
