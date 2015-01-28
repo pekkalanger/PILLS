@@ -176,7 +176,7 @@ public class MenuBarBuilder {
             dialogStage.initStyle(StageStyle.UTILITY);
             dialogStage.setResizable(false);
             dialogStage.setTitle("About");
-            Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo \nleft for move and add lines\nmiddle for removal\nright for toggling switches");
+            Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo \nleft click for moving gates and adding lines\nmiddle click for removal\nright click for toggling switches and editing labels");
             aboutLabel.setAlignment(Pos.BASELINE_CENTER);
             Button okButt = new Button("Ok");
             okButt.setCancelButton(true);

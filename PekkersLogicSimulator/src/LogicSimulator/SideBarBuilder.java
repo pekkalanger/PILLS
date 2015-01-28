@@ -152,10 +152,10 @@ public class SideBarBuilder {
         /*      Create Button8                  */
         final Button butt9 = new Button();//"add not gate");    /// FULLADDER
         butt9.setGraphic(new ImageView(Textures.andGate));
-        butt9.setTooltip(new Tooltip("Not Gate"));
+        butt9.setTooltip(new Tooltip("Full Adder"));
         InfoPopup.setinfoPopup(butt9, Textures.texture);
         butt9.setOnAction((ActionEvent event) -> {
-            main.showOnConsole("Created new not gate");
+            main.showOnConsole("Created new Full Adder");
             FullAdderObject fullAdder1 = new FullAdderObject();
             main.gateObjects.add(fullAdder1);
             event.consume();
