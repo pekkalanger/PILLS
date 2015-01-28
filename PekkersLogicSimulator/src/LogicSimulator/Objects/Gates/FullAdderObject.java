@@ -16,7 +16,6 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Objects.Gates.GateLogic.And;
 import LogicSimulator.Objects.Gates.GateLogic.FullAdder;
 import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;

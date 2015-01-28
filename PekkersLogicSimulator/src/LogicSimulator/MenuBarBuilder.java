@@ -164,21 +164,21 @@ public class MenuBarBuilder {
 
         RadioMenuItem infoPopupMenuItem = new RadioMenuItem("Info Popup");
         infoPopupMenuItem.setSelected(true);
-            infoPopupMenuItem.setOnAction((ActionEvent event) -> {
-                if(!InfoPopup.getEnabled()) {
-                    InfoPopup.setEnabled(true);
-                } else if(InfoPopup.getEnabled()) {
-                    InfoPopup.setEnabled(false);
-                }
-                event.consume();
+        infoPopupMenuItem.setOnAction((ActionEvent event) -> {
+            if (!InfoPopup.getEnabled()) {
+                InfoPopup.setEnabled(true);
+            } else if (InfoPopup.getEnabled()) {
+                InfoPopup.setEnabled(false);
+            }
+            event.consume();
         });
-            
+
         final MenuItem searchMenuItem = new MenuItem("Search");
         searchMenuItem.setDisable(true);
 
         final MenuItem onlineManualMenuItem = new MenuItem("Online Manual");
         onlineManualMenuItem.setVisible(false);
-        
+
         final MenuItem aboutMenuItem = new MenuItem("About");
         aboutMenuItem.setOnAction((ActionEvent event) -> {
             main.showOnConsole("About Menu Item was clicked");

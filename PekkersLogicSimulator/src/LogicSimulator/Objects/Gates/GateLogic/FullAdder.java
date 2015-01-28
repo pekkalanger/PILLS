@@ -16,8 +16,6 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-import LogicSimulator.Globals;
-
 /**
  *
  * @author PEKKA

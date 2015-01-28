@@ -121,7 +121,7 @@ public abstract class GateObject {
                     if (ipo == clo.inputPinObjectSource && clo.line != null) {
                         clo.line.endXProperty().set(4 + ipo.x + group.getTranslateX());  // pin width 8, mid 8/2=4
                         clo.line.endYProperty().set(4 + ipo.y + group.getTranslateY());
-                    } else if(clo.line != null){
+                    } else if (clo.line != null) {
                         clo.line.startXProperty().set(4 + ipo.x + group.getTranslateX());
                         clo.line.startYProperty().set(4 + ipo.y + group.getTranslateY());
                     }

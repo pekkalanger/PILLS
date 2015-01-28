@@ -34,10 +34,11 @@ public class InfoPopup {
     public static void setEnabled(boolean e) {
         enabled = e;
     }
+
     public static boolean getEnabled() {
         return enabled;
     }
-        
+
     public static void setinfoPopup(Rectangle rectangle, Image image) {
         rectangle.setOnMouseEntered((MouseEvent me) -> {
             setInfoPopup(image);
