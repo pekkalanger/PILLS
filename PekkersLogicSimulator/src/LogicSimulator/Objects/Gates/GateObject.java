@@ -110,7 +110,7 @@ public abstract class GateObject {
         Globals.main.gateGroup.getChildren().add(group);
     }
 
-    public void updateLines() {
+    public void updateLines() {  // problem
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
@@ -118,10 +118,10 @@ public abstract class GateObject {
                 Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
                 while (ipoclo.hasNext()) {
                     ConnectionLineObject clo = ipoclo.next();
-                    if (ipo == clo.inputPinObjectSource) {
+                    if (ipo == clo.inputPinObjectSource && clo.line != null) {
                         clo.line.endXProperty().set(4 + ipo.x + group.getTranslateX());  // pin width 8, mid 8/2=4
                         clo.line.endYProperty().set(4 + ipo.y + group.getTranslateY());
-                    } else {
+                    } else if(clo.line != null){
                         clo.line.startXProperty().set(4 + ipo.x + group.getTranslateX());
                         clo.line.startYProperty().set(4 + ipo.y + group.getTranslateY());
                     }
@@ -135,10 +135,10 @@ public abstract class GateObject {
                 Iterator<ConnectionLineObject> opoclo = opo.connectionLineObjects.iterator();
                 while (opoclo.hasNext()) {
                     ConnectionLineObject clo = opoclo.next();
-                    if (opo == clo.outputPinObjectSource) {
+                    if (opo == clo.outputPinObjectSource && clo.line != null) {
                         clo.line.endXProperty().set(4 + opo.x + group.getTranslateX());
                         clo.line.endYProperty().set(4 + opo.y + group.getTranslateY());
-                    } else {
+                    } else if (clo.line != null) {
                         clo.line.startXProperty().set(4 + opo.x + group.getTranslateX());
                         clo.line.startYProperty().set(4 + opo.y + group.getTranslateY());
                         System.out.println("output is not the same");
@@ -201,23 +201,6 @@ public abstract class GateObject {
         while (ipoclo.hasNext()) {
             ConnectionLineObject clo = ipoclo.next();
             clo.destroy();
-        }
-    }
-
-    public void destroy0() {
-        if (inputPinObjects != null) {
-            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                InputPinObject ipo = iterator.next();
-                destroyConnectionLines(ipo.connectionLineObjects);
-            }
-        }
-        if (inputPinObjects != null) {
-            Iterator<InputPinObject> iterator = inputPinObjects.iterator();
-            while (iterator.hasNext()) {
-                InputPinObject ipo = iterator.next();
-                destroyConnectionLines(ipo.connectionLineObjects);
-            }
         }
     }
 

@@ -40,6 +40,12 @@ public class AndObject extends GateObject {
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
         rectangle = initRectangle(8, 0);
+        /* 16x16 pins
+        inputPinObjects.add(new InputPinObject(group, 0, 0, gate.getInputPin(0), name + " PinA"));
+        inputPinObjects.add(new InputPinObject(group, 0, 16, gate.getInputPin(1), name + " PinB"));
+        outputPinObjects.add(new OutputPinObject(group, 48, 8, gate.getOutputPin(0), name + " PinQ"));
+        rectangle = initRectangle(16, 0);
+        */
         group.getChildren().add(rectangle);
         addPinObjects();
         initGroup(inputPinObjects, outputPinObjects);
