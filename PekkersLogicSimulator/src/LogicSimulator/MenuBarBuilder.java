@@ -26,10 +26,18 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.geometry.Point3D;
 import javafx.geometry.Pos;
+import javafx.scene.DepthTest;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,10 +51,15 @@ import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Translate;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 /**
  *
@@ -55,6 +68,8 @@ import javafx.stage.StageStyle;
 public class MenuBarBuilder {
 
     final Main main;
+
+    private Timeline animation;
 
     public MenuBarBuilder(final Main main) {
         this.main = main;
@@ -202,10 +217,16 @@ public class MenuBarBuilder {
             hBox.getChildren().addAll(okButt);
             VBox vBox = new VBox();
             vBox.setSpacing(40.0);
+
             vBox.getChildren().addAll(aboutLabel, hBox);
 
             dialogStage.setScene(new Scene(vBox));
+            Group gg = new Group();
+            init(gg, dialogStage);
+            vBox.getChildren().add(gg);
             dialogStage.show();
+            animation.play();
+
             event.consume();
         });
         aboutMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F1, KeyCombination.SHORTCUT_ANY));
@@ -217,4 +238,94 @@ public class MenuBarBuilder {
         menuBar.prefWidthProperty().bind(main.primaryStage.widthProperty());
         return menuBar;
     }
+
+    private void init(Group root, Stage primaryStage) {
+        root.setDepthTest(DepthTest.ENABLE);
+        primaryStage.getScene().setCamera(new PerspectiveCamera());
+
+        root.getTransforms().addAll(
+                new Translate(0, 0),
+                new Rotate(180, Rotate.X_AXIS)
+        );
+        root.getChildren().add(create3dContent());
+    }
+
+    public Node create3dContent() {
+        Cube c = new Cube(33, Color.RED, 1);
+        c.rx.setAngle(45);
+        c.ry.setAngle(45);
+        Cube c2 = new Cube(33, Color.GREEN, 1);
+        c2.setTranslateX(100);
+        c2.rx.setAngle(45);
+        c2.ry.setAngle(45);
+        //Cube c3 = new Cube(50,Color.ORANGE,1);
+        //c3.setTranslateX(-100);
+        //c3.rx.setAngle(45);
+        //c3.ry.setAngle(45);
+
+        animation = new Timeline();
+        animation.getKeyFrames().addAll(
+                new KeyFrame(Duration.ZERO,
+                        new KeyValue(c.ry.angleProperty(), 0d),
+                        new KeyValue(c2.rx.angleProperty(), 0d)//,
+                //new KeyValue(c3.rz.angleProperty(), 0d)
+                ),
+                new KeyFrame(Duration.seconds(1),
+                        new KeyValue(c.ry.angleProperty(), 360d),
+                        new KeyValue(c2.rx.angleProperty(), 360d)//,
+                //new KeyValue(c3.rz.angleProperty(), 360d)
+                ));
+        animation.setCycleCount(Animation.INDEFINITE);
+
+        return new Group(c, c2/*,c3*/);
+    }
+
+    public void play() {
+        //animation.play();
+    }
+
+    public void stop() {
+        //animation.pause();
+    }
+
+    public class Cube extends Group {
+
+        final Rotate rx = new Rotate(0, Rotate.X_AXIS);
+        final Rotate ry = new Rotate(0, Rotate.Y_AXIS);
+        final Rotate rz = new Rotate(0, Rotate.Z_AXIS);
+
+        public Cube(double size, Color color, double shade) {
+
+            getTransforms().addAll(rz, ry, rx);
+            getChildren().addAll(
+                    buildrectangle2(-0.5, -0.5, 0.5, size, color, shade, 0.5, null, 0),
+                    buildrectangle2(-0.5, 0, -11, size, color, shade, 0.4, Rotate.X_AXIS, 90),
+                    buildrectangle2(-1, -0.5, -11, size, color, shade, 0.3, Rotate.Y_AXIS, 90),
+                    buildrectangle2(0, -0.5, -11, size, color, shade, 0.2, Rotate.Y_AXIS, 90),
+                    buildrectangle2(-0.5, -1.0, -11, size, color, shade, 0.1, Rotate.X_AXIS, 90),
+                    buildrectangle2(-0.5, -0.5, -0.5, size, color, shade, 0, null, 0)
+            );
+        }
+    }
+
+    public Rectangle buildrectangle2(double x, double y, double z, double size, Color color, double shade, double shadeMult, Point3D point3D, int deg) {
+        Rectangle rectangle = new Rectangle(size, size, color.deriveColor(0.0, 1.0, (1 - shadeMult * shade), 1.0)); // back face
+        if (x != -11) {
+            rectangle.setTranslateX(x * size);
+        }
+        if (y != -11) {
+            rectangle.setTranslateY(y * size);
+        }
+        if (z != -11) {
+            rectangle.setTranslateZ(z * size);
+        }
+        if (point3D != null) {
+            rectangle.setRotationAxis(point3D);
+        }
+        if (deg != 0) {
+            rectangle.setRotate(deg);
+        }
+        return rectangle;
+    }
+
 }

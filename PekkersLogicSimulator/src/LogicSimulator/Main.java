@@ -32,8 +32,10 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
+import javafx.scene.DepthTest;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
@@ -100,7 +102,6 @@ public class Main extends Application {
 
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
-
         gateObjects = new ArrayList();
         lines = new ArrayList();
         connectionLineObjects = new ArrayList<>();
@@ -112,6 +113,7 @@ public class Main extends Application {
         primaryStage.setResizable(false); // this aint working so far
 
         rootGroup = new VBox(2);        // contains menuBar and rootHBox
+
         rootHBox = new HBox(2);         // contains sideBar and rootVBox
         rootVBox = new VBox(2);         // contains schematicRectangle and console
         rootHBox.setSpacing(1f);
@@ -188,6 +190,9 @@ public class Main extends Application {
 
         Scene scene = new Scene(rootGroup, mainWidth, mainHeight);
         primaryStage.setScene(scene);
+
+        rootGroup.setDepthTest(DepthTest.ENABLE);
+        primaryStage.getScene().setCamera(new PerspectiveCamera());
 
         Image defaultCursorImage = Textures.defaultCursor;
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
