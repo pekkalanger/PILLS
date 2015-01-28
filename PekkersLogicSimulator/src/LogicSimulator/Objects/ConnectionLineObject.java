@@ -94,9 +94,9 @@ public class ConnectionLineObject {
         if (line != null) {
 
             //add InputPin shadow effect
-            Image cursorImage = Textures.lineCursor;
-            ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
-            line.setCursor(imageCursor);
+            //Image cursorImage = Textures.lineCursor;
+            //ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
+            //line.setCursor(imageCursor);
             line.setStartX(width / 2 + ClipBoard.getX() + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
             line.setStartY(height / 2 + ClipBoard.getY() + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
             line.setEndX(width / 2 + r.getTranslateX() + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
