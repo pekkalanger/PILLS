@@ -130,7 +130,6 @@ public abstract class GateObject {
                 OutputPinObject opo = iterator.next();
                 Iterator<ConnectionLineObject> opoclo = opo.connectionLineObjects.iterator();
                 while (opoclo.hasNext()) {
-                    
                     ConnectionLineObject clo = opoclo.next();
                     if(opo == clo.outputPinObjectSource){
                         clo.line.endXProperty().set(opo.x + group.getTranslateX());
@@ -138,6 +137,7 @@ public abstract class GateObject {
                     } else {
                         clo.line.startXProperty().set(opo.x + group.getTranslateX());
                         clo.line.startYProperty().set(opo.y + group.getTranslateY());
+                        System.out.println("output is not the same");
                     }
                 }
             }

@@ -141,6 +141,9 @@ public class PinObject {
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
                     addLine(line, logicLine);
+                    if (ClipBoard.getInputPinObject() != null && !ClipBoard.getInputPinObject().connectionLineObjects.contains(connectionLineObject3)) {
+                        ClipBoard.getInputPinObject().connectionLineObjects.add(connectionLineObject3);
+                    }
                     /*ConnectionLineObject connectionLineObject2 = ClipBoard.getConnectionLineObject();
                      if(connectionLineObject2 != null){
                      connectionLineObject2.line = null;
