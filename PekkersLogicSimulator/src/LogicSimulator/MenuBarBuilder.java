@@ -35,6 +35,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -161,12 +162,23 @@ public class MenuBarBuilder {
         // Prepare 'Help' drop-down menu
         final javafx.scene.control.Menu helpMenu = new javafx.scene.control.Menu("Help");
 
+        RadioMenuItem infoPopupMenuItem = new RadioMenuItem("Info Popup");
+        infoPopupMenuItem.setSelected(true);
+            infoPopupMenuItem.setOnAction((ActionEvent event) -> {
+                if(!InfoPopup.getEnabled()) {
+                    InfoPopup.setEnabled(true);
+                } else if(InfoPopup.getEnabled()) {
+                    InfoPopup.setEnabled(false);
+                }
+                event.consume();
+        });
+            
         final MenuItem searchMenuItem = new MenuItem("Search");
         searchMenuItem.setDisable(true);
 
         final MenuItem onlineManualMenuItem = new MenuItem("Online Manual");
         onlineManualMenuItem.setVisible(false);
-
+        
         final MenuItem aboutMenuItem = new MenuItem("About");
         aboutMenuItem.setOnAction((ActionEvent event) -> {
             main.showOnConsole("About Menu Item was clicked");
@@ -198,7 +210,7 @@ public class MenuBarBuilder {
         });
         aboutMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.F1, KeyCombination.SHORTCUT_ANY));
 
-        helpMenu.getItems().addAll(searchMenuItem, onlineManualMenuItem, new SeparatorMenuItem(), aboutMenuItem);
+        helpMenu.getItems().addAll(infoPopupMenuItem, new SeparatorMenuItem(), searchMenuItem, onlineManualMenuItem, new SeparatorMenuItem(), aboutMenuItem);
 
         menuBar.getMenus().addAll(fileMenu, extrasMenu, helpMenu);
         // bind width of menu bar to width of associated stage

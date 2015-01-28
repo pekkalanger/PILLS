@@ -29,7 +29,15 @@ import javafx.scene.shape.Rectangle;
 public class InfoPopup {
 
     public static Rectangle infoPopup = new Rectangle(196, 168);
+    public static boolean enabled = true;
 
+    public static void setEnabled(boolean e) {
+        enabled = e;
+    }
+    public static boolean getEnabled() {
+        return enabled;
+    }
+        
     public static void setinfoPopup(Rectangle rectangle, Image image) {
         rectangle.setOnMouseEntered((MouseEvent me) -> {
             setInfoPopup(image);
@@ -53,7 +61,7 @@ public class InfoPopup {
     }
 
     private static void setInfoPopup(Image image) {
-        if (!Globals.main.gateGroup.getChildren().contains(infoPopup)) {
+        if (!Globals.main.gateGroup.getChildren().contains(infoPopup) && enabled) {
             infoPopup.setTranslateX(750);
             infoPopup.setTranslateY(0);
             if (image != null) {
