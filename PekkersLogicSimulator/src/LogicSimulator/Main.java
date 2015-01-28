@@ -214,7 +214,7 @@ public class Main extends Application {
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, new EventHandler() {
             @Override
             public void handle(Event event) {
-                System.out.println("==============START===============");
+                //System.out.println("==============START===============");
                 Long delta = 0L;
 
                 for (GateObject next : gateObjects) {
@@ -225,7 +225,7 @@ public class Main extends Application {
                         next.update(delta);
                     }
                 }
-                System.out.println("===============END================");
+                //System.out.println("===============END================");
             }
         }); // oneFrame
 

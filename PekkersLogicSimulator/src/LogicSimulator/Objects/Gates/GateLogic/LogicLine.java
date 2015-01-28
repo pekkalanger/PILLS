@@ -36,12 +36,12 @@ public class LogicLine implements GateInterface {
             pinA.setDataObject(pinB.getDataObject());
             return false;
         } else {
-            if (pinA == null) {
+            /*if (pinA == null) {
                 System.out.println("Line pinA = null");
             }
             if (pinB == null) {
                 System.out.println("Line pinB = null");
-            }
+            }*/
             return true;
         }
     }

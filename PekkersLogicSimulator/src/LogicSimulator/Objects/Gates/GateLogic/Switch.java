@@ -54,13 +54,13 @@ public class Switch extends Gate implements GateInterface {
     public boolean update(long deltaTime) {
         //toggle(); used as a generator/clock
         if (outputPin != null) {
-            if (outputPin.getDataObject() != null) {
+            /*if (outputPin.getDataObject() != null) {
                 System.out.println("Switch status: " + outputPin.getDataObject().getData());
-            }
+            }*/
             outputPin.setDataObject(dataObject);
             return false;
         } else {
-            System.out.println("Switch status: null");
+            //System.out.println("Switch status: null");
             return true;
         }
     }

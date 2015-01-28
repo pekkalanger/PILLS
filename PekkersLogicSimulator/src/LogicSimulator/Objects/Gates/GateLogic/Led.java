@@ -60,8 +60,8 @@ public class Led extends Gate implements GateInterface {
                 if (getDataObject() != null) {
                     last = getDataObject().getData();
                 }
-                System.out.print("Led status: ");
-                System.out.println(dataObject.getData());
+                //System.out.print("Led status: ");
+                //System.out.println(dataObject.getData());
             }
             return false;
 

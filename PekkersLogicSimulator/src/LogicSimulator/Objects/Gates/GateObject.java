@@ -141,7 +141,7 @@ public abstract class GateObject {
                     } else if (clo.line != null) {
                         clo.line.startXProperty().set(4 + opo.x + group.getTranslateX());
                         clo.line.startYProperty().set(4 + opo.y + group.getTranslateY());
-                        System.out.println("output is not the same");
+                        //System.out.println("output is not the same");
                     }
                 }
             }

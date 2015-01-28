@@ -151,6 +151,7 @@ public class SideBarBuilder {
         });
         /*      Create Button8                  */
         final Button butt9 = new Button();//"add not gate");    /// FULLADDER
+        butt9.setDisable(true);
         butt9.setGraphic(new ImageView(Textures.andGate));
         butt9.setTooltip(new Tooltip("Full Adder"));
         InfoPopup.setinfoPopup(butt9, Textures.texture);
@@ -186,6 +187,7 @@ public class SideBarBuilder {
 
         /*      Create Button79                  */
         final Button butt79 = new Button();//"square");
+        butt79.setDisable(true);
         butt79.setGraphic(new ImageView(Textures.pinOver));
         butt79.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new skaver");
@@ -201,6 +203,7 @@ public class SideBarBuilder {
 
         /*      Create Button81                  */
         final Button butt81 = new Button("circl");
+        butt81.setDisable(true);
         butt81.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Orange Circle");
             SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);

@@ -36,7 +36,7 @@ public class And extends Gate implements GateInterface {
                 showOutputOnConsole(0, true);
                 outputPins[0].getDataObject().setData(false);
             }
-            System.out.println("And out: " + outputPins[0].getDataObject().getData());
+            //System.out.println("And out: " + outputPins[0].getDataObject().getData());
             return false;
         } else {
             return true;

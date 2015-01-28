@@ -36,7 +36,7 @@ public class Nand extends Gate implements GateInterface {
                 showOutputOnConsole(0, false);
                 outputPins[0].getDataObject().setData(true);
             }
-            System.out.println("Nand out: " + outputPins[0].getDataObject().getData());
+            //System.out.println("Nand out: " + outputPins[0].getDataObject().getData());
             return false;
         } else {
             return true;
