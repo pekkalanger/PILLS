@@ -25,16 +25,12 @@ public class Not extends Gate implements GateInterface {
     @Override
     public boolean update(long deltaTime) {
         if (getInputPin(0) != null && getOutputPin(0) != null) {
-            if (getInputPin(0).getDataObject() != null && getOutputPin(0).getDataObject() != null) {
-                if (getInputPin(0).getDataObject().getData() == true) {
-                    if (getOutputPin(0).getDataObject() != null) {
-                        showOutputOnConsole(0, true);
-                        getOutputPin(0).getDataObject().setData(false);
-                    }
-                } else if (getInputPin(0).getDataObject().getData() == false) {
-                    showOutputOnConsole(0, false);
-                    getOutputPin(0).getDataObject().setData(true);
-                }
+            if (getInputPin(0).getDataObject().getData() == true && getOutputPin(0).getDataObject() != null) {
+                showOutputOnConsole(0, true);
+                getOutputPin(0).getDataObject().setData(false);
+            } else if (getInputPin(0).getDataObject().getData() == false) {
+                showOutputOnConsole(0, false);
+                getOutputPin(0).getDataObject().setData(true);
             }
             return false;
         } else {

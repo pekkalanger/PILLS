@@ -22,11 +22,10 @@ import javafx.scene.Group;
 
 public class OutputPinObject extends PinObject {
 
-    OutputPin outputPin;
+    
 
     public OutputPinObject(Group g, int x, int y, OutputPin op, String n) {
-        super(n, x, y);
-        this.outputPin = op;
+        super(n, x, y, op);
         infoImage = Textures.outputInfo;
         gateImage = Textures.outputPin;
         rectangle = createPinRectangle(this, outputPin, g);

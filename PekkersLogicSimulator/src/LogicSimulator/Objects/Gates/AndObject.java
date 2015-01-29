@@ -19,8 +19,6 @@ package LogicSimulator.Objects.Gates;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.And;
-import LogicSimulator.Objects.Gates.GateLogic.InputPin;
-import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
@@ -30,12 +28,9 @@ public class AndObject extends GateObject {
         super();
         group = new Group();
         name = "And Gate";
+        gate = new And(name);
         infoImage = Textures.andTruth;
         gateImage = Textures.andGate;
-        gate = new And();
-        gate.setInputPin(0, new InputPin());
-        gate.setInputPin(1, new InputPin());
-        gate.setOutputPin(0, new OutputPin());
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));

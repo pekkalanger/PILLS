@@ -38,7 +38,10 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-public class PinObject implements PInterface {
+public abstract class PinObject implements PInterface {
+
+    protected InputPin inputPin;
+    protected OutputPin outputPin;
 
     protected String name;
     protected int x; // schematicRectangle translate
@@ -51,17 +54,34 @@ public class PinObject implements PInterface {
     protected List<ConnectionLineObject> connectionLineObjects;
     protected ConnectionLineObject connectionLineObject2;
 
+    public PinObject(String n, int x, int y, OutputPin op) {
+        this(n, x, y);
+        inputPin = null;
+        outputPin = op;
+
+    }
+
+    public PinObject(String n, int x, int y, InputPin ip) {
+        this(n, x, y);
+        inputPin = ip;
+        outputPin = null;
+    }
+
     public PinObject(String n, int x, int y) {
-        infoImage = Textures.texture;
-        gateImage = Textures.texture;
+        this();
         name = n;
         this.x = x;
         this.y = y;
+        rectangle.setTranslateX(x);
+        rectangle.setTranslateY(y);
+    }
+
+    public PinObject() {
+        infoImage = Textures.texture;
+        gateImage = Textures.texture;
         connectionLineObjects = new ArrayList<>();
         connectionLineObject2 = new ConnectionLineObject();
         rectangle = new Rectangle(width, height);
-        rectangle.setTranslateX(x);
-        rectangle.setTranslateY(y);
     }
 
     public String getName() {

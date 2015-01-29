@@ -18,8 +18,8 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 public class Nand extends Gate implements GateInterface {
 
-    public Nand() {
-        super(2, 1, "Nand"); // create 2 inputs and 1 output
+    public Nand(String name) {
+        super(2, 1, name); // create 2 inputs and 1 output
 
     }
 

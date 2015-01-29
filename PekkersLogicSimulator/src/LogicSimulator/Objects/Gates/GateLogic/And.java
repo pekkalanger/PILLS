@@ -18,8 +18,8 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 public class And extends Gate implements GateInterface {
 
-    public And() {
-        super(2, 1, "And"); // create 2 inputs and 1 output
+    public And(String name) {
+        super(2, 1, name); // create 2 inputs and 1 output
     }
 
     @Override

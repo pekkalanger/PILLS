@@ -51,12 +51,12 @@ public class Led extends Gate implements GateInterface {
     public boolean update(long deltaTime) {
         if (getInputPin(0) != null) {
             if (getDataObject() != null) {
-                if (last != getDataObject().getData()) {
+                if (isLast() != getDataObject().getData()) {
                     Globals.main.showOnConsole("LED = " + getDataObject().getData());
                 }
                 dataObject = getInputPin(0).getDataObject();
                 if (getDataObject() != null) {
-                    last = getDataObject().getData();
+                    setLast(getDataObject().getData());
                 }
                 //System.out.print("Led status: ");
                 //System.out.println(dataObject.getData());

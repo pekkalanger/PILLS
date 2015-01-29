@@ -22,13 +22,13 @@ import LogicSimulator.Globals;
  *
  * @author PEKKA
  */
-public class Gate implements GateInterface {
+public abstract class Gate implements GateInterface {
 
     private String name = "unnamed";
-    boolean last = false;
+    private boolean last = false;
     private InputPin[] inputPins;
     private OutputPin[] outputPins;
-
+    
     public Gate() {
 
     }
@@ -36,9 +36,15 @@ public class Gate implements GateInterface {
     public Gate(int in, int out) {
         if (in > 0) {
             inputPins = new InputPin[in];
+            for(int i = 0; i < inputPins.length; i++){
+                inputPins[i] = new InputPin();
+            }
         }
         if (out > 0) {
             outputPins = new OutputPin[out];
+            for(int i = 0; i < outputPins.length; i++){
+                outputPins[i] = new OutputPin();
+            }
         }
     }
 

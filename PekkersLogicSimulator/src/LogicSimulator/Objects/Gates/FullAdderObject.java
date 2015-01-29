@@ -17,8 +17,6 @@
 package LogicSimulator.Objects.Gates;
 
 import LogicSimulator.Objects.Gates.GateLogic.FullAdder;
-import LogicSimulator.Objects.Gates.GateLogic.InputPin;
-import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Textures;
@@ -34,14 +32,10 @@ public class FullAdderObject extends GateObject {
         super();
         group = new Group();
         name = "Full Adder";
+        gate = new FullAdder();
         infoImage = Textures.texture;
         gateImage = Textures.andGate;
-        gate = new FullAdder();       //fullAdder
-        gate.setInputPin(0, new InputPin());
-        gate.setInputPin(1, new InputPin());
-        gate.setInputPin(2, new InputPin());
-        gate.setOutputPin(0, new OutputPin());
-        gate.setOutputPin(1, new OutputPin());
+               //fullAdder
         inputPinObjects.add(new InputPinObject(group, 0, 10, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 30, gate.getInputPin(1), name + " PinB"));
         inputPinObjects.add(new InputPinObject(group, 20, 0, gate.getInputPin(1), name + " PinCin"));

@@ -33,9 +33,6 @@ public class OrObject extends GateObject {
         infoImage = Textures.orTruth;
         gateImage = Textures.orGate;
         gate = new Or();
-        gate.setInputPin(0, new InputPin());
-        gate.setInputPin(1, new InputPin());
-        gate.setOutputPin(0, new OutputPin());
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
