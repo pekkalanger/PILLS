@@ -95,22 +95,15 @@ public abstract class GateObject {
                     double dragY = me.getSceneY() - dragAnchor.getY();
                     double newXPosition = initX + dragX;
                     double newYPosition = initY + dragY;
-                    group.setTranslateX(newXPosition);
-                    group.setTranslateY(newYPosition);
-                    //if((initX + me.getSceneX() - dragAnchor.getX())%10 >5){
-                        group.setTranslateX((initX + me.getSceneX() - dragAnchor.getX()) + ((initX + me.getSceneX() - dragAnchor.getX())%10));
-                    /*} else {
-                        group.setTranslateX((initX + me.getSceneX() - dragAnchor.getX()) + ((initX + me.getSceneX() - dragAnchor.getX())%10)-10);
-                    }*/
-                    group.setTranslateY((initY + me.getSceneY() - dragAnchor.getY())+((initY + me.getSceneY() - dragAnchor.getY())%10));
-                    
+                    group.setTranslateX((initX + me.getSceneX() - dragAnchor.getX()) - ((initX + me.getSceneX() - dragAnchor.getX()) % 10));
+                    group.setTranslateY((initY + me.getSceneY() - dragAnchor.getY()) - ((initY + me.getSceneY() - dragAnchor.getY()) % 10));
+
                     updateLines();
                 }
                 me.consume();
             }
         });
 
-        
         group.setOnMouseClicked((MouseEvent me) -> {
             group.toFront();
             if (me.getButton() == MouseButton.MIDDLE) {
