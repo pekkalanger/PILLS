@@ -172,10 +172,9 @@ public abstract class GateObject {
             while (ipoIterator.hasNext()) {
                 InputPinObject ipo = ipoIterator.next();
                 if (Globals.main.gateGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
-                    //Line l = Globals.main.gateGroup.getChildren().get(Globals.main.gateGroup.getChildren().indexOf(lineA));
                     Globals.main.gateGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
                 }
-                destroyConnectionLines(ipo.connectionLineObjects);
+                ipo.destroyConnectionLineObjects();
                 //ipo.connectionLineObjects.get(0).logicLine = null;
                 //ipo.connectionLineObjects = null;
                 //ipo.connectionLineObject2 = null;
@@ -188,19 +187,11 @@ public abstract class GateObject {
                 if (Globals.main.gateGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
                     Globals.main.gateGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
                 }
-                destroyConnectionLines(opo.connectionLineObjects);
+                opo.destroyConnectionLineObjects();
                 //opo.connectionLineObjects.get(0).logicLine = null;
                 //opo.connectionLineObjects = null;
                 //opo.connectionLineObject2 = null;
             }
-        }
-    }
-
-    public void destroyConnectionLines(final List<ConnectionLineObject> connectionLineObjects) {
-        Iterator<ConnectionLineObject> ipoclo = connectionLineObjects.iterator();
-        while (ipoclo.hasNext()) {
-            ConnectionLineObject clo = ipoclo.next();
-            clo.destroy();
         }
     }
 

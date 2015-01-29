@@ -27,6 +27,7 @@ import LogicSimulator.InfoPopup;
 import LogicSimulator.Objects.ConnectionLineObject;
 import LogicSimulator.Textures;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
@@ -209,13 +210,6 @@ public class PinObject {
         }
     }
 
-    public void removeLine(Line line, LogicLine logicLine) {
-        if (!Globals.main.gateGroup.getChildren().contains(line)) {
-            Globals.main.gateGroup.getChildren().add(line);
-            Globals.main.logicLines.add(logicLine);
-        }
-    }
-
     public void setDragBoard(InputPin inputPin, OutputPin outputPin, InputPinObject ipo, OutputPinObject opo, Group g) {
         ClipBoard.clearDragBoard();
         ClipBoard.setInputPin(inputPin);
@@ -233,8 +227,12 @@ public class PinObject {
         ClipBoard.setConnectionLineObject2(connectionLineObject2);
     }
 
-    public void removeLines() {
-
+    public void destroyConnectionLineObjects() {
+        Iterator<ConnectionLineObject> ipoclo = connectionLineObjects.iterator();
+        while (ipoclo.hasNext()) {
+            ConnectionLineObject clo = ipoclo.next();
+            clo.destroy();
+        }
     }
 
 }

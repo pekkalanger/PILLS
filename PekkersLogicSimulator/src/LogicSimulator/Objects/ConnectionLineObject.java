@@ -73,13 +73,7 @@ public class ConnectionLineObject {
             Globals.main.connectionLineObjects.remove(this);
         }
         if (logicLine != null) {
-            if (logicLine.getInputPin(0) != null) {
-                logicLine.getInputPin(0).setDataObject(new DataObject(false));
-                logicLine.setInputPin(0, null);
-            } else if (logicLine.getOutputPin(0) != null) {
-                logicLine.getOutputPin(0).setDataObject(new DataObject(false));
-                logicLine.setOutputPin(0, null);
-            }
+            logicLine.destroy();
             logicLine = null;
         }
         //boolean last = false;

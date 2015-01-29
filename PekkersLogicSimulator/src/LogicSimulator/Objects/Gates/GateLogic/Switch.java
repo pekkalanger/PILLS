@@ -55,8 +55,8 @@ public class Switch extends Gate implements GateInterface {
         //toggle(); used as a generator/clock
         if (outputPin != null) {
             /*if (outputPin.getDataObject() != null) {
-                System.out.println("Switch status: " + outputPin.getDataObject().getData());
-            }*/
+             System.out.println("Switch status: " + outputPin.getDataObject().getData());
+             }*/
             outputPin.setDataObject(dataObject);
             return false;
         } else {

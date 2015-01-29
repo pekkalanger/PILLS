@@ -22,7 +22,7 @@ import LogicSimulator.Globals;
  *
  * @author PEKKA
  */
-public abstract class Gate {
+public class Gate implements GateInterface {
 
     String name = "unnamed";
     boolean last = false;
@@ -46,5 +46,52 @@ public abstract class Gate {
         if (outputPins[num].getDataObject().getData() == b) {
             Globals.main.showOnConsole(name + " = " + !outputPins[num].getDataObject().getData());
         }
+    }
+
+    @Override
+    public boolean update(long deltaTime) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setInputPin(int pos, InputPin ip) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public InputPin getInputPin(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setOutputPin(int pos, OutputPin op) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public OutputPin getOutputPin(int pos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setDataObject(DataObject dataObject) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public DataObject getDataObject() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void toggle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void destroy() {
+        name = "Dead";
+        inputPins = null;
+        outputPins = null;
     }
 }

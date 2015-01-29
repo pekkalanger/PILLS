@@ -15,9 +15,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package LogicSimulator.Objects.Gates.GateLogic;
-/*
- draw line from PinA.pos to PinB.pos
- */
 
 public class LogicLine implements GateInterface {
 
@@ -36,12 +33,9 @@ public class LogicLine implements GateInterface {
             pinA.setDataObject(pinB.getDataObject());
             return false;
         } else {
-            /*if (pinA == null) {
-                System.out.println("Line pinA = null");
-            }
-            if (pinB == null) {
-                System.out.println("Line pinB = null");
-            }*/
+            /*if (pinA == null) System.out.println("Line pinA = null");
+             if (pinB == null) System.out.println("Line pinB = null");
+             */
             return true;
         }
     }
@@ -84,6 +78,17 @@ public class LogicLine implements GateInterface {
     @Override
     public void toggle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void destroy() {
+        if (getInputPin(0) != null) {
+            getInputPin(0).setDataObject(new DataObject(false));
+            setInputPin(0, null);
+        } else if (getOutputPin(0) != null) {
+            getOutputPin(0).setDataObject(new DataObject(false));
+            setOutputPin(0, null);
+        }
     }
 
 }

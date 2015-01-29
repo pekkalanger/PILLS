@@ -36,4 +36,6 @@ public interface GateInterface {
     public DataObject getDataObject();
 
     public void toggle();
+
+    public void destroy();
 }
