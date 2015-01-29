@@ -16,7 +16,6 @@
  */
 package LogicSimulator.Objects;
 
-import LogicSimulator.Objects.Gates.GateLogic.DataObject;
 import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.ClipBoard;
 import LogicSimulator.Globals;
@@ -31,14 +30,14 @@ import javafx.scene.shape.Rectangle;
 
 public class ConnectionLineObject {
 
-    final String name;
-    public Line line;
-    public LogicLine logicLine;
-    Color colorOff;
-    Color colorOn;
-    boolean last = false;
-    public InputPinObject inputPinObjectSource = null;
-    public OutputPinObject outputPinObjectSource = null;
+    protected final String name;
+    protected Line line;
+    protected LogicLine logicLine;
+    protected Color colorOff;
+    protected Color colorOn;
+    protected boolean last = false;
+    protected InputPinObject inputPinObjectSource = null;
+    protected OutputPinObject outputPinObjectSource = null;
 
     public ConnectionLineObject() {
         name = "A Line";
@@ -120,6 +119,62 @@ public class ConnectionLineObject {
         } else {
             return null;
         }
+    }
+
+    public Line getLine() {
+        return line;
+    }
+
+    public void setLine(Line line) {
+        this.line = line;
+    }
+
+    public LogicLine getLogicLine() {
+        return logicLine;
+    }
+
+    public void setLogicLine(LogicLine logicLine) {
+        this.logicLine = logicLine;
+    }
+
+    public Color getColorOff() {
+        return colorOff;
+    }
+
+    public void setColorOff(Color colorOff) {
+        this.colorOff = colorOff;
+    }
+
+    public Color getColorOn() {
+        return colorOn;
+    }
+
+    public void setColorOn(Color colorOn) {
+        this.colorOn = colorOn;
+    }
+
+    public boolean isLast() {
+        return last;
+    }
+
+    public void setLast(boolean last) {
+        this.last = last;
+    }
+
+    public InputPinObject getInputPinObjectSource() {
+        return inputPinObjectSource;
+    }
+
+    public void setInputPinObjectSource(InputPinObject inputPinObjectSource) {
+        this.inputPinObjectSource = inputPinObjectSource;
+    }
+
+    public OutputPinObject getOutputPinObjectSource() {
+        return outputPinObjectSource;
+    }
+
+    public void setOutputPinObjectSource(OutputPinObject outputPinObjectSource) {
+        this.outputPinObjectSource = outputPinObjectSource;
     }
 
 }

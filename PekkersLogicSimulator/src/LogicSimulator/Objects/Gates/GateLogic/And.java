@@ -19,68 +19,24 @@ package LogicSimulator.Objects.Gates.GateLogic;
 public class And extends Gate implements GateInterface {
 
     public And() {
-        super(2, 1); // create 2 inputs and 1 output
-        name = "And";
-        inputPins[0] = new InputPin();
-        inputPins[1] = new InputPin();
-        outputPins[0] = new OutputPin();
+        super(2, 1, "And"); // create 2 inputs and 1 output
     }
 
     @Override
     public boolean update(long deltaTime) {
-        if (inputPins[0] != null && inputPins[1] != null && outputPins[0] != null) {
-            if (inputPins[0].getDataObject().getData() == true && inputPins[1].getDataObject().getData() == true) {
+        if (getInputPin(0) != null && getInputPin(1) != null && getOutputPin(0) != null) {
+            if (getInputPin(0).getDataObject().getData() == true && getInputPin(1).getDataObject().getData() == true) {
                 showOutputOnConsole(0, false);
-                outputPins[0].getDataObject().setData(true);
+                getOutputPin(0).getDataObject().setData(true);
             } else {
                 showOutputOnConsole(0, true);
-                outputPins[0].getDataObject().setData(false);
+                getOutputPin(0).getDataObject().setData(false);
             }
             //System.out.println("And out: " + outputPins[0].getDataObject().getData());
             return false;
         } else {
             return true;
         }
-    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-    @Override
-    public void setInputPin(int pos, InputPin ip) {
-        inputPins[pos] = ip;
-    }
-
-    @Override
-    public InputPin getInputPin(int pos) {
-        return inputPins[pos];
-    }
-
-    @Override
-    public void setOutputPin(int pos, OutputPin op) {
-        outputPins[pos] = op;
-    }
-
-    @Override
-    public OutputPin getOutputPin(int pos) {
-        return outputPins[pos];
-    }
-
-    @Override
-    public void setDataObject(DataObject dataObject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public DataObject getDataObject() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void toggle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -24,10 +24,10 @@ import LogicSimulator.Globals;
  */
 public class Gate implements GateInterface {
 
-    String name = "unnamed";
+    private String name = "unnamed";
     boolean last = false;
-    InputPin[] inputPins;
-    OutputPin[] outputPins;
+    private InputPin[] inputPins;
+    private OutputPin[] outputPins;
 
     public Gate() {
 
@@ -40,6 +40,11 @@ public class Gate implements GateInterface {
         if (out > 0) {
             outputPins = new OutputPin[out];
         }
+    }
+
+    public Gate(int in, int out, String name) {
+        this(in, out);
+        this.name = name;
     }
 
     public void showOutputOnConsole(int num, boolean b) {
@@ -55,22 +60,22 @@ public class Gate implements GateInterface {
 
     @Override
     public void setInputPin(int pos, InputPin ip) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        inputPins[pos] = ip;
     }
 
     @Override
     public InputPin getInputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return inputPins[pos];
     }
 
     @Override
     public void setOutputPin(int pos, OutputPin op) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        outputPins[pos] = op;
     }
 
     @Override
     public OutputPin getOutputPin(int pos) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return outputPins[pos];
     }
 
     @Override
@@ -86,6 +91,38 @@ public class Gate implements GateInterface {
     @Override
     public void toggle() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isLast() {
+        return last;
+    }
+
+    public void setLast(boolean last) {
+        this.last = last;
+    }
+
+    public InputPin[] getInputPins() {
+        return inputPins;
+    }
+
+    public void setInputPins(InputPin[] inputPins) {
+        this.inputPins = inputPins;
+    }
+
+    public OutputPin[] getOutputPins() {
+        return outputPins;
+    }
+
+    public void setOutputPins(OutputPin[] outputPins) {
+        this.outputPins = outputPins;
     }
 
     @Override

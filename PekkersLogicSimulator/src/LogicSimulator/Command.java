@@ -14,22 +14,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package LogicSimulator.Objects.Gates.GateLogic;
+package LogicSimulator;
 
 /**
  *
  * @author PEKKA
  */
-public class FullAdder extends Gate implements GateInterface {
+public interface Command {
 
-    public FullAdder() {
-        super(3, 2, "Full Adder"); // create 2 inputs and 1 output
-    }
+    public void execute();
 
-    @Override
-    public boolean update(long deltaTime) {
-        // full adder logix
-        return false;
-    }
-
+    public void undo();
 }

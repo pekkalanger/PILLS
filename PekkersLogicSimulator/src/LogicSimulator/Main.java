@@ -221,7 +221,7 @@ public class Main extends Application {
                     next.update(delta);
                 }
                 for (ConnectionLineObject next : connectionLineObjects) {
-                    if (next != null && next.logicLine != null) {
+                    if (next != null && next.getLogicLine() != null) {
                         next.update(delta);
                     }
                 }

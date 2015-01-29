@@ -52,6 +52,22 @@ public class ClipBoard {
 
     }
 
+    public static Object getObject() {
+        return object;
+    }
+
+    public static void setObject(Object object) {
+        ClipBoard.object = object;
+    }
+
+    public static GateInterface getGate() {
+        return gate;
+    }
+
+    public static void setGate(GateInterface gate) {
+        ClipBoard.gate = gate;
+    }
+
     public static void setGateObject(GateObject go) {
         gateObject = go;
     }

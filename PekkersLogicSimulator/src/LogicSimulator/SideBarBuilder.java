@@ -68,6 +68,7 @@ public class SideBarBuilder {
         InfoPopup.setinfoPopup(butt1, Textures.notGate);
         butt1.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new not gate");
+            //CommandManager.commandManager.executeCommand(new AddGateCommand(new NotObject()));
             NotObject notObject = new NotObject();
             main.gateObjects.add(notObject);
             event.consume();
@@ -319,4 +320,24 @@ public class SideBarBuilder {
         return label;
     }
 
+    public class AddGateCommand implements Command {
+
+        public AddGateCommand() {
+            //this.photos = p;
+            //this.album = a;
+        }
+
+        public void redo() {
+            //album.removePhotos(photos);
+        }
+
+        public void undo() {
+            //album.addPhotos(photos);
+        }
+
+        @Override
+        public void execute() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 }

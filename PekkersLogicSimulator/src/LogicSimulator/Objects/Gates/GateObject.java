@@ -36,30 +36,38 @@ import javafx.scene.shape.Rectangle;
 
 public abstract class GateObject {
 
-    List<InputPinObject> inputPinObjects;
-    List<OutputPinObject> outputPinObjects;
-    public double width = 32;
-    public double height = 32;
-    double x;
-    double y;
-    String name;
-    Group group;
-    GateInterface gate;
-    Rectangle rectangle;
+    protected List<InputPinObject> inputPinObjects;
+    protected List<OutputPinObject> outputPinObjects;
+    protected double width = 32;
+    protected double height = 32;
+    protected double x;
+    protected double y;
+    protected String name;
+    protected Group group;
+    protected GateInterface gate;
+    protected Rectangle rectangle;
     protected double initX;
     protected double initY;
     protected Point2D dragAnchor;
-    Image infoImage;
-    Image gateImage;
+    protected Image infoImage;
+    protected Image gateImage;
 
     public GateObject() {
-        infoImage = Textures.texture;
-        gateImage = Textures.texture;
-        group = new Group();
-        inputPinObjects = new ArrayList<>();
-        outputPinObjects = new ArrayList<>();
-        x = group.getTranslateX();
-        y = group.getTranslateY();
+        this.inputPinObjects = new ArrayList<>();
+        this.outputPinObjects = new ArrayList<>();
+        width = 32;
+        height = 32;
+        this.x = 0;
+        this.y = 0;
+        this.name = "unnamed";
+        this.group = new Group();
+        this.gate = null;
+        this.rectangle = null;
+        this.initX = 0;
+        this.initY = 0;
+        this.dragAnchor = Point2D.ZERO;
+        this.infoImage = Textures.texture;
+        this.gateImage = Textures.texture;
     }
 
     public Rectangle initRectangle(double x, double y) {
@@ -115,15 +123,15 @@ public abstract class GateObject {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
                 InputPinObject ipo = iterator.next();
-                Iterator<ConnectionLineObject> ipoclo = ipo.connectionLineObjects.iterator();
+                Iterator<ConnectionLineObject> ipoclo = ipo.getConnectionLineObjects().iterator();
                 while (ipoclo.hasNext()) {
                     ConnectionLineObject clo = ipoclo.next();
-                    if (ipo == clo.inputPinObjectSource && clo.line != null) {
-                        clo.line.endXProperty().set(4 + ipo.x + group.getTranslateX());  // pin width 8, mid 8/2=4
-                        clo.line.endYProperty().set(4 + ipo.y + group.getTranslateY());
-                    } else if (clo.line != null) {
-                        clo.line.startXProperty().set(4 + ipo.x + group.getTranslateX());
-                        clo.line.startYProperty().set(4 + ipo.y + group.getTranslateY());
+                    if (ipo == clo.getInputPinObjectSource() && clo.getLine() != null) {
+                        clo.getLine().endXProperty().set(4 + ipo.getX() + group.getTranslateX());  // pin width 8, mid 8/2=4
+                        clo.getLine().endYProperty().set(4 + ipo.getY() + group.getTranslateY());
+                    } else if (clo.getLine() != null) {
+                        clo.getLine().startXProperty().set(4 + ipo.getX() + group.getTranslateX());
+                        clo.getLine().startYProperty().set(4 + ipo.getY() + group.getTranslateY());
                     }
                 }
             }
@@ -132,15 +140,15 @@ public abstract class GateObject {
             Iterator<OutputPinObject> iterator = outputPinObjects.iterator();
             while (iterator.hasNext()) {
                 OutputPinObject opo = iterator.next();
-                Iterator<ConnectionLineObject> opoclo = opo.connectionLineObjects.iterator();
+                Iterator<ConnectionLineObject> opoclo = opo.getConnectionLineObjects().iterator();
                 while (opoclo.hasNext()) {
                     ConnectionLineObject clo = opoclo.next();
-                    if (opo == clo.outputPinObjectSource && clo.line != null) {
-                        clo.line.endXProperty().set(4 + opo.x + group.getTranslateX());
-                        clo.line.endYProperty().set(4 + opo.y + group.getTranslateY());
-                    } else if (clo.line != null) {
-                        clo.line.startXProperty().set(4 + opo.x + group.getTranslateX());
-                        clo.line.startYProperty().set(4 + opo.y + group.getTranslateY());
+                    if (opo == clo.getOutputPinObjectSource() && clo.getLine() != null) {
+                        clo.getLine().endXProperty().set(4 + opo.getX() + group.getTranslateX());
+                        clo.getLine().endYProperty().set(4 + opo.getY() + group.getTranslateY());
+                    } else if (clo.getLine() != null) {
+                        clo.getLine().startXProperty().set(4 + opo.getX() + group.getTranslateX());
+                        clo.getLine().startYProperty().set(4 + opo.getY() + group.getTranslateY());
                         //System.out.println("output is not the same");
                     }
                 }
@@ -166,13 +174,14 @@ public abstract class GateObject {
     public void destroy() {
         Globals.main.showOnConsole("Removed specified Gate");
         Globals.main.gateGroup.getChildren().remove(group);
+        gate.destroy();
         gate = null;
         if (inputPinObjects != null) {
             Iterator<InputPinObject> ipoIterator = inputPinObjects.iterator();
             while (ipoIterator.hasNext()) {
                 InputPinObject ipo = ipoIterator.next();
-                if (Globals.main.gateGroup.getChildren().contains(ipo.connectionLineObjects.get(0).line)) {
-                    Globals.main.gateGroup.getChildren().remove(ipo.connectionLineObjects.get(0).line);
+                if (Globals.main.gateGroup.getChildren().contains(ipo.getConnectionLineObjects().get(0).getLine())) {
+                    Globals.main.gateGroup.getChildren().remove(ipo.getConnectionLineObjects().get(0).getLine());
                 }
                 ipo.destroyConnectionLineObjects();
                 //ipo.connectionLineObjects.get(0).logicLine = null;
@@ -184,8 +193,8 @@ public abstract class GateObject {
             Iterator<OutputPinObject> opoIterator = outputPinObjects.iterator();
             while (opoIterator.hasNext()) {
                 OutputPinObject opo = opoIterator.next();
-                if (Globals.main.gateGroup.getChildren().contains(opo.connectionLineObjects.get(0).line)) {
-                    Globals.main.gateGroup.getChildren().remove(opo.connectionLineObjects.get(0).line);
+                if (Globals.main.gateGroup.getChildren().contains(opo.getConnectionLineObjects().get(0).getLine())) {
+                    Globals.main.gateGroup.getChildren().remove(opo.getConnectionLineObjects().get(0).getLine());
                 }
                 opo.destroyConnectionLineObjects();
                 //opo.connectionLineObjects.get(0).logicLine = null;
@@ -201,5 +210,85 @@ public abstract class GateObject {
         if (gate != null) {
             gate.update(deltaTime);
         }
+    }
+
+    public List<InputPinObject> getInputPinObjects() {
+        return inputPinObjects;
+    }
+
+    public void setInputPinObjects(List<InputPinObject> inputPinObjects) {
+        this.inputPinObjects = inputPinObjects;
+    }
+
+    public List<OutputPinObject> getOutputPinObjects() {
+        return outputPinObjects;
+    }
+
+    public void setOutputPinObjects(List<OutputPinObject> outputPinObjects) {
+        this.outputPinObjects = outputPinObjects;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public GateInterface getGate() {
+        return gate;
+    }
+
+    public void setGate(GateInterface gate) {
+        this.gate = gate;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 }

@@ -38,18 +38,18 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-public class PinObject {
+public class PinObject implements PInterface {
 
-    String name;
-    public int x; // schematicRectangle translate
-    public int y;
-    static final int width = 8;
-    static final int height = 8;
+    protected String name;
+    protected int x; // schematicRectangle translate
+    protected int y;
+    protected static final int width = 8;
+    protected static final int height = 8;
     protected Rectangle rectangle;
-    Image infoImage;
-    Image gateImage;
-    public List<ConnectionLineObject> connectionLineObjects;
-    public ConnectionLineObject connectionLineObject2;
+    protected Image infoImage;
+    protected Image gateImage;
+    protected List<ConnectionLineObject> connectionLineObjects;
+    protected ConnectionLineObject connectionLineObject2;
 
     public PinObject(String n, int x, int y) {
         infoImage = Textures.texture;
@@ -62,6 +62,70 @@ public class PinObject {
         rectangle = new Rectangle(width, height);
         rectangle.setTranslateX(x);
         rectangle.setTranslateY(y);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public Image getInfoImage() {
+        return infoImage;
+    }
+
+    public void setInfoImage(Image infoImage) {
+        this.infoImage = infoImage;
+    }
+
+    public Image getGateImage() {
+        return gateImage;
+    }
+
+    public void setGateImage(Image gateImage) {
+        this.gateImage = gateImage;
+    }
+
+    public List<ConnectionLineObject> getConnectionLineObjects() {
+        return connectionLineObjects;
+    }
+
+    public void setConnectionLineObjects(List<ConnectionLineObject> connectionLineObjects) {
+        this.connectionLineObjects = connectionLineObjects;
+    }
+
+    public ConnectionLineObject getConnectionLineObject2() {
+        return connectionLineObject2;
+    }
+
+    public void setConnectionLineObject2(ConnectionLineObject connectionLineObject2) {
+        this.connectionLineObject2 = connectionLineObject2;
+    }
+
+    public void setRectangle(Rectangle r) {
+        rectangle = r;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 
     public Rectangle createPinRectangle(InputPinObject ipo, final InputPin inputPin, final Group g) {
@@ -78,7 +142,7 @@ public class PinObject {
                     setDragBoard(inputPin, null, ipo, null, g);
                 } else if (ClipBoard.getOutputPin() != null) {
                     if (ClipBoard.getConnectionLineObject2() != null) {
-                        LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
+                        LogicLine ll = ClipBoard.getConnectionLineObject2().getLogicLine();
                         nullLogicLine(ll);
                         ClipBoard.setConnectionLineObject2(null);
                     }
@@ -86,8 +150,8 @@ public class PinObject {
                     logicLine.setInputPin(0, inputPin);
                     logicLine.setOutputPin(0, ClipBoard.getOutputPin());
                     ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
-                    connectionLineObject3.logicLine = logicLine;
-                    connectionLineObject3.inputPinObjectSource = ipo;
+                    connectionLineObject3.setLogicLine(logicLine);
+                    connectionLineObject3.setInputPinObjectSource(ipo);
                     connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
@@ -130,7 +194,7 @@ public class PinObject {
                     setDragBoard(null, outputPin, null, opo, g);
                 } else if (ClipBoard.getInputPin() != null) {
                     if (ClipBoard.getConnectionLineObject2() != null) {
-                        LogicLine ll = ClipBoard.getConnectionLineObject2().logicLine;
+                        LogicLine ll = ClipBoard.getConnectionLineObject2().getLogicLine();
                         nullLogicLine(ll);
                         ClipBoard.setConnectionLineObject2(null);
                     }
@@ -138,8 +202,8 @@ public class PinObject {
                     logicLine.setInputPin(0, ClipBoard.getInputPin());
                     logicLine.setOutputPin(0, outputPin);
                     ConnectionLineObject connectionLineObject3 = new ConnectionLineObject();
-                    connectionLineObject3.logicLine = logicLine;
-                    connectionLineObject3.outputPinObjectSource = opo;
+                    connectionLineObject3.setLogicLine(logicLine);
+                    connectionLineObject3.setOutputPinObjectSource(opo);
                     connectionLineObjects.add(connectionLineObject3);
                     connectionLineObject2 = ClipBoard.getConnectionLineObject();
                     Line line = connectionLineObject3.createLine(connectionLineObject2, g, rectangle, rectangle.getWidth(), rectangle.getHeight());
@@ -168,14 +232,6 @@ public class PinObject {
         setOnMousePressedReleased(gateImage);
         InfoPopup.setinfoPopup(rectangle, infoImage);
 
-        return rectangle;
-    }
-
-    public void setRectangle(Rectangle r) {
-        rectangle = r;
-    }
-
-    public Rectangle getRectangle() {
         return rectangle;
     }
 
@@ -215,7 +271,7 @@ public class PinObject {
         ClipBoard.setInputPin(inputPin);
         ClipBoard.setOutputPin(outputPin);
         if (connectionLineObject != null) {
-            ClipBoard.setLine(connectionLineObject.line);
+            ClipBoard.setLine(connectionLineObject.getLine());
         }
         ClipBoard.setGroup(g);
         ClipBoard.setName(name);
