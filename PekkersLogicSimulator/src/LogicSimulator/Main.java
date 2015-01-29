@@ -62,6 +62,9 @@ public class Main extends Application {
     int consoleWidth = 700;
     int consoleHeight = 200;
 
+    public int gridWidth = 16;
+    public int gridHeight = 16;
+    
     /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
     public List<Line> lines;
@@ -141,13 +144,13 @@ public class Main extends Application {
          */
 
         /* draw a grid on screen*/
-        for (int i = 0; i < schematicWidth; i += 10) {
+        for (int i = 0; i < schematicWidth; i += gridWidth) {
             Line gridLine = new Line(i, 0, i, schematicRectangle.getHeight());
             gridLine.setStroke(Color.LIGHTGRAY);
             gridLine.setStrokeWidth(1);
             schematicGroup.getChildren().add(gridLine);
         }
-        for (int i = 0; i < schematicHeigth; i += 10) {
+        for (int i = 0; i < schematicHeigth; i += gridHeight) {
             Line gridLine = new Line(0, i, schematicRectangle.getWidth(), i);
             gridLine.setStroke(Color.LIGHTGRAY);
             gridLine.setStrokeWidth(1);
