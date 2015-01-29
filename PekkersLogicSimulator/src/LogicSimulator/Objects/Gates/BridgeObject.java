@@ -40,7 +40,6 @@ public class BridgeObject extends GateObject {
         width = 8;
         height = 8;
         inputPinObjects.add(new InputPinObject(group, 0, 0, gate.getInputPin(0), name + " PinA"));
-        //inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 16, 0, gate.getOutputPin(0), name + " PinQ"));
 
         rectangle = initRectangle(8, 0);

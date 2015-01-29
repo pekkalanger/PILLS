@@ -42,7 +42,6 @@ public abstract class PinObject implements PInterface {
 
     protected InputPin inputPin;
     protected OutputPin outputPin;
-
     protected String name;
     protected int x; // schematicRectangle translate
     protected int y;
@@ -58,7 +57,6 @@ public abstract class PinObject implements PInterface {
         this(n, x, y);
         inputPin = null;
         outputPin = op;
-
     }
 
     public PinObject(String n, int x, int y, InputPin ip) {
