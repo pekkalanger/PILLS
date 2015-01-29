@@ -70,6 +70,7 @@ public class SideBarBuilder {
             main.showOnConsole("Created new not gate");
             //CommandManager.commandManager.executeCommand(new AddGateCommand(new NotObject()));
             NotObject notObject = new NotObject();
+            //ClipBoard.setGateObject(notObject);
             main.gateObjects.add(notObject);
             event.consume();
         });

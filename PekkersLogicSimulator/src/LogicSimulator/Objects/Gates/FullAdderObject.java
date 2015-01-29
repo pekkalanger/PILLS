@@ -35,7 +35,7 @@ public class FullAdderObject extends GateObject {
         gate = new FullAdder();
         infoImage = Textures.texture;
         gateImage = Textures.andGate;
-               //fullAdder
+        //fullAdder
         inputPinObjects.add(new InputPinObject(group, 0, 10, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 30, gate.getInputPin(1), name + " PinB"));
         inputPinObjects.add(new InputPinObject(group, 20, 0, gate.getInputPin(1), name + " PinCin"));

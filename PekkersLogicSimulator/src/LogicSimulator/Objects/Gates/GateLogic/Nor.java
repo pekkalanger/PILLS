@@ -25,17 +25,17 @@ public class Nor extends Gate implements GateInterface {
     @Override
     public boolean update(long deltaTime) {
         //if (getInputPin(0) != null && getInputPin(1) != null && getOutputPin(0) != null) {
-            if (getInputPin(0).getDataObject().getData() == false && getInputPin(1).getDataObject().getData() == false) {
-                showOutputOnConsole(0, false);
-                getOutputPin(0).getDataObject().setData(true);
-            } else {
-                showOutputOnConsole(0, true);
-                getOutputPin(0).getDataObject().setData(false);
-            }
-            //System.out.println("Nor out: " + outputPins[0].getDataObject().getData());
-            return false;
+        if (getInputPin(0).getDataObject().getData() == false && getInputPin(1).getDataObject().getData() == false) {
+            showOutputOnConsole(0, false);
+            getOutputPin(0).getDataObject().setData(true);
+        } else {
+            showOutputOnConsole(0, true);
+            getOutputPin(0).getDataObject().setData(false);
+        }
+        //System.out.println("Nor out: " + outputPins[0].getDataObject().getData());
+        return false;
         //} else {
-          //  return true;
+        //  return true;
         //}
     }
 

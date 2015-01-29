@@ -22,8 +22,6 @@ import javafx.scene.Group;
 
 public class InputPinObject extends PinObject {
 
-
-
     public InputPinObject(Group g, int x, int y, InputPin ip, String n) {
         super(n, x, y);
         this.inputPin = ip;

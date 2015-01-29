@@ -26,7 +26,6 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
@@ -40,6 +39,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
@@ -116,7 +116,7 @@ public class Main extends Application {
 
         rootHBox = new HBox(2);         // contains sideBar and rootVBox
         rootVBox = new VBox(2);         // contains schematicRectangle and console
-        rootHBox.setSpacing(1f);
+        rootHBox.setSpacing(2f);
         rootVBox.setSpacing(5f);
         //sideBar = new VBox();         // contains sidebar items
         //menuBar = new MenuBar();      // a most excelent menubar
@@ -140,15 +140,37 @@ public class Main extends Application {
          new Stop(1, Color.rgb(156,216,255)), new Stop(0, Color.rgb(156,216,255, 0.5))
          }));
          */
-        /*
-         * should draw a grid on screen 
-         */
+
+        /* draw a grid on screen*/
+        for (int i = 0; i < schematicWidth; i += 10) {
+            Line gridLine = new Line(i, 0, i, schematicRectangle.getHeight());
+            gridLine.setStroke(Color.LIGHTGRAY);
+            gridLine.setStrokeWidth(1);
+            schematicGroup.getChildren().add(gridLine);
+        }
+        for (int i = 0; i < schematicHeigth; i += 10) {
+            Line gridLine = new Line(0, i, schematicRectangle.getWidth(), i);
+            gridLine.setStroke(Color.LIGHTGRAY);
+            gridLine.setStrokeWidth(1);
+            schematicGroup.getChildren().add(gridLine);
+        }
 
         // we can set mouse event to any node, also on the schematicRectangle
         schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
             //me.consume();
         });
-
+        /*
+         schematicRectangle.setOnMouseClicked((MouseEvent me) -> {
+         if (me.getButton() == MouseButton.PRIMARY) {
+         if (ClipBoard.getGateObject() != null) {
+         ClipBoard.getGateObject().getGroup().setTranslateX(me.getSceneX() - sideBar.getWidth() - 2);
+         ClipBoard.getGateObject().getGroup().setTranslateY(me.getSceneY() - menuBar.getHeight() - 2);
+         gateObjects.add(ClipBoard.getGateObject());
+         ClipBoard.clearDragBoard();
+         }
+         }
+         });
+         */
         schematicRectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
             double translateX = event.getDeltaX();
             double translateY = event.getDeltaY();
@@ -176,26 +198,37 @@ public class Main extends Application {
             }
             // log event
             showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
-        });
-        schematicGroup.getChildren().add(gateGroup);
+        }
+        );
+        schematicGroup.getChildren()
+                .add(gateGroup);
         //gateGroup.getChildren()
-        schematicGroup.getChildren().add(schematicRectangle);
+        schematicGroup.getChildren()
+                .add(schematicRectangle);
         schematicRectangle.toBack();
 
-        rootVBox.getChildren().add(schematicGroup);
-        rootVBox.getChildren().add(console);
+        rootVBox.getChildren()
+                .add(schematicGroup);
+        rootVBox.getChildren()
+                .add(console);
 
-        rootHBox.getChildren().add(rootVBox);
-        rootGroup.getChildren().add(rootHBox);
+        rootHBox.getChildren()
+                .add(rootVBox);
+        rootGroup.getChildren()
+                .add(rootHBox);
 
         Scene scene = new Scene(rootGroup, mainWidth, mainHeight);
+
         primaryStage.setScene(scene);
 
         rootGroup.setDepthTest(DepthTest.ENABLE);
-        primaryStage.getScene().setCamera(new PerspectiveCamera());
+
+        primaryStage.getScene()
+                .setCamera(new PerspectiveCamera());
 
         Image defaultCursorImage = Textures.defaultCursor;
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
+
         scene.setCursor(imageCursor);
     }
 

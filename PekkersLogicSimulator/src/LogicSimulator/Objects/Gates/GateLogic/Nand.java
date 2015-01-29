@@ -20,7 +20,6 @@ public class Nand extends Gate implements GateInterface {
 
     public Nand(String name) {
         super(2, 1, name); // create 2 inputs and 1 output
-
     }
 
     @Override
