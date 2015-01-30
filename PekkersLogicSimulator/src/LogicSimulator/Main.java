@@ -61,8 +61,8 @@ public class Main extends Application {
     int consoleWidth = 700;
     int consoleHeight = 200;
 
-    public int gridWidth = 8;
-    public int gridHeight = 8;
+    public int gridWidth = 4;
+    public int gridHeight = 4;
 
     /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
@@ -267,11 +267,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        System.out.println("initialzing textures");
-        //Textures.initFromFile();
         Textures.initMap();
-        //Textures.initFromHttp();
-        System.out.println("textures initialzed");
         Globals.main = this;
 
         init(primaryStage);

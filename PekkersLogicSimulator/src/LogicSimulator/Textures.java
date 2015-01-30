@@ -26,17 +26,17 @@ public class Textures {
 
     public static Image getHmImage(String name) {
         Image i = hm.get(name);
-
         if (i == null) {
             System.out.println("Missing Texture: " + name);
             return new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/noimage.png");
         }
-        // if(i != null) {
         return i;
 
     }
 
     public static void initMap() {
+        System.out.println("Initializing Textures");
+        
         File folder = new File("res/");
         File[] listOfFiles = folder.listFiles();
         for (File file : listOfFiles) {
@@ -46,12 +46,13 @@ public class Textures {
                 Image i = new Image("file:res/" + str);
                 if (i != null) {
                     hm.put(str2, i);
-                    System.out.println("Resource: " + str2 + " Loaded");
+                    System.out.println("Loaded Resource: " + str2);
                 } else {
-                    System.out.println("Resource: " + str2 + " Failed");
+                    System.out.println("Failed Resource: " + str2);
                 }
             }
         }
+        System.out.println("Textures Initialized");
     }
 
     public Textures() {
