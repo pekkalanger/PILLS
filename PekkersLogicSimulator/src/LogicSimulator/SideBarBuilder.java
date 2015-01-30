@@ -59,13 +59,16 @@ public class SideBarBuilder {
 
     public VBox buildSideBarWithButtons() {
         VBox sideBar = new VBox();
-        sideBar.setSpacing(2f);
+        //sideBar.setSpacing(2f);
+        //sideBar.setPrefWidth(50);
+        //sideBar.maxWidth(50);
+
 
         /*      Create Button1                  */
         final Button butt1 = new Button();//"add not gate");
-        butt1.setGraphic(new ImageView(Textures.notGate));
+        butt1.setGraphic(new ImageView(Textures.getHmImage("notgate")));
         butt1.setTooltip(new Tooltip("Not Gate"));
-        InfoPopup.setinfoPopup(butt1, Textures.notGate);
+        InfoPopup.setinfoPopup(butt1, Textures.getHmImage("notgate"));
         butt1.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new not gate");
             //CommandManager.commandManager.executeCommand(new AddGateCommand(new NotObject()));
@@ -76,9 +79,9 @@ public class SideBarBuilder {
         });
         /*      Create Button2                  */
         final Button butt2 = new Button();//"add or gate");
-        butt2.setGraphic(new ImageView(Textures.orGate));
+        butt2.setGraphic(new ImageView(Textures.getHmImage("orgate")));
         butt2.setTooltip(new Tooltip("Or Gate"));
-        InfoPopup.setinfoPopup(butt2, Textures.orTruth);
+        InfoPopup.setinfoPopup(butt2, Textures.getHmImage("ortruth"));
         butt2.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Or gate");
             OrObject orObject = new OrObject();
@@ -87,9 +90,9 @@ public class SideBarBuilder {
         });
         /*      Create Button3                  */
         final Button butt3 = new Button();//"add and gate");
-        butt3.setGraphic(new ImageView(Textures.andGate));
+        butt3.setGraphic(new ImageView(Textures.getHmImage("andgate")));
         butt3.setTooltip(new Tooltip("And Gate"));
-        InfoPopup.setinfoPopup(butt3, Textures.andTruth);
+        InfoPopup.setinfoPopup(butt3, Textures.getHmImage("andtruth"));
         butt3.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new and gate");
             AndObject andObject = new AndObject();
@@ -98,9 +101,9 @@ public class SideBarBuilder {
         });
         /*      Create Button4                  */
         final Button butt4 = new Button();//"add nand gate");
-        butt4.setGraphic(new ImageView(Textures.nandGate));
+        butt4.setGraphic(new ImageView(Textures.getHmImage("nandgate")));
         butt4.setTooltip(new Tooltip("Nand Gate"));
-        InfoPopup.setinfoPopup(butt4, Textures.nandTruth);
+        InfoPopup.setinfoPopup(butt4, Textures.getHmImage("nandtruth"));
         butt4.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new nand gate");
             NandObject nandObject = new NandObject();
@@ -109,9 +112,9 @@ public class SideBarBuilder {
         });
         /*      Create Button5                  */
         final Button butt5 = new Button();//"add xnor gate");
-        butt5.setGraphic(new ImageView(Textures.norGate));
+        butt5.setGraphic(new ImageView(Textures.getHmImage("norgate")));
         butt5.setTooltip(new Tooltip("Nor Gate"));
-        InfoPopup.setinfoPopup(butt5, Textures.norTruth);
+        InfoPopup.setinfoPopup(butt5, Textures.getHmImage("nortruth"));
         butt5.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Nor gate");
             NorObject norObject = new NorObject();
@@ -120,9 +123,9 @@ public class SideBarBuilder {
         });
         /*      Create Button6                  */
         final Button butt6 = new Button();//"add or gate");
-        butt6.setGraphic(new ImageView(Textures.xorGate));
+        butt6.setGraphic(new ImageView(Textures.getHmImage("xorgate")));
         butt6.setTooltip(new Tooltip("Xor Gate"));
-        InfoPopup.setinfoPopup(butt6, Textures.xorTruth);
+        InfoPopup.setinfoPopup(butt6, Textures.getHmImage("xortruth"));
         butt6.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Xor gate");
             XorObject xorObject = new XorObject();
@@ -131,9 +134,9 @@ public class SideBarBuilder {
         });
         /*      Create Button7                  */
         final Button butt7 = new Button();//"add xnor gate");
-        butt7.setGraphic(new ImageView(Textures.xnorGate));
+        butt7.setGraphic(new ImageView(Textures.getHmImage("xnorgate")));
         butt7.setTooltip(new Tooltip("Xnor Gate"));
-        InfoPopup.setinfoPopup(butt7, Textures.xnorTruth);
+        InfoPopup.setinfoPopup(butt7, Textures.getHmImage("xnortruth"));
         butt7.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Xnor gate");
             XnorObject xnorObject = new XnorObject();
@@ -142,9 +145,9 @@ public class SideBarBuilder {
         });
         /*      Create Button7                  */
         final Button butt8 = new Button();
-        butt8.setGraphic(new ImageView(Textures.inputPin));
+        butt8.setGraphic(new ImageView(Textures.getHmImage("inputpin")));
         butt8.setTooltip(new Tooltip("Bridge"));
-        InfoPopup.setinfoPopup(butt8, Textures.texture);
+        InfoPopup.setinfoPopup(butt8, Textures.getHmImage("inputpin"));
         butt8.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Bridge");
             BridgeObject bridgeObject = new BridgeObject();
@@ -154,9 +157,10 @@ public class SideBarBuilder {
         /*      Create Button8                  */
         final Button butt9 = new Button();//"add not gate");    /// FULLADDER
         butt9.setDisable(true);
-        butt9.setGraphic(new ImageView(Textures.andGate));
+        //butt9.setVisible(false);
+        butt9.setGraphic(new ImageView(Textures.getHmImage("noimage")));
         butt9.setTooltip(new Tooltip("Full Adder"));
-        InfoPopup.setinfoPopup(butt9, Textures.texture);
+        InfoPopup.setinfoPopup(butt9, Textures.getHmImage("ortruth"));
         butt9.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Full Adder");
             FullAdderObject fullAdder1 = new FullAdderObject();
@@ -177,9 +181,9 @@ public class SideBarBuilder {
         });
         /*      Create Button21                  */
         final Button butt21 = new Button();//"add LED");
-        butt21.setGraphic(new ImageView(Textures.ledOn));
+        butt21.setGraphic(new ImageView(Textures.getHmImage("ledon")));
         butt21.setTooltip(new Tooltip("LED"));
-        InfoPopup.setinfoPopup(butt21, Textures.ledOn);
+        InfoPopup.setinfoPopup(butt21, Textures.getHmImage("ledon"));
         butt21.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new LED");
             LedObject ledObject = new LedObject();
@@ -190,11 +194,11 @@ public class SideBarBuilder {
         /*      Create Button79                  */
         final Button butt79 = new Button();//"square");
         butt79.setDisable(true);
-        butt79.setGraphic(new ImageView(Textures.pinOver));
+        butt79.setGraphic(new ImageView(Textures.getHmImage("pinover")));
         butt79.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new skaver");
             SexyRectangleBuilder classyGateBuilderAlpha = new SexyRectangleBuilder(main);
-            final Rectangle rectangle = classyGateBuilderAlpha.createRectangle(Textures.texture);
+            final Rectangle rectangle = classyGateBuilderAlpha.createRectangle(Textures.getHmImage("noimage"));
             rectangle.setTranslateX(400);
             rectangle.setTranslateY(300);
             rectangle.toFront();

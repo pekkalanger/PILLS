@@ -25,8 +25,8 @@ public class InputPinObject extends PinObject {
     public InputPinObject(Group g, int x, int y, InputPin ip, String n) {
         super(n, x, y);
         this.inputPin = ip;
-        infoImage = Textures.inputInfo;
-        gateImage = Textures.inputPin;
+        infoImage = Textures.getHmImage("inputinfo");
+        gateImage = Textures.getHmImage("inputpin");
         rectangle = createPinRectangle(this, ip, g);
     }
 

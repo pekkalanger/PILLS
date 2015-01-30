@@ -36,7 +36,7 @@ public class SwitchObject extends GateObject {
 
     public SwitchObject() {
         super();
-        Image cursorImage = Textures.switchCursor;
+        Image cursorImage = Textures.getHmImage("defaultcursorr2toggle");
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         group = new Group();
         group.setCursor(imageCursor);

@@ -33,7 +33,7 @@ public class NorObject extends GateObject {
         group = new Group();
         name = "Nor Gate";
         infoImage = Textures.getHmImage("nortruth");
-        gateImage = Textures.getHmImage("norgate2");
+        gateImage = Textures.getHmImage("norgate");
         gate = new Nor();
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));

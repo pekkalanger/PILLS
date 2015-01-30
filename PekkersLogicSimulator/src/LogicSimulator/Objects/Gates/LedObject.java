@@ -21,18 +21,21 @@ import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Led;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
+import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class LedObject extends GateObject {
 
     boolean last = false;
+    Image gateImage2;
 
     public LedObject() {
         super();
         group = new Group();
         infoImage = Textures.getHmImage("ledon");
         gateImage = Textures.getHmImage("ledoff");
+        gateImage2 = Textures.getHmImage("ledon");
         name = "Led";
         gate = new Led();
         gate.setInputPin(0, new InputPin());
@@ -52,9 +55,9 @@ public class LedObject extends GateObject {
             if (gate.getDataObject() != null) {
                 if (last != gate.getDataObject().getData()) {
                     if (gate.getDataObject().getData() == true) {
-                        rectangle.setFill(new ImagePattern(Textures.ledOn, 0, 0, 1, 1, true));
+                        rectangle.setFill(new ImagePattern(gateImage2, 0, 0, 1, 1, true));
                     } else {
-                        rectangle.setFill(new ImagePattern(Textures.ledOff, 0, 0, 1, 1, true));
+                        rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
                     }
                     last = false;
                 }

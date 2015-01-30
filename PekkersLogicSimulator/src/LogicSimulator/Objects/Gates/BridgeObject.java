@@ -34,7 +34,7 @@ public class BridgeObject extends GateObject {
         group = new Group();
         name = "Bridge";
         gate = new Or();
-        gateImage = Textures.pinPressed;
+        gateImage = Textures.getHmImage("pinpressed");
         width = 8;
         height = 8;
         inputPinObjects.add(new InputPinObject(group, 0, 0, gate.getInputPin(0), name + " PinA"));

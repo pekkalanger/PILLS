@@ -119,6 +119,7 @@ public class Main extends Application {
         rootVBox = new VBox(2);         // contains schematicRectangle and console
         rootHBox.setSpacing(2f);
         rootVBox.setSpacing(5f);
+        //rootHBox.set
         //sideBar = new VBox();         // contains sidebar items
         //menuBar = new MenuBar();      // a most excelent menubar
         gateGroup = new Group();   // where schematicGroup and lineGroup? r comin  
@@ -130,6 +131,7 @@ public class Main extends Application {
 
         SideBarBuilder classySideBarBuilder = new SideBarBuilder(this);
         sideBar = classySideBarBuilder.buildSideBarWithButtons();
+
         rootHBox.getChildren().add(sideBar);
 
         //schematicRectangle = new Rectangle(mainWidth-sideBar.getWidth(), mainHeight - schematicHeigth);
@@ -141,7 +143,7 @@ public class Main extends Application {
 
         // we can set mouse event to any node, also on the schematicRectangle
         //schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
-            //me.consume();
+        //me.consume();
         //});
         /*
          schematicRectangle.setOnMouseClicked((MouseEvent me) -> {
@@ -203,14 +205,15 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.getScene().setCamera(new PerspectiveCamera());
 
-        Image defaultCursorImage = Textures.defaultCursor;
+        Image defaultCursorImage = Textures.getHmImage("defaultcursorr");
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
+
     }
-    
+
     /* draw a grid on screen*/
     public void drawGrid() {
-        
+
         for (int i = 0; i < schematicWidth; i += gridWidth) {
             Line gridLine = new Line(i, 0, i, schematicRectangle.getHeight());
             gridLine.setStroke(Color.LIGHTGRAY);
@@ -242,7 +245,6 @@ public class Main extends Application {
             public void handle(Event event) {
                 //System.out.println("==============START===============");
                 Long delta = 0L;
-
                 for (GateObject next : gateObjects) {
                     next.update(delta);
                 }
@@ -264,17 +266,21 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        
+
         System.out.println("initialzing textures");
-        Textures.initFromFile();
+        //Textures.initFromFile();
         Textures.initMap();
         //Textures.initFromHttp();
         System.out.println("textures initialzed");
         Globals.main = this;
-        
+
         init(primaryStage);
         buildAndSetLoop();
+        showOnConsole("" + sideBar.getWidth()); // 0
+        showOnConsole("" + sideBar.getWidth()); // 0
+        showOnConsole("" + sideBar.getWidth()); // 0
         primaryStage.show();
+        showOnConsole("" + sideBar.getWidth()); //200
     }
 
     /**

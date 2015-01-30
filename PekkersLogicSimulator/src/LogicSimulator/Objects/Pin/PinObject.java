@@ -75,8 +75,8 @@ public abstract class PinObject implements PInterface {
     }
 
     public PinObject() {
-        infoImage = Textures.texture;
-        gateImage = Textures.texture;
+        infoImage = Textures.getHmImage("texture");
+        gateImage = Textures.getHmImage("texture");
         connectionLineObjects = new ArrayList<>();
         connectionLineObject2 = new ConnectionLineObject();
         rectangle = new Rectangle(width, height);
@@ -150,7 +150,7 @@ public abstract class PinObject implements PInterface {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
 
-        Image cursorImage = Textures.defaultCursorActive;
+        Image cursorImage = Textures.getHmImage("defaultcursorractive");
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
         rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
@@ -202,7 +202,7 @@ public abstract class PinObject implements PInterface {
     public Rectangle createPinRectangle(OutputPinObject opo, final OutputPin outputPin, final Group g) {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
-        Image cursorImage = Textures.defaultCursorActive;
+        Image cursorImage = Textures.getHmImage("defaultcursorractive");
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
         rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
@@ -256,7 +256,7 @@ public abstract class PinObject implements PInterface {
     public void setOnMousePressedReleased(Image i) {
         rectangle.setOnMousePressed((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
-                rectangle.setFill(new ImagePattern(Textures.pinPressed, 0, 0, 1, 1, true));
+                rectangle.setFill(new ImagePattern(Textures.getHmImage("pinpressed"), 0, 0, 1, 1, true));
                 rectangle.toFront();
                 me.consume();
             }

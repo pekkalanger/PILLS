@@ -24,8 +24,8 @@ public class OutputPinObject extends PinObject {
 
     public OutputPinObject(Group g, int x, int y, OutputPin op, String n) {
         super(n, x, y, op);
-        infoImage = Textures.outputInfo;
-        gateImage = Textures.outputPin;
+        infoImage = Textures.getHmImage("outputinfo");
+        gateImage = Textures.getHmImage("outputpin");
         rectangle = createPinRectangle(this, outputPin, g);
     }
 

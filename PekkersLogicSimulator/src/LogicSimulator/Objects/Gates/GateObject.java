@@ -66,8 +66,8 @@ public abstract class GateObject {
         this.initX = 0;
         this.initY = 0;
         this.dragAnchor = Point2D.ZERO;
-        this.infoImage = Textures.texture;
-        this.gateImage = Textures.texture;
+        this.infoImage = Textures.getHmImage("noimage");
+        this.gateImage = Textures.getHmImage("noimage");
     }
 
     public Rectangle initRectangle(double x, double y) {

@@ -19,7 +19,6 @@ package LogicSimulator.Objects.Gates;
 import LogicSimulator.Objects.Gates.GateLogic.FullAdder;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Pin.OutputPinObject;
-import LogicSimulator.Textures;
 import javafx.scene.Group;
 
 /**
@@ -27,25 +26,25 @@ import javafx.scene.Group;
  * @author PEKKA
  */
 public class FullAdderObject extends GateObject {
+    /*
+     public FullAdderObject() {
+     super();
+     group = new Group();
+     name = "Full Adder";
+     gate = new FullAdder();
+     infoImage = //Textures.texture;
+     gateImage = //Textures.andGate;
+     //fullAdder
+     inputPinObjects.add(new InputPinObject(group, 0, 10, gate.getInputPin(0), name + " PinA"));
+     inputPinObjects.add(new InputPinObject(group, 0, 30, gate.getInputPin(1), name + " PinB"));
+     inputPinObjects.add(new InputPinObject(group, 20, 0, gate.getInputPin(1), name + " PinCin"));
+     outputPinObjects.add(new OutputPinObject(group, 40, 20, gate.getOutputPin(0), name + " PinSum"));
+     outputPinObjects.add(new OutputPinObject(group, 20, 40, gate.getOutputPin(0), name + " PinCout"));
+     rectangle = initRectangle(8, 8);
+     group.getChildren().add(rectangle);
+     addPinObjects();
+     initGroup(inputPinObjects, outputPinObjects);
 
-    public FullAdderObject() {
-        super();
-        group = new Group();
-        name = "Full Adder";
-        gate = new FullAdder();
-        infoImage = Textures.texture;
-        gateImage = Textures.andGate;
-        //fullAdder
-        inputPinObjects.add(new InputPinObject(group, 0, 10, gate.getInputPin(0), name + " PinA"));
-        inputPinObjects.add(new InputPinObject(group, 0, 30, gate.getInputPin(1), name + " PinB"));
-        inputPinObjects.add(new InputPinObject(group, 20, 0, gate.getInputPin(1), name + " PinCin"));
-        outputPinObjects.add(new OutputPinObject(group, 40, 20, gate.getOutputPin(0), name + " PinSum"));
-        outputPinObjects.add(new OutputPinObject(group, 20, 40, gate.getOutputPin(0), name + " PinCout"));
-        rectangle = initRectangle(8, 8);
-        group.getChildren().add(rectangle);
-        addPinObjects();
-        initGroup(inputPinObjects, outputPinObjects);
-
-    }
-
+     }
+     */
 }

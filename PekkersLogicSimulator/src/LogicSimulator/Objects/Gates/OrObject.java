@@ -16,9 +16,7 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Or;
-import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Textures;
@@ -30,8 +28,8 @@ public class OrObject extends GateObject {
         super();
         group = new Group();
         name = "Or Gate";
-        infoImage = Textures.orTruth;
-        gateImage = Textures.orGate;
+        infoImage = Textures.getHmImage("ortruth");
+        gateImage = Textures.getHmImage("orgate");
         gate = new Or();
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));

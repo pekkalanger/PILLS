@@ -166,7 +166,7 @@ public class MenuBarBuilder {
             Platform.exit();
             event.consume();
         });
-        fileExit.setGraphic(new ImageView(Textures.exitIcon));
+        fileExit.setGraphic(new ImageView(Textures.getHmImage("exiticon")));
 
         fileMenu.getItems().addAll(fileNew, fileOpen, fileSave, fileSaveAs, new SeparatorMenuItem(), fileExit);
 
