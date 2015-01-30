@@ -18,24 +18,19 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 public class Xnor extends Gate implements GateInterface {
 
-    public Xnor() {
-        super(2, 1, "Xnor");
+    public Xnor(String name) {
+        super(2, 1, name);
     }
 
     @Override
     public boolean update(long deltaTime) {
-        if (getInputPin(0) != null && getInputPin(1) != null && getOutputPin(0) != null) {
-            if (getInputPin(0).getDataObject().getData() == getInputPin(1).getDataObject().getData()) {
-                showOutputOnConsole(0, false);
-                getOutputPin(0).getDataObject().setData(true);
-            } else {
-                showOutputOnConsole(0, true);
-                getOutputPin(0).getDataObject().setData(false);
-            }
-            //System.out.println("Xnor out: " + outputPins[0].getDataObject().getData());
-            return false;
+        if (getInputPin(0).getDataObject().getData() == getInputPin(1).getDataObject().getData()) {
+            showOutputOnConsole(0, false);
+            getOutputPin(0).getDataObject().setData(true);
         } else {
-            return true;
+            showOutputOnConsole(0, true);
+            getOutputPin(0).getDataObject().setData(false);
         }
+        return false;
     }
 }

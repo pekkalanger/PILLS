@@ -29,15 +29,8 @@ public class LogicLine implements GateInterface {
 
     @Override
     public boolean update(long deltaTime) {
-        if (pinA != null && pinB != null) {
-            pinA.setDataObject(pinB.getDataObject());
-            return false;
-        } else {
-            /*if (pinA == null) System.out.println("Line pinA = null");
-             if (pinB == null) System.out.println("Line pinB = null");
-             */
-            return true;
-        }
+        pinA.setDataObject(pinB.getDataObject());
+        return false;
     }
 
     @Override

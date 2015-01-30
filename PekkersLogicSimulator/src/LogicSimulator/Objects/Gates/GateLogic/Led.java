@@ -22,8 +22,8 @@ public class Led extends Gate implements GateInterface {
 
     DataObject dataObject;
 
-    public Led() {
-        super(1, 0, "Led");
+    public Led(String name) {
+        super(1, 0, name);
         dataObject = new DataObject(false);
     }
 
@@ -49,23 +49,16 @@ public class Led extends Gate implements GateInterface {
 
     @Override
     public boolean update(long deltaTime) {
-        if (getInputPin(0) != null) {
-            if (getDataObject() != null) {
-                if (isLast() != getDataObject().getData()) {
-                    Globals.main.showOnConsole("LED = " + getDataObject().getData());
-                }
-                dataObject = getInputPin(0).getDataObject();
-                if (getDataObject() != null) {
-                    setLast(getDataObject().getData());
-                }
-                //System.out.print("Led status: ");
-                //System.out.println(dataObject.getData());
+        if (getDataObject() != null) {
+            if (isLast() != getDataObject().getData()) {
+                Globals.main.showOnConsole("LED = " + getDataObject().getData());
             }
-            return false;
-
-        } else {
-            return true;
+            dataObject = getInputPin(0).getDataObject();
+            if (getDataObject() != null) {
+                setLast(getDataObject().getData());
+            }
         }
+        return false;
     }
 
 }

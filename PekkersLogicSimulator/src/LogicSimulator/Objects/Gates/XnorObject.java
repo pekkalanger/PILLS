@@ -32,7 +32,7 @@ public class XnorObject extends GateObject {
         name = "Xnor Gate";
         infoImage = Textures.getHmImage("xnortruth");
         gateImage = Textures.getHmImage("xnorgate");
-        gate = new Xnor();
+        gate = new Xnor(name);
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));

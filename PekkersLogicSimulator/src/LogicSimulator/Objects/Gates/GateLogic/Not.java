@@ -18,24 +18,20 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 public class Not extends Gate implements GateInterface {
 
-    public Not() {
-        super(2, 1, "Not");
+    public Not(String name) {
+        super(2, 1, name);
     }
 
     @Override
     public boolean update(long deltaTime) {
-        if (getInputPin(0) != null && getOutputPin(0) != null) {
-            if (getInputPin(0).getDataObject().getData() == true && getOutputPin(0).getDataObject() != null) {
-                showOutputOnConsole(0, true);
-                getOutputPin(0).getDataObject().setData(false);
-            } else if (getInputPin(0).getDataObject().getData() == false) {
-                showOutputOnConsole(0, false);
-                getOutputPin(0).getDataObject().setData(true);
-            }
-            return false;
-        } else {
-            return true;
+        if (getInputPin(0).getDataObject().getData() == true && getOutputPin(0).getDataObject() != null) {
+            showOutputOnConsole(0, true);
+            getOutputPin(0).getDataObject().setData(false);
+        } else if (getInputPin(0).getDataObject().getData() == false) {
+            showOutputOnConsole(0, false);
+            getOutputPin(0).getDataObject().setData(true);
         }
+        return false;
     }
 
 }

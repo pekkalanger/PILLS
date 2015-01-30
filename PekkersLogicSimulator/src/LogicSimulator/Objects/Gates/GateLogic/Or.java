@@ -18,13 +18,12 @@ package LogicSimulator.Objects.Gates.GateLogic;
 
 public class Or extends Gate implements GateInterface {
 
-    public Or() {
-        super(2, 1, "Or");
+    public Or(String name) {
+        super(2, 1, name);
     }
 
     @Override
     public boolean update(long deltaTime) {
-        //if (getInputPin(0) != null && getInputPin(1) != null && getOutputPin(0) != null) {
         if (getInputPin(0).getDataObject().getData() == true || getInputPin(1).getDataObject().getData() == true) {
             showOutputOnConsole(0, false);
             getOutputPin(0).getDataObject().setData(true);
@@ -32,10 +31,7 @@ public class Or extends Gate implements GateInterface {
             showOutputOnConsole(0, true);
             getOutputPin(0).getDataObject().setData(false);
         }
-        //System.out.println("Or out: " + outputPins[0].getDataObject().getData());
-        //}
         return false;
-
     }
 
 }

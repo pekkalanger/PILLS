@@ -62,8 +62,8 @@ public class Cube3D extends Application {
         c.ry.setAngle(45);
         Cube c2 = new Cube(50, Color.GREEN, 1);
         c2.setTranslateX(100);
-        c2.rx.setAngle(45);
-        c2.ry.setAngle(45);
+        c2.rx.setAngle(0);
+        c2.ry.setAngle(0);
         //Cube c3 = new Cube(50,Color.ORANGE,1);
         //c3.setTranslateX(-100);
         //c3.rx.setAngle(45);

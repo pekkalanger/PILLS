@@ -37,7 +37,7 @@ public class LedObject extends GateObject {
         gateImage = Textures.getHmImage("ledoff");
         gateImage2 = Textures.getHmImage("ledon");
         name = "Led";
-        gate = new Led();
+        gate = new Led(name);
         gate.setInputPin(0, new InputPin());
         inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
         rectangle = new Rectangle(width, height);

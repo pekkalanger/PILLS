@@ -28,9 +28,10 @@ public class OrObject extends GateObject {
         super();
         group = new Group();
         name = "Or Gate";
+        gate = new Or(name);
         infoImage = Textures.getHmImage("ortruth");
         gateImage = Textures.getHmImage("orgate");
-        gate = new Or();
+        
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));

@@ -33,7 +33,7 @@ public class BridgeObject extends GateObject {
         super();
         group = new Group();
         name = "Bridge";
-        gate = new Or();
+        gate = new Or(name);
         gateImage = Textures.getHmImage("pinPressed");
         width = 8;
         height = 8;
