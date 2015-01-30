@@ -31,6 +31,8 @@ import javafx.scene.shape.Rectangle;
 public class SchematicRectangle {
 
     Rectangle rectangle;
+    public int gridWidth = 8;
+    public int gridHeight = 8;
 
     public SchematicRectangle(Main main) {
 
@@ -101,13 +103,13 @@ public class SchematicRectangle {
     public Group drawGrid(Main main) {
 
         Group g = new Group();
-        for (int i = 0; i < main.schematicWidth; i += main.gridWidth) {
+        for (int i = 0; i < main.schematicWidth; i += gridWidth) {
             Line gridLine = new Line(i, 0, i, rectangle.getHeight());
             gridLine.setStroke(Color.LIGHTGRAY);
             gridLine.setStrokeWidth(1);
             g.getChildren().add(gridLine);
         }
-        for (int i = 0; i < main.schematicHeigth; i += main.gridHeight) {
+        for (int i = 0; i < main.schematicHeigth; i += gridHeight) {
             Line gridLine = new Line(0, i, rectangle.getWidth(), i);
             gridLine.setStroke(Color.LIGHTGRAY);
             gridLine.setStrokeWidth(1);

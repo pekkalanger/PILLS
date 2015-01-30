@@ -71,9 +71,6 @@ public class Main extends Application {
     int consoleWidth = 700;
     int consoleHeight = 200;
 
-    public int gridWidth = 4;
-    public int gridHeight = 4;
-
     /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
     public List<Line> lines;
@@ -85,7 +82,7 @@ public class Main extends Application {
     final ListView<String> console = new ListView<>();
 
     //create a rectangle - (XXXpx X XXXpx) in which our circles can move
-    SchematicRectangle schematicRectangle;
+    public SchematicRectangle schematicRectangle;
 
     //variables for storing initial position before drag of circle
     public double initX;
@@ -145,9 +142,7 @@ public class Main extends Application {
         rootHBox.getChildren().add(sideBar);
 
         schematicGroup.getChildren().add(gateGroup);
-
         schematicRectangle = new SchematicRectangle(this);
-
         rootVBox.getChildren().add(schematicGroup);
         rootVBox.getChildren().add(console);
         rootHBox.getChildren().add(rootVBox);
@@ -155,9 +150,9 @@ public class Main extends Application {
 
         Scene scene = new Scene(rootGroup, mainWidth, mainHeight);
 
-        rootGroup.setDepthTest(DepthTest.ENABLE);
+        //rootGroup.setDepthTest(DepthTest.ENABLE);
         primaryStage.setScene(scene);
-        primaryStage.getScene().setCamera(new PerspectiveCamera());
+        //primaryStage.getScene().setCamera(new PerspectiveCamera());
 
         Image defaultCursorImage = Textures.getHmImage("defaultcursorr");
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
