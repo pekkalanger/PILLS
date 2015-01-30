@@ -51,6 +51,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+
 public class Main extends Application {
 
     public int mainWidth = 1024;

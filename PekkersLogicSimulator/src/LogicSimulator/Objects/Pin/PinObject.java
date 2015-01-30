@@ -256,7 +256,7 @@ public abstract class PinObject implements PInterface {
     public void setOnMousePressedReleased(Image i) {
         rectangle.setOnMousePressed((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
-                rectangle.setFill(new ImagePattern(Textures.getHmImage("pinpressed"), 0, 0, 1, 1, true));
+                rectangle.setFill(new ImagePattern(Textures.getHmImage("pinPressed"), 0, 0, 1, 1, true));
                 rectangle.toFront();
                 me.consume();
             }
