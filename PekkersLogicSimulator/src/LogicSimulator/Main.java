@@ -264,8 +264,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Textures.init();
+        
+        System.out.println("initialzing textures");
+        Textures.initFromFile();
+        Textures.initMap();
+        //Textures.initFromHttp();
+        System.out.println("textures initialzed");
         Globals.main = this;
+        
         init(primaryStage);
         buildAndSetLoop();
         primaryStage.show();

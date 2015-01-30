@@ -16,9 +16,13 @@
  */
 package LogicSimulator;
 
+import java.io.File;
+import java.util.HashMap;
 import javafx.scene.image.Image;
 
 public class Textures {
+
+    public static HashMap<String, Image> hm = new HashMap<>();
 
     static public Image defaultCursor;
     static public Image defaultCursorActive;
@@ -50,15 +54,91 @@ public class Textures {
     static public Image inputInfo;
     static public Image outputInfo;
 
-    public static void init() {
-        /*      uses file: when testing, and as fallback later  if https fails   */
+    public static HashMap<String, Image> getHm() {
+        return hm;
+    }
+    public static Image getHmImage(String name) {
+        Image i = hm.get(name);
+        if(i != null) {
+            return i;
+        } else {
+            return new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/noimage.png");
+        }
+    }
+    
+    public static void setHm(HashMap<String, Image> hm) {
+        Textures.hm = hm;
+    }
 
-        /*          Fallback            */
-        //defaultCursor = new Image("file:res/defaultcursorr.png");
-        //defaultCursorActive = new Image("file:res/defaultcursorractive.png");
-        //lineCursor = new Image("file:res/linecursor.png");
-        //switchCursor = new Image("file:res/buttoncursor.png");
-        /*          Https               */
+    public static void initMap() {
+        File folder = new File("res/");
+        File[] listOfFiles = folder.listFiles();
+        for (File file : listOfFiles) {
+            if (file.isFile()) {
+                String str = file.getName();
+                String str2= str.substring(0, str.lastIndexOf('.'));
+                hm.put(str2, new Image("file:res/" + str)) ;
+                System.out.println(str2);
+            }
+        }
+    }      
+    
+    public static void initFromFile() {
+        try {
+
+            /*          Cursor              */
+            defaultCursor = new Image("file:res/defaultcursorr2.png");
+            defaultCursorActive = new Image("file:res/defaultcursorractive.png");
+            //lineCursor = new Image("file:res/linecursor.png");
+            switchCursor = new Image("file:res/defaultcursorr2toggle.png");
+
+            /*          Gates               */
+            andGate = new Image("file:res/andgate2.png");
+            orGate = new Image("file:res/orgate2.png");
+            notGate = new Image("file:res/notgate.png");
+            nandGate = new Image("file:res/nandgate2.png");
+            norGate = new Image("file:res/norgate2.png");
+            xorGate = new Image("file:res/xorgate2.png");
+            xnorGate = new Image("file:res/xnorgate2.png");
+
+            /*          Truth               */
+            andTruth = new Image("file:res/andtruth.png");
+            nandTruth = new Image("file:res/nandtruth.png");
+            orTruth = new Image("file:res/ortruth.png");
+            norTruth = new Image("file:res/nortruth.png");
+            xorTruth = new Image("file:res/xortruth.png");
+            xnorTruth = new Image("file:res/xnortruth.png");
+
+            /*          Led                 */
+            ledOff = new Image("file:res/ledoff.png");
+            ledOn = new Image("file:res/ledon.png");
+
+            /*          Switch              */
+            switchOff = new Image("file:res/buttonoff.png");
+            switchOn = new Image("file:res/buttonon.png");
+
+            /*          Pins                */
+            pinPressed = new Image("file:res/pinPressed.png");
+            pinOver = new Image("file:res/pinOver.png");
+            inputPin = new Image("file:res/inputpin.png");
+            outputPin = new Image("file:res/outputpin.png");
+
+            /*          Icons               */
+            exitIcon = new Image("file:res/exiticon.png");
+
+            /*          Other               */
+            inputInfo = new Image("file:res/inputinfo.png");
+            outputInfo = new Image("file:res/outputinfo.png");
+            texture = new Image("file:res/texture.png");
+        } catch (Exception e) {
+            System.out.println("file missink");
+
+        }
+    }
+
+    /*          Https               */
+    public static void initFromHttp() {
+
         /*          Cursor              */
         defaultCursor = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursorr2.png");
         defaultCursorActive = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/defaultcursorractive.png");
@@ -73,7 +153,6 @@ public class Textures {
         norGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/norgate2.png");
         xorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xorgate2.png");
         xnorGate = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xnorgate2.png");
-        //xorGate = new Image("file:res/xorgate2.png");
 
         /*          Truth               */
         andTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/andtruth.png");
@@ -82,25 +161,14 @@ public class Textures {
         norTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/nortruth.png");
         xorTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xortruth.png");
         xnorTruth = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/xnortruth.png");
-        /*andTruth = new Image("file:res/andtruth.png");
-         nandTruth = new Image("file:res/nandtruth.png");
-         orTruth = new Image("file:res/ortruth.png");
-         norTruth = new Image("file:res/nortruth.png");
-         xorTruth = new Image("file:res/xortruth.png");
-         xnorTruth = new Image("file:res/xnortruth.png");
-         */
 
         /*          Led                 */
         ledOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledoff.png");
         ledOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/ledon.png");
-        //ledOff = new Image("file:res/ledoff.png");
-        //ledOn = new Image("file:res/ledon.png");
 
         /*          Switch              */
         switchOff = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttonoff.png");
         switchOn = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/buttonon.png");
-        //switchOff = new Image("file:res/buttonoff.png");
-        //switchOn = new Image("file:res/buttonon.png");
 
         /*          Pins                */
         pinPressed = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/pinPressed.png");
@@ -112,8 +180,6 @@ public class Textures {
         exitIcon = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/exiticon.png");
 
         /*          Other               */
-        //inputInfo = new Image("file:res/inputinfo.png");
-        //outputInfo = new Image("file:res/outputinfo.png");
         inputInfo = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/inputinfo.png");
         outputInfo = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/outputinfo.png");
         texture = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/texture.png");

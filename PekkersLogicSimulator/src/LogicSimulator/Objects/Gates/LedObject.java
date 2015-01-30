@@ -31,8 +31,8 @@ public class LedObject extends GateObject {
     public LedObject() {
         super();
         group = new Group();
-        infoImage = Textures.ledOn;
-        gateImage = Textures.ledOff;
+        infoImage = Textures.getHmImage("ledon");
+        gateImage = Textures.getHmImage("ledoff");
         name = "Led";
         gate = new Led();
         gate.setInputPin(0, new InputPin());

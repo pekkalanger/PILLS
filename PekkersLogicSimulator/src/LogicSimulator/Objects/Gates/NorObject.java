@@ -18,9 +18,7 @@ package LogicSimulator.Objects.Gates;
 
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
-import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Nor;
-import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
@@ -34,8 +32,8 @@ public class NorObject extends GateObject {
         super();
         group = new Group();
         name = "Nor Gate";
-        infoImage = Textures.norTruth;
-        gateImage = Textures.norGate;
+        infoImage = Textures.getHmImage("nortruth");
+        gateImage = Textures.getHmImage("norgate2");
         gate = new Nor();
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));

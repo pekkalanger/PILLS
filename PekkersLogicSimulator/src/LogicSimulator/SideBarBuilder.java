@@ -165,9 +165,9 @@ public class SideBarBuilder {
         });
         /*      Create Button20                  */
         final Button butt20 = new Button();//"add Switch");
-        butt20.setGraphic(new ImageView(Textures.switchOn));
+        butt20.setGraphic(new ImageView(Textures.getHmImage("switchon")));
         butt20.setTooltip(new Tooltip("Switch"));
-        InfoPopup.setinfoPopup(butt20, Textures.switchOn);
+        InfoPopup.setinfoPopup(butt20, Textures.getHmImage("switchon"));
         butt20.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Switch");
             SwitchObject switchObject = new SwitchObject();

@@ -18,11 +18,8 @@ package LogicSimulator.Objects.Gates;
 
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
-import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Nand;
-import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
-import javafx.scene.Group;
 
 /**
  *
@@ -34,8 +31,8 @@ public class NandObject extends GateObject {
         super();
         name = "Nand Gate";
         gate = new Nand(name);
-        infoImage = Textures.nandTruth;
-        gateImage = Textures.nandGate;
+        infoImage = Textures.getHmImage("nandtruth");
+        gateImage = Textures.getHmImage("nandgate");
 
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));

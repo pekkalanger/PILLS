@@ -30,7 +30,7 @@ public class AndObject extends GateObject {
         name = "And Gate";
         gate = new And(name);
         infoImage = Textures.andTruth;
-        gateImage = Textures.andGate;
+        gateImage = Textures.getHmImage("andgate2");
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));

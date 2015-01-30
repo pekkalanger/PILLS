@@ -18,9 +18,7 @@ package LogicSimulator.Objects.Gates;
 
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
-import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Not;
-import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
@@ -30,8 +28,8 @@ public class NotObject extends GateObject {
         super();
         group = new Group();
         name = "Not Gate";
-        infoImage = Textures.notGate;
-        gateImage = Textures.notGate;
+        infoImage = Textures.hm.get("notgate");
+        gateImage = gateImage = Textures.hm.get("notgate");
         gate = new Not();
         inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));

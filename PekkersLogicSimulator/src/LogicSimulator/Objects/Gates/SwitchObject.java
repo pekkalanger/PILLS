@@ -41,8 +41,8 @@ public class SwitchObject extends GateObject {
         group = new Group();
         group.setCursor(imageCursor);
         name = "Switch";
-        infoImage = Textures.switchOn;
-        gateImage = Textures.switchOff;
+        infoImage = Textures.getHmImage("switchon");
+        gateImage = Textures.getHmImage("switchoff");
         gate = new Switch(false);
         gate.setOutputPin(0, new OutputPin());
         rectangle = initRectangle(0, 0);
@@ -56,10 +56,10 @@ public class SwitchObject extends GateObject {
             if (me.getButton() == MouseButton.SECONDARY) {
                 gate.toggle();
                 if (gate.getDataObject().getData()) {
-                    rectangle.setFill(new ImagePattern(Textures.switchOn, 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
+                    rectangle.setFill(new ImagePattern(Textures.getHmImage("switchon"), 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
 
                 } else {
-                    rectangle.setFill(new ImagePattern(Textures.switchOff, 0, 0, 1, 1, true));
+                    rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
                 }
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {

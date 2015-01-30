@@ -16,9 +16,7 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Or;
-import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Textures;
