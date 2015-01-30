@@ -36,7 +36,7 @@ public class Textures {
 
     public static void initMap() {
         System.out.println("Initializing Textures");
-        
+
         File folder = new File("res/");
         File[] listOfFiles = folder.listFiles();
         for (File file : listOfFiles) {

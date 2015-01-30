@@ -47,10 +47,6 @@ public class ClipBoard {
     private static double x = -1;
     private static double y = -1;
 
-    public ClipBoard() {
-
-    }
-
     public static Object getObject() {
         return object;
     }
