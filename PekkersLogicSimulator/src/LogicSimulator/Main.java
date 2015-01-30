@@ -36,10 +36,13 @@ import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -48,10 +51,18 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
+
+    private Pane splashLayout;
+    private ProgressBar loadProgress;
+    private Label progressText;
+    private WebView webView;
+    private static final int SPLASH_WIDTH = 676;
+    private static final int SPLASH_HEIGHT = 227;
 
     public int mainWidth = 1024;
     public int mainHeight = 768;
@@ -73,8 +84,8 @@ public class Main extends Application {
     //create a console for logging mouse events
     final ListView<String> console = new ListView<>();
 
-    //create a schematicRectangle - (XXXpx X XXXpx) in which our circles can move
-    Rectangle schematicRectangle;
+    //create a rectangle - (XXXpx X XXXpx) in which our circles can move
+    SchematicRectangle schematicRectangle;
 
     //variables for storing initial position before drag of circle
     public double initX;
@@ -115,7 +126,7 @@ public class Main extends Application {
         rootGroup = new VBox(2);        // contains menuBar and rootHBox
 
         rootHBox = new HBox(2);         // contains sideBar and rootVBox
-        rootVBox = new VBox(2);         // contains schematicRectangle and console
+        rootVBox = new VBox(2);         // contains rectangle and console
         rootHBox.setSpacing(2f);
         rootVBox.setSpacing(5f);
         //rootHBox.set
@@ -133,65 +144,9 @@ public class Main extends Application {
 
         rootHBox.getChildren().add(sideBar);
 
-        //schematicRectangle = new Rectangle(mainWidth-sideBar.getWidth(), mainHeight - schematicHeigth);
-        schematicRectangle = new Rectangle(schematicWidth, schematicHeigth);
-        schematicRectangle.setStroke(Color.WHITE);
-        schematicRectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
-            new Stop(1, Color.rgb(205, 235, 255)), new Stop(0, Color.rgb(205, 235, 255, 0.5))
-        }));
-
-        // we can set mouse event to any node, also on the schematicRectangle
-        //schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
-        //me.consume();
-        //});
-        /*
-         schematicRectangle.setOnMouseClicked((MouseEvent me) -> {
-         if (me.getButton() == MouseButton.PRIMARY) {
-         if (ClipBoard.getGateObject() != null) {
-         ClipBoard.getGateObject().getGroup().setTranslateX(me.getSceneX() - sideBar.getWidth() - 2);
-         ClipBoard.getGateObject().getGroup().setTranslateY(me.getSceneY() - menuBar.getHeight() - 2);
-         gateObjects.add(ClipBoard.getGateObject());
-         ClipBoard.clearDragBoard();
-         }
-         }
-         });
-         */
-        /*
-         schematicRectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
-         double translateX = event.getDeltaX();
-         double translateY = event.getDeltaY();
-
-         // reduce the deltas for the circles to stay in the screen
-         for (Circle c : circleList) {
-         if (c.getTranslateX() + translateX + c.getRadius() > mainWidth) {
-         translateX = mainWidth - c.getTranslateX() - c.getRadius();
-         }
-         if (c.getTranslateX() + translateX - c.getRadius() < 0) {
-         translateX = -c.getTranslateX() + c.getRadius();
-         }
-         if (c.getTranslateY() + translateY + c.getRadius() > mainHeight) {
-         translateY = mainHeight - c.getTranslateY() - c.getRadius();
-         }
-         if (c.getTranslateY() + translateY - c.getRadius() < 0) {
-         translateY = -c.getTranslateY() + c.getRadius();
-         }
-         }
-
-         // move the circles
-         for (Circle c : circleList) {
-         c.setTranslateX(c.getTranslateX() + translateX);
-         c.setTranslateY(c.getTranslateY() + translateY);
-         }
-         // log event
-         showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
-         }
-         );
-         */
-        drawGrid();
         schematicGroup.getChildren().add(gateGroup);
-        //gateGroup.getChildren()
-        schematicGroup.getChildren().add(schematicRectangle);
-        schematicRectangle.toBack();
+
+        schematicRectangle = new SchematicRectangle(this);
 
         rootVBox.getChildren().add(schematicGroup);
         rootVBox.getChildren().add(console);
@@ -208,23 +163,6 @@ public class Main extends Application {
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
 
-    }
-
-    /* draw a grid on screen*/
-    public void drawGrid() {
-
-        for (int i = 0; i < schematicWidth; i += gridWidth) {
-            Line gridLine = new Line(i, 0, i, schematicRectangle.getHeight());
-            gridLine.setStroke(Color.LIGHTGRAY);
-            gridLine.setStrokeWidth(1);
-            schematicGroup.getChildren().add(gridLine);
-        }
-        for (int i = 0; i < schematicHeigth; i += gridHeight) {
-            Line gridLine = new Line(0, i, schematicRectangle.getWidth(), i);
-            gridLine.setStroke(Color.LIGHTGRAY);
-            gridLine.setStrokeWidth(1);
-            schematicGroup.getChildren().add(gridLine);
-        }
     }
 
     public void showOnConsole(String text) {
@@ -265,11 +203,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         Textures.initMap();
-        Globals.main = this;
 
+        Globals.main = this;
         init(primaryStage);
+
         buildAndSetLoop();
         primaryStage.show();
     }
