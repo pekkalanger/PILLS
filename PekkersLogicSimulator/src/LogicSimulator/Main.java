@@ -64,7 +64,7 @@ public class Main extends Application {
 
     public int gridWidth = 16;
     public int gridHeight = 16;
-    
+
     /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
     public List<Line> lines;
