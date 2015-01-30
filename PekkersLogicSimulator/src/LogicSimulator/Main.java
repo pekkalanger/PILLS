@@ -40,7 +40,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -55,15 +54,15 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
-    int mainWidth = 1024;
-    int mainHeight = 768;
-    int schematicWidth = mainWidth - 50;
-    int schematicHeigth = 500;
+    public int mainWidth = 1024;
+    public int mainHeight = 768;
+    public int schematicWidth = mainWidth - 50;
+    public int schematicHeigth = 500;
     int consoleWidth = 700;
     int consoleHeight = 200;
 
-    public int gridWidth = 16;
-    public int gridHeight = 16;
+    public int gridWidth = 8;
+    public int gridHeight = 8;
 
     /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
@@ -133,29 +132,12 @@ public class Main extends Application {
         sideBar = classySideBarBuilder.buildSideBarWithButtons();
         rootHBox.getChildren().add(sideBar);
 
+        //schematicRectangle = new Rectangle(mainWidth-sideBar.getWidth(), mainHeight - schematicHeigth);
         schematicRectangle = new Rectangle(schematicWidth, schematicHeigth);
         schematicRectangle.setStroke(Color.WHITE);
         schematicRectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
             new Stop(1, Color.rgb(205, 235, 255)), new Stop(0, Color.rgb(205, 235, 255, 0.5))
         }));
-        /*schematicRectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[] {
-         new Stop(1, Color.rgb(156,216,255)), new Stop(0, Color.rgb(156,216,255, 0.5))
-         }));
-         */
-
-        /* draw a grid on screen*/
-        for (int i = 0; i < schematicWidth; i += gridWidth) {
-            Line gridLine = new Line(i, 0, i, schematicRectangle.getHeight());
-            gridLine.setStroke(Color.LIGHTGRAY);
-            gridLine.setStrokeWidth(1);
-            schematicGroup.getChildren().add(gridLine);
-        }
-        for (int i = 0; i < schematicHeigth; i += gridHeight) {
-            Line gridLine = new Line(0, i, schematicRectangle.getWidth(), i);
-            gridLine.setStroke(Color.LIGHTGRAY);
-            gridLine.setStrokeWidth(1);
-            schematicGroup.getChildren().add(gridLine);
-        }
 
         // we can set mouse event to any node, also on the schematicRectangle
         schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
@@ -173,51 +155,47 @@ public class Main extends Application {
          }
          });
          */
-        schematicRectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
-            double translateX = event.getDeltaX();
-            double translateY = event.getDeltaY();
+        /*
+         schematicRectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
+         double translateX = event.getDeltaX();
+         double translateY = event.getDeltaY();
 
-            // reduce the deltas for the circles to stay in the screen
-            for (Circle c : circleList) {
-                if (c.getTranslateX() + translateX + c.getRadius() > mainWidth) {
-                    translateX = mainWidth - c.getTranslateX() - c.getRadius();
-                }
-                if (c.getTranslateX() + translateX - c.getRadius() < 0) {
-                    translateX = -c.getTranslateX() + c.getRadius();
-                }
-                if (c.getTranslateY() + translateY + c.getRadius() > mainHeight) {
-                    translateY = mainHeight - c.getTranslateY() - c.getRadius();
-                }
-                if (c.getTranslateY() + translateY - c.getRadius() < 0) {
-                    translateY = -c.getTranslateY() + c.getRadius();
-                }
-            }
+         // reduce the deltas for the circles to stay in the screen
+         for (Circle c : circleList) {
+         if (c.getTranslateX() + translateX + c.getRadius() > mainWidth) {
+         translateX = mainWidth - c.getTranslateX() - c.getRadius();
+         }
+         if (c.getTranslateX() + translateX - c.getRadius() < 0) {
+         translateX = -c.getTranslateX() + c.getRadius();
+         }
+         if (c.getTranslateY() + translateY + c.getRadius() > mainHeight) {
+         translateY = mainHeight - c.getTranslateY() - c.getRadius();
+         }
+         if (c.getTranslateY() + translateY - c.getRadius() < 0) {
+         translateY = -c.getTranslateY() + c.getRadius();
+         }
+         }
 
-            // move the circles
-            for (Circle c : circleList) {
-                c.setTranslateX(c.getTranslateX() + translateX);
-                c.setTranslateY(c.getTranslateY() + translateY);
-            }
-            // log event
-            showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
-        }
-        );
-        schematicGroup.getChildren()
-                .add(gateGroup);
+         // move the circles
+         for (Circle c : circleList) {
+         c.setTranslateX(c.getTranslateX() + translateX);
+         c.setTranslateY(c.getTranslateY() + translateY);
+         }
+         // log event
+         showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
+         }
+         );
+         */
+        drawGrid();
+        schematicGroup.getChildren().add(gateGroup);
         //gateGroup.getChildren()
-        schematicGroup.getChildren()
-                .add(schematicRectangle);
+        schematicGroup.getChildren().add(schematicRectangle);
         schematicRectangle.toBack();
 
-        rootVBox.getChildren()
-                .add(schematicGroup);
-        rootVBox.getChildren()
-                .add(console);
-
-        rootHBox.getChildren()
-                .add(rootVBox);
-        rootGroup.getChildren()
-                .add(rootHBox);
+        rootVBox.getChildren().add(schematicGroup);
+        rootVBox.getChildren().add(console);
+        rootHBox.getChildren().add(rootVBox);
+        rootGroup.getChildren().add(rootHBox);
 
         Scene scene = new Scene(rootGroup, mainWidth, mainHeight);
 
@@ -232,6 +210,22 @@ public class Main extends Application {
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
 
         scene.setCursor(imageCursor);
+    }
+
+    public void drawGrid() {
+        /* draw a grid on screen*/
+        for (int i = 0; i < schematicWidth; i += gridWidth) {
+            Line gridLine = new Line(i, 0, i, schematicRectangle.getHeight());
+            gridLine.setStroke(Color.LIGHTGRAY);
+            gridLine.setStrokeWidth(1);
+            schematicGroup.getChildren().add(gridLine);
+        }
+        for (int i = 0; i < schematicHeigth; i += gridHeight) {
+            Line gridLine = new Line(0, i, schematicRectangle.getWidth(), i);
+            gridLine.setStroke(Color.LIGHTGRAY);
+            gridLine.setStrokeWidth(1);
+            schematicGroup.getChildren().add(gridLine);
+        }
     }
 
     public void showOnConsole(String text) {
