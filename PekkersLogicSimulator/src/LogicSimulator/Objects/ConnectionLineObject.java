@@ -40,7 +40,7 @@ public class ConnectionLineObject {
     protected OutputPinObject outputPinObjectSource = null;
 
     public ConnectionLineObject() {
-        name = "A Line";
+        name = " Line ";
         line = new Line();
         line.setStrokeWidth(3);
         logicLine = new LogicLine();
@@ -92,7 +92,7 @@ public class ConnectionLineObject {
             line.setEndX(width / 2 + r.getTranslateX() + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
             line.setEndY(height / 2 + r.getTranslateY() + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
             //add mouse listeners
-            Globals.main.showOnConsole("Created New Line");
+
             line.setOnMouseClicked((MouseEvent me) -> {
                 if (me.getButton() == MouseButton.MIDDLE) {
                     destroy();

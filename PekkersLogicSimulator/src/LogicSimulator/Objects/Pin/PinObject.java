@@ -181,14 +181,17 @@ public abstract class PinObject implements PInterface {
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
+                    Globals.main.showOnConsole("Created New Line from " + ClipBoard.getOutputPinObject().getName() + " to " + ipo.getName());
+                    Globals.main.showOnConsole(ClipBoard.getOutputPinObject().getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
-                    Globals.main.showOnConsole(ipo.getName() + " Removed From Clipboard");
                 } else if (ClipBoard.getInputPin() == inputPin) {
+                    Globals.main.showOnConsole(ipo.getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
-                    Globals.main.showOnConsole(ipo.getName() + " Removed From Clipboard");
                 } else if (ClipBoard.getInputPin() != inputPin && ClipBoard.getInputPin() != null) {
+                    Globals.main.showOnConsole(ClipBoard.getInputPinObject().getName() + " Removed From Clipboard");
+                    Globals.main.showOnConsole(ipo.getName() + " Copied To Clipboard");
                     setDragBoard(inputPin, null, ipo, null, g);
-                    Globals.main.showOnConsole(ipo.getName() + " Removed From Clipboard");
+
                 }
             } else if (me.getButton() == MouseButton.MIDDLE) {
                 me.consume();
@@ -237,14 +240,17 @@ public abstract class PinObject implements PInterface {
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
-                    Globals.main.showOnConsole(opo.getName() + " Removed From Clipboard");
+                    Globals.main.showOnConsole("Created New Line from " + ClipBoard.getInputPinObject().getName() + " to " + opo.getName());
+                    Globals.main.showOnConsole(ClipBoard.getInputPinObject().getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getOutputPin() == outputPin) {
                     Globals.main.showOnConsole(opo.getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getOutputPin() != outputPin && ClipBoard.getOutputPin() != null) {
+
+                    Globals.main.showOnConsole(ClipBoard.getOutputPinObject().getName() + " Removed From Clipboard");
+                    Globals.main.showOnConsole(opo.getName() + " Copied To Clipboard");
                     setDragBoard(null, outputPin, null, opo, g);
-                    Globals.main.showOnConsole(opo.getName() + " Removed From Clipboard");
                     System.out.println("sorry bro, you cant link an" + ClipBoard.getOutputPin().getClass());
                 }
             } else if (me.getButton() == MouseButton.MIDDLE) {
