@@ -16,11 +16,6 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.Objects.Gates.GateLogic.FullAdder;
-import LogicSimulator.Objects.Pin.InputPinObject;
-import LogicSimulator.Objects.Pin.OutputPinObject;
-import javafx.scene.Group;
-
 /**
  *
  * @author PEKKA

@@ -30,7 +30,6 @@ public abstract class Gate implements GateInterface {
     private OutputPin[] outputPins;
 
     public Gate() {
-
     }
 
     public Gate(int in, int out) {
