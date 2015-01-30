@@ -95,9 +95,12 @@ public abstract class GateObject {
                     double dragY = me.getSceneY() - dragAnchor.getY();
                     double newXPosition = initX + dragX;
                     double newYPosition = initY + dragY;
-                    group.setTranslateX((initX + me.getSceneX() - dragAnchor.getX()) - ((initX + me.getSceneX() - dragAnchor.getX()) % Globals.main.gridWidth));
-                    group.setTranslateY((initY + me.getSceneY() - dragAnchor.getY()) - ((initY + me.getSceneY() - dragAnchor.getY()) % Globals.main.gridHeight));
-
+                    if (newXPosition > 0 && newXPosition < (Globals.main.schematicWidth - 32)) {
+                        group.setTranslateX(newXPosition - (newXPosition % Globals.main.gridWidth));
+                    }
+                    if (newYPosition > 0 && newYPosition < (Globals.main.schematicHeigth - 32)) {
+                        group.setTranslateY((newYPosition - newYPosition % Globals.main.gridHeight));
+                    }
                     updateLines();
                 }
                 me.consume();

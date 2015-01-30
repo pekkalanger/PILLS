@@ -282,8 +282,12 @@ public class SideBarBuilder {
                 double dragY = me.getSceneY() - dragAnchor.getY();
                 double newXPosition = initX + dragX;
                 double newYPosition = initY + dragY;
-                label.setTranslateX(newXPosition);
-                label.setTranslateY(newYPosition);
+                if (newXPosition > 0 && newXPosition < (Globals.main.schematicWidth - 32)) {
+                    label.setTranslateX(newXPosition - (newXPosition % Globals.main.gridWidth));
+                }
+                if (newYPosition > 0 && newYPosition < (Globals.main.schematicHeigth - 32)) {
+                    label.setTranslateY((newYPosition - newYPosition % Globals.main.gridHeight));
+                }
                 me.consume();
             }
         });

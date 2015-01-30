@@ -97,6 +97,7 @@ public class MenuBarBuilder {
         });
 
         final MenuItem fileOpen = new MenuItem("Open");
+        fileOpen.setDisable(true);
         fileOpen.setOnAction((ActionEvent event) -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open Schematic");
@@ -126,8 +127,9 @@ public class MenuBarBuilder {
         });
 
         final MenuItem fileSave = new MenuItem("Save");
-
+        fileSave.setDisable(true);
         final MenuItem fileSaveAs = new MenuItem("Save As");
+        fileSaveAs.setDisable(true);
         fileSaveAs.setOnAction((ActionEvent event) -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Save Schematic");
@@ -170,6 +172,7 @@ public class MenuBarBuilder {
 
         // Prepare 'Extras' drop-down menu
         final javafx.scene.control.Menu extrasMenu = new javafx.scene.control.Menu("Extras");
+        extrasMenu.setDisable(true);
         extrasMenu.getItems().add(new MenuItem("001"));
         extrasMenu.getItems().add(new MenuItem("002"));
         extrasMenu.getItems().add(new MenuItem("003"));
@@ -194,7 +197,7 @@ public class MenuBarBuilder {
         final MenuItem onlineManualMenuItem = new MenuItem("Online Manual");
         onlineManualMenuItem.setVisible(false);
 
-        final MenuItem aboutMenuItem = new MenuItem("About");
+        final MenuItem aboutMenuItem = new MenuItem("Help");
         aboutMenuItem.setOnAction((ActionEvent event) -> {
             main.showOnConsole("About Menu Item was clicked");
 
@@ -202,8 +205,8 @@ public class MenuBarBuilder {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initStyle(StageStyle.UTILITY);
             dialogStage.setResizable(false);
-            dialogStage.setTitle("About");
-            Label aboutLabel = new Label("Tis tha rumored about window that yo been lookin´ fo \nleft click for moving gates and adding lines\nmiddle click for removal\nright click for toggling switches and editing labels");
+            dialogStage.setTitle("Help");
+            Label aboutLabel = new Label("Tis tha rumored help window that yo been lookin´ fo \nleft click for moving gates and adding lines\nmiddle click for removal\nright click for toggling switches and editing labels");
             aboutLabel.setAlignment(Pos.BASELINE_CENTER);
             Button okButt = new Button("Ok");
             okButt.setCancelButton(true);
