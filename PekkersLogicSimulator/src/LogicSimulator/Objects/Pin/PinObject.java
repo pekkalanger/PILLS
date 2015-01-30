@@ -180,9 +180,9 @@ public abstract class PinObject implements PInterface {
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
-                    ClipBoard.clearDragBoard();
+                    ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getInputPin() == inputPin) {
-                    ClipBoard.clearDragBoard();
+                    ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getInputPin() != inputPin && ClipBoard.getInputPin() != null) {
                     setDragBoard(inputPin, null, ipo, null, g);
                 }
@@ -232,9 +232,9 @@ public abstract class PinObject implements PInterface {
                     if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
                         Globals.main.connectionLineObjects.add(connectionLineObject3);
                     }
-                    ClipBoard.clearDragBoard();
+                    ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getOutputPin() == outputPin) {
-                    ClipBoard.clearDragBoard();
+                    ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getOutputPin() != outputPin && ClipBoard.getOutputPin() != null) {
                     setDragBoard(null, outputPin, null, opo, g);
                     System.out.println("sorry bro, you cant link an" + ClipBoard.getOutputPin().getClass());
@@ -285,7 +285,7 @@ public abstract class PinObject implements PInterface {
     }
 
     public void setDragBoard(InputPin inputPin, OutputPin outputPin, InputPinObject ipo, OutputPinObject opo, Group g) {
-        ClipBoard.clearDragBoard();
+        ClipBoard.clearClipBoard();
         ClipBoard.setInputPin(inputPin);
         ClipBoard.setOutputPin(outputPin);
         if (connectionLineObject != null) {

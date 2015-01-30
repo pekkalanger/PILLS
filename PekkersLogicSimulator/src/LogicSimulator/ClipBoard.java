@@ -33,7 +33,6 @@ import javafx.scene.shape.Line;
 public class ClipBoard {
 
     private static GateObject gateObject;
-
     public static ConnectionLineObject connectionLineObject;
     public static ConnectionLineObject connectionLineObject2;
     public static Line line;
@@ -164,8 +163,8 @@ public class ClipBoard {
         y = newY;
     }
 
-    public static void printDragBoard() {
-        System.out.println("===========Start================");
+    public static void printClipBoard() {
+        System.out.println("=======Start Of ClipBoard=========");
         System.out.println(gateObject);
         System.out.println(connectionLineObject);
         System.out.println(name);
@@ -176,10 +175,11 @@ public class ClipBoard {
         System.out.println(outputPin);
         System.out.println(x);
         System.out.println(y);
-        System.out.println("============End=================");
+        System.out.println("=======End Of Clipboard==========");
     }
 
-    public static void clearDragBoard() {
+    public static void clearClipBoard() {
+        printClipBoard();
         gateObject = null;
         connectionLineObject = null;
         connectionLineObject2 = null;
@@ -194,7 +194,6 @@ public class ClipBoard {
         outputPinObject = null;
         x = -1;
         y = -1;
-        printDragBoard();
     }
 
 }

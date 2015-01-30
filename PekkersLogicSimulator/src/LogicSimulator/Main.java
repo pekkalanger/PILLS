@@ -272,11 +272,7 @@ public class Main extends Application {
 
         init(primaryStage);
         buildAndSetLoop();
-        showOnConsole("" + sideBar.getWidth()); // 0
-        showOnConsole("" + sideBar.getWidth()); // 0
-        showOnConsole("" + sideBar.getWidth()); // 0
         primaryStage.show();
-        showOnConsole("" + sideBar.getWidth()); //200
     }
 
     /**
