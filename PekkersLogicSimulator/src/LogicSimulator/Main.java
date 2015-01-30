@@ -140,9 +140,9 @@ public class Main extends Application {
         }));
 
         // we can set mouse event to any node, also on the schematicRectangle
-        schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
+        //schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
             //me.consume();
-        });
+        //});
         /*
          schematicRectangle.setOnMouseClicked((MouseEvent me) -> {
          if (me.getButton() == MouseButton.PRIMARY) {
@@ -199,21 +199,18 @@ public class Main extends Application {
 
         Scene scene = new Scene(rootGroup, mainWidth, mainHeight);
 
-        primaryStage.setScene(scene);
-
         rootGroup.setDepthTest(DepthTest.ENABLE);
-
-        primaryStage.getScene()
-                .setCamera(new PerspectiveCamera());
+        primaryStage.setScene(scene);
+        primaryStage.getScene().setCamera(new PerspectiveCamera());
 
         Image defaultCursorImage = Textures.defaultCursor;
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
-
         scene.setCursor(imageCursor);
     }
-
+    
+    /* draw a grid on screen*/
     public void drawGrid() {
-        /* draw a grid on screen*/
+        
         for (int i = 0; i < schematicWidth; i += gridWidth) {
             Line gridLine = new Line(i, 0, i, schematicRectangle.getHeight());
             gridLine.setStroke(Color.LIGHTGRAY);
@@ -255,6 +252,7 @@ public class Main extends Application {
                     }
                 }
                 //System.out.println("===============END================");
+                event.consume();
             }
         }); // oneFrame
 
