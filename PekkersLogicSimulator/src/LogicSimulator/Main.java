@@ -33,28 +33,17 @@ import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Main extends Application {
-
-    private Pane splashLayout;
-    private ProgressBar loadProgress;
-    private Label progressText;
-    private WebView webView;
-    private static final int SPLASH_WIDTH = 676;
-    private static final int SPLASH_HEIGHT = 227;
 
     public int mainWidth = 1024;
     public int mainHeight = 768;
@@ -63,50 +52,39 @@ public class Main extends Application {
     int consoleWidth = 700;
     int consoleHeight = 200;
 
+    //variables for storing initial position before drag of circle
+    public double initX;
+    public double initY;
+    public Point2D dragAnchor;
+
+    Timeline timeline;
+
     /*      schematic objects       */ // will be saved/laoded and nulled on New.
     public List<GateObject> gateObjects;
     public List<Line> lines;
     public List<LogicLine> logicLines;
     public List<ConnectionLineObject> connectionLineObjects;
-    //public LinkedList<Circle> circleList = null;
 
-    //create a console for logging mouse events
-    final ListView<String> console = new ListView<>();
+    final ListView<String> console = new ListView<>();  //create a console for logging mouse events
 
     //create a rectangle - (XXXpx X XXXpx) in which our circles can move
     public SchematicRectangle schematicRectangle;
 
-    //variables for storing initial position before drag of circle
-    public double initX;
-    public double initY;
-    public Point2D dragAnchor;
-    public MenuBar menuBar;
+    /*          Declare groups      */
+    public MenuBar menuBar;         // an most excelent menubar
     public Group schematicGroup;
-    public Group gateGroup;  // "the schematic"  will use gateGroup later on
+    public Group gateGroup;         // "the schematic"  here we will store all gates
     public VBox rootGroup;
     public VBox rootVBox;
-    public VBox sideBar;
+    public VBox sideBar;            // contains sidebar items
     public HBox rootHBox;
     public Stage primaryStage;
-    Timeline timeline;
 
     //create a observableArrayList of logged events that will be listed in console
     final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();
 
-    {
-        //set up the console
-        console.setItems(consoleObservableList);
-        //console.setLayoutY(55);
-        console.setPrefSize(consoleWidth, consoleHeight);
-    }
-
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        //gateObjects = new ArrayList();
-        //lines = new ArrayList();
-        //connectionLineObjects = new ArrayList<>();
-        //logicLines = new LinkedList<>();
-        //lines = new LinkedList<>();
 
         primaryStage.setTitle("P.I.L.L.S pekkers incredibly logical logic simulator");
         primaryStage.setResizable(false); // this aint working so far
@@ -117,9 +95,7 @@ public class Main extends Application {
         rootVBox = new VBox(2);         // contains rectangle and console
         rootHBox.setSpacing(2f);
         rootVBox.setSpacing(5f);
-        //sideBar = new VBox();         // contains sidebar items
-        //menuBar = new MenuBar();      // an most excelent menubar
-        //gateGroup = new Group();        // where schematicGroup and lineGroup? r comin  
+
         schematicGroup = new Group();      // schematicGroup (atm gateGroup)
 
         initschematic();
@@ -133,15 +109,13 @@ public class Main extends Application {
 
         rootHBox.getChildren().add(sideBar);
 
-        //schematicGroup.getChildren().add(gateGroup);
         schematicRectangle = new SchematicRectangle(this);
         Rectangle schemrect = schematicRectangle.getRectangle();
         schematicGroup.getChildren().add(schemrect);
-        schemrect.toBack();
-
         Group grid = schematicRectangle.drawGrid(this);
         schematicGroup.getChildren().add(grid);
         grid.toBack();
+        schemrect.toBack();
 
         rootVBox.getChildren().add(schematicGroup);
         rootVBox.getChildren().add(console);
@@ -154,6 +128,13 @@ public class Main extends Application {
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
 
+    }
+
+    private void initConsole() {
+        //set up the console
+        console.setItems(consoleObservableList);
+        //console.setLayoutY(55);
+        console.setPrefSize(consoleWidth, consoleHeight);
     }
 
     public void showOnConsole(String text) {
@@ -212,10 +193,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Textures.initMap();
-
+        initConsole();
         Globals.main = this;
         init(primaryStage);
-
         buildAndSetLoop();
         primaryStage.show();
     }
