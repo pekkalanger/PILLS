@@ -142,7 +142,6 @@ public class Main extends Application {
 
     protected final void buildAndSetLoop() {        // this vill update everything 100 times per second / once every 1.666 seconds
         final int fps = 50; //  if toggle then 100on + 100off = 200/2 hertz
-        //int i;
         final Duration oneFrameAmt = Duration.millis(1000 / fps);  // "100 fps" should be enough.. for nao
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, new EventHandler() {
             @Override
