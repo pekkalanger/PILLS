@@ -18,6 +18,7 @@ package LogicSimulator;
 
 import LogicSimulator.Objects.Gates.AndObject;
 import LogicSimulator.Objects.Gates.BridgeObject;
+import LogicSimulator.Objects.Gates.FullAdderObject;
 import LogicSimulator.Objects.Gates.LedObject;
 import LogicSimulator.Objects.Gates.NandObject;
 import LogicSimulator.Objects.Gates.NorObject;
@@ -26,7 +27,6 @@ import LogicSimulator.Objects.Gates.OrObject;
 import LogicSimulator.Objects.Gates.SwitchObject;
 import LogicSimulator.Objects.Gates.XnorObject;
 import LogicSimulator.Objects.Gates.XorObject;
-import LogicSimulator.Objects.Gates.FullAdderObject;
 import javafx.event.ActionEvent;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
@@ -42,8 +42,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 
 public class SideBarBuilder {
 
@@ -191,23 +189,6 @@ public class SideBarBuilder {
             event.consume();
         });
 
-        /*      Create Button79                  */
-        final Button butt79 = new Button();//"square");
-        butt79.setDisable(true);
-        butt79.setGraphic(new ImageView(Textures.getHmImage("pinover")));
-        butt79.setOnAction((ActionEvent event) -> {
-            main.showOnConsole("Created new skaver");
-            SexyRectangleBuilder classyGateBuilderAlpha = new SexyRectangleBuilder(main);
-            final Rectangle rectangle = classyGateBuilderAlpha.createRectangle(Textures.getHmImage("noimage"));
-            rectangle.setTranslateX(400);
-            rectangle.setTranslateY(300);
-            rectangle.toFront();
-            //main.gateGroup.getChildren().add(schematicRectangle);
-            main.gateGroup.getChildren().add(rectangle);
-            event.consume();
-        });
-
-
 
         /*      Create Button99                  */
         final Button butt99 = new Button("Label");
@@ -244,13 +225,9 @@ public class SideBarBuilder {
         VBox.setVgrow(spacer1, Priority.ALWAYS);
         spacer1.setMaxHeight(20);
 
-        /*      Create Spacer2                  */
-        Region spacer2 = new Region();
-        VBox.setVgrow(spacer2, Priority.ALWAYS);
-        spacer2.setMaxHeight(20);
 
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt99, spacer2, butt79);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt99);
 
         return sideBar;
     }

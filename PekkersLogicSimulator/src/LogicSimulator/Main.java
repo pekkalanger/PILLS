@@ -20,7 +20,6 @@ import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.Objects.ConnectionLineObject;
 import LogicSimulator.Objects.Gates.GateObject;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -124,8 +123,7 @@ public class Main extends Application {
         schematicGroup = new Group();      // schematicGroup (atm gateGroup)
 
         initschematic();
-        
-        
+
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
         rootGroup.getChildren().add(menuBar);
@@ -136,7 +134,6 @@ public class Main extends Application {
         rootHBox.getChildren().add(sideBar);
 
         //schematicGroup.getChildren().add(gateGroup);
-
         schematicRectangle = new SchematicRectangle(this);
         Rectangle schemrect = schematicRectangle.getRectangle();
         schematicGroup.getChildren().add(schemrect);
@@ -196,7 +193,7 @@ public class Main extends Application {
     }
 
     public void initschematic() {
-        if(schematicGroup.getChildren().contains(gateGroup)) {
+        if (schematicGroup.getChildren().contains(gateGroup)) {
             schematicGroup.getChildren().remove(gateGroup);
         }
         gateGroup = new Group();
@@ -207,6 +204,7 @@ public class Main extends Application {
         connectionLineObjects = new ArrayList();
         logicLines = new ArrayList();
     }
+
     public void destroy() {
         timeline.stop();
     }
