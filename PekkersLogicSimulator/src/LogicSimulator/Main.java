@@ -42,7 +42,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebView;
@@ -70,7 +69,7 @@ public class Main extends Application {
     public List<Line> lines;
     public List<LogicLine> logicLines;
     public List<ConnectionLineObject> connectionLineObjects;
-    public LinkedList<Circle> circleList = null;
+    //public LinkedList<Circle> circleList = null;
 
     //create a console for logging mouse events
     final ListView<String> console = new ListView<>();
@@ -104,12 +103,11 @@ public class Main extends Application {
 
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        gateObjects = new ArrayList();
-        lines = new ArrayList();
-        connectionLineObjects = new ArrayList<>();
-        circleList = new LinkedList<>();
-        logicLines = new LinkedList<>();
-        lines = new LinkedList<>();
+        //gateObjects = new ArrayList();
+        //lines = new ArrayList();
+        //connectionLineObjects = new ArrayList<>();
+        //logicLines = new LinkedList<>();
+        //lines = new LinkedList<>();
 
         primaryStage.setTitle("P.I.L.L.S pekkers incredibly logical logic simulator");
         primaryStage.setResizable(false); // this aint working so far
@@ -120,12 +118,14 @@ public class Main extends Application {
         rootVBox = new VBox(2);         // contains rectangle and console
         rootHBox.setSpacing(2f);
         rootVBox.setSpacing(5f);
-        //rootHBox.set
         //sideBar = new VBox();         // contains sidebar items
-        //menuBar = new MenuBar();      // a most excelent menubar
-        gateGroup = new Group();   // where schematicGroup and lineGroup? r comin  
+        //menuBar = new MenuBar();      // an most excelent menubar
+        //gateGroup = new Group();        // where schematicGroup and lineGroup? r comin  
         schematicGroup = new Group();      // schematicGroup (atm gateGroup)
 
+        initschematic();
+        
+        
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
         menuBar = classyMenuBar.buildMenuBarWithMenus();
         rootGroup.getChildren().add(menuBar);
@@ -135,7 +135,7 @@ public class Main extends Application {
 
         rootHBox.getChildren().add(sideBar);
 
-        schematicGroup.getChildren().add(gateGroup);
+        //schematicGroup.getChildren().add(gateGroup);
 
         schematicRectangle = new SchematicRectangle(this);
         Rectangle schemrect = schematicRectangle.getRectangle();
@@ -152,11 +152,7 @@ public class Main extends Application {
         rootGroup.getChildren().add(rootHBox);
 
         Scene scene = new Scene(rootGroup, mainWidth, mainHeight);
-
-        //rootGroup.setDepthTest(DepthTest.ENABLE);
         primaryStage.setScene(scene);
-        //primaryStage.getScene().setCamera(new PerspectiveCamera());
-
         Image defaultCursorImage = Textures.getHmImage("defaultcursorr");
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
@@ -199,6 +195,18 @@ public class Main extends Application {
         timeline.play();
     }
 
+    public void initschematic() {
+        if(schematicGroup.getChildren().contains(gateGroup)) {
+            schematicGroup.getChildren().remove(gateGroup);
+        }
+        gateGroup = new Group();
+        schematicGroup.getChildren().add(gateGroup);
+        /* reset all lists*/
+        gateObjects = new ArrayList();
+        lines = new ArrayList();
+        connectionLineObjects = new ArrayList();
+        logicLines = new ArrayList();
+    }
     public void destroy() {
         timeline.stop();
     }

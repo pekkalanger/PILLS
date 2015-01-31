@@ -71,16 +71,7 @@ public class MenuBarBuilder {
         final MenuItem fileNew = new MenuItem("New");/*       null all the lists!!!       */
 
         fileNew.setOnAction((ActionEvent event) -> {
-            main.schematicGroup.getChildren().remove(main.gateGroup);
-            main.gateGroup = new Group();
-            main.schematicGroup.getChildren().add(main.gateGroup);
-            /* reset all lists*/
-            main.gateObjects = new ArrayList();
-            main.lines = new ArrayList();
-            main.connectionLineObjects = new ArrayList();
-            main.logicLines = new ArrayList();
-            main.circleList = new LinkedList();
-
+            main.initschematic();
             event.consume();
         });
 

@@ -207,20 +207,7 @@ public class SideBarBuilder {
             event.consume();
         });
 
-        /*      Create Button81                  */
-        final Button butt81 = new Button("circl");
-        butt81.setDisable(true);
-        butt81.setOnAction((ActionEvent event) -> {
-            main.showOnConsole("Created new Orange Circle");
-            SexyCircleBuilder sexyCircleBuilder = new SexyCircleBuilder(main);
-            final Circle c = sexyCircleBuilder.createOrangeCircle(false);
-            c.setTranslateX(300);
-            c.setTranslateY(150);
-            c.toFront();
-            main.gateGroup.getChildren().add(c);
-            main.circleList.add(c);
-            event.consume();
-        });
+
 
         /*      Create Button99                  */
         final Button butt99 = new Button("Label");
@@ -263,7 +250,7 @@ public class SideBarBuilder {
         spacer2.setMaxHeight(20);
 
         /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt99, spacer2, butt79, butt81);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt99, spacer2, butt79);
 
         return sideBar;
     }
