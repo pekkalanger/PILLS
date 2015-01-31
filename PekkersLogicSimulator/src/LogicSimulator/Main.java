@@ -94,6 +94,8 @@ public class Main extends Application {
         rootVBox = new VBox(2);         // contains rectangle and console
         rootVBox.setSpacing(5f);
         schematicGroup = new Group();      // schematicGroup (atm gateGroup)
+        gateGroup = new Group();
+        schematicGroup.getChildren().add(gateGroup);
         initschematic();
 
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
@@ -141,7 +143,7 @@ public class Main extends Application {
     }
 
     protected final void buildAndSetLoop() {        // this vill update everything 100 times per second / once every 1.666 seconds
-        final int fps = 50; //  if toggle then 100on + 100off = 200/2 hertz
+        final int fps = 50; //  100fps == 100on + 100off = 200/2 = 100 hertz
         final Duration oneFrameAmt = Duration.millis(1000 / fps);  // "100 fps" should be enough.. for nao
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, new EventHandler() {
             @Override
@@ -168,11 +170,9 @@ public class Main extends Application {
     }
 
     public void initschematic() {
-        if (schematicGroup.getChildren().contains(gateGroup)) {
-            schematicGroup.getChildren().remove(gateGroup);
+        if(gateGroup.getChildren().size() >0){
+            gateGroup.getChildren().remove(0, gateGroup.getChildren().size());
         }
-        gateGroup = new Group();
-        schematicGroup.getChildren().add(gateGroup);
         /* reset all lists*/
         gateObjects = new ArrayList();
         lines = new ArrayList();
