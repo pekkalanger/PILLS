@@ -199,6 +199,10 @@ public class Main extends Application {
         timeline.play();
     }
 
+    public void destroy() {
+        timeline.stop();
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         Textures.initMap();

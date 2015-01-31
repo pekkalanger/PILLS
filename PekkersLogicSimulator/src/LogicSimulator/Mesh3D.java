@@ -40,11 +40,11 @@ import javafx.util.Duration;
  */
 public class Mesh3D {//extends Application {
 
-    public Timeline timeline;
     public Shape3D[] meshView;
     boolean var;
+    Timeline timeline;
 
-    public Group start(Stage stage) {
+    public Group start(Group g, Stage stage) {
         PhongMaterial material = new PhongMaterial();
         material.setDiffuseColor(Color.LIGHTGREEN);
         material.setSpecularColor(Color.rgb(30, 30, 30));
@@ -53,9 +53,9 @@ public class Mesh3D {//extends Application {
 
         for (int i = 0; i != 1; ++i) {
             meshView[i].setMaterial(material);
-            meshView[i].setTranslateX((i + 1) * 10);
-            meshView[i].setTranslateY(10);
-            meshView[i].setTranslateZ(10);
+            meshView[i].setTranslateX((i + 1) * 0);
+            meshView[i].setTranslateY(0);
+            meshView[i].setTranslateZ(1);
             meshView[i].setDrawMode(DrawMode.FILL);
             meshView[i].setCullFace(CullFace.BACK);
         };
@@ -73,30 +73,30 @@ public class Mesh3D {//extends Application {
         rzBox2.setAngle(0);
         meshView[0].getTransforms().addAll(rxBox2, ryBox2, rzBox2);
 
-        buildAndSetLoop(stage);
-        Group root = new Group(meshView);
-        root.getChildren().add(pointLight);
+        buildAndSetLoop(g, stage);
+        Group meshGroup = new Group(meshView);
+        meshGroup.getChildren().add(pointLight);
 
         stage.getScene().setFill(Color.rgb(10, 10, 40));
         //scene.setCamera(new PerspectiveCamera(false));
         stage.show();
-        return root;
+        return meshGroup;
     }
 
-    protected final void buildAndSetLoop(Stage s) {        // this vill update everything 100 times per second / once every 1.666 seconds
+    protected final void buildAndSetLoop(Group g, Stage s) {        // this vill update everything 100 times per second / once every 1.666 seconds
         Rotate rxBox = new Rotate(0, 0, 0, 0, Rotate.X_AXIS);
         Rotate ryBox = new Rotate(0, 0, 0, 0, Rotate.Y_AXIS);
         Rotate rzBox = new Rotate(0, 0, 0, 0, Rotate.Z_AXIS);
         rxBox.setAngle(1);
         ryBox.setAngle(1);
         rzBox.setAngle(-1);
-        final int fps = 100; //  if toggle then 100on + 100off = 200/2 hertz
+        final int fps = 60; //  if toggle then 100on + 100off = 200/2 hertz
         final Duration oneFrameAmt = Duration.millis(1000 / fps);  // "100 fps" should be enough.. for nao
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, new EventHandler() {
             @Override
             public void handle(Event event) {
                 meshView[0].getTransforms().addAll(rxBox, ryBox, rzBox);
-                moveCube(s);
+                moveCube(g, s);
                 event.consume();
             }
         }); // oneFrame
@@ -106,19 +106,19 @@ public class Mesh3D {//extends Application {
         timeline.play();
     }
 
-    public void moveCube(Stage s) {
+    public void moveCube(Group g, Stage s) {
         if (var == false) {
-            if (meshView[0].getTranslateX() < s.getWidth() - 0) {
-                System.out.println("Mesh x " + meshView[0].getTranslateX());
-                meshView[0].setTranslateX(meshView[0].getTranslateX() + 3);
+            if (meshView[0].getTranslateX() < g.getScene().getWidth() + 100) {
+                System.out.println("Mesh x " + meshView[0].getTranslateX() + " " + g.getScene().getWidth());
+                meshView[0].setTranslateX(meshView[0].getTranslateX() + 5);
             } else {
                 var = true;
                 System.out.println("Mesh true");
             }
         } else if (var == true) {
-            if (meshView[0].getTranslateX() > 0) {
+            if (meshView[0].getTranslateX() > -100) {
                 System.out.println("Mesh x " + meshView[0].getTranslateX());
-                meshView[0].setTranslateX(meshView[0].getTranslateX() - 3);
+                meshView[0].setTranslateX(meshView[0].getTranslateX() - 5);
             } else {
                 var = false;
             }

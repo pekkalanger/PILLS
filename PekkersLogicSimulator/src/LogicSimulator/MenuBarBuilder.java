@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -234,7 +233,7 @@ public class MenuBarBuilder {
     private void init(Group root, Stage primaryStage) {
         root.setDepthTest(DepthTest.ENABLE);
         primaryStage.getScene().setCamera(new PerspectiveCamera());
-        root.getChildren().add(mesh.start(primaryStage));
+        root.getChildren().add(mesh.start(root, primaryStage));
     }
 
 }
