@@ -85,19 +85,15 @@ public class Main extends Application {
 
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
-
         primaryStage.setTitle("P.I.L.L.S pekkers incredibly logical logic simulator");
         primaryStage.setResizable(false); // this aint working so far
 
         rootGroup = new VBox(2);        // contains menuBar and rootHBox
-
         rootHBox = new HBox(2);         // contains sideBar and rootVBox
-        rootVBox = new VBox(2);         // contains rectangle and console
         rootHBox.setSpacing(2f);
+        rootVBox = new VBox(2);         // contains rectangle and console
         rootVBox.setSpacing(5f);
-
         schematicGroup = new Group();      // schematicGroup (atm gateGroup)
-
         initschematic();
 
         MenuBarBuilder classyMenuBar = new MenuBarBuilder(this);
@@ -114,8 +110,8 @@ public class Main extends Application {
         schematicGroup.getChildren().add(schemrect);
         Group grid = schematicRectangle.drawGrid(this);
         schematicGroup.getChildren().add(grid);
-        grid.toBack();
-        schemrect.toBack();
+        grid.toBack();          // put grid behind everything
+        schemrect.toBack();     // put schematic rectangle behind everything
 
         rootVBox.getChildren().add(schematicGroup);
         rootVBox.getChildren().add(console);
@@ -127,7 +123,6 @@ public class Main extends Application {
         Image defaultCursorImage = Textures.getHmImage("defaultcursorr");
         ImageCursor imageCursor = new ImageCursor(defaultCursorImage, -defaultCursorImage.getWidth(), -defaultCursorImage.getHeight());
         scene.setCursor(imageCursor);
-
     }
 
     private void initConsole() {
