@@ -1,4 +1,5 @@
-# PekkersLogicSimulator
+# PekkersLogicSimulator <br/>
+tool for designing and simulating digital logic circuits
 
 **Work In Progress**<br />
 **Requires Java 8 or greater**<br />
