@@ -22,6 +22,7 @@ import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
 import LogicSimulator.Globals;
 import LogicSimulator.InfoPopup;
 import LogicSimulator.Objects.ConnectionLineObject;
+import LogicSimulator.SchematicRectangle;
 import LogicSimulator.Textures;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -96,23 +97,20 @@ public abstract class GateObject {
                     double newXPosition = initX + dragX;
                     double newYPosition = initY + dragY;
                     if (newXPosition > 0 && newXPosition < (Globals.main.schematicWidth - 32)) {
-                        group.setTranslateX(newXPosition - (newXPosition % Globals.main.schematicRectangle.gridWidth));
+                        group.setTranslateX(newXPosition - (newXPosition % SchematicRectangle.gridWidth));
                     }
                     if (newYPosition > 0 && newYPosition < (Globals.main.schematicHeigth - 32)) {
-                        group.setTranslateY((newYPosition - newYPosition % Globals.main.schematicRectangle.gridHeight));
+                        group.setTranslateY((newYPosition - newYPosition % SchematicRectangle.gridHeight));
                     }
                     updateLines();
                 }
                 me.consume();
             }
         });
-
         group.setOnMouseClicked((MouseEvent me) -> {
             group.toFront();
             if (me.getButton() == MouseButton.MIDDLE) {
-                if (Globals.main.gateGroup.getChildren().contains(InfoPopup.infoPopup)) {
-                    Globals.main.gateGroup.getChildren().remove(InfoPopup.infoPopup);
-                }
+                InfoPopup.resetInfoPopup();
                 destroy();
                 me.consume();
             }

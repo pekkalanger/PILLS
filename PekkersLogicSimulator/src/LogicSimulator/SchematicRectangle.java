@@ -30,25 +30,16 @@ import javafx.scene.shape.Rectangle;
  */
 public class SchematicRectangle {
 
-    Rectangle rectangle;
-    public int gridWidth = 8;
-    public int gridHeight = 8;
+    private Rectangle rectangle;
+    public static int gridWidth = 8;
+    public static int gridHeight = 8;
 
     public SchematicRectangle(Main main) {
-
-        //schematicRectangle = new Rectangle(mainWidth-sideBar.getWidth(), mainHeight - schematicHeigth);
         rectangle = new Rectangle(main.schematicWidth, main.schematicHeigth);
-
         rectangle.setStroke(Color.WHITE);
         rectangle.setFill(new LinearGradient(0, 0, 0, 1, true, CycleMethod.NO_CYCLE, new Stop[]{
             new Stop(1, Color.rgb(205, 235, 255)), new Stop(0, Color.rgb(205, 235, 255, 0.5))
         }));
-        main.schematicGroup.getChildren().add(rectangle);
-
-        Group g = drawGrid(main);
-        main.schematicGroup.getChildren().add(g);
-        g.toBack();
-        rectangle.toBack();
 
         // we can set mouse event to any node, also on the rectangle
         //schematicRectangle.setOnMouseMoved((MouseEvent me) -> {
@@ -66,42 +57,10 @@ public class SchematicRectangle {
          }
          });
          */
-        /*
-         rectangle.setOnScroll((ScrollEvent event) -> { // when moving the schematic
-         double translateX = event.getDeltaX();
-         double translateY = event.getDeltaY();
-
-         // reduce the deltas for the circles to stay in the screen
-         for (Circle c : circleList) {
-         if (c.getTranslateX() + translateX + c.getRadius() > mainWidth) {
-         translateX = mainWidth - c.getTranslateX() - c.getRadius();
-         }
-         if (c.getTranslateX() + translateX - c.getRadius() < 0) {
-         translateX = -c.getTranslateX() + c.getRadius();
-         }
-         if (c.getTranslateY() + translateY + c.getRadius() > mainHeight) {
-         translateY = mainHeight - c.getTranslateY() - c.getRadius();
-         }
-         if (c.getTranslateY() + translateY - c.getRadius() < 0) {
-         translateY = -c.getTranslateY() + c.getRadius();
-         }
-         }
-
-         // move the circles
-         for (Circle c : circleList) {
-         c.setTranslateX(c.getTranslateX() + translateX);
-         c.setTranslateY(c.getTranslateY() + translateY);
-         }
-         // log event
-         showOnConsole("Scrolled, deltaX: " + event.getDeltaX() + ", deltaY: " + event.getDeltaY());
-         }
-         );
-         */
     }
+
     /* draw a grid on screen*/
-
     public Group drawGrid(Main main) {
-
         Group g = new Group();
         for (int i = 0; i < main.schematicWidth; i += gridWidth) {
             Line gridLine = new Line(i, 0, i, rectangle.getHeight());
@@ -116,6 +75,14 @@ public class SchematicRectangle {
             g.getChildren().add(gridLine);
         }
         return g;
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
     }
 
 }

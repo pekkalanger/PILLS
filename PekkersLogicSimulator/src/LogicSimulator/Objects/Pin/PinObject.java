@@ -191,7 +191,6 @@ public abstract class PinObject implements PInterface {
                     Globals.main.showOnConsole(ClipBoard.getInputPinObject().getName() + " Removed From Clipboard");
                     Globals.main.showOnConsole(ipo.getName() + " Copied To Clipboard");
                     setDragBoard(inputPin, null, ipo, null, g);
-
                 }
             } else if (me.getButton() == MouseButton.MIDDLE) {
                 me.consume();

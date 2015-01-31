@@ -28,8 +28,8 @@ import javafx.scene.shape.Rectangle;
  */
 public class InfoPopup {
 
-    public static Rectangle infoPopup = new Rectangle(196, 168);
-    public static boolean enabled = true;
+    private static final Rectangle infoPopup = new Rectangle(196, 168);
+    private static boolean enabled = true;
 
     public static void setEnabled(boolean e) {
         enabled = e;

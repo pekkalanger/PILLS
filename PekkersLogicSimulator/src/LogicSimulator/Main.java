@@ -44,6 +44,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -135,7 +136,16 @@ public class Main extends Application {
         rootHBox.getChildren().add(sideBar);
 
         schematicGroup.getChildren().add(gateGroup);
+
         schematicRectangle = new SchematicRectangle(this);
+        Rectangle schemrect = schematicRectangle.getRectangle();
+        schematicGroup.getChildren().add(schemrect);
+        schemrect.toBack();
+
+        Group grid = schematicRectangle.drawGrid(this);
+        schematicGroup.getChildren().add(grid);
+        grid.toBack();
+
         rootVBox.getChildren().add(schematicGroup);
         rootVBox.getChildren().add(console);
         rootHBox.getChildren().add(rootVBox);
