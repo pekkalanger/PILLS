@@ -332,16 +332,12 @@ public class OldSideBarBuilder {
     public class AddGateCommand implements Command {
 
         public AddGateCommand() {
-            //this.photos = p;
-            //this.album = a;
         }
 
         public void redo() {
-            //album.removePhotos(photos);
         }
 
         public void undo() {
-            //album.addPhotos(photos);
         }
 
         @Override

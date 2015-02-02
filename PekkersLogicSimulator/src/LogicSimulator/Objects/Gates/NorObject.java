@@ -41,7 +41,7 @@ public class NorObject extends GateObject {
         rectangle = initRectangle(8, 0);
         group.getChildren().add(rectangle);
         addPinObjects();
-        initGroup(inputPinObjects, outputPinObjects);
+        initGroup();
     }
 
 }

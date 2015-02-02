@@ -43,7 +43,7 @@ public class AndObject extends GateObject {
          */
         group.getChildren().add(rectangle);
         addPinObjects();
-        initGroup(inputPinObjects, outputPinObjects);
+        initGroup();
     }
 
 }

@@ -56,7 +56,7 @@ public class BridgeObject extends GateObject {
             }
         }
 
-        initGroup(inputPinObjects, outputPinObjects);
+        initGroup();
     }
 
     @Override

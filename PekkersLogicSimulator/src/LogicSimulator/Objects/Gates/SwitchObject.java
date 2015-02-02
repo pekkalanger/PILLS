@@ -49,7 +49,7 @@ public class SwitchObject extends GateObject {
         OutputPinObject outputPinObjectQ = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
         outputPinObjects.add(outputPinObjectQ);
         addPinObjects();
-        initGroup(inputPinObjects, outputPinObjects);
+        initGroup();
         group.getChildren().addAll(rectangle);
         group.setOnMouseClicked((MouseEvent me) -> {
             group.toFront();

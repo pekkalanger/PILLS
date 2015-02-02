@@ -57,28 +57,29 @@ public class Main extends Application {
     public double initY;
     public Point2D dragAnchor;
 
-    Timeline timeline;
-
-    /*      schematic objects       */ // will be saved/laoded and nulled on New.
+    /*      schematic objects       */ // will be nulled on New.
     public List<GateObject> gateObjects;
     public List<Line> lines;
     public List<LogicLine> logicLines;
     public List<ConnectionLineObject> connectionLineObjects;
 
-    final ListView<String> console = new ListView<>();  //create a console for logging mouse events
+    //create a console for logging mouse events
+    final ListView<String> console = new ListView<>();
 
-    //create a rectangle - (XXXpx X XXXpx) in which our circles can move
-    public SchematicRectangle schematicRectangle;
+    /*     PrimaryStage and Timeline for UpdateLoop */
+    public Stage primaryStage;
+    Timeline timeline;
 
     /*          Declare groups      */
+    public VBox rootGroup;          // contains menuBar and rootHBox
     public MenuBar menuBar;         // an most excelent menubar
-    public Group schematicGroup;
-    public Group gateGroup;         // "the schematic"  here we will store all gates
-    public VBox rootGroup;
-    public VBox rootVBox;
+    public HBox rootHBox;           // contains sideBar and rootVBox
+    public VBox rootVBox;           // contains rectangle and console
     public VBox sideBar;            // contains sidebar items
-    public HBox rootHBox;
-    public Stage primaryStage;
+    public Group schematicGroup;    // this is where scematicRectangle and Gates will be grouped
+    public Group gateGroup;         // this one is for all gates
+
+    public SchematicRectangle schematicRectangle;
 
     //create a observableArrayList of logged events that will be listed in console
     final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();
@@ -104,7 +105,6 @@ public class Main extends Application {
 
         SideBarBuilder classySideBarBuilder = new SideBarBuilder(this);
         sideBar = classySideBarBuilder.buildSideBarWithButtons();
-
         rootHBox.getChildren().add(sideBar);
 
         schematicRectangle = new SchematicRectangle(this);
@@ -143,7 +143,7 @@ public class Main extends Application {
     }
 
     protected final void buildAndSetLoop() {        // this vill update everything 100 times per second / once every 1.666 seconds
-        final int fps = 50; //  100fps == 100on + 100off = 200/2 = 100 hertz
+        final int fps = 60; //  100fps == 100on + 100off = 200/2 = 100 hertz
         final Duration oneFrameAmt = Duration.millis(1000 / fps);  // "100 fps" should be enough.. for nao
         final KeyFrame oneFrame = new KeyFrame(oneFrameAmt, new EventHandler() {
             @Override

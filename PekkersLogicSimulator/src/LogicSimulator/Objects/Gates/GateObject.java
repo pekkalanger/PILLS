@@ -53,13 +53,13 @@ public abstract class GateObject {
     protected Image infoImage;
     protected Image gateImage;
 
-    public GateObject() {
+    public GateObject(double x, double y) {
         this.inputPinObjects = new ArrayList<>();
         this.outputPinObjects = new ArrayList<>();
         width = 32;
         height = 32;
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
         this.name = "unnamed";
         this.group = new Group();
         this.gate = null;
@@ -69,6 +69,10 @@ public abstract class GateObject {
         this.dragAnchor = Point2D.ZERO;
         this.infoImage = Textures.getHmImage("noimage");
         this.gateImage = Textures.getHmImage("noimage");
+    }
+
+    public GateObject() {
+        this(0, 0);
     }
 
     public Rectangle initRectangle(double x, double y) {
@@ -81,13 +85,12 @@ public abstract class GateObject {
         return rectangle;
     }
 
-    public void initGroup(final List<InputPinObject> inputPinObjects, final List<OutputPinObject> outputPinObjects) {
+    public void initGroup() {
         group.setOnMousePressed((MouseEvent me) -> {
             //when mouse is pressed, store initial position
             initX = group.getTranslateX();
             initY = group.getTranslateY();
             dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
-            //showOnConsole("Mouse pressed above " + name);
         });
         group.setOnMouseDragged((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
@@ -120,7 +123,7 @@ public abstract class GateObject {
         Globals.main.gateGroup.getChildren().add(group);
     }
 
-    public void updateLines() {  // problem
+    public void updateLines() {
         if (inputPinObjects != null) {
             Iterator<InputPinObject> iterator = inputPinObjects.iterator();
             while (iterator.hasNext()) {
@@ -151,7 +154,6 @@ public abstract class GateObject {
                     } else if (clo.getLine() != null) {
                         clo.getLine().startXProperty().set(4 + opo.getX() + group.getTranslateX());
                         clo.getLine().startYProperty().set(4 + opo.getY() + group.getTranslateY());
-                        //System.out.println("output is not the same");
                     }
                 }
             }
@@ -186,9 +188,6 @@ public abstract class GateObject {
                     Globals.main.gateGroup.getChildren().remove(ipo.getConnectionLineObjects().get(0).getLine());
                 }
                 ipo.destroyConnectionLineObjects();
-                //ipo.connectionLineObjects.get(0).logicLine = null;
-                //ipo.connectionLineObjects = null;
-                //ipo.connectionLineObject2 = null;
             }
         }
         if (outputPinObjects != null) {
@@ -199,9 +198,6 @@ public abstract class GateObject {
                     Globals.main.gateGroup.getChildren().remove(opo.getConnectionLineObjects().get(0).getLine());
                 }
                 opo.destroyConnectionLineObjects();
-                //opo.connectionLineObjects.get(0).logicLine = null;
-                //opo.connectionLineObjects = null;
-                //opo.connectionLineObject2 = null;
             }
         }
     }

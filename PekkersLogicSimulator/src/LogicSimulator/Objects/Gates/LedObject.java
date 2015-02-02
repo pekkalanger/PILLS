@@ -41,11 +41,11 @@ public class LedObject extends GateObject {
         gate.setInputPin(0, new InputPin());
         inputPinObjects.add(new InputPinObject(group, 0, 12, gate.getInputPin(0), name + " PinA"));
         rectangle = new Rectangle(width, height);
-        x = 8;
-        initRectangle(x, y);
+
+        initRectangle(8, 0);
         group.getChildren().add(rectangle);
         addPinObjects();
-        initGroup(inputPinObjects, outputPinObjects);
+        initGroup();
     }
 
     @Override

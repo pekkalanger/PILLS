@@ -64,48 +64,50 @@ public class SideBarBuilder {
         //sideBar.setPrefWidth(50);
         //sideBar.maxWidth(50);
 
-        /*      Create Button1                  */
+        /*      Create Button1                      */
         final Button butt1 = createButton(NotObject.class, "Not Gate", "notgate", "notgate");
 
-        /*      Create Button2                  */
+        /*      Create Button2                      */
         final Button butt2 = createButton(OrObject.class, "Or Gate", "orgate", "ortruth");
 
-        /*      Create Button3                  */
+        /*      Create Button3                      */
         final Button butt3 = createButton(AndObject.class, "And Gate", "andgate", "andtruth");
 
-        /*      Create Button4                  */
+        /*      Create Button4                      */
         final Button butt4 = createButton(NandObject.class, "Nand Gate", "nandgate", "nandtruth");
 
-        /*      Create Button5                  */
+        /*      Create Button5                      */
         final Button butt5 = createButton(NorObject.class, "Nor Gate", "norgate", "nortruth");
 
-        /*      Create Button6                  */
+        /*      Create Button6                      */
         final Button butt6 = createButton(XorObject.class, "Xor Gate", "xorgate", "xortruth");
 
-        /*      Create Button7                  */
+        /*      Create Button7                      */
         final Button butt7 = createButton(XnorObject.class, "Xnor Gate", "xnorgate", "xnortruth");
 
-        /*      Create Button8                  */
+        /*      Create Button8                      */
         final Button butt8 = createButton(BridgeObject.class, "Bridge", "inputpin", "inputpin");
 
-        /*      Create Button9                  */
+        /*      Create Button9                      */
         final Button butt9 = createButton(FullAdderObject.class, "Full Adder", "noimage", "noimage");
+        butt9.setDisable(true);
 
-        /*      Create Button20                  */
+        /*      Create Button20                     */
         final Button butt20 = createButton(SwitchObject.class, "Switch", "switchon", "switchon");
 
-        /*      Create Button21                  */
+        /*      Create Button21                     */
         final Button butt21 = createButton(LedObject.class, "LED", "ledon", "ledon");
 
-        /*      Create Button99                  */
-        final Button butt99 = new Button("Label");
-        butt99.setOnAction((ActionEvent event) -> {
+        /*      Create Button90                     */
+        final Button butt90 = new Button("Label");
+        butt90.setTooltip(new Tooltip("Label"));
+        butt90.setOnAction((ActionEvent event) -> {
             main.showOnConsole("Created new Label");
             main.gateGroup.getChildren().add(createLabel());
             event.consume();
         });
 
-        /*      set keycodes to buttons                  */
+        /*      set keycodes to buttons             */
         main.rootGroup.setOnKeyPressed((KeyEvent ke) -> {
             if (ke.getCode() == KeyCode.DIGIT1) {
                 butt1.fire();
@@ -127,20 +129,19 @@ public class SideBarBuilder {
             ke.consume();
         });
 
-        /*      Create Spacer1                  */
+        /*      Create Spacer1                      */
         Region spacer1 = new Region();
         VBox.setVgrow(spacer1, Priority.ALWAYS);
         spacer1.setMaxHeight(20);
 
-
-        /*      add it all to the sideBar group */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt99);
+        /*      add it all to the sideBar group     */
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt90);
 
         return sideBar;
     }
 
     public Button createButton(Class<? extends GateObject> g, String name, String gateName, String gateTruth) {
-        /*      Create Button                  */
+        /*      Create Button                       */
         final Button button = new Button();
         button.setGraphic(new ImageView(Textures.getHmImage(gateName)));
         button.setTooltip(new Tooltip(name));
@@ -170,7 +171,6 @@ public class SideBarBuilder {
             initY = label.getTranslateY();
             dragAnchor = new Point2D(me.getSceneX(), me.getSceneY());
         });
-
         label.setOnMouseDragged((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 double dragX = me.getSceneX() - dragAnchor.getX();
@@ -186,10 +186,10 @@ public class SideBarBuilder {
                 me.consume();
             }
         });
-
         label.setOnMouseClicked((MouseEvent me) -> {
             label.toFront();
             if (me.getButton() == MouseButton.PRIMARY) {
+                // primary click wont work on me >:)
             } else if (me.getButton() == MouseButton.SECONDARY) {//.PRIMARY) {
                 //main.showOnConsole("Clicked on" + label.getText() + ", " + me.getClickCount() + "times");
                 final HBox labelPromptBox = new HBox();
