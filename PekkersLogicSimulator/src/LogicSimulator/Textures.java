@@ -22,37 +22,39 @@ import javafx.scene.image.Image;
 
 public class Textures {
 
-    public static HashMap<String, Image> hm = new HashMap<>();
+    private static HashMap<String, Image> hm = new HashMap<>();
+    private static Image noImage;
 
     public static Image getHmImage(String name) {
         Image i = hm.get(name);
         if (i == null) {
             System.out.println("Missing Texture: " + name);
-            return new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/noimage.png");
+            return noImage;
         }
         return i;
-
     }
 
     public static void initMap() {
+        noImage = new Image("https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/res/noimage.png");
         System.out.println("Initializing Textures");
-
-        File folder = new File("res/");
-        File[] listOfFiles = folder.listFiles();
-        for (File file : listOfFiles) {
-            if (file.isFile()) {
-                String str = file.getName();
-                String str2 = str.substring(0, str.lastIndexOf('.'));
-                Image i = new Image("file:res/" + str);
-                if (i != null) {
+        try {
+            File folder = new File("res/");
+            File[] listOfFiles = folder.listFiles();
+            for (File file : listOfFiles) {
+                if (file.isFile()) {
+                    String str = file.getName();
+                    String str2 = str.substring(0, str.lastIndexOf('.'));
+                    Image i = new Image("file:res/" + str);
                     hm.put(str2, i);
-                    System.out.println("Loaded Resource: " + str2);
-                } else {
-                    System.out.println("Failed Resource: " + str2);
+                    System.out.println("Loaded Texture: " + str2);
                 }
             }
+            System.out.println("Textures Successfully Initialized");
+        } catch (Exception e) {
+            System.out.println("Texture Initialization Failed: " + e);
+
         }
-        System.out.println("Textures Initialized");
+
     }
 
     public Textures() {

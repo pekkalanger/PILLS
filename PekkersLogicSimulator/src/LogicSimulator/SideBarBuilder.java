@@ -48,11 +48,11 @@ import javafx.scene.layout.VBox;
 
 public class SideBarBuilder {
 
-    final Main main;
+    private final Main main;
 
-    public double initX;
-    public double initY;
-    public Point2D dragAnchor;
+    private double initX;
+    private double initY;
+    private Point2D dragAnchor;
 
     public SideBarBuilder(final Main main) {
         this.main = main;

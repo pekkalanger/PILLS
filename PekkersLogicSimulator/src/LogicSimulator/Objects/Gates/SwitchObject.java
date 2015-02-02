@@ -31,7 +31,7 @@ import javafx.scene.paint.ImagePattern;
 public class SwitchObject extends GateObject {
 
     boolean toggled = false;
-    //Switch gate;
+    Image gateImage2;
 
     public SwitchObject() {
         super();
@@ -42,8 +42,9 @@ public class SwitchObject extends GateObject {
         name = "Switch";
         gate = new Switch(false);
         gate.setOutputPin(0, new OutputPin());
-        infoImage = Textures.getHmImage("switchon");
         gateImage = Textures.getHmImage("switchoff");
+        gateImage2 = Textures.getHmImage("switchon");
+        infoImage = Textures.getHmImage("switchon");
         rectangle = initRectangle(0, 0);
         OutputPinObject outputPinObjectQ = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
         outputPinObjects.add(outputPinObjectQ);
@@ -55,7 +56,7 @@ public class SwitchObject extends GateObject {
             if (me.getButton() == MouseButton.SECONDARY) {
                 gate.toggle();
                 if (gate.getDataObject().getData()) {
-                    rectangle.setFill(new ImagePattern(Textures.getHmImage("switchon"), 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
+                    rectangle.setFill(new ImagePattern(gateImage2, 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
 
                 } else {
                     rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));

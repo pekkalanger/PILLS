@@ -53,9 +53,9 @@ import javafx.stage.StageStyle;
  */
 public class MenuBarBuilder {
 
-    Mesh3D mesh = new Mesh3D();
+    private Mesh3D mesh = new Mesh3D();
 
-    final Main main;
+    private final Main main;
 
     public MenuBarBuilder(final Main main) {
         this.main = main;

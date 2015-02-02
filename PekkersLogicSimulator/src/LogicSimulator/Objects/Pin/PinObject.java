@@ -20,7 +20,6 @@ import LogicSimulator.Objects.Gates.GateLogic.InputPin;
 import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.ClipBoard;
-import static LogicSimulator.ClipBoard.connectionLineObject;
 import LogicSimulator.Objects.Gates.GateLogic.DataObject;
 import LogicSimulator.Globals;
 import LogicSimulator.InfoPopup;
@@ -160,11 +159,6 @@ public abstract class PinObject implements PInterface {
                     setDragBoard(inputPin, null, ipo, null, g);
                     Globals.main.showOnConsole(ipo.getName() + " Copied To Clipboard");
                 } else if (ClipBoard.getOutputPin() != null) {
-                    if (ClipBoard.getConnectionLineObject2() != null) {
-                        LogicLine ll = ClipBoard.getConnectionLineObject2().getLogicLine();
-                        nullLogicLine(ll);
-                        ClipBoard.setConnectionLineObject2(null);
-                    }
                     LogicLine logicLine = new LogicLine();
                     logicLine.setInputPin(0, inputPin);
                     logicLine.setOutputPin(0, ClipBoard.getOutputPin());
@@ -218,11 +212,6 @@ public abstract class PinObject implements PInterface {
                     setDragBoard(null, outputPin, null, opo, g);
                     Globals.main.showOnConsole(opo.getName() + " Copied To Clipboard");
                 } else if (ClipBoard.getInputPin() != null) {
-                    if (ClipBoard.getConnectionLineObject2() != null) {
-                        LogicLine ll = ClipBoard.getConnectionLineObject2().getLogicLine();
-                        nullLogicLine(ll);
-                        ClipBoard.setConnectionLineObject2(null);
-                    }
                     LogicLine logicLine = new LogicLine();
                     logicLine.setInputPin(0, ClipBoard.getInputPin());
                     logicLine.setOutputPin(0, outputPin);
@@ -301,8 +290,8 @@ public abstract class PinObject implements PInterface {
         ClipBoard.clearClipBoard();
         ClipBoard.setInputPin(inputPin);
         ClipBoard.setOutputPin(outputPin);
-        if (connectionLineObject != null) {
-            ClipBoard.setLine(connectionLineObject.getLine());
+        if (ClipBoard.getConnectionLineObject() != null) {
+            ClipBoard.setLine(ClipBoard.getConnectionLineObject().getLine());
         }
         ClipBoard.setGroup(g);
         ClipBoard.setName(name);
@@ -310,8 +299,7 @@ public abstract class PinObject implements PInterface {
         ClipBoard.setY(rectangle.getTranslateY());      // + Dragboard.pinOver.setGroup.getTranslateY()
         ClipBoard.setOutputPinObject(opo);
         ClipBoard.setInputPinObject(ipo);
-        ClipBoard.setConnectionLineObject(connectionLineObject);
-        ClipBoard.setConnectionLineObject2(connectionLineObject2);
+        ClipBoard.setConnectionLineObject(ClipBoard.getConnectionLineObject());
     }
 
     public void destroyConnectionLineObjects() {
