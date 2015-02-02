@@ -16,7 +16,7 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-import LogicSimulator.Globals;
+import LogicSimulator.Main;
 
 public class Led extends Gate implements GateInterface {
 
@@ -51,7 +51,7 @@ public class Led extends Gate implements GateInterface {
     public boolean update(long deltaTime) {
         if (getDataObject() != null) {
             if (isLast() != getDataObject().getData()) {
-                Globals.main.showOnConsole("LED = " + getDataObject().getData());
+                Main.main.showOnConsole("LED = " + getDataObject().getData());
             }
             dataObject = getInputPin(0).getDataObject();
             if (getDataObject() != null) {

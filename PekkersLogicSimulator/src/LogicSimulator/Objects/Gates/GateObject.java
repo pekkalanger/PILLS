@@ -19,8 +19,8 @@ package LogicSimulator.Objects.Gates;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
-import LogicSimulator.Globals;
 import LogicSimulator.InfoPopup;
+import LogicSimulator.Main;
 import LogicSimulator.Objects.ConnectionLineObject;
 import LogicSimulator.SchematicRectangle;
 import LogicSimulator.Textures;
@@ -99,10 +99,10 @@ public abstract class GateObject {
                     double dragY = me.getSceneY() - dragAnchor.getY();
                     double newXPosition = initX + dragX;
                     double newYPosition = initY + dragY;
-                    if (newXPosition > 0 && newXPosition < (Globals.main.schematicWidth - 32)) {
+                    if (newXPosition > 0 && newXPosition < (Main.main.schematicWidth - 32)) {
                         group.setTranslateX(newXPosition - (newXPosition % SchematicRectangle.gridWidth));
                     }
-                    if (newYPosition > 0 && newYPosition < (Globals.main.schematicHeigth - 32)) {
+                    if (newYPosition > 0 && newYPosition < (Main.main.schematicHeigth - 32)) {
                         group.setTranslateY((newYPosition - newYPosition % SchematicRectangle.gridHeight));
                     }
                     updateLines();
@@ -120,7 +120,7 @@ public abstract class GateObject {
         });
 
         group.setOpacity(0.8f);
-        Globals.main.gateGroup.getChildren().add(group);
+        Main.main.gateGroup.getChildren().add(group);
     }
 
     public void updateLines() {
@@ -176,16 +176,16 @@ public abstract class GateObject {
     }
 
     public void destroy() {
-        Globals.main.showOnConsole("Removed specified Gate");
-        Globals.main.gateGroup.getChildren().remove(group);
+        Main.main.showOnConsole("Removed specified Gate");
+        Main.main.gateGroup.getChildren().remove(group);
         gate.destroy();
         gate = null;
         if (inputPinObjects != null) {
             Iterator<InputPinObject> ipoIterator = inputPinObjects.iterator();
             while (ipoIterator.hasNext()) {
                 InputPinObject ipo = ipoIterator.next();
-                if (Globals.main.gateGroup.getChildren().contains(ipo.getConnectionLineObjects().get(0).getLine())) {
-                    Globals.main.gateGroup.getChildren().remove(ipo.getConnectionLineObjects().get(0).getLine());
+                if (Main.main.gateGroup.getChildren().contains(ipo.getConnectionLineObjects().get(0).getLine())) {
+                    Main.main.gateGroup.getChildren().remove(ipo.getConnectionLineObjects().get(0).getLine());
                 }
                 ipo.destroyConnectionLineObjects();
             }
@@ -194,8 +194,8 @@ public abstract class GateObject {
             Iterator<OutputPinObject> opoIterator = outputPinObjects.iterator();
             while (opoIterator.hasNext()) {
                 OutputPinObject opo = opoIterator.next();
-                if (Globals.main.gateGroup.getChildren().contains(opo.getConnectionLineObjects().get(0).getLine())) {
-                    Globals.main.gateGroup.getChildren().remove(opo.getConnectionLineObjects().get(0).getLine());
+                if (Main.main.gateGroup.getChildren().contains(opo.getConnectionLineObjects().get(0).getLine())) {
+                    Main.main.gateGroup.getChildren().remove(opo.getConnectionLineObjects().get(0).getLine());
                 }
                 opo.destroyConnectionLineObjects();
             }

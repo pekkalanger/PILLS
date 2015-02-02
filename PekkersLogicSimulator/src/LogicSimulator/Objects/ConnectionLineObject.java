@@ -18,7 +18,7 @@ package LogicSimulator.Objects;
 
 import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.ClipBoard;
-import LogicSimulator.Globals;
+import LogicSimulator.Main;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import javafx.scene.Group;
@@ -61,15 +61,15 @@ public class ConnectionLineObject {
     }
 
     public void destroy() {
-        if (Globals.main.gateGroup.getChildren().contains(line)) {
-            Globals.main.gateGroup.getChildren().remove(line);
+        if (Main.main.gateGroup.getChildren().contains(line)) {
+            Main.main.gateGroup.getChildren().remove(line);
             line = null;
         }
-        if (Globals.main.logicLines.contains(logicLine)) {  // -> connectionlineobject
-            Globals.main.logicLines.remove(logicLine);
+        if (Main.main.logicLines.contains(logicLine)) {  // -> connectionlineobject
+            Main.main.logicLines.remove(logicLine);
         }
-        if (Globals.main.connectionLineObjects.contains(this)) {  // -> connectionlineobject
-            Globals.main.connectionLineObjects.remove(this);
+        if (Main.main.connectionLineObjects.contains(this)) {  // -> connectionlineobject
+            Main.main.connectionLineObjects.remove(this);
         }
         if (logicLine != null) {
             logicLine.destroy();

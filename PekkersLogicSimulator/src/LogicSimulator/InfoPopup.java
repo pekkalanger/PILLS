@@ -62,20 +62,20 @@ public class InfoPopup {
     }
 
     private static void setInfoPopup(Image image) {
-        if (!Globals.main.gateGroup.getChildren().contains(infoPopup) && enabled) {
+        if (!Main.main.gateGroup.getChildren().contains(infoPopup) && enabled) {
             infoPopup.setTranslateX(750);
             infoPopup.setTranslateY(0);
             if (image != null) {
                 infoPopup.setFill(new ImagePattern(image, 0, 0, 1, 1, true));
             }
             //Globals.main.showOnConsole("Open infoPopup");
-            Globals.main.gateGroup.getChildren().add(infoPopup);
+            Main.main.gateGroup.getChildren().add(infoPopup);
         }
     }
 
     public static void resetInfoPopup() {
-        if (Globals.main.gateGroup.getChildren().contains(infoPopup)) {
-            Globals.main.gateGroup.getChildren().remove(infoPopup);
+        if (Main.main.gateGroup.getChildren().contains(infoPopup)) {
+            Main.main.gateGroup.getChildren().remove(infoPopup);
         }
     }
 }

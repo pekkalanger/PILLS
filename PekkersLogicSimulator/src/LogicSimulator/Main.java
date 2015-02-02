@@ -45,6 +45,8 @@ import javafx.util.Duration;
 
 public class Main extends Application {
 
+    public static Main main;
+
     public int mainWidth = 1024;
     public int mainHeight = 768;
     public int schematicWidth = mainWidth - 50;
@@ -186,9 +188,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        main = this;
         Textures.initMap();
         initConsole();
-        Globals.main = this;
         init(primaryStage);
         buildAndSetLoop();
         primaryStage.show();

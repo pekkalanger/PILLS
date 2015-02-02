@@ -22,16 +22,16 @@ import javafx.scene.image.Image;
 
 public class Textures {
 
-    private static HashMap<String, Image> hm = new HashMap<>();
+    private static final HashMap<String, Image> imageMap = new HashMap<>();
     private static Image noImage;
 
     public static Image getHmImage(String name) {
-        Image i = hm.get(name);
-        if (i == null) {
+        Image image = imageMap.get(name);
+        if (image == null) {
             System.out.println("Missing Texture: " + name);
             return noImage;
         }
-        return i;
+        return image;
     }
 
     public static void initMap() {
@@ -42,22 +42,17 @@ public class Textures {
             File[] listOfFiles = folder.listFiles();
             for (File file : listOfFiles) {
                 if (file.isFile()) {
-                    String str = file.getName();
-                    String str2 = str.substring(0, str.lastIndexOf('.'));
-                    Image i = new Image("file:res/" + str);
-                    hm.put(str2, i);
-                    System.out.println("Loaded Texture: " + str2);
+                    String fileName = file.getName();
+                    String name = fileName.substring(0, fileName.lastIndexOf('.'));
+                    Image i = new Image("file:res/" + fileName);
+                    imageMap.put(name, i);
+                    System.out.println("Loaded Texture: " + name);
                 }
             }
             System.out.println("Textures Successfully Initialized");
         } catch (Exception e) {
             System.out.println("Texture Initialization Failed: " + e);
-
         }
-
-    }
-
-    public Textures() {
     }
 
 }

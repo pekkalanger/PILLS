@@ -34,7 +34,6 @@ public class ClipBoard {
 
     private static GateObject gateObject;
     private static ConnectionLineObject connectionLineObject;
-    //private static ConnectionLineObject connectionLineObject2;
     private static Line line;
     private static String name;
     private static Object object;
@@ -78,15 +77,6 @@ public class ClipBoard {
     public static ConnectionLineObject getConnectionLineObject() {
         return connectionLineObject;
     }
-    /*
-     public static void setConnectionLineObject2(ConnectionLineObject clo2) {
-     connectionLineObject2 = clo2;
-     }
-
-     public static ConnectionLineObject getConnectionLineObject2() {
-     return connectionLineObject2;
-     }
-     */
 
     public static Group getGroup() {
         return group;

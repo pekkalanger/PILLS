@@ -16,7 +16,7 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-import LogicSimulator.Globals;
+import LogicSimulator.Main;
 
 public class Switch extends Gate implements GateInterface {
 
@@ -46,7 +46,7 @@ public class Switch extends Gate implements GateInterface {
 
     @Override
     public void toggle() {
-        Globals.main.showOnConsole("Switch status: " + !getOutputPin(0).getDataObject().getData());
+        Main.main.showOnConsole("Switch status: " + !getOutputPin(0).getDataObject().getData());
         dataObject.toggle();
     }
 

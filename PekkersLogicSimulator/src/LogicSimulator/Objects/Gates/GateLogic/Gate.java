@@ -16,7 +16,7 @@
  */
 package LogicSimulator.Objects.Gates.GateLogic;
 
-import LogicSimulator.Globals;
+import LogicSimulator.Main;
 
 /**
  *
@@ -54,7 +54,7 @@ public abstract class Gate implements GateInterface {
 
     public void showOutputOnConsole(int num, boolean b) {
         if (outputPins[num].getDataObject().getData() == b) {
-            Globals.main.showOnConsole(name + " = " + !outputPins[num].getDataObject().getData());
+            Main.main.showOnConsole(name + " = " + !outputPins[num].getDataObject().getData());
         }
     }
 

@@ -21,8 +21,8 @@ import LogicSimulator.Objects.Gates.GateLogic.LogicLine;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.ClipBoard;
 import LogicSimulator.Objects.Gates.GateLogic.DataObject;
-import LogicSimulator.Globals;
 import LogicSimulator.InfoPopup;
+import LogicSimulator.Main;
 import LogicSimulator.Objects.ConnectionLineObject;
 import LogicSimulator.Textures;
 import java.util.ArrayList;
@@ -157,7 +157,7 @@ public abstract class PinObject implements PInterface {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
                     setDragBoard(inputPin, null, ipo, null, g);
-                    Globals.main.showOnConsole(ipo.getName() + " Copied To Clipboard");
+                    Main.main.showOnConsole(ipo.getName() + " Copied To Clipboard");
                 } else if (ClipBoard.getOutputPin() != null) {
                     LogicLine logicLine = new LogicLine();
                     logicLine.setInputPin(0, inputPin);
@@ -172,18 +172,18 @@ public abstract class PinObject implements PInterface {
                     if (ClipBoard.getOutputPinObject() != null && !ClipBoard.getOutputPinObject().connectionLineObjects.contains(connectionLineObject3)) {
                         ClipBoard.getOutputPinObject().connectionLineObjects.add(connectionLineObject3);
                     }
-                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
-                        Globals.main.connectionLineObjects.add(connectionLineObject3);
+                    if (!Main.main.connectionLineObjects.contains(connectionLineObject3)) {
+                        Main.main.connectionLineObjects.add(connectionLineObject3);
                     }
-                    Globals.main.showOnConsole("Created New Line from " + ClipBoard.getOutputPinObject().getName() + " to " + ipo.getName());
-                    Globals.main.showOnConsole(ClipBoard.getOutputPinObject().getName() + " Removed From Clipboard");
+                    Main.main.showOnConsole("Created New Line from " + ClipBoard.getOutputPinObject().getName() + " to " + ipo.getName());
+                    Main.main.showOnConsole(ClipBoard.getOutputPinObject().getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getInputPin() == inputPin) {
-                    Globals.main.showOnConsole(ipo.getName() + " Removed From Clipboard");
+                    Main.main.showOnConsole(ipo.getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getInputPin() != inputPin && ClipBoard.getInputPin() != null) {
-                    Globals.main.showOnConsole(ClipBoard.getInputPinObject().getName() + " Removed From Clipboard");
-                    Globals.main.showOnConsole(ipo.getName() + " Copied To Clipboard");
+                    Main.main.showOnConsole(ClipBoard.getInputPinObject().getName() + " Removed From Clipboard");
+                    Main.main.showOnConsole(ipo.getName() + " Copied To Clipboard");
                     setDragBoard(inputPin, null, ipo, null, g);
                 }
             } else if (me.getButton() == MouseButton.MIDDLE) {
@@ -210,7 +210,7 @@ public abstract class PinObject implements PInterface {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
                     setDragBoard(null, outputPin, null, opo, g);
-                    Globals.main.showOnConsole(opo.getName() + " Copied To Clipboard");
+                    Main.main.showOnConsole(opo.getName() + " Copied To Clipboard");
                 } else if (ClipBoard.getInputPin() != null) {
                     LogicLine logicLine = new LogicLine();
                     logicLine.setInputPin(0, ClipBoard.getInputPin());
@@ -225,19 +225,19 @@ public abstract class PinObject implements PInterface {
                     if (ClipBoard.getInputPinObject() != null && !ClipBoard.getInputPinObject().connectionLineObjects.contains(connectionLineObject3)) {
                         ClipBoard.getInputPinObject().connectionLineObjects.add(connectionLineObject3);
                     }
-                    if (!Globals.main.connectionLineObjects.contains(connectionLineObject3)) {
-                        Globals.main.connectionLineObjects.add(connectionLineObject3);
+                    if (!Main.main.connectionLineObjects.contains(connectionLineObject3)) {
+                        Main.main.connectionLineObjects.add(connectionLineObject3);
                     }
-                    Globals.main.showOnConsole("Created New Line from " + ClipBoard.getInputPinObject().getName() + " to " + opo.getName());
-                    Globals.main.showOnConsole(ClipBoard.getInputPinObject().getName() + " Removed From Clipboard");
+                    Main.main.showOnConsole("Created New Line from " + ClipBoard.getInputPinObject().getName() + " to " + opo.getName());
+                    Main.main.showOnConsole(ClipBoard.getInputPinObject().getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getOutputPin() == outputPin) {
-                    Globals.main.showOnConsole(opo.getName() + " Removed From Clipboard");
+                    Main.main.showOnConsole(opo.getName() + " Removed From Clipboard");
                     ClipBoard.clearClipBoard();
                 } else if (ClipBoard.getOutputPin() != outputPin && ClipBoard.getOutputPin() != null) {
 
-                    Globals.main.showOnConsole(ClipBoard.getOutputPinObject().getName() + " Removed From Clipboard");
-                    Globals.main.showOnConsole(opo.getName() + " Copied To Clipboard");
+                    Main.main.showOnConsole(ClipBoard.getOutputPinObject().getName() + " Removed From Clipboard");
+                    Main.main.showOnConsole(opo.getName() + " Copied To Clipboard");
                     setDragBoard(null, outputPin, null, opo, g);
                     System.out.println("sorry bro, you cant link an" + ClipBoard.getOutputPin().getClass());
                 }
@@ -280,9 +280,9 @@ public abstract class PinObject implements PInterface {
     }
 
     public void addLine(Line line, LogicLine logicLine) {
-        if (line != null && !Globals.main.gateGroup.getChildren().contains(line)) {
-            Globals.main.gateGroup.getChildren().add(line);
-            Globals.main.logicLines.add(logicLine);
+        if (line != null && !Main.main.gateGroup.getChildren().contains(line)) {
+            Main.main.gateGroup.getChildren().add(line);
+            Main.main.logicLines.add(logicLine);
         }
     }
 
