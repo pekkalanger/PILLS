@@ -170,7 +170,7 @@ public class Main extends Application {
     }
 
     public void initschematic() {
-        if(gateGroup.getChildren().size() >0){
+        if (gateGroup.getChildren().size() > 0) {
             gateGroup.getChildren().remove(0, gateGroup.getChildren().size());
         }
         /* reset all lists*/

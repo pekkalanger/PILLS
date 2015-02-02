@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 PEKKA
+ * Copyright (C) 2015 pekka
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class SideBarBuilder {
+/**
+ *
+ * @author pekka
+ */
+public class OldSideBarBuilder {
 
     final Main main;
 
@@ -54,7 +58,7 @@ public class SideBarBuilder {
     public double initY;
     public Point2D dragAnchor;
 
-    public SideBarBuilder(final Main main) {
+    public OldSideBarBuilder(final Main main) {
         this.main = main;
     }
 
@@ -65,37 +69,142 @@ public class SideBarBuilder {
         //sideBar.maxWidth(50);
 
         /*      Create Button1                  */
-        final Button butt1 = createButton(NotObject.class, "Not Gate", "notgate", "notgate");
-
+        final Button butt1 = new Button();//"add not gate");
+        butt1.setGraphic(new ImageView(Textures.getHmImage("notgate")));
+        butt1.setTooltip(new Tooltip("Not Gate"));
+        InfoPopup.setinfoPopup(butt1, Textures.getHmImage("notgate"));
+        butt1.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new not gate");
+            //CommandManager.commandManager.executeCommand(new AddGateCommand(new NotObject()));
+            NotObject notObject = new NotObject();
+            //ClipBoard.setGateObject(notObject);
+            main.gateObjects.add(notObject);
+            event.consume();
+        });
         /*      Create Button2                  */
-        final Button butt2 = createButton(OrObject.class, "Or Gate", "orgate", "ortruth");
 
+        final Button butt2 = new Button();//"add or gate");
+        butt2.setGraphic(new ImageView(Textures.getHmImage("orgate")));
+        butt2.setTooltip(new Tooltip("Or Gate"));
+        InfoPopup.setinfoPopup(butt2, Textures.getHmImage("ortruth"));
+        butt2.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Or gate");
+            OrObject orObject = new OrObject();
+            main.gateObjects.add(orObject);
+            event.consume();
+        });
         /*      Create Button3                  */
-        final Button butt3 = createButton(AndObject.class, "And Gate", "andgate", "andtruth");
 
+        final Button butt3 = new Button();//"add and gate");
+        butt3.setGraphic(new ImageView(Textures.getHmImage("andgate")));
+        butt3.setTooltip(new Tooltip("And Gate"));
+        InfoPopup.setinfoPopup(butt3, Textures.getHmImage("andtruth"));
+        butt3.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new and gate");
+            AndObject andObject = new AndObject();
+            main.gateObjects.add(andObject);
+            event.consume();
+        });
         /*      Create Button4                  */
-        final Button butt4 = createButton(NandObject.class, "Nand Gate", "nandgate", "nandtruth");
 
+        final Button butt4 = new Button();//"add nand gate");
+        butt4.setGraphic(new ImageView(Textures.getHmImage("nandgate")));
+        butt4.setTooltip(new Tooltip("Nand Gate"));
+        InfoPopup.setinfoPopup(butt4, Textures.getHmImage("nandtruth"));
+        butt4.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new nand gate");
+            NandObject nandObject = new NandObject();
+            main.gateObjects.add(nandObject);
+            event.consume();
+        });
         /*      Create Button5                  */
-        final Button butt5 = createButton(NorObject.class, "Nor Gate", "norgate", "nortruth");
 
+        final Button butt5 = new Button();//"add xnor gate");
+        butt5.setGraphic(new ImageView(Textures.getHmImage("norgate")));
+        butt5.setTooltip(new Tooltip("Nor Gate"));
+        InfoPopup.setinfoPopup(butt5, Textures.getHmImage("nortruth"));
+        butt5.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Nor gate");
+            NorObject norObject = new NorObject();
+            main.gateObjects.add(norObject);
+            event.consume();
+        });
         /*      Create Button6                  */
-        final Button butt6 = createButton(XorObject.class, "Xor Gate", "xorgate", "xortruth");
 
+        final Button butt6 = new Button();
+        butt6.setGraphic(new ImageView(Textures.getHmImage("xorgate")));
+        butt6.setTooltip(new Tooltip("Xor Gate"));
+        InfoPopup.setinfoPopup(butt6, Textures.getHmImage("xortruth"));
+        butt6.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Xor gate");
+            XorObject xorObject = new XorObject();
+            main.gateObjects.add(xorObject);
+            event.consume();
+        });
         /*      Create Button7                  */
-        final Button butt7 = createButton(XnorObject.class, "Xnor Gate", "xnorgate", "xnortruth");
 
+        final Button butt7 = new Button();//"add xnor gate");
+        butt7.setGraphic(new ImageView(Textures.getHmImage("xnorgate")));
+        butt7.setTooltip(new Tooltip("Xnor Gate"));
+        InfoPopup.setinfoPopup(butt7, Textures.getHmImage("xnortruth"));
+        butt7.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Xnor gate");
+            XnorObject xnorObject = new XnorObject();
+            main.gateObjects.add(xnorObject);
+            event.consume();
+        });
         /*      Create Button8                  */
-        final Button butt8 = createButton(BridgeObject.class, "Bridge", "inputpin", "inputpin");
 
+        final Button butt8 = new Button();
+        butt8.setGraphic(new ImageView(Textures.getHmImage("inputpin")));
+        butt8.setTooltip(new Tooltip("Bridge"));
+        InfoPopup.setinfoPopup(butt8, Textures.getHmImage("inputpin"));
+        butt8.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Bridge");
+            BridgeObject bridgeObject = new BridgeObject();
+            main.gateObjects.add(bridgeObject);
+            event.consume();
+        });
         /*      Create Button9                  */
-        final Button butt9 = createButton(FullAdderObject.class, "Full Adder", "noimage", "noimage");
 
+        final Button butt9 = new Button();//"add not gate");    /// FULLADDER
+        butt9.setDisable(true);
+        //butt9.setVisible(false);
+        butt9.setGraphic(new ImageView(Textures.getHmImage("noimage")));
+        butt9.setTooltip(new Tooltip("Full Adder"));
+        InfoPopup.setinfoPopup(butt9, Textures.getHmImage("ortruth"));
+        butt9.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Full Adder");
+            FullAdderObject fullAdder1 = new FullAdderObject();
+            main.gateObjects.add(fullAdder1);
+            event.consume();
+        });
         /*      Create Button20                  */
-        final Button butt20 = createButton(SwitchObject.class, "Switch", "switchon", "switchon");
 
+        final Button butt20 = new Button();//"add Switch");
+        butt20.setGraphic(new ImageView(Textures.getHmImage("switchon")));
+        butt20.setTooltip(new Tooltip("Switch"));
+        InfoPopup.setinfoPopup(butt20, Textures.getHmImage("switchon"));
+        butt20.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new Switch");
+            SwitchObject switchObject = new SwitchObject();
+            main.gateObjects.add(switchObject);
+
+            event.consume();
+        });
         /*      Create Button21                  */
-        final Button butt21 = createButton(LedObject.class, "LED", "ledon", "ledon");
+
+        final Button butt21 = new Button();//"add LED");
+        butt21.setGraphic(new ImageView(Textures.getHmImage("ledon")));
+        butt21.setTooltip(new Tooltip("LED"));
+        InfoPopup.setinfoPopup(butt21, Textures.getHmImage("ledon"));
+        butt21.setOnAction((ActionEvent event) -> {
+            main.showOnConsole("Created new LED");
+            LedObject ledObject = new LedObject();
+            main.gateObjects.add(ledObject);
+            event.consume();
+        });
+
 
         /*      Create Button99                  */
         final Button butt99 = new Button("Label");
@@ -223,12 +332,16 @@ public class SideBarBuilder {
     public class AddGateCommand implements Command {
 
         public AddGateCommand() {
+            //this.photos = p;
+            //this.album = a;
         }
 
         public void redo() {
+            //album.removePhotos(photos);
         }
 
         public void undo() {
+            //album.addPhotos(photos);
         }
 
         @Override

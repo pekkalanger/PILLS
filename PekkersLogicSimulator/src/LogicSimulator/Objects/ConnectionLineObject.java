@@ -81,44 +81,38 @@ public class ConnectionLineObject {
     }
 
     public Line createLine(final ConnectionLineObject clo, Group g, Rectangle r, double width, double height) {
-        if (line != null) {
-
-            //add InputPin shadow effect
-            //Image cursorImage = Textures.lineCursor;
-            //ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
-            //line.setCursor(imageCursor);
-            line.setStartX(width / 2 + ClipBoard.getX() + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
-            line.setStartY(height / 2 + ClipBoard.getY() + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
-            line.setEndX(width / 2 + r.getTranslateX() + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
-            line.setEndY(height / 2 + r.getTranslateY() + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
-            //add mouse listeners
-
-            line.setOnMouseClicked((MouseEvent me) -> {
-                if (me.getButton() == MouseButton.MIDDLE) {
-                    destroy();
-                    me.consume();
-                }
-            });
-            line.setOnMouseEntered((MouseEvent me) -> {
-                //change the z-coordinate of the circle
-                if (line != null) {
-                    line.toFront();
-                }
-                me.consume();
-            });
-            line.setOnMouseExited((MouseEvent me) -> {
-                //me.consume();
-            });
-
-            if (logicLine.getInputPin(0).getDataObject().getData() == true) {
-                line.setStroke(colorOn);
-            } else {
-                line.setStroke(colorOff);
-            }
-            return line;
-        } else {
+        if (line == null) {
             return null;
         }
+
+        line.setStartX(width / 2 + ClipBoard.getX() + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
+        line.setStartY(height / 2 + ClipBoard.getY() + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
+        line.setEndX(width / 2 + r.getTranslateX() + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()
+        line.setEndY(height / 2 + r.getTranslateY() + g.getTranslateY());  // + pinOver.setGroup.getTranslateY()
+
+        //add mouse listeners
+        line.setOnMouseClicked((MouseEvent me) -> {
+            if (me.getButton() == MouseButton.MIDDLE) {
+                destroy();
+                me.consume();
+            }
+        });
+        line.setOnMouseEntered((MouseEvent me) -> {
+            if (line != null) {
+                line.toFront();
+            }
+            me.consume();
+        });
+        line.setOnMouseExited((MouseEvent me) -> {
+            //me.consume();
+        });
+
+        if (logicLine.getInputPin(0).getDataObject().getData() == true) {
+            line.setStroke(colorOn);
+        } else {
+            line.setStroke(colorOff);
+        }
+        return line;
     }
 
     public Line getLine() {
