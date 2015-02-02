@@ -65,38 +65,38 @@ public class SideBarBuilder {
         //sideBar.maxWidth(50);
 
         /*      Create Button1                      */
-        final Button butt1 = createButton(NotObject.class, "Not Gate", "notgate", "notgate");
+        final Button butt1 = createGateButton(NotObject.class, "Not Gate", "notgate", "notgate");
 
         /*      Create Button2                      */
-        final Button butt2 = createButton(OrObject.class, "Or Gate", "orgate", "ortruth");
+        final Button butt2 = createGateButton(OrObject.class, "Or Gate", "orgate", "ortruth");
 
         /*      Create Button3                      */
-        final Button butt3 = createButton(AndObject.class, "And Gate", "andgate", "andtruth");
+        final Button butt3 = createGateButton(AndObject.class, "And Gate", "andgate", "andtruth");
 
         /*      Create Button4                      */
-        final Button butt4 = createButton(NandObject.class, "Nand Gate", "nandgate", "nandtruth");
+        final Button butt4 = createGateButton(NandObject.class, "Nand Gate", "nandgate", "nandtruth");
 
         /*      Create Button5                      */
-        final Button butt5 = createButton(NorObject.class, "Nor Gate", "norgate", "nortruth");
+        final Button butt5 = createGateButton(NorObject.class, "Nor Gate", "norgate", "nortruth");
 
         /*      Create Button6                      */
-        final Button butt6 = createButton(XorObject.class, "Xor Gate", "xorgate", "xortruth");
+        final Button butt6 = createGateButton(XorObject.class, "Xor Gate", "xorgate", "xortruth");
 
         /*      Create Button7                      */
-        final Button butt7 = createButton(XnorObject.class, "Xnor Gate", "xnorgate", "xnortruth");
+        final Button butt7 = createGateButton(XnorObject.class, "Xnor Gate", "xnorgate", "xnortruth");
 
         /*      Create Button8                      */
-        final Button butt8 = createButton(BridgeObject.class, "Bridge", "inputpin", "inputpin");
+        final Button butt8 = createGateButton(BridgeObject.class, "Bridge", "inputpin", "inputpin");
 
         /*      Create Button9                      */
-        final Button butt9 = createButton(FullAdderObject.class, "Full Adder", "noimage", "noimage");
+        final Button butt9 = createGateButton(FullAdderObject.class, "Full Adder", "noimage", "noimage");
         butt9.setDisable(true);
 
         /*      Create Button20                     */
-        final Button butt20 = createButton(SwitchObject.class, "Switch", "switchon", "switchon");
+        final Button butt20 = createGateButton(SwitchObject.class, "Switch", "switchon", "switchon");
 
         /*      Create Button21                     */
-        final Button butt21 = createButton(LedObject.class, "LED", "ledon", "ledon");
+        final Button butt21 = createGateButton(LedObject.class, "LED", "ledon", "ledon");
 
         /*      Create Button90                     */
         final Button butt90 = new Button("Label");
@@ -140,7 +140,7 @@ public class SideBarBuilder {
         return sideBar;
     }
 
-    public Button createButton(Class<? extends GateObject> g, String name, String gateName, String gateTruth) {
+    public Button createGateButton(Class<? extends GateObject> g, String name, String gateName, String gateTruth) {
         /*      Create Button                       */
         final Button button = new Button();
         button.setGraphic(new ImageView(Textures.getHmImage(gateName)));
