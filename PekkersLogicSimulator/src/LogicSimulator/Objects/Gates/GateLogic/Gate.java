@@ -24,7 +24,7 @@ import LogicSimulator.Globals;
  */
 public abstract class Gate implements GateInterface {
 
-    private String name = "unnamed";
+    private String name = "Unnamed";
     private boolean last = false;
     private InputPin[] inputPins;
     private OutputPin[] outputPins;
