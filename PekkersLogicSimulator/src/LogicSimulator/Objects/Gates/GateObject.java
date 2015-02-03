@@ -32,6 +32,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
@@ -43,6 +44,7 @@ public abstract class GateObject {
     protected double height = 32;
     protected double x;
     protected double y;
+    protected double rot = 0;
     protected String name;
     protected Group group;
     protected GateInterface gate;
@@ -118,7 +120,15 @@ public abstract class GateObject {
                 me.consume();
             }
         });
-
+        group.setOnScroll((ScrollEvent event) -> {
+            if (event.getDeltaY() < 0) {
+                rot -= 45;
+            } else if (event.getDeltaY() > 0) {
+                rot += 45;
+            }
+            group.setRotate(rot);
+            System.out.println(event.getDeltaY());
+        });
         group.setOpacity(0.8f);
         Main.main.gateGroup.getChildren().add(group);
     }

@@ -16,6 +16,25 @@
  */
 package LogicSimulator.Objects;
 
-public class TheProbulatorObject {
+import LogicSimulator.Objects.Gates.GateLogic.And;
+import LogicSimulator.Objects.Gates.GateObject;
+import LogicSimulator.Objects.Pin.OutputPinObject;
+import LogicSimulator.Textures;
+import javafx.scene.Group;
+
+public class ProbulatorOut extends GateObject {
+
+    public ProbulatorOut() {
+        super();
+        group = new Group();
+        name = "And Gate";
+        gate = new And(name);
+        infoImage = Textures.getHmImage("andtruth");
+        gateImage = Textures.getHmImage("andgate");
+        outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
+        group.getChildren().add(rectangle);
+        addPinObjects();
+        initGroup();
+    }
 
 }

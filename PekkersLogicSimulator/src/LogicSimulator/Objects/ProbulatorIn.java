@@ -14,17 +14,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package LogicSimulator.Objects.Gates;
+package LogicSimulator.Objects;
 
-import LogicSimulator.Objects.Pin.OutputPinObject;
-import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.And;
+import LogicSimulator.Objects.Gates.GateObject;
+import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Textures;
 import javafx.scene.Group;
 
-public class AndObject extends GateObject {
+/**
+ *
+ * @author PEKKA
+ */
+public class ProbulatorIn extends GateObject {
 
-    public AndObject() {
+    public ProbulatorIn() {
         super();
         group = new Group();
         name = "And Gate";
@@ -32,17 +36,9 @@ public class AndObject extends GateObject {
         infoImage = Textures.getHmImage("andtruth");
         gateImage = Textures.getHmImage("andgate");
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
-        inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
-        outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));
-        rectangle = initRectangle(8, 0);
-        /* 16x16 pins
-         inputPinObjects.add(new InputPinObject(group, 0, 0, gate.getInputPin(0), name + " PinA"));
-         inputPinObjects.add(new InputPinObject(group, 0, 16, gate.getInputPin(1), name + " PinB"));
-         outputPinObjects.add(new OutputPinObject(group, 48, 8, gate.getOutputPin(0), name + " PinQ"));
-         rectangle = initRectangle(16, 0);
-         */
         group.getChildren().add(rectangle);
         addPinObjects();
         initGroup();
     }
+
 }
