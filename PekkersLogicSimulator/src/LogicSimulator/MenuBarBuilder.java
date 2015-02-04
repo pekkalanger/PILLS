@@ -32,6 +32,7 @@ import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
@@ -53,7 +54,7 @@ import javafx.stage.StageStyle;
  */
 public class MenuBarBuilder {
 
-    private Mesh3D mesh = new Mesh3D();
+    private final Mesh3D mesh = new Mesh3D();
 
     private final Main main;
 
@@ -65,15 +66,15 @@ public class MenuBarBuilder {
         final MenuBar menuBar = new MenuBar();
 
         // Prepare left-most 'File' drop-down menu
-        final javafx.scene.control.Menu fileMenu = new javafx.scene.control.Menu("File");
-        final MenuItem fileNew = new MenuItem("New");/*       null all the lists!!!       */
+        Menu fileMenu = new Menu("File");
+        MenuItem fileNew = new MenuItem("New");/*       null all the lists!!!       */
 
         fileNew.setOnAction((ActionEvent event) -> {
             main.initschematic();
             event.consume();
         });
 
-        final MenuItem fileOpen = new MenuItem("Open");
+        MenuItem fileOpen = new MenuItem("Open");
         fileOpen.setDisable(true);
         fileOpen.setOnAction((ActionEvent event) -> {
             FileChooser fileChooser = new FileChooser();
@@ -93,7 +94,7 @@ public class MenuBarBuilder {
                 } finally {
                     try {
                         fileIn.close();
-                        fileIn = null;
+                        //fileIn = null;
                         System.gc();
                     } catch (IOException ex) {
                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -103,9 +104,10 @@ public class MenuBarBuilder {
             event.consume();
         });
 
-        final MenuItem fileSave = new MenuItem("Save");
+        MenuItem fileSave = new MenuItem("Save");
         fileSave.setDisable(true);
-        final MenuItem fileSaveAs = new MenuItem("Save As");
+
+        MenuItem fileSaveAs = new MenuItem("Save As");
         fileSaveAs.setDisable(true);
         fileSaveAs.setOnAction((ActionEvent event) -> {
             FileChooser fileChooser = new FileChooser();
@@ -137,7 +139,7 @@ public class MenuBarBuilder {
             event.consume();
         });
 
-        final MenuItem fileExit = new MenuItem("Exit");         // quit
+        MenuItem fileExit = new MenuItem("Exit");         // quit
         fileExit.setOnAction((ActionEvent event) -> {
             System.out.println("Exiting this shi.. witty app ");
             Platform.exit();
@@ -148,14 +150,27 @@ public class MenuBarBuilder {
         fileMenu.getItems().addAll(fileNew, fileOpen, fileSave, fileSaveAs, new SeparatorMenuItem(), fileExit);
 
         // Prepare 'Extras' drop-down menu
-        final javafx.scene.control.Menu extrasMenu = new javafx.scene.control.Menu("Extras");
-        extrasMenu.setDisable(true);
-        extrasMenu.getItems().add(new MenuItem("001"));
-        extrasMenu.getItems().add(new MenuItem("002"));
-        extrasMenu.getItems().add(new MenuItem("003"));
+        Menu extrasMenu = new Menu("Extras");
+        extrasMenu.setDisable(false);
+
+        RadioMenuItem SymbolsMenuItem = new RadioMenuItem("us symbols");
+        SymbolsMenuItem.setDisable(true);
+        SymbolsMenuItem.setSelected(true);
+        SymbolsMenuItem.setOnAction((ActionEvent event) -> {
+            if (!InfoPopup.getEnabled()) {
+                InfoPopup.setEnabled(true);
+            } else if (InfoPopup.getEnabled()) {
+                InfoPopup.setEnabled(false);
+            }
+            event.consume();
+        });
+        extrasMenu.getItems().add(SymbolsMenuItem);
+        MenuItem menuItem002 = new MenuItem("002");
+        menuItem002.setDisable(true);
+        extrasMenu.getItems().add(menuItem002);
 
         // Prepare 'Help' drop-down menu
-        final javafx.scene.control.Menu helpMenu = new javafx.scene.control.Menu("Help");
+        Menu helpMenu = new Menu("Help");
 
         RadioMenuItem infoPopupMenuItem = new RadioMenuItem("Info Popup");
         infoPopupMenuItem.setSelected(true);
@@ -168,13 +183,13 @@ public class MenuBarBuilder {
             event.consume();
         });
 
-        final MenuItem searchMenuItem = new MenuItem("Search");
+        MenuItem searchMenuItem = new MenuItem("Search");
         searchMenuItem.setDisable(true);
 
-        final MenuItem onlineManualMenuItem = new MenuItem("Online Manual");
+        MenuItem onlineManualMenuItem = new MenuItem("Online Manual");
         onlineManualMenuItem.setVisible(false);
 
-        final MenuItem aboutMenuItem = new MenuItem("Help");
+        MenuItem aboutMenuItem = new MenuItem("Help");
         aboutMenuItem.setOnAction((ActionEvent event) -> {
             main.showOnConsole("About Menu Item was clicked");
 

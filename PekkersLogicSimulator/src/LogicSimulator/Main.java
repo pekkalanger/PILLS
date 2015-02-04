@@ -160,6 +160,7 @@ public class Main extends Application {
                         next.update(delta);
                     }
                 }
+                //if(gateObjects.size() != 0) System.out.println(gateObjects.get(0).getGroup().localToParent(0, 0));
                 //System.out.println("===============END================");
                 event.consume();
             }

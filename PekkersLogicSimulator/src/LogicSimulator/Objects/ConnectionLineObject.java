@@ -21,6 +21,7 @@ import LogicSimulator.ClipBoard;
 import LogicSimulator.Main;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Pin.OutputPinObject;
+import javafx.geometry.Point2D;
 import javafx.scene.Group;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -84,7 +85,8 @@ public class ConnectionLineObject {
         if (line == null) {
             return null;
         }
-
+        //Point2D p2d = g.localToParent(0, 0);
+        //Point2D p2d2 = ClipBoard.getGroup().localToParent(0, 0);
         line.setStartX(width / 2 + ClipBoard.getX() + ClipBoard.getGroup().getTranslateX());    // + Dragboard.pinOver.setGroup.getTranslateX()
         line.setStartY(height / 2 + ClipBoard.getY() + ClipBoard.getGroup().getTranslateY());    // + Dragboard.pinOver.setGroup.getTranslateY()
         line.setEndX(width / 2 + r.getTranslateX() + g.getTranslateX());    // + pinOver.setGroup.getTranslateX()

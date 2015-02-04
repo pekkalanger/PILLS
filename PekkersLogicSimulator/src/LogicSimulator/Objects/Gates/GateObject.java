@@ -16,6 +16,7 @@
  */
 package LogicSimulator.Objects.Gates;
 
+import LogicSimulator.ClipBoard;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javafx.geometry.Point2D;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -35,6 +37,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 
 public abstract class GateObject {
 
@@ -44,7 +47,6 @@ public abstract class GateObject {
     protected double height = 32;
     protected double x;
     protected double y;
-    protected double rot = 0;
     protected String name;
     protected Group group;
     protected GateInterface gate;
@@ -79,6 +81,7 @@ public abstract class GateObject {
 
     public Rectangle initRectangle(double x, double y) {
         rectangle = new Rectangle(width, height);
+        rectangle.setCursor(Cursor.CLOSED_HAND);
         rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
 
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
@@ -122,12 +125,13 @@ public abstract class GateObject {
         });
         group.setOnScroll((ScrollEvent event) -> {
             if (event.getDeltaY() < 0) {
-                rot -= 45;
+                group.setRotate(group.getRotate() + 22.50);
             } else if (event.getDeltaY() > 0) {
-                rot += 45;
+                //group.getTransforms().add(new Rotate(45, 20, 16));
+                group.setRotate(group.getRotate() - 22.50);
             }
-            group.setRotate(rot);
-            System.out.println(event.getDeltaY());
+
+            System.out.println(group.localToParent(0, 0));//Point2D p2d = 
         });
         group.setOpacity(0.8f);
         Main.main.gateGroup.getChildren().add(group);
@@ -187,7 +191,9 @@ public abstract class GateObject {
 
     public void destroy() {
         Main.main.showOnConsole("Removed specified Gate");
+        //System.out.println(Main.main.gateGroup.getChildren().size());
         Main.main.gateGroup.getChildren().remove(group);
+        Main.main.gateObjects.remove(this);
         gate.destroy();
         gate = null;
         if (inputPinObjects != null) {

@@ -21,6 +21,7 @@ import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Switch;
 import LogicSimulator.Textures;
+import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
@@ -46,6 +47,7 @@ public class SwitchObject extends GateObject {
         gateImage2 = Textures.getHmImage("switchon");
         infoImage = Textures.getHmImage("switchon");
         rectangle = initRectangle(0, 0);
+        rectangle.setCursor(imageCursor);
         OutputPinObject outputPinObjectQ = new OutputPinObject(group, 32, 12, gate.getOutputPin(0), name + " PinA");
         outputPinObjects.add(outputPinObjectQ);
         addPinObjects();

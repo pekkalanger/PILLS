@@ -125,7 +125,4 @@ public class Mesh3D {//extends Application {
         }
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
