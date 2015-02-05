@@ -16,6 +16,7 @@
  */
 package LogicSimulator;
 
+import LogicSimulator.Objects.Gates.GateObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -162,7 +163,9 @@ public class MenuBarBuilder {
             } else if (!main.rectangularSymbols) {
                 main.rectangularSymbols = true;
                 SymbolsMenuItem.setText("use distinctive shapes");
-
+            }
+            for (GateObject next : main.gateObjects) {
+                next.updateSymbol(0);
             }
             event.consume();
         });

@@ -230,6 +230,14 @@ public abstract class GateObject {
         }
     }
 
+    public void updateSymbol(long deltaTime) {
+        if (Main.main.rectangularSymbols) {
+            rectangle.setFill(new ImagePattern(rectangularGateSymbol, 0, 0, 1, 1, true));
+        } else if (!Main.main.rectangularSymbols) {
+            rectangle.setFill(new ImagePattern(distinctiveGateSymbol, 0, 0, 1, 1, true));
+        }
+    }
+
     public List<InputPinObject> getInputPinObjects() {
         return inputPinObjects;
     }

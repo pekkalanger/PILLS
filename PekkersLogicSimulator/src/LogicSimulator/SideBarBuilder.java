@@ -151,9 +151,7 @@ public class SideBarBuilder {
                 main.showOnConsole("Created new " + name);
                 main.gateObjects.add(g.newInstance());
                 event.consume();
-            } catch (InstantiationException ex) {
-                Logger.getLogger(SideBarBuilder.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
+            } catch (InstantiationException | IllegalAccessException ex) {
                 Logger.getLogger(SideBarBuilder.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
@@ -228,6 +226,7 @@ public class SideBarBuilder {
         public void redo() {
         }
 
+        @Override
         public void undo() {
         }
 
