@@ -145,14 +145,22 @@ public abstract class PinObject implements PInterface {
         return rectangle;
     }
 
-    public Rectangle createPinRectangle(InputPinObject ipo, final InputPin inputPin, final Group g) {
+    public void initRectangleStuff() {
         ConnectionLineObject connectionLineObject = new ConnectionLineObject();
         connectionLineObjects.add(connectionLineObject);
-
         Image cursorImage = Textures.getHmImage("defaultcursorractive");
         ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
         rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
         rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
+        rectangle.setOnMouseDragged((MouseEvent me) -> {
+            me.consume();
+        });
+        setOnMousePressedReleased(gateImage);
+        InfoPopup.setinfoPopup(rectangle, infoImage);
+    }
+
+    public Rectangle createPinRectangle(InputPinObject ipo, final InputPin inputPin, final Group g) {
+        initRectangleStuff();
         rectangle.setOnMouseClicked((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
@@ -189,22 +197,11 @@ public abstract class PinObject implements PInterface {
                 //    me.consume();
             }
         });
-        rectangle.setOnMouseDragged((MouseEvent me) -> {
-            me.consume();
-        });
-
-        setOnMousePressedReleased(gateImage);
-        InfoPopup.setinfoPopup(rectangle, infoImage);
         return rectangle;
     }
 
     public Rectangle createPinRectangle(OutputPinObject opo, final OutputPin outputPin, final Group g) {
-        ConnectionLineObject connectionLineObject = new ConnectionLineObject();
-        connectionLineObjects.add(connectionLineObject);
-        Image cursorImage = Textures.getHmImage("defaultcursorractive");
-        ImageCursor imageCursor = new ImageCursor(cursorImage, -cursorImage.getWidth(), -cursorImage.getHeight());
-        rectangle.setCursor(imageCursor);//rectangle.setCursor(Cursor.HAND);
-        rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
+        initRectangleStuff();
         rectangle.setOnMouseClicked((MouseEvent me) -> {
             if (me.getButton() == MouseButton.PRIMARY) {
                 if (ClipBoard.getInputPin() == null && ClipBoard.getOutputPin() == null) {
@@ -243,13 +240,6 @@ public abstract class PinObject implements PInterface {
                 //    me.consume();
             }
         });
-        rectangle.setOnMouseDragged((MouseEvent me) -> {
-            me.consume();
-        });
-
-        setOnMousePressedReleased(gateImage);
-        InfoPopup.setinfoPopup(rectangle, infoImage);
-
         return rectangle;
     }
 

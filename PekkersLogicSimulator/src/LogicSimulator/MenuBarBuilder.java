@@ -153,14 +153,16 @@ public class MenuBarBuilder {
         Menu extrasMenu = new Menu("Extras");
         extrasMenu.setDisable(false);
 
-        RadioMenuItem SymbolsMenuItem = new RadioMenuItem("us symbols");
-        SymbolsMenuItem.setDisable(true);
-        SymbolsMenuItem.setSelected(true);
+        MenuItem SymbolsMenuItem = new MenuItem("use rectangular shapes");  // distinctive shapes
+        SymbolsMenuItem.setDisable(false);
         SymbolsMenuItem.setOnAction((ActionEvent event) -> {
-            if (!InfoPopup.getEnabled()) {
-                InfoPopup.setEnabled(true);
-            } else if (InfoPopup.getEnabled()) {
-                InfoPopup.setEnabled(false);
+            if (main.rectangularSymbols) {
+                main.rectangularSymbols = false;
+                SymbolsMenuItem.setText("use rectangular shapes");
+            } else if (!main.rectangularSymbols) {
+                main.rectangularSymbols = true;
+                SymbolsMenuItem.setText("use distinctive shapes");
+
             }
             event.consume();
         });

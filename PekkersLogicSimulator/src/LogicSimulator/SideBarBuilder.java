@@ -71,7 +71,7 @@ public class SideBarBuilder {
         final Button butt2 = createGateButton(OrObject.class, "Or Gate", "orgate", "ortruth");
 
         /*      Create Button3                      */
-        final Button butt3 = createGateButton(AndObject.class, "And Gate", "andgate", "andtruth");
+        final Button butt3 = createGateButton(AndObject.class, "And Gate", "distinctiveandgate", "andtruth");
 
         /*      Create Button4                      */
         final Button butt4 = createGateButton(NandObject.class, "Nand Gate", "nandgate", "nandtruth");

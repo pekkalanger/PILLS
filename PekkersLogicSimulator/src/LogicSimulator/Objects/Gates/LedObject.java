@@ -34,7 +34,8 @@ public class LedObject extends GateObject {
         super();
         group = new Group();
         infoImage = Textures.getHmImage("ledon");
-        gateImage = Textures.getHmImage("ledoff");
+        rectangularGateSymbol = Textures.getHmImage("ledoff");
+        distinctiveGateSymbol = rectangularGateSymbol;
         gateImage2 = Textures.getHmImage("ledon");
         name = "Led";
         gate = new Led(name);
@@ -57,7 +58,7 @@ public class LedObject extends GateObject {
                     if (gate.getDataObject().getData() == true) {
                         rectangle.setFill(new ImagePattern(gateImage2, 0, 0, 1, 1, true));
                     } else {
-                        rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
+                        rectangle.setFill(new ImagePattern(distinctiveGateSymbol, 0, 0, 1, 1, true));
                     }
                     last = false;
                 }

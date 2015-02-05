@@ -16,7 +16,6 @@
  */
 package LogicSimulator.Objects.Gates;
 
-import LogicSimulator.ClipBoard;
 import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Pin.InputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.GateInterface;
@@ -37,7 +36,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
 
 public abstract class GateObject {
 
@@ -55,7 +53,8 @@ public abstract class GateObject {
     protected double initY;
     protected Point2D dragAnchor;
     protected Image infoImage;
-    protected Image gateImage;
+    protected Image distinctiveGateSymbol;
+    protected Image rectangularGateSymbol;
 
     public GateObject(double x, double y) {
         this.inputPinObjects = new ArrayList<>();
@@ -72,7 +71,8 @@ public abstract class GateObject {
         this.initY = 0;
         this.dragAnchor = Point2D.ZERO;
         this.infoImage = Textures.getHmImage("noimage");
-        this.gateImage = Textures.getHmImage("noimage");
+        this.distinctiveGateSymbol = Textures.getHmImage("noimage");
+        this.rectangularGateSymbol = Textures.getHmImage("noimage");
     }
 
     public GateObject() {
@@ -82,8 +82,12 @@ public abstract class GateObject {
     public Rectangle initRectangle(double x, double y) {
         rectangle = new Rectangle(width, height);
         rectangle.setCursor(Cursor.CLOSED_HAND);
-        rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
+        if (Main.main.rectangularSymbols) {
+            rectangle.setFill(new ImagePattern(rectangularGateSymbol, 0, 0, 1, 1, true));
+        } else {
+            rectangle.setFill(new ImagePattern(distinctiveGateSymbol, 0, 0, 1, 1, true)); /* should create InputPin GateInterface (square with andGate gate boolean logic linked to pins)*/
 
+        }
         rectangle.setTranslateX(x);  // move 8 to the left because of inputpins on the left
         rectangle.setTranslateY(y);
         InfoPopup.setinfoPopup(rectangle, infoImage);
@@ -190,7 +194,7 @@ public abstract class GateObject {
     }
 
     public void destroy() {
-        Main.main.showOnConsole("Removed specified Gate");
+        Main.main.showOnConsole("Removed " + name);
         //System.out.println(Main.main.gateGroup.getChildren().size());
         Main.main.gateGroup.getChildren().remove(group);
         Main.main.gateObjects.remove(this);

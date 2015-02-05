@@ -21,7 +21,6 @@ import LogicSimulator.Objects.Pin.OutputPinObject;
 import LogicSimulator.Objects.Gates.GateLogic.OutputPin;
 import LogicSimulator.Objects.Gates.GateLogic.Switch;
 import LogicSimulator.Textures;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.ImageCursor;
 import javafx.scene.image.Image;
@@ -43,7 +42,8 @@ public class SwitchObject extends GateObject {
         name = "Switch";
         gate = new Switch(false);
         gate.setOutputPin(0, new OutputPin());
-        gateImage = Textures.getHmImage("switchoff");
+        rectangularGateSymbol = Textures.getHmImage("switchoff");
+        distinctiveGateSymbol = rectangularGateSymbol;
         gateImage2 = Textures.getHmImage("switchon");
         infoImage = Textures.getHmImage("switchon");
         rectangle = initRectangle(0, 0);
@@ -61,7 +61,7 @@ public class SwitchObject extends GateObject {
                     rectangle.setFill(new ImagePattern(gateImage2, 0, 0, 1, 1, true)); /* should create a GateInterface (square with andGate led boolean logic linked to pins)*/
 
                 } else {
-                    rectangle.setFill(new ImagePattern(gateImage, 0, 0, 1, 1, true));
+                    rectangle.setFill(new ImagePattern(distinctiveGateSymbol, 0, 0, 1, 1, true));
                 }
                 me.consume();
             } else if (me.getButton() == MouseButton.MIDDLE) {

@@ -34,7 +34,7 @@ public class ProbulatorIn extends GateObject {
         name = "And Gate";
         gate = new And(name);
         infoImage = Textures.getHmImage("andtruth");
-        gateImage = Textures.getHmImage("andgate");
+        distinctiveGateSymbol = Textures.getHmImage("andgate");
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         group.getChildren().add(rectangle);
         addPinObjects();

@@ -54,6 +54,7 @@ public class Main extends Application {
     int consoleWidth = 700;
     int consoleHeight = 200;
 
+    public boolean rectangularSymbols = false;
     //variables for storing initial position before drag of circle
     public double initX;
     public double initY;

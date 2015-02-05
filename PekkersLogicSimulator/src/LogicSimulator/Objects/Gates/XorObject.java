@@ -34,7 +34,7 @@ public class XorObject extends GateObject {
         name = "Xor Gate";
         gate = new Xor(name);
         infoImage = Textures.getHmImage("xortruth");
-        gateImage = Textures.getHmImage("xorgate");
+        distinctiveGateSymbol = Textures.getHmImage("xorgate");
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));

@@ -32,8 +32,8 @@ public class NandObject extends GateObject {
         name = "Nand Gate";
         gate = new Nand(name);
         infoImage = Textures.getHmImage("nandtruth");
-        gateImage = Textures.getHmImage("nandgate");
-
+        distinctiveGateSymbol = Textures.getHmImage("nandgate");
+        rectangularGateSymbol = Textures.getHmImage("rectangularnandgate");
         inputPinObjects.add(new InputPinObject(group, 0, 2, gate.getInputPin(0), name + " PinA"));
         inputPinObjects.add(new InputPinObject(group, 0, 22, gate.getInputPin(1), name + " PinB"));
         outputPinObjects.add(new OutputPinObject(group, 40, 12, gate.getOutputPin(0), name + " PinQ"));

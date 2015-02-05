@@ -38,7 +38,7 @@ import javafx.util.Duration;
  *
  * @author PEKKA
  */
-public class Mesh3D {//extends Application {
+public class Mesh3D {
 
     public Shape3D[] meshView;
     boolean var;
@@ -58,7 +58,7 @@ public class Mesh3D {//extends Application {
             meshView[i].setTranslateZ(1);
             meshView[i].setDrawMode(DrawMode.FILL);
             meshView[i].setCullFace(CullFace.BACK);
-        };
+        }
 
         PointLight pointLight = new PointLight(Color.ANTIQUEWHITE);
         pointLight.setTranslateX(200);
