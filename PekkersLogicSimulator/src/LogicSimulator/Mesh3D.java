@@ -19,7 +19,6 @@ package LogicSimulator;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import static javafx.application.Application.launch;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;

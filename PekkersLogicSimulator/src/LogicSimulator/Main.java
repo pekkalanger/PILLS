@@ -25,7 +25,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
+import static javafx.collections.FXCollections.observableArrayList;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -47,8 +47,8 @@ public class Main extends Application {
 
     public static Main main;
 
-    public int mainWidth = 1024;
     public int mainHeight = 768;
+    public int mainWidth = mainHeight * 16 / 9;
     public int schematicWidth = mainWidth - 50;
     public int schematicHeigth = 500;
     int consoleWidth = 700;
@@ -85,7 +85,7 @@ public class Main extends Application {
     public SchematicRectangle schematicRectangle;
 
     //create a observableArrayList of logged events that will be listed in console
-    final ObservableList<String> consoleObservableList = FXCollections.observableArrayList();
+    final ObservableList<String> consoleObservableList = observableArrayList();
 
     private void init(Stage primaryStage) {
         this.primaryStage = primaryStage;
