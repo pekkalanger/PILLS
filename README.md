@@ -1,4 +1,4 @@
-# PekkersLogicSimulator <br/>
+# Pekkers Incredibly Logical Logic Simulator <br/>
 A tool for designing and simulating digital logic circuits
 
 **Work In Progress**<br />
