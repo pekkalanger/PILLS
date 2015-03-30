@@ -128,16 +128,19 @@ public class SideBarBuilder {
             }
             ke.consume();
         });
-
-        /*      Create Spacer1                      */
-        Region spacer1 = new Region();
-        VBox.setVgrow(spacer1, Priority.ALWAYS);
-        spacer1.setMaxHeight(20);
-
+        
         /*      add it all to the sideBar group     */
-        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, butt8, butt9, butt20, butt21, spacer1, butt90);
+        sideBar.getChildren().addAll(butt1, butt2, butt3, butt4, butt5, butt6, butt7, createSpacer(20), butt8, butt9, butt20, butt21, createSpacer(20), butt90);
 
         return sideBar;
+    }
+    
+    /*      Create Vertical Spacer      */
+    public Region createSpacer(int height) {
+        Region region = new Region();
+        VBox.setVgrow(region, Priority.ALWAYS);
+        region.setMaxHeight(height);
+        return region;
     }
 
     public Button createGateButton(Class<? extends GateObject> g, String name, String gateName, String gateTruth) {
