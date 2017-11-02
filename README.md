@@ -3,7 +3,7 @@ A tool for designing and simulating digital logic circuits
 
 **Work In Progress**<br />
 **Requires Java 8 or greater**<br />
-[PekkersLogicSimulator.jar](https://www.dropbox.com/s/2yqeupn3jdyn5cf/pekkersLogicSimulator.jar)<br/>
+[PekkersLogicSimulator.jar](https://www.dropbox.com/s/2yqeupn3jdyn5cf/pekkersLogicSimulator.jar?dl=0)<br/>
 ![Screenshot2](https://raw.githubusercontent.com/pekkalanger/PekkersLogicSimulator/master/PekkersLogicSimulator/screenshot10.png)
 
 #To Be Done:  
